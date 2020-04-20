@@ -31,7 +31,7 @@
                 <DropShadowEffect Direction="0" Color="#FFBBBBBB" BlurRadius="15" RenderingBias="Quality"  ShadowDepth="1"/>
             </Rectangle.Effect>
         </Rectangle>
-        <Button Content="" Background="#54903B" HorizontalAlignment="Left" Margin="66,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Grid.Column="2"/>
+        <Button Content="Aceptar" Background="#54903B" HorizontalAlignment="Left" Margin="66,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Grid.Column="2"/>
         <TextBlock Text="DICTAMEN" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="171.615,-37,235,0" Height="29" Width="90" Grid.ColumnSpan="2" Grid.Column="1"/>
         <TextBlock Grid.Column="1" Background="#DADADA" FontSize="18" Foreground="Gray" HorizontalAlignment="Left" Margin="42,116,0,0" Grid.Row="1" TextWrapping="Wrap" Text="DESCRIPCIÓN" VerticalAlignment="Top" Height="188" Width="371" Grid.ColumnSpan="2"/>
         <TextBox Margin="42,27,54,47" materialDesign:HintAssist.Hint="FOLIO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2"/>

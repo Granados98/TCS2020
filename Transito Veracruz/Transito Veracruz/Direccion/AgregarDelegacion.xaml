@@ -28,7 +28,7 @@
         </Rectangle>
         <Button Content="Agregar" Background="#54903B" HorizontalAlignment="Left" Margin="289,357.868,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1"/>
         <Button Content="Cancelar" Background="#D92530" HorizontalAlignment="Left" Margin="47,357.868,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1"/>
-        <TextBlock Text="NUEVO DELEGACIÓN" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="171,-51,166,0" Height="28" Width="175"/>
+        <TextBlock Text="NUEVA DELEGACIÓN" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="171,-51,166,0" Height="28" Width="175"/>
         <TextBox Margin="47,7,83,90" materialDesign:HintAssist.Hint="NOMBRE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
         <TextBox Margin="49,82,81,14" materialDesign:HintAssist.Hint="CALLE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
         <TextBox Margin="47,17,386,359" materialDesign:HintAssist.Hint="NO." Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
