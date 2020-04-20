@@ -1,0 +1,45 @@
+﻿<Window x:Class="Transito_Veracruz.Delegacion.AgregarVehiculo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Transito_Veracruz.Delegacion"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="RegistroConductor" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Height="638.553" Width="511.842" WindowStyle="None" >
+    <Grid Background="#DADADA" Height="559" VerticalAlignment="Bottom">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140*"/>
+            <RowDefinition Height="419*"/>
+        </Grid.RowDefinitions>
+        <Rectangle Height="321" VerticalAlignment="Top" Grid.RowSpan="2" Margin="0,-81,0,0">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5, 0">
+                    <GradientStop Color="#EAD66F"/>
+                    <GradientStop Color="#CAA500" Offset="1"/>
+                    <GradientStop Color="#E4C843" Offset="0.5"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Height="536" Fill="White" VerticalAlignment="Bottom" Margin="27,-56,34,79" RadiusY="14.286" RadiusX="14.286" Grid.RowSpan="2">
+            <Rectangle.Effect>
+                <DropShadowEffect Direction="0" Color="#FFBBBBBB" BlurRadius="15" RenderingBias="Quality"  ShadowDepth="1"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Button Content="Agregar" Background="#54903B" HorizontalAlignment="Left" Margin="289,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1"/>
+        <Button Content="Cancelar" Background="#D92530" HorizontalAlignment="Left" Margin="47,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1"/>
+        <TextBlock Text="NUEVO VEHICULO" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="171,-37,166,0" Height="29" Width="175"/>
+        <TextBox Margin="47,87,76,10" materialDesign:HintAssist.Hint="MARCA" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+        <TextBox Margin="47,34,273,342" materialDesign:HintAssist.Hint="MODELO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <TextBox Margin="244,34,76,342" materialDesign:HintAssist.Hint="AÑO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <TextBox Margin="47,113,273,263" materialDesign:HintAssist.Hint="COLOR" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <ComboBox HorizontalAlignment="Left" Background="#DADADA" Margin="171,18,0,0" VerticalAlignment="Top" Width="277" Height="28"/>
+        <Label Content="CONDUCTOR" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="47,18,0,0" VerticalAlignment="Top" Height="32" Width="117"/>
+        <TextBox Margin="244,113,76,263" materialDesign:HintAssist.Hint="NO. DE PLACA" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <TextBox Margin="47,183,76,192" materialDesign:HintAssist.Hint="ASEGURADORA" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <TextBox Margin="47,257,76,118" materialDesign:HintAssist.Hint="POLIZA DE SEGURO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+
+
+
+    </Grid>
+</Window>
