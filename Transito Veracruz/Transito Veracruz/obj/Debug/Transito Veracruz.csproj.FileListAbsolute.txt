@@ -1,0 +1,40 @@
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\bin\Debug\Transito Veracruz.exe.config
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\bin\Debug\Transito Veracruz.exe
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\bin\Debug\Transito Veracruz.pdb
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\bin\Debug\MaterialDesignColors.dll
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Transito Veracruz.csprojAssemblyReference.cache
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\Login.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\MainWindow.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\App.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Transito Veracruz_MarkupCompile.cache
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Transito Veracruz_MarkupCompile.lref
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\Login.baml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\MainWindow.baml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Transito Veracruz.g.resources
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Transito_Veracruz.Properties.Resources.resources
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Transito Veracruz.csproj.GenerateResource.cache
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Transito Veracruz.csproj.CopyComplete
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Transito Veracruz.exe
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Transito Veracruz.pdb
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\App.baml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\MenuDelegacion.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\MenuDelegacion.baml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\RegistroConductor.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\RegistroConductor.baml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\AgregarVehiculo.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\AgregarVehiculo.baml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\LevantaReporte.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\LevantaReporte.baml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\Dictamen.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\Dictamen.baml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\LoginDirGeneral.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\MenuDirGeneral.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\LoginDirGeneral.baml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\MenuDirGeneral.baml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\AgregarDelegacion.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\RegistroUsuario.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\AgregarDelegacion.baml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\RegistroUsuario.baml
