@@ -38,3 +38,7 @@ C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\
 C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\RegistroUsuario.g.cs
 C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\AgregarDelegacion.baml
 C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\RegistroUsuario.baml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\DictaminarReporte.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\VisualizarReporte.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\DictaminarReporte.baml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\VisualizarReporte.baml
