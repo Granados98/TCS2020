@@ -24,9 +24,10 @@ namespace Transito_Veracruz.Delegacion
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btn_Ingresar_Click(object sender, RoutedEventArgs e)
         {
-
+            MenuDelegacion menu = new MenuDelegacion();
+            menu.Show();
         }
     }
 }

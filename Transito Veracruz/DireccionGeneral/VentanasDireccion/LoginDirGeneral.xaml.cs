@@ -23,5 +23,11 @@ namespace DireccionGeneral.VentanasDireccion
         {
             InitializeComponent();
         }
+
+        private void btn_Ingresar_Click(object sender, RoutedEventArgs e)
+        {
+            MenuDirGeneral menuDireccion = new MenuDirGeneral();
+            menuDireccion.Show();
+        }
     }
 }

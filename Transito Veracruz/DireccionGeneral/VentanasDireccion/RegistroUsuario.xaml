@@ -27,7 +27,7 @@
             </Rectangle.Effect>
         </Rectangle>
         <Button Content="Agregar" Background="#54903B" HorizontalAlignment="Left" Margin="289,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1"/>
-        <Button Content="Cancelar" Background="#D92530" HorizontalAlignment="Left" Margin="47,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1"/>
+        <Button x:Name="btn_Cancelar" Content="Cancelar" Background="#D92530" HorizontalAlignment="Left" Margin="47,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_Cancelar_Click"/>
         <TextBlock Text="NUEVO USUARIO" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="171,-37,166,0" Height="29" Width="175"/>
         <ComboBox HorizontalAlignment="Left" Background="#DADADA" Margin="171,18,0,0" VerticalAlignment="Top" Width="277" Height="28"/>
         <Label Content="DELEGACIÓN" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="47,18,0,0" VerticalAlignment="Top" Height="32" Width="117"/>

@@ -23,5 +23,29 @@ namespace DireccionGeneral.VentanasDireccion
         {
             InitializeComponent();
         }
+
+        private void btn_AgregarDelegacion_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarDelegacion delegacion = new AgregarDelegacion();
+            delegacion.Show();
+        }
+
+        private void btn_AgregarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            RegistroUsuario nuevoUsuario = new RegistroUsuario();
+            nuevoUsuario.Show();
+        }
+
+        private void btn_AgregarDictamen_Click(object sender, RoutedEventArgs e)
+        {
+            DictaminarReporte nuevoDictamen = new DictaminarReporte();
+            nuevoDictamen.Show();
+        }
+
+        private void btn_VerDetalle_Click(object sender, RoutedEventArgs e)
+        {
+            VisualizarReporte verReporte = new VisualizarReporte();
+            verReporte.Show();
+        }
     }
 }

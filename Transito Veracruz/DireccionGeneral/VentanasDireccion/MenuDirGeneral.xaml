@@ -38,7 +38,7 @@
                             <DataGridTextColumn Header="Correo" Width="160"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="Agregar Delegación" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="159"/>
+                    <Button x:Name="btn_AgregarDelegacion" Content="Agregar Delegación" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_AgregarDelegacion_Click"/>
 
                 </Grid>
             </TabItem>
@@ -52,7 +52,7 @@
                             <DataGridTextColumn Header="Delegación" Width="200"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="Agregar Usuario" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="153"/>
+                    <Button x:Name="btn_AgregarUsuario" Content="Agregar Usuario" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="153" Click="btn_AgregarUsuario_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="REPORTES" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
@@ -67,14 +67,14 @@
                             <DataGridTextColumn Header="Dirección" Width="150"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="Asignar Dictamen" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="151"/>
+                    <Button x:Name="btn_AgregarDictamen" Content="Asignar Dictamen" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="151" Click="btn_AgregarDictamen_Click"/>
                     <ComboBox Background="#DADADA" HorizontalAlignment="Left" Margin="251,32,0,0" VerticalAlignment="Top" Width="219"/>
                     <ComboBox Background="#DADADA" HorizontalAlignment="Left" Margin="656,32,0,0" VerticalAlignment="Top" Width="225"/>
                     <Label Content="DELEGACIÓN" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontWeight="Normal" FontSize="18" Margin="108,32,791,450"/>
                     <ComboBox Background="#DADADA" HorizontalAlignment="Left" Margin="251,91,0,0" VerticalAlignment="Top" Width="219"/>
                     <Label Content="ESTATUS" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontWeight="Normal" FontSize="18" Margin="108,91,791,391"/>
                     <Label Content="FECHA" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontWeight="Normal" FontSize="18" Margin="559,32,340,450"/>
-                    <Button Content="Ver Detalle" Background="#54903B" HorizontalAlignment="Left" Margin="211,453,0,0" VerticalAlignment="Top" Width="151"/>
+                    <Button x:Name="btn_VerDetalle" Content="Ver Detalle" Background="#54903B" HorizontalAlignment="Left" Margin="211,453,0,0" VerticalAlignment="Top" Width="151" Click="btn_VerDetalle_Click"/>
                 </Grid>
 
             </TabItem>

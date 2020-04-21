@@ -26,8 +26,8 @@
                 <DropShadowEffect Direction="0" Color="#FFBBBBBB" BlurRadius="15" RenderingBias="Quality"  ShadowDepth="1"/>
             </Rectangle.Effect>
         </Rectangle>
-        <Button Content="Salir" Background="#D92530" HorizontalAlignment="Left" Margin="47,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1"/>
-        <TextBlock Text="NUEVO REPORTE" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="169,-239,168,0" Height="29" Width="175"/>
+        <Button x:Name="btn_Salir" Content="Salir" Background="#D92530" HorizontalAlignment="Left" Margin="47,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_Salir_Click"/>
+        <TextBlock Text="REPORTE REGIRSTRADO    " VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="169,-239,168,0" Height="29" Width="175"/>
         <ComboBox HorizontalAlignment="Left" Background="#DADADA" Margin="169,-184,0,0" VerticalAlignment="Top" Width="277" Height="28"/>
         <Label Content="CONDUCTOR" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="45,-184,0,0" VerticalAlignment="Top" Height="32" Width="117"/>
         <Label Content="VEHICULO" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="45,-129,0,0" VerticalAlignment="Top" Height="32" Width="117"/>

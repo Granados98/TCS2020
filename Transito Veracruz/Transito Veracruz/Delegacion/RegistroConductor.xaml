@@ -27,7 +27,7 @@
             </Rectangle.Effect>
         </Rectangle>
         <Button Content="Agregar" Background="#54903B" HorizontalAlignment="Left" Margin="289,357.868,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1"/>
-        <Button Content="Cancelar" Background="#D92530" HorizontalAlignment="Left" Margin="47,357.868,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1"/>
+        <Button x:Name="btn_Cancelar" Content="Cancelar" Background="#D92530" HorizontalAlignment="Left" Margin="47,357.868,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_Cancelar_Click"/>
         <TextBlock Text="NUEVO CONDUCTOR" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="171,29,166,0" Height="28" Width="175"/>
         <TextBox Margin="47,87,83,10.132" materialDesign:HintAssist.Hint="NOMBRE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
         <TextBox Margin="49,21.868,81,354" materialDesign:HintAssist.Hint="FECHA NACIMIENTO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>

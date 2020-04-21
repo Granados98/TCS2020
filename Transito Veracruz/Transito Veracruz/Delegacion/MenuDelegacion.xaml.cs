@@ -24,6 +24,22 @@ namespace Transito_Veracruz.Delegacion
             InitializeComponent();
         }
 
+        private void btn_AgregarConductor_Click(object sender, RoutedEventArgs e)
+        {
+            RegistroConductor conductor = new RegistroConductor();
+            conductor.Show();
+        }
 
+        private void btn_AgregarVehiculo_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarVehiculo vehiculo = new AgregarVehiculo();
+            vehiculo.Show();
+        }
+
+        private void btn_AgregarReporte_Click(object sender, RoutedEventArgs e)
+        {
+            Dictamen dictamen = new Dictamen();
+            dictamen.Show();
+        }
     }
 }

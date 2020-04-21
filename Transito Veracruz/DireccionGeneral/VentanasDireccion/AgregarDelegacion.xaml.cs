@@ -23,5 +23,10 @@ namespace DireccionGeneral.VentanasDireccion
         {
             InitializeComponent();
         }
+
+        private void btn_Cancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

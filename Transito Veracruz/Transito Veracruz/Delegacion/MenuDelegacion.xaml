@@ -37,7 +37,7 @@
                             <DataGridTextColumn Header="Correo" Width="160"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="Agregar Conductor" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="159"/>
+                    <Button x:Name="btn_AgregarConductor" Content="Agregar Conductor" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_AgregarConductor_Click"/>
 
                 </Grid>
             </TabItem>
@@ -55,7 +55,7 @@
                             <DataGridTextColumn Header="No. de placas" Width="100"/>
                     </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="Agregar Vehiculo" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="153"/> 
+                    <Button x:Name="btn_AgregarVehiculo" Content="Agregar Vehiculo" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="153" Click="btn_AgregarVehiculo_Click"/> 
                 </Grid>
             </TabItem>
             <TabItem Header="REPORTES" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
@@ -72,7 +72,7 @@
 
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="Agregar Reporte" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="151"/>
+                    <Button x:Name="btn_AgregarReporte" Content="Agregar Reporte" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="151" Click="btn_AgregarReporte_Click"/>
                 </Grid>
                 
             </TabItem>

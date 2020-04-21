@@ -37,5 +37,6 @@
         <TextBox Margin="42,27,54,47" materialDesign:HintAssist.Hint="FOLIO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2"/>
         <TextBox Margin="42,87,54,417" materialDesign:HintAssist.Hint="NOMBRE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
         <TextBox Margin="42,18,54,357" materialDesign:HintAssist.Hint="HORA Y FECHA" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"/>
+        <Button x:Name="btn_Cancelar" Content="Cancelar" Background="#D92530" HorizontalAlignment="Left" Margin="42,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_Salir_Click" Grid.Column="1"/>
     </Grid>
 </Window>
