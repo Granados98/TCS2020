@@ -17,7 +17,7 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Image Height="100" VerticalAlignment="Top" Source="logo.png" Margin="20"/>
+        <Image Height="100" VerticalAlignment="Top" Source="/Transito Veracruz;component/icons/logo.png" Margin="20"/>
 
         <Rectangle Width="280" Height="240" Fill="White" VerticalAlignment="Bottom" Margin="0,100" RadiusY="14.286" RadiusX="14.286">
             <Rectangle.Effect>
@@ -31,7 +31,7 @@
                 <PasswordBox Margin="0,10" materialDesign:HintAssist.Hint="CONTRASEÑA" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
             </StackPanel>
         </Grid>
-        <Button Width="150" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,90" Content="INGRESAR" Foreground="White" Background="#603210" BorderBrush="Black"/>
+        <Button Width="150" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,90" Content="INGRESAR" Foreground="White" Background="#603210" BorderBrush="Black" Click="Button_Click"/>
         <Label  Content="SECRETARÍA DE TRÁNSITO DEL ESTADO DE VERACRUZ" HorizontalAlignment="Center" Margin="23,429,20,0" VerticalAlignment="Top" Width="307"/>
         <Label Content="www.veracruz.gob.mx" HorizontalAlignment="Center" Margin="110,453,110,23" VerticalAlignment="Center" Width="130"/>
 
