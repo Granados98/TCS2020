@@ -64,6 +64,21 @@
     <Compile Include="VentanasDireccion\AgregarDelegacion.xaml.cs">
       <DependentUpon>AgregarDelegacion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VentanasDireccion\DictaminarReporte.xaml.cs">
+      <DependentUpon>DictaminarReporte.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VentanasDireccion\LoginDirGeneral.xaml.cs">
+      <DependentUpon>LoginDirGeneral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VentanasDireccion\MenuDirGeneral.xaml.cs">
+      <DependentUpon>MenuDirGeneral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VentanasDireccion\RegistroUsuario.xaml.cs">
+      <DependentUpon>RegistroUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VentanasDireccion\VisualizarReporte.xaml.cs">
+      <DependentUpon>VisualizarReporte.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,6 +92,26 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="VentanasDireccion\AgregarDelegacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasDireccion\DictaminarReporte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasDireccion\LoginDirGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasDireccion\MenuDirGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasDireccion\RegistroUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasDireccion\VisualizarReporte.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,6 +143,26 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="icons\Clientes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\compras.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\prodcutos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\reportes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\ssp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\veracruz.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

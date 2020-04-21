@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\App.xaml
-3-1422102907
+7-963536703
 
-8247252073
+12-205166495
 15207366904
-MainWindow.xaml;VentanasDireccion\AgregarDelegacion.xaml;VentanasDireccion\DictaminarReporte.xaml;
+MainWindow.xaml;VentanasDireccion\AgregarDelegacion.xaml;VentanasDireccion\DictaminarReporte.xaml;VentanasDireccion\LoginDirGeneral.xaml;VentanasDireccion\MenuDirGeneral.xaml;VentanasDireccion\RegistroUsuario.xaml;VentanasDireccion\VisualizarReporte.xaml;
 
 True
 

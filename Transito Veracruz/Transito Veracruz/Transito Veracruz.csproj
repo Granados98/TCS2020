@@ -87,30 +87,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Direccion\AgregarDelegacion.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Direccion\DictaminarReporte.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Direccion\LoginDirGeneral.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Direccion\MenuDirGeneral.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Direccion\RegistroUsuario.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Direccion\VisualizarReporte.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -136,24 +112,6 @@
     </Compile>
     <Compile Include="Delegacion\RegistroConductor.xaml.cs">
       <DependentUpon>RegistroConductor.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Direccion\AgregarDelegacion.xaml.cs">
-      <DependentUpon>AgregarDelegacion.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Direccion\DictaminarReporte.xaml.cs">
-      <DependentUpon>DictaminarReporte.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Direccion\LoginDirGeneral.xaml.cs">
-      <DependentUpon>LoginDirGeneral.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Direccion\MenuDirGeneral.xaml.cs">
-      <DependentUpon>MenuDirGeneral.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Direccion\RegistroUsuario.xaml.cs">
-      <DependentUpon>RegistroUsuario.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Direccion\VisualizarReporte.xaml.cs">
-      <DependentUpon>VisualizarReporte.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

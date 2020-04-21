@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Transito_Veracruz.Direccion_General
+namespace DireccionGeneral.VentanasDireccion
 {
     /// <summary>
     /// Lógica de interacción para LoginDirGeneral.xaml

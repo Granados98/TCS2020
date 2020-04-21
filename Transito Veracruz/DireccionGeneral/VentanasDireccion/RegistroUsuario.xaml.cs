@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Transito_Veracruz.Direccion
+namespace DireccionGeneral.VentanasDireccion
 {
     /// <summary>
-    /// Lógica de interacción para VisualizarReporte.xaml
+    /// Lógica de interacción para RegistroUsuario.xaml
     /// </summary>
-    public partial class VisualizarReporte : Window
+    public partial class RegistroUsuario : Window
     {
-        public VisualizarReporte()
+        public RegistroUsuario()
         {
             InitializeComponent();
         }

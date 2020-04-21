@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Transito_Veracruz.Direccion
+namespace DireccionGeneral.VentanasDireccion
 {
     /// <summary>
-    /// Lógica de interacción para AgregarDelegacion.xaml
+    /// Lógica de interacción para MenuDirGeneral.xaml
     /// </summary>
-    public partial class AgregarDelegacion : Window
+    public partial class MenuDirGeneral : Window
     {
-        public AgregarDelegacion()
+        public MenuDirGeneral()
         {
             InitializeComponent();
         }
