@@ -10,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Transito_Veracruz.Delegacion
+namespace DireccionGeneral
 {
     /// <summary>
-    /// Lógica de interacción para Window2.xaml
+    /// Lógica de interacción para MainWindow.xaml
     /// </summary>
-    public partial class MenuDelegacion : Window
+    public partial class MainWindow : Window
     {
-        public MenuDelegacion()
+        public MainWindow()
         {
             InitializeComponent();
         }
-
-
     }
 }

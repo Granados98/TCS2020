@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\
+C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\
 Transito_Veracruz
 none
 false
 DEBUG;TRACE
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\App.xaml
+C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\App.xaml
 13-1931670041
 
-18-1148808290
-15-1809674531
+18-1500031440
+15207366904
 Delegacion\AgregarVehiculo.xaml;Delegacion\Dictamen.xaml;Delegacion\LevantaReporte.xaml;Delegacion\Login.xaml;Delegacion\MenuDelegacion.xaml;Delegacion\RegistroConductor.xaml;Direccion\AgregarDelegacion.xaml;Direccion\DictaminarReporte.xaml;Direccion\LoginDirGeneral.xaml;Direccion\MenuDirGeneral.xaml;Direccion\RegistroUsuario.xaml;Direccion\VisualizarReporte.xaml;MainWindow.xaml;
 
-True
+False
 

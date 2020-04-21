@@ -194,15 +194,6 @@
     <Resource Include="icons\veracruz.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Delegacion\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Delegacion\veracruz.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Delegacion\ssp.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="icons\Clientes.png" />
     <Resource Include="icons\compras.png" />
     <Resource Include="icons\prodcutos.png" />
