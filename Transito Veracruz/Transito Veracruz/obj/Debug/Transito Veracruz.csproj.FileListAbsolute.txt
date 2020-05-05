@@ -30,18 +30,6 @@ C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\
 C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\LevantaReporte.baml
 C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\Dictamen.g.cs
 C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\Dictamen.baml
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\LoginDirGeneral.g.cs
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\MenuDirGeneral.g.cs
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\LoginDirGeneral.baml
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\MenuDirGeneral.baml
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\AgregarDelegacion.g.cs
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\RegistroUsuario.g.cs
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\AgregarDelegacion.baml
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\RegistroUsuario.baml
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\DictaminarReporte.g.cs
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\VisualizarReporte.g.cs
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\DictaminarReporte.baml
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Direccion\VisualizarReporte.baml
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Transito Veracruz.csprojAssemblyReference.cache
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\AgregarVehiculo.g.cs
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Delegacion\Dictamen.g.cs

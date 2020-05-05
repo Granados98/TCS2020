@@ -47,5 +47,10 @@ namespace DireccionGeneral.VentanasDireccion
             VisualizarReporte verReporte = new VisualizarReporte();
             verReporte.Show();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -28,6 +28,8 @@ namespace DireccionGeneral.VentanasDireccion
         {
             MenuDirGeneral menuDireccion = new MenuDirGeneral();
             menuDireccion.Show();
+
+            this.Close();
         }
     }
 }

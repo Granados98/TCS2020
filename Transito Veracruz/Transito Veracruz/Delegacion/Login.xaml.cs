@@ -28,6 +28,8 @@ namespace Transito_Veracruz.Delegacion
         {
             MenuDelegacion menu = new MenuDelegacion();
             menu.Show();
+
+            this.Close();
         }
     }
 }

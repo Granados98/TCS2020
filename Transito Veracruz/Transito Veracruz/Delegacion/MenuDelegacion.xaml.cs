@@ -38,8 +38,13 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_AgregarReporte_Click(object sender, RoutedEventArgs e)
         {
-            Dictamen dictamen = new Dictamen();
-            dictamen.Show();
+            LevantaReporte reporte = new LevantaReporte();
+            reporte.Show();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
