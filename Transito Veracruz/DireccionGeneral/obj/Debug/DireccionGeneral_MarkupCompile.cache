@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\obj\Debug\
+C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\obj\Debug\
 DireccionGeneral
 none
 false
 DEBUG;TRACE
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\App.xaml
+C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\App.xaml
 7-963536703
 
-11-1178120878
-15-1809674531
+12-205166495
+15207366904
 MainWindow.xaml;VentanasDireccion\AgregarDelegacion.xaml;VentanasDireccion\DictaminarReporte.xaml;VentanasDireccion\LoginDirGeneral.xaml;VentanasDireccion\MenuDirGeneral.xaml;VentanasDireccion\RegistroUsuario.xaml;VentanasDireccion\VisualizarReporte.xaml;
 
-False
+True
 
