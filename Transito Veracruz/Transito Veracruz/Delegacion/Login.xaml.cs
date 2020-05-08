@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Transito_Veracruz.Model.dao;
+using Transito_Veracruz.Model.pocos;
 
 namespace Transito_Veracruz.Delegacion
 {
@@ -19,6 +21,8 @@ namespace Transito_Veracruz.Delegacion
     /// </summary>
     public partial class Login : Window
     {
+        private String usuario;
+        private String contrasenia;
         public Login()
         {
             InitializeComponent();
@@ -26,10 +30,40 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_Ingresar_Click(object sender, RoutedEventArgs e)
         {
-            MenuDelegacion menu = new MenuDelegacion();
-            menu.Show();
+            if (validacion())
+            {
+                usuario = txt_Usuario.Text;
+                contrasenia = txt_Contrasenia.Password;
+                Conductor conductor = ConductorDAO.getLogin(usuario, contrasenia);
+                if (conductor!=null && conductor.IdConductor>0)
+                {
+                    MenuDelegacion menuPrincpipal = new MenuDelegacion(conductor);
+                    menuPrincpipal.Show();
+                    this.Close();
+                }
+                else
+                {
 
-            this.Close();
+                    MessageBox.Show(this, "Usuario no registrado");
+                    txt_Usuario.Text = "";
+                    txt_Contrasenia.Password = "";
+                    txt_Usuario.Focus();
+                    Console.WriteLine("this is a test");
+                }
+            }
+        }
+
+        public bool validacion()
+        {
+            if (txt_Usuario.Text== null || txt_Usuario.Text.Length==0)
+            {
+                return false;
+            }
+            if (txt_Contrasenia.Password==null||txt_Contrasenia.Password.Length==0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

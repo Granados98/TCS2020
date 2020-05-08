@@ -119,10 +119,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\dao\ConductorDAO.cs" />
     <Compile Include="Model\db\ConnectionUtils.cs" />
     <Compile Include="Model\pocos\Conductor.cs" />
+    <Compile Include="Model\pocos\Delegacion.cs" />
+    <Compile Include="Model\pocos\Dictamen.cs" />
+    <Compile Include="Model\pocos\Personal.cs" />
     <Compile Include="Model\pocos\Reporte.cs" />
     <Compile Include="Model\pocos\Vehiculo.cs" />
+    <Compile Include="Model\security\Encriptacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -149,9 +154,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\dao\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="icons\logo.png" />
     <Resource Include="icons\ssp.png" />
