@@ -34,10 +34,10 @@ namespace Transito_Veracruz.Delegacion
             {
                 usuario = txt_Usuario.Text;
                 contrasenia = txt_Contrasenia.Password;
-                Conductor conductor = ConductorDAO.getLogin(usuario, contrasenia);
-                if (conductor!=null && conductor.IdConductor>0)
+                Personal personal = PersonalDAO.getLogin(usuario, contrasenia);
+                if (personal!=null && personal.IdPersonal>0)
                 {
-                    MenuDelegacion menuPrincpipal = new MenuDelegacion(conductor);
+                    MenuDelegacion menuPrincpipal = new MenuDelegacion(personal);
                     menuPrincpipal.Show();
                     this.Close();
                 }

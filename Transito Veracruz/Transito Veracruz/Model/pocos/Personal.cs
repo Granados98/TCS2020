@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Transito_Veracruz.Model.pocos
 {
-    class Personal
+    public class Personal
     {
         private Int32 idPersonal;
         private String numeroPersonal;
@@ -17,6 +17,11 @@ namespace Transito_Veracruz.Model.pocos
         private String usuario;
         private String contrasenia;
 
+        public override string ToString()
+        {
+            return String.Format("idPersonal: {0}, numeroPersonal: {1}, tipoPersonal: {2}, apellidos: {3}, " +
+                "nombre: {4}, cargo:{5}, usuario: {6}, contrasenia: {7}", idPersonal, numeroPersonal, tipoPersonal, apellidos, nombre, cargo, usuario, contrasenia);
+        }
         public int IdPersonal { get => idPersonal; set => idPersonal = value; }
         public string NumeroPersonal { get => numeroPersonal; set => numeroPersonal = value; }
         public string TipoPersonal { get => tipoPersonal; set => tipoPersonal = value; }

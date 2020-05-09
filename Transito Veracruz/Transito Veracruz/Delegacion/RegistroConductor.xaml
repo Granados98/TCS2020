@@ -6,13 +6,17 @@
         xmlns:local="clr-namespace:Transito_Veracruz.Delegacion"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="RegistroConductor" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Height="558.553" Width="511.842" WindowStyle="None" >
-    <Grid Background="#DADADA" Height="559" VerticalAlignment="Bottom">
+        Title="RegistroConductor" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Height="649.5" Width="511" WindowStyle="None" >
+    <Grid Background="#DADADA" Margin="0,41,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="489*"/>
+            <ColumnDefinition Width="22*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="140*"/>
-            <RowDefinition Height="419*"/>
+            <RowDefinition Height="163*"/>
+            <RowDefinition Height="446*"/>
         </Grid.RowDefinitions>
-        <Rectangle Height="280" VerticalAlignment="Top" Grid.RowSpan="2">
+        <Rectangle Height="300" VerticalAlignment="Top" Grid.RowSpan="2" Margin="-1,-50,0,0" Grid.ColumnSpan="2">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5, 0">
                     <GradientStop Color="#EAD66F"/>
@@ -21,19 +25,21 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Height="437" Fill="White" VerticalAlignment="Bottom" Margin="27,0,34,93" RadiusY="14.286" RadiusX="14.286" Grid.RowSpan="2">
+        <Rectangle Height="466" Fill="White" VerticalAlignment="Bottom" Margin="27,0,12,111" RadiusY="14.286" RadiusX="14.286" Grid.RowSpan="2">
             <Rectangle.Effect>
                 <DropShadowEffect Direction="0" Color="#FFBBBBBB" BlurRadius="15" RenderingBias="Quality"  ShadowDepth="1"/>
             </Rectangle.Effect>
         </Rectangle>
-        <Button Content="Agregar" Background="#54903B" HorizontalAlignment="Left" Margin="289,357.868,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1"/>
-        <Button x:Name="btn_Cancelar" Content="Cancelar" Background="#D92530" HorizontalAlignment="Left" Margin="47,357.868,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_Cancelar_Click"/>
-        <TextBlock Text="NUEVO CONDUCTOR" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="171,29,166,0" Height="28" Width="175"/>
-        <TextBox Margin="47,87,83,10.132" materialDesign:HintAssist.Hint="NOMBRE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
-        <TextBox Margin="49,21.868,81,354" materialDesign:HintAssist.Hint="FECHA NACIMIENTO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
-        <TextBox Margin="47,96.868,83,279" materialDesign:HintAssist.Hint="NO. DE LICENCIA" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
-        <TextBox Margin="47,175.868,83,200" materialDesign:HintAssist.Hint="TELÉFONO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
-        <TextBox Margin="47,252.868,83,123" materialDesign:HintAssist.Hint="CONTRASEÑA DE ACCESO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <Button x:Name="btn_AgregarConductor" Content="Agregar" Background="#54903B" HorizontalAlignment="Left" Margin="292,376,0,0" VerticalAlignment="Top" Width="160" Grid.Row="1" Click="btn_AgregarConductor_Click"/>
+        <Button x:Name="btn_Cancelar" Content="Cancelar" Background="#D92530" HorizontalAlignment="Left" Margin="47,376,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_Cancelar_Click"/>
+        <TextBlock Text="NUEVO CONDUCTOR" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="170,-19,143,0" Height="28" Width="176"/>
+        <TextBox x:Name="txt_Nombre" Margin="47,106,61,8" materialDesign:HintAssist.Hint="NOMBRE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+        <TextBox  Margin="47,5,61,395" materialDesign:HintAssist.Hint="FECHA NACIMIENTO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <TextBox x:Name="txt_Licencia" Margin="47,69,61,332" materialDesign:HintAssist.Hint="NO. DE LICENCIA" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <TextBox x:Name="txt_Telefono" Margin="47,135,61,266" materialDesign:HintAssist.Hint="TELÉFONO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <TextBox x:Name="txt_Contrasena" Margin="47,265,61,136" materialDesign:HintAssist.Hint="CONTRASEÑA DE ACCESO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <TextBox x:Name="txt_Apellidos" Margin="47,46,61,75" materialDesign:HintAssist.Hint="APELLIDOS" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+        <TextBox x:Name="txt_NombreUsuario" Margin="47,195,61,206" materialDesign:HintAssist.Hint="NOMBRE DE USUARIO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" />
 
     </Grid>
 

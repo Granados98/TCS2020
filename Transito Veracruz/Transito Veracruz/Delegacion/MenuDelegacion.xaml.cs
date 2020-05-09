@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Transito_Veracruz.Model.pocos;
 
 namespace Transito_Veracruz.Delegacion
 {
@@ -19,9 +20,12 @@ namespace Transito_Veracruz.Delegacion
     /// </summary>
     public partial class MenuDelegacion : Window
     {
-        public MenuDelegacion()
+        private Personal usuarioIniciado { get; set; }
+        public MenuDelegacion(Personal personal)
         {
             InitializeComponent();
+            this.usuarioIniciado = personal;
+
         }
 
         private void btn_AgregarConductor_Click(object sender, RoutedEventArgs e)
@@ -45,6 +49,11 @@ namespace Transito_Veracruz.Delegacion
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
