@@ -77,17 +77,17 @@ namespace Transito_Veracruz.Model.dao
         {
             String query = "";
             if (nuevo)
-            {/*
+            {
                 query = "INSERT INTO dbo.Conductor (numeroLicencia,apellidos,nombre,fechanNacimiento,telefono,usuario,contrasenia) " +
                        "VALUES(@numeroLicencia,@apellidos,@nombre,GETDATE(),@telefono,@usuario,@contrasenia);";
-                */
+                
                 Console.WriteLine("Se guardo la infomacion");
             }
             else
             {
                 Console.WriteLine("No es nuevo");
             }
-            /*
+            
             SqlConnection conn = null;
             try
             {
@@ -137,7 +137,7 @@ namespace Transito_Veracruz.Model.dao
                 {
                     conn.Close();
                 }
-            } */
+            } 
             return false; 
         }
     }

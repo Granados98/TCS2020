@@ -24,16 +24,16 @@ namespace Transito_Veracruz.Model.dao
                 if (conexion != null)
                 {
                     String query = String.Format("SELECT " +
-                        "idPersonal, " +
-                        "numeroPersonal, " +
-                        "tipoPersonal, " +
-                        "apellidos, " +
-                        "nombre, " +
-                        "cargo, " +
-                        "usuario, " +
-                        "contrasena, " +
+                        "x.idPersonal, " +
+                        "x.numeroPersonal, " +
+                        "x.tipoPersonal, " +
+                        "x.apellidos, " +
+                        "x.nombre, " +
+                        "x.cargo, " +
+                        "x.usuario, " +
+                        "x.contrasena " +
                         "FROM dbo.Personal x " +
-                        "WHERE x.usuario = '{0}' AND z.contrasena='{1}';", usuario, contrasenia);
+                        "WHERE x.usuario = '{0}' AND x.contrasena='{1}';", usuario, contrasenia);
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conexion);
                     rd = command.ExecuteReader();

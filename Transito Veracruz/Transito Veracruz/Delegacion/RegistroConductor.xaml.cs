@@ -36,24 +36,33 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_AgregarConductor_Click(object sender, RoutedEventArgs e)
         {
-            this.conductor.NumeroLicencia = txt_Licencia.Text;
-            this.conductor.Apellidos = txt_Apellidos.Text;
-            this.conductor.Nombre = txt_Nombre.Text;
-            this.conductor.Telefono = txt_Telefono.Text;
-            this.conductor.Usuario = txt_NombreUsuario.Text;
-            this.conductor.Contrasenia = txt_Contrasena.Text;
+            if (validarCampos())
+            {
+                this.conductor.NumeroLicencia = txt_Licencia.Text;
+                this.conductor.Apellidos = txt_Apellidos.Text;
+                this.conductor.Nombre = txt_Nombre.Text;
+                this.conductor.Telefono = txt_Telefono.Text;
+                this.conductor.Usuario = txt_NombreUsuario.Text;
+                this.conductor.Contrasenia = txt_Contrasena.Text;
 
-            if (this.conductor.NumeroLicencia == "" || this.conductor.Apellidos == "" || this.conductor.Nombre == "" || this.conductor.Telefono == ""
-                || this.conductor.Usuario == "" || this.conductor.Contrasenia == "")
-            {
-                MessageBox.Show("Los campos no estan completos");
-            }
-            else
-            {
                 this.Resultado = ConductorDAO.agregarConductor(this.conductor, true);
                 this.Close();
             }
+            else
+            {
+                MessageBox.Show(this, "LLena todos los campos");
+            }
+        }
 
+
+        public bool validarCampos()
+        {
+            if (txt_Licencia.Text.Length!=0 || txt_Apellidos.Text.Length!=0 || txt_Nombre.Text.Length!=0|| txt_Contrasena.Text.Length!=0 
+                || txt_NombreUsuario.Text.Length!=0 || txt_Telefono.Text.Length!=0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
