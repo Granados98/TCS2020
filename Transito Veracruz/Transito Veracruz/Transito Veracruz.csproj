@@ -129,6 +129,7 @@
     <Compile Include="Model\pocos\Reporte.cs" />
     <Compile Include="Model\pocos\Vehiculo.cs" />
     <Compile Include="Model\security\Encriptacion.cs" />
+    <Compile Include="Model\SocketCliente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

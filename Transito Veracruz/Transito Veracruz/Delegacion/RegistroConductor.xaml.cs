@@ -30,7 +30,6 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_Cancelar_Click(object sender, RoutedEventArgs e)
         {
-            this.Resultado = false;
             this.Close();
         }
 
@@ -40,12 +39,13 @@ namespace Transito_Veracruz.Delegacion
             {
                 this.conductor.NumeroLicencia = txt_Licencia.Text;
                 this.conductor.Apellidos = txt_Apellidos.Text;
+                this.conductor.FechaNacimiento = select_Date.SelectedDate.Value;
                 this.conductor.Nombre = txt_Nombre.Text;
                 this.conductor.Telefono = txt_Telefono.Text;
                 this.conductor.Usuario = txt_NombreUsuario.Text;
                 this.conductor.Contrasenia = txt_Contrasena.Text;
 
-                this.Resultado = ConductorDAO.agregarConductor(this.conductor, true);
+                this.Resultado = ConductorDAO.agregarConductor(this.conductor);
                 this.Close();
             }
             else

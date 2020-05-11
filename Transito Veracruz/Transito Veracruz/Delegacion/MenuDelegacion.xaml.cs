@@ -21,6 +21,15 @@ namespace Transito_Veracruz.Delegacion
     public partial class MenuDelegacion : Window
     {
         private Personal usuarioIniciado { get; set; }
+
+
+        private delegate void DAddItem(String s);
+
+        private void AddItem(String s)
+        {
+            block_Chat.Items.Add(s);
+        }
+
         public MenuDelegacion(Personal personal)
         {
             InitializeComponent();
@@ -52,6 +61,11 @@ namespace Transito_Veracruz.Delegacion
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void btn_EnviarMensaje_Click(object sender, RoutedEventArgs e)
         {
 
         }

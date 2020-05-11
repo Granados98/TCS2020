@@ -61,6 +61,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\SocketServidor.cs" />
     <Compile Include="VentanasDireccion\AgregarDelegacion.xaml.cs">
       <DependentUpon>AgregarDelegacion.xaml</DependentUpon>
     </Compile>
@@ -163,6 +164,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icons\veracruz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\dao\" />
+    <Folder Include="Model\db\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

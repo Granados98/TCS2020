@@ -78,14 +78,14 @@
             </TabItem>
             <TabItem Header="CHAT GRUPAL" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
                 <Grid Background="White" Margin="0,0,0,8">
-                    <TextBlock Background="#DADADA" HorizontalAlignment="Left" Margin="31,30,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="368" Width="940"/>
-                    <TextBox Margin="31,417,233,46" materialDesign:HintAssist.Hint="ESCRIBE UN MENSAJE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
-                    <Button Content="Enviar" Background="#54903B" HorizontalAlignment="Left" Margin="822,426,0,0" VerticalAlignment="Top" Width="149"/>
-
+                    <TextBox x:Name="txt_Mensaje" Margin="31,417,233,46" materialDesign:HintAssist.Hint="ESCRIBE UN MENSAJE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                    <Button x:Name="btn_EnviarMensaje" Content="Enviar" Background="#54903B" HorizontalAlignment="Left" Margin="822,426,0,0" VerticalAlignment="Top" Width="149" Click="btn_EnviarMensaje_Click"/>
+                    <ListBox x:Name="block_Chat" Background="#DADADA" HorizontalAlignment="Left" Margin="31,25,0,0"  VerticalAlignment="Top" Height="368" Width="940"/>
                 </Grid>
             </TabItem>
         </TabControl>
         <Button Content="Salir" Foreground="White" Background="#D92530" BorderBrush="Black" HorizontalAlignment="Left" Margin="1029,605,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        
 
 
 
