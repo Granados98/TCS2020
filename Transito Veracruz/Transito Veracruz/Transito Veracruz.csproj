@@ -121,6 +121,7 @@
   <ItemGroup>
     <Compile Include="Model\dao\ConductorDAO.cs" />
     <Compile Include="Model\dao\PersonalDAO.cs" />
+    <Compile Include="Model\dao\VehiculoDAO.cs" />
     <Compile Include="Model\db\ConnectionUtils.cs" />
     <Compile Include="Model\pocos\Conductor.cs" />
     <Compile Include="Model\pocos\Delegacion.cs" />

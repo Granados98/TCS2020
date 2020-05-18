@@ -26,7 +26,6 @@ namespace Transito_Veracruz.Delegacion
         {
             InitializeComponent();
         }
-        public bool Resultado { get => Resultado; set => Resultado = value; }
 
         private void btn_Cancelar_Click(object sender, RoutedEventArgs e)
         {
@@ -45,7 +44,7 @@ namespace Transito_Veracruz.Delegacion
                 this.conductor.Usuario = txt_NombreUsuario.Text;
                 this.conductor.Contrasenia = txt_Contrasena.Text;
 
-                this.Resultado = ConductorDAO.agregarConductor(this.conductor);
+                ConductorDAO.agregarConductor(this.conductor);
                 this.Close();
             }
             else
