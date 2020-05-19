@@ -9,13 +9,13 @@ namespace Transito_Veracruz.Model.pocos
     public class Conductor
     {
         private Int32 idConductor;
-        private String numeroLicencia;
-        private String apellidos;
-        private String nombre;
+        private String numeroLicencia="";
+        private String apellidos="";
+        private String nombre="";
         private DateTime fechaNacimiento;
-        private String telefono;
-        private String usuario;
-        private String contrasenia;
+        private String telefono="";
+        private String usuario="";
+        private String contrasenia="";
 
         public override string ToString()
         {

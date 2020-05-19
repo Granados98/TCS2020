@@ -29,15 +29,15 @@
         <Button Content="Agregar" Background="#54903B" HorizontalAlignment="Left" Margin="289,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="Button_Click"/>
         <Button Content="Cancelar" Background="#D92530" HorizontalAlignment="Left" Margin="47,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="Button_Click_1"/>
         <TextBlock Text="NUEVO VEHICULO" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="171,-37,166,0" Height="29" Width="175"/>
-        <TextBox Margin="47,87,76,10" materialDesign:HintAssist.Hint="MARCA" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
-        <TextBox Margin="47,34,273,342" materialDesign:HintAssist.Hint="MODELO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
-        <TextBox Margin="244,34,76,342" materialDesign:HintAssist.Hint="AÑO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
-        <TextBox Margin="47,113,273,263" materialDesign:HintAssist.Hint="COLOR" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <TextBox Margin="47,87,76,10" materialDesign:HintAssist.Hint="MARCA" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" MaxLength="30" />
+        <TextBox Margin="47,34,273,342" materialDesign:HintAssist.Hint="MODELO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" MaxLength="20"/>
+        <TextBox Margin="244,34,76,342" materialDesign:HintAssist.Hint="AÑO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" MaxLength="4"/>
+        <TextBox Margin="47,113,273,263" materialDesign:HintAssist.Hint="COLOR" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" MaxLength="15"/>
         <ComboBox HorizontalAlignment="Left" Background="#DADADA" Margin="171,18,0,0" VerticalAlignment="Top" Width="277" Height="28"/>
         <Label Content="CONDUCTOR" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="47,18,0,0" VerticalAlignment="Top" Height="32" Width="117"/>
-        <TextBox Margin="244,113,76,263" materialDesign:HintAssist.Hint="NO. DE PLACA" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
-        <TextBox Margin="47,183,76,192" materialDesign:HintAssist.Hint="ASEGURADORA" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
-        <TextBox Margin="47,257,76,118" materialDesign:HintAssist.Hint="POLIZA DE SEGURO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <TextBox Margin="244,113,76,263" materialDesign:HintAssist.Hint="NO. DE PLACA" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" MaxLength="7"/>
+        <TextBox Margin="47,183,76,192" materialDesign:HintAssist.Hint="ASEGURADORA" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" MaxLength="50"/>
+        <TextBox Margin="47,257,76,118" materialDesign:HintAssist.Hint="POLIZA DE SEGURO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" MaxLength="10"/>
 
 
 

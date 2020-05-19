@@ -60,14 +60,17 @@ namespace Transito_Veracruz.Model.dao
                 }
             } 
         }
-        public static void mostrarConductores()
+        
+        public static List<Conductor> getConductores()
         {
+            List<Conductor> list = new List<Conductor>();
             SqlConnection conexion = null;
 
             try
             {
                 conexion = ConnectionUtils.getConnection();
                 SqlCommand command;
+                SqlDataReader rd;
                 if (conexion != null)
                 {
                     String query = String.Format("SELECT " +
@@ -80,13 +83,22 @@ namespace Transito_Veracruz.Model.dao
                         "FROM dbo.Conductor x " ;
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conexion);
+                    rd = command.ExecuteReader();
+                    while (rd.Read())
+                    {
+                        Conductor cond = new Conductor();
+                        cond.Apellidos = (!rd.IsDBNull(0)) ? rd.GetString(0) : "";
+                        cond.Nombre = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        cond.FechaNacimiento = (!rd.IsDBNull(2)) ? rd.GetDateTime(2) : new DateTime();
+                        cond.Telefono = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
+
+                        list.Add(cond);
+                    }
+                    rd.Close();
                     command.Dispose();
 
-                    SqlDataAdapter data = new SqlDataAdapter(command);
                 }
-
-            }
-            catch (Exception e)
+            } catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 Console.WriteLine("No se encontro el Conductor");
@@ -98,6 +110,7 @@ namespace Transito_Veracruz.Model.dao
                     conexion.Close();
                 }
             }
+            return list;
         }
     }
 }

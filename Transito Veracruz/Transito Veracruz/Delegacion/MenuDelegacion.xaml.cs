@@ -21,11 +21,19 @@ namespace Transito_Veracruz.Delegacion
     /// </summary>
     public partial class MenuDelegacion : Window
     {
+        private List<Conductor> listConductores { get; set; }
         private Personal usuarioIniciado { get; set; }
         public MenuDelegacion(Personal personal)
         {
             InitializeComponent();
             this.usuarioIniciado = personal;
+
+        }
+
+        private void cargarConductores()
+        {
+            listConductores = ConductorDAO.getConductores();
+            dg_Vehiculos.ItemsSource = listConductores;
 
         }
 

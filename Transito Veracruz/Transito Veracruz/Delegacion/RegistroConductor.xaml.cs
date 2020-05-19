@@ -21,7 +21,7 @@ namespace Transito_Veracruz.Delegacion
     /// </summary>
     public partial class RegistroConductor : Window
     {
-        private Conductor conductor;
+        private Conductor conductor = new Conductor();
         public RegistroConductor()
         {
             InitializeComponent();
@@ -34,8 +34,8 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_AgregarConductor_Click(object sender, RoutedEventArgs e)
         {
-            if (validarCampos())
-            {
+
+            if (validarCampos()) { 
                 this.conductor.NumeroLicencia = txt_Licencia.Text;
                 this.conductor.Apellidos = txt_Apellidos.Text;
                 this.conductor.FechaNacimiento = select_Date.SelectedDate.Value;
@@ -44,24 +44,25 @@ namespace Transito_Veracruz.Delegacion
                 this.conductor.Usuario = txt_NombreUsuario.Text;
                 this.conductor.Contrasenia = txt_Contrasena.Text;
 
+
                 ConductorDAO.agregarConductor(this.conductor);
                 this.Close();
-            }
-            else
-            {
+                }
+                else
+                {
                 MessageBox.Show(this, "LLena todos los campos");
-            }
+                }
         }
 
-
+        
         public bool validarCampos()
         {
-            if (txt_Licencia.Text.Length!=0 || txt_Apellidos.Text.Length!=0 || txt_Nombre.Text.Length!=0|| txt_Contrasena.Text.Length!=0 
-                || txt_NombreUsuario.Text.Length!=0 || txt_Telefono.Text.Length!=0)
+            if (this.conductor.NumeroLicencia == "" || this.conductor.Apellidos == "" || this.conductor.Nombre == "" || this.conductor.Telefono == ""
+                || this.conductor.Usuario == "" || this.conductor.Contrasenia == "")
             {
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
     }
 }

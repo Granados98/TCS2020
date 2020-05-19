@@ -40,7 +40,7 @@ namespace Transito_Veracruz.Model.dao
                     command.Parameters.AddWithValue("@nombreAseguradora", vehiculo.NombreAseguradora);
                     command.Parameters.AddWithValue("@numeroPolizaSeguro", vehiculo.NumeroPolizaSeguro);
 
-                    command.Parameters.AddWithValue("@idEgresado", vehiculo.NumeroLicencia);
+                    command.Parameters.AddWithValue("@idVehiculo", vehiculo.NumeroLicencia);
 
                     int i = command.ExecuteNonQuery();
                     Console.WriteLine("Filas afectadas: " + i);

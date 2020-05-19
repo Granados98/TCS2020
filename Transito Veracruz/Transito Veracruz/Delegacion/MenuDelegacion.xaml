@@ -44,7 +44,7 @@
             </TabItem>
             <TabItem Header="VEHICULOS" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15" GotFocus="ClicItemVehiculos">
                 <Grid>
-                    <DataGrid HorizontalAlignment="Left" Height="428" Margin="27,10,0,0" VerticalAlignment="Top" Width="980">
+                    <DataGrid x:Name="dg_Vehiculos" HorizontalAlignment="Left" Height="428" Margin="27,10,0,0" VerticalAlignment="Top" Width="980">
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="columnPropietario" Header="Propietario" Width="160" />
                             <DataGridTextColumn Header="Marca" Width="100"/>

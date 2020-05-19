@@ -9,14 +9,14 @@ namespace Transito_Veracruz.Model.pocos
     class Vehiculo
     {
         private Int32 idVehiculo;
-        private String numeroPlacas;
-        private String marca;
-        private String modelo;
-        private String anio;
-        private String color;
-        private String nombreAseguradora;
-        private String numeroPolizaSeguro;
-        private String numeroLicencia;
+        private String numeroPlacas="";
+        private String marca="";
+        private String modelo="";
+        private String anio="";
+        private String color="";
+        private String nombreAseguradora="";
+        private String numeroPolizaSeguro="";
+        private String numeroLicencia="";
 
         public int IdVehiculo { get => idVehiculo; set => idVehiculo = value; }
         public string NumeroPlacas { get => numeroPlacas; set => numeroPlacas = value; }
