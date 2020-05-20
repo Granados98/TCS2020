@@ -60,9 +60,9 @@ namespace Transito_Veracruz.Delegacion
             if (this.conductor.NumeroLicencia == "" || this.conductor.Apellidos == "" || this.conductor.Nombre == "" || this.conductor.Telefono == ""
                 || this.conductor.Usuario == "" || this.conductor.Contrasenia == "")
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
     }
 }

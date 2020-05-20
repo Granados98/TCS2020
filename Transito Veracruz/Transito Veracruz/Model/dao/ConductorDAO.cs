@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using Transito_Veracruz.Model.db;
 using Transito_Veracruz.Model.pocos;
 
@@ -16,8 +17,8 @@ namespace Transito_Veracruz.Model.dao
         {
             String query = "";
             
-            query = "INSERT INTO dbo.Conductor (numeroLicencia,apellidos,nombre,fechanNacimiento,telefono,usuario,contrasenia) " +
-                       "VALUES(@numeroLicencia,@apellidos,@nombre,GETDATE(),@telefono,@usuario,@contrasenia);";
+            query = "INSERT INTO dbo.Conductor (numeroLicencia,apellidos,nombre,fechaNacimiento,telefono,usuario,contrasena) " +
+                       "VALUES(@numeroLicencia,@apellidos,@nombre,GETDATE(),@telefono,@usuario,@contrasena);";
                 
                 Console.WriteLine("Se guardo la infomacion");
             
@@ -37,9 +38,9 @@ namespace Transito_Veracruz.Model.dao
                     command.Parameters.AddWithValue("@fechaNacimineto", conductor.FechaNacimiento);
                     command.Parameters.AddWithValue("@telefono", conductor.Telefono);
                     command.Parameters.AddWithValue("@usuario", conductor.Usuario);
-                    command.Parameters.AddWithValue("@contrasenia", conductor.Contrasenia);
+                    command.Parameters.AddWithValue("@contrasena", conductor.Contrasenia);
                     
-                    command.Parameters.AddWithValue("@idEgresado", conductor.IdConductor);
+                    command.Parameters.AddWithValue("@idConductor", conductor.IdConductor);
 
 
                     int i = command.ExecuteNonQuery();
@@ -74,23 +75,24 @@ namespace Transito_Veracruz.Model.dao
                 if (conexion != null)
                 {
                     String query = String.Format("SELECT " +
-                        "x.idConductor, " +
-                        "x.numeroLicencia, " +
-                        "x.apellidos, " +
+                        //"x.idConductor, " +
+                        "x.numeroLicencia " +
+                       /* "x.apellidos, " +
                         "x.nombre, " +
                         "x.fechaNacimiento, " +
-                        "x.telefono, " +
-                        "FROM dbo.Conductor x " ;
+                        "x.telefono " +*/
+                        "FROM dbo.Conductor x " );
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conexion);
                     rd = command.ExecuteReader();
                     while (rd.Read())
                     {
                         Conductor cond = new Conductor();
-                        cond.Apellidos = (!rd.IsDBNull(0)) ? rd.GetString(0) : "";
-                        cond.Nombre = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
-                        cond.FechaNacimiento = (!rd.IsDBNull(2)) ? rd.GetDateTime(2) : new DateTime();
-                        cond.Telefono = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
+                        cond.NumeroLicencia = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                       /*cond.Apellidos = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        cond.Nombre = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
+                        cond.FechaNacimiento = (!rd.IsDBNull(4)) ? rd.GetDateTime(4) : new DateTime();
+                        cond.Telefono = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";*/
 
                         list.Add(cond);
                     }

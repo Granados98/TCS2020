@@ -28,21 +28,14 @@
             <TabItem Header="CONDUCTORES" FontWeight="Bold" Height="90" Width="150" Background="Transparent" FontSize="15">
 
                 <Grid Background="White">
-                    <DataGrid HorizontalAlignment="Left" Height="416" Margin="27,10,0,0" VerticalAlignment="Top" Width="980" >
-                        <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="columnApellidos" Header="Apellidos" Width="170" />
-                            <DataGridTextColumn x:Name="columnNombre" Header="Nombre" Width="170" />
-                            <DataGridTextColumn x:Name="columnfecha" Header="Fecha" Width="160"/>
-                            <DataGridTextColumn x:Name="columnLicencia" Header="Número de Licencia" Width="160"/>
-                            <DataGridTextColumn x:Name="columnTeleg" Header="Telefono Celular" Width="160"/>
-                            <DataGridTextColumn Header="Correo" Width="160"/>
-                        </DataGrid.Columns>
+                    <DataGrid x:Name="dg_Conductores" AutoGenerateColumns="true" HorizontalAlignment="Left" Height="416" Margin="27,10,0,0" VerticalAlignment="Top" Width="980" >
                     </DataGrid>
                     <Button x:Name="btn_AgregarConductor" Content="Agregar Conductor" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_AgregarConductor_Click"/>
+                    <Button x:Name="btn_CargarConductores" Content="Cargar Conductores" Background="#54903B" HorizontalAlignment="Left" Margin="792,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_CargarConductores_Click"/>
 
                 </Grid>
             </TabItem>
-            <TabItem Header="VEHICULOS" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15" GotFocus="ClicItemVehiculos">
+            <TabItem Header="VEHICULOS" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
                 <Grid>
                     <DataGrid x:Name="dg_Vehiculos" HorizontalAlignment="Left" Height="428" Margin="27,10,0,0" VerticalAlignment="Top" Width="980">
                         <DataGrid.Columns>
@@ -54,13 +47,13 @@
                             <DataGridTextColumn Header="Aseguradora" Width="100"/>
                             <DataGridTextColumn Header="Poliza" Width="100"/>
                             <DataGridTextColumn Header="No. de placas" Width="100"/>
-                    </DataGrid.Columns>
+                        </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="btn_AgregarVehiculo" Content="Agregar Vehiculo" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="153" Click="btn_AgregarVehiculo_Click"/> 
+                    <Button x:Name="btn_AgregarVehiculo" Content="Agregar Vehiculo" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="153" Click="btn_AgregarVehiculo_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="REPORTES" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
-                
+
                 <Grid>
                     <DataGrid HorizontalAlignment="Left" Height="424" Margin="27,10,0,0" VerticalAlignment="Top" Width="980">
                         <DataGrid.Columns>
@@ -75,7 +68,7 @@
                     </DataGrid>
                     <Button x:Name="btn_AgregarReporte" Content="Agregar Reporte" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="151" Click="btn_AgregarReporte_Click"/>
                 </Grid>
-                
+
             </TabItem>
             <TabItem Header="CHAT GRUPAL" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
                 <Grid Background="White" Margin="0,0,0,8">
@@ -86,7 +79,7 @@
             </TabItem>
         </TabControl>
         <Button Content="Salir" Foreground="White" Background="#D92530" BorderBrush="Black" HorizontalAlignment="Left" Margin="1029,605,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        
+
 
 
 

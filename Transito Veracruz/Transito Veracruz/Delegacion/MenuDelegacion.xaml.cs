@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Transito_Veracruz.Model.dao;
+using Transito_Veracruz.Model.db;
 using Transito_Veracruz.Model.pocos;
 
 namespace Transito_Veracruz.Delegacion
@@ -27,15 +30,14 @@ namespace Transito_Veracruz.Delegacion
         {
             InitializeComponent();
             this.usuarioIniciado = personal;
-
         }
-
+        /*
         private void cargarConductores()
         {
             listConductores = ConductorDAO.getConductores();
-            dg_Vehiculos.ItemsSource = listConductores;
+            dg_Conductores.ItemsSource = listConductores;
 
-        }
+        }*/
 
         private void btn_AgregarConductor_Click(object sender, RoutedEventArgs e)
         {
@@ -65,9 +67,35 @@ namespace Transito_Veracruz.Delegacion
 
         }
 
-        private void ClicItemVehiculos(object sender, RoutedEventArgs e)
+        private void btn_CargarConductores_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Hola");
+            SqlConnection conexion = null;
+
+            try
+            {
+                conexion = ConnectionUtils.getConnection();
+                SqlCommand command;
+                if (conexion != null)
+                {
+                    String query = String.Format("SELECT * FROM Conductor");
+                    command = new SqlCommand(query, conexion);
+                    command.ExecuteNonQuery();
+
+                    SqlDataAdapter dataAdp = new SqlDataAdapter(command);
+                    DataTable dt = new DataTable("Conductor");
+                    dataAdp.Fill(dt);
+                    dg_Conductores.ItemsSource = dt.DefaultView;
+                    dataAdp.Update(dt);
+
+                    command.Dispose();
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("No se encontro el Conductor");
+            }
         }
     }
 }

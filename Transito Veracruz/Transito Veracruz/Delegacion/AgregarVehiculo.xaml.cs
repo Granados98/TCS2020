@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Transito_Veracruz.Model.dao;
+using Transito_Veracruz.Model.pocos;
 
 namespace Transito_Veracruz.Delegacion
 {
@@ -19,19 +21,27 @@ namespace Transito_Veracruz.Delegacion
     /// </summary>
     public partial class AgregarVehiculo : Window
     {
+        private List<Conductor> listaConductores { get; set; }
         public AgregarVehiculo()
         {
             InitializeComponent();
+            cargarConductores();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void cargarConductores()
         {
-
+            listaConductores = ConductorDAO.getConductores();
+            cb_Conductores.ItemsSource = listaConductores;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btn_AgregarVehiculo_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
