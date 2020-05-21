@@ -61,58 +61,5 @@ namespace Transito_Veracruz.Model.dao
                 }
             } 
         }
-        
-        public static List<Conductor> getConductores()
-        {
-            List<Conductor> list = new List<Conductor>();
-            SqlConnection conexion = null;
-
-            try
-            {
-                conexion = ConnectionUtils.getConnection();
-                SqlCommand command;
-                SqlDataReader rd;
-                if (conexion != null)
-                {
-                    String query = String.Format("SELECT " +
-                        //"x.idConductor, " +
-                        "x.numeroLicencia " +
-                       /* "x.apellidos, " +
-                        "x.nombre, " +
-                        "x.fechaNacimiento, " +
-                        "x.telefono " +*/
-                        "FROM dbo.Conductor x " );
-                    Console.WriteLine(query);
-                    command = new SqlCommand(query, conexion);
-                    rd = command.ExecuteReader();
-                    while (rd.Read())
-                    {
-                        Conductor cond = new Conductor();
-                        cond.NumeroLicencia = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
-                       /*cond.Apellidos = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        cond.Nombre = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
-                        cond.FechaNacimiento = (!rd.IsDBNull(4)) ? rd.GetDateTime(4) : new DateTime();
-                        cond.Telefono = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";*/
-
-                        list.Add(cond);
-                    }
-                    rd.Close();
-                    command.Dispose();
-
-                }
-            } catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.WriteLine("No se encontro el Conductor");
-            }
-            finally
-            {
-                if (conexion != null)
-                {
-                    conexion.Close();
-                }
-            }
-            return list;
-        }
     }
 }

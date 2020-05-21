@@ -39,8 +39,9 @@ namespace Transito_Veracruz.Model.dao
                     command.Parameters.AddWithValue("@color", vehiculo.Color);
                     command.Parameters.AddWithValue("@nombreAseguradora", vehiculo.NombreAseguradora);
                     command.Parameters.AddWithValue("@numeroPolizaSeguro", vehiculo.NumeroPolizaSeguro);
+                    command.Parameters.AddWithValue("@numeroLicencia", vehiculo.NumeroLicencia);
 
-                    command.Parameters.AddWithValue("@idVehiculo", vehiculo.NumeroLicencia);
+                    command.Parameters.AddWithValue("@idVehiculo", vehiculo.IdVehiculo);
 
                     int i = command.ExecuteNonQuery();
                     Console.WriteLine("Filas afectadas: " + i);
