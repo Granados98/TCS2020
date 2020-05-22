@@ -30,14 +30,9 @@ namespace Transito_Veracruz.Delegacion
         {
             InitializeComponent();
             this.usuarioIniciado = personal;
+            cargarTablaConductores();
+            cargarTablaVehiculos();
         }
-        /*
-        private void cargarConductores()
-        {
-            listConductores = ConductorDAO.getConductores();
-            dg_Conductores.ItemsSource = listConductores;
-
-        }*/
 
         private void btn_AgregarConductor_Click(object sender, RoutedEventArgs e)
         {
@@ -67,7 +62,7 @@ namespace Transito_Veracruz.Delegacion
 
         }
 
-        private void btn_CargarConductores_Click(object sender, RoutedEventArgs e)
+        private void cargarTablaConductores()
         {
             SqlConnection conexion = null;
 
@@ -77,7 +72,37 @@ namespace Transito_Veracruz.Delegacion
                 SqlCommand command;
                 if (conexion != null)
                 {
-                    String query = String.Format("SELECT * FROM Conductor");
+                    String query = String.Format("SELECT numeroLicencia,apellidos,nombre,fechaNacimiento,telefono FROM Conductor");
+                    command = new SqlCommand(query, conexion);
+
+                    SqlDataAdapter dataAdp = new SqlDataAdapter(command);
+                    DataTable dt = new DataTable("Condustor");
+                    dataAdp.Fill(dt);
+                    dg_Conductores.ItemsSource = dt.DefaultView;
+                    dataAdp.Update(dt);
+
+                    command.Dispose();
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("No se encontro los Conductores");
+            }
+        }
+        
+        private void btn_CargarConductores_Click(object sender, RoutedEventArgs e)
+        {/*
+            SqlConnection conexion = null;
+
+            try
+            {
+                conexion = ConnectionUtils.getConnection();
+                SqlCommand command;
+                if (conexion != null)
+                {
+                    String query = String.Format("SELECT numeroLicencia,apellidos,nombre,fechaNacimiento,telefono FROM Conductor");
                     command = new SqlCommand(query, conexion);
                     command.ExecuteNonQuery();
 
@@ -94,8 +119,69 @@ namespace Transito_Veracruz.Delegacion
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                Console.WriteLine("No se encontro el Conductor");
+                Console.WriteLine("No se encontro los Conductores");
+            }*/
+        }
+
+        private void cargarTablaVehiculos()
+        {
+            SqlConnection conexion = null;
+            try
+            {
+                conexion = ConnectionUtils.getConnection();
+                SqlCommand command;
+                if (conexion != null)
+                {
+                    String query = String.Format("SELECT numeroPlacas,marca,modelo,año,color,nombreAseguradora,numeroPolizaSeguro,numeroLicencia FROM Vehiculo");
+                    command = new SqlCommand(query, conexion);
+                    command.ExecuteNonQuery();
+
+                    SqlDataAdapter dataAdp = new SqlDataAdapter(command);
+                    DataTable dt = new DataTable("Vehiculo");
+                    dataAdp.Fill(dt);
+                    dg_Vehiculos.ItemsSource = dt.DefaultView;
+                    dataAdp.Update(dt);
+
+                    command.Dispose();
+                    conexion.Close();
+                }
             }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("No se encontro los vehiculos");
+            }
+
+        }
+
+        private void btn_CargarVehiculos_Click(object sender, RoutedEventArgs e)
+        { /*
+            SqlConnection conexion = null;
+            try
+            {
+                conexion = ConnectionUtils.getConnection();
+                SqlCommand command;
+                if (conexion != null)
+                {
+                    String query = String.Format("SELECT numeroPlacas,marca,modelo,año,color,nombreAseguradora,numeroPolizaSeguro,numeroLicencia FROM Vehiculo");
+                    command = new SqlCommand(query, conexion);
+                    command.ExecuteNonQuery();
+
+                    SqlDataAdapter dataAdp = new SqlDataAdapter(command);
+                    DataTable dt = new DataTable("Vehiculo");
+                    dataAdp.Fill(dt);
+
+                    command.Dispose();
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("No se encontro los vehiculos");
+            }*/
         }
     }
 }

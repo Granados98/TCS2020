@@ -28,8 +28,7 @@
             <TabItem Header="CONDUCTORES" FontWeight="Bold" Height="90" Width="150" Background="Transparent" FontSize="15">
 
                 <Grid Background="White">
-                    <DataGrid x:Name="dg_Conductores" AutoGenerateColumns="true" HorizontalAlignment="Left" Height="416" Margin="27,10,0,0" VerticalAlignment="Top" Width="980" >
-                    </DataGrid>
+                    <DataGrid x:Name="dg_Conductores" AutoGenerateColumns="true" HorizontalAlignment="Left" Height="416" Margin="27,10,0,0" VerticalAlignment="Top" Width="980"/>
                     <Button x:Name="btn_AgregarConductor" Content="Agregar Conductor" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_AgregarConductor_Click"/>
                     <Button x:Name="btn_CargarConductores" Content="Cargar Conductores" Background="#54903B" HorizontalAlignment="Left" Margin="792,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_CargarConductores_Click"/>
 
@@ -37,19 +36,9 @@
             </TabItem>
             <TabItem Header="VEHICULOS" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
                 <Grid>
-                    <DataGrid x:Name="dg_Vehiculos" HorizontalAlignment="Left" Height="428" Margin="27,10,0,0" VerticalAlignment="Top" Width="980">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="columnPropietario" Header="Propietario" Width="160" />
-                            <DataGridTextColumn Header="Marca" Width="100"/>
-                            <DataGridTextColumn Header="Modelo" Width="100"/>
-                            <DataGridTextColumn Header="Año" Width="100"/>
-                            <DataGridTextColumn Header="Color" Width="100"/>
-                            <DataGridTextColumn Header="Aseguradora" Width="100"/>
-                            <DataGridTextColumn Header="Poliza" Width="100"/>
-                            <DataGridTextColumn Header="No. de placas" Width="100"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <DataGrid x:Name="dg_Vehiculos" HorizontalAlignment="Left" Height="428" Margin="27,10,0,0" VerticalAlignment="Top" Width="980"/>
                     <Button x:Name="btn_AgregarVehiculo" Content="Agregar Vehiculo" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="153" Click="btn_AgregarVehiculo_Click"/>
+                    <Button x:Name="btn_CargarVehiculos" Content="Cargar Vehiculos" Background="#54903B" HorizontalAlignment="Left" Margin="792,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_CargarVehiculos_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="REPORTES" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">

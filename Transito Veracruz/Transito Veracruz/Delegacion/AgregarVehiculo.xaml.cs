@@ -68,13 +68,13 @@ namespace Transito_Veracruz.Delegacion
             if (validarCampos())
             {
                 this.vehiculo.NumeroLicencia = cb_Conductores.Text;
-                this.vehiculo.NumeroLicencia = txt_Aseguradora.Text;
-                this.vehiculo.NumeroLicencia = txt_Año.Text;
-                this.vehiculo.NumeroLicencia = txt_Color.Text;
-                this.vehiculo.NumeroLicencia = txt_Marca.Text;
-                this.vehiculo.NumeroLicencia = txt_Modelo.Text;
-                this.vehiculo.NumeroLicencia = txt_NumeroPlaca.Text;
-                this.vehiculo.NumeroLicencia = txt_Poliza.Text;
+                this.vehiculo.NombreAseguradora = txt_Aseguradora.Text;
+                this.vehiculo.Anio = txt_Año.Text;
+                this.vehiculo.Color = txt_Color.Text;
+                this.vehiculo.Marca = txt_Marca.Text;
+                this.vehiculo.Modelo = txt_Modelo.Text;
+                this.vehiculo.NumeroPlacas = txt_NumeroPlaca.Text;
+                this.vehiculo.NumeroPolizaSeguro = txt_Poliza.Text;
 
 
                 VehiculoDAO.guardaVehiculo(this.vehiculo);

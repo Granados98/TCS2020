@@ -9,7 +9,7 @@ namespace Transito_Veracruz.Model.security
 {
     class Encriptacion
     {
-        public static string GetSHA256(string str)
+        public static String GetSHA256(String str)
         {
             SHA256 sha256 = SHA256Managed.Create();
             ASCIIEncoding encoding = new ASCIIEncoding();

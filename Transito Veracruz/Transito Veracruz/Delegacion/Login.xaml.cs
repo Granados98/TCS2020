@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Transito_Veracruz.Model.dao;
 using Transito_Veracruz.Model.pocos;
+using Transito_Veracruz.Model.security;
 
 namespace Transito_Veracruz.Delegacion
 {
@@ -22,7 +23,7 @@ namespace Transito_Veracruz.Delegacion
     public partial class Login : Window
     {
         private String usuario;
-        private String contrasenia;
+        private String contraseñaIngresada;
         public Login()
         {
             InitializeComponent();
@@ -30,11 +31,11 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_Ingresar_Click(object sender, RoutedEventArgs e)
         {
+            contraseñaIngresada = Encriptacion.GetSHA256(txt_Contrasenia.Password);
             if (validacion())
             {
                 usuario = txt_Usuario.Text;
-                contrasenia = txt_Contrasenia.Password;
-                Personal personal = PersonalDAO.getLogin(usuario, contrasenia);
+                Personal personal = PersonalDAO.getLogin(usuario, contraseñaIngresada);
                 if (personal!=null && personal.IdPersonal>0)
                 {
                     MenuDelegacion menuPrincpipal = new MenuDelegacion(personal);

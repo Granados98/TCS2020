@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Transito_Veracruz.Model.dao;
 using Transito_Veracruz.Model.pocos;
+using Transito_Veracruz.Model.security;
 
 namespace Transito_Veracruz.Delegacion
 {
@@ -34,7 +35,7 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_AgregarConductor_Click(object sender, RoutedEventArgs e)
         {
-
+            String contraseñaEncriptada;
             if (validarCampos()) { 
                 this.conductor.NumeroLicencia = txt_Licencia.Text;
                 this.conductor.Apellidos = txt_Apellidos.Text;
@@ -42,8 +43,9 @@ namespace Transito_Veracruz.Delegacion
                 this.conductor.Nombre = txt_Nombre.Text;
                 this.conductor.Telefono = txt_Telefono.Text;
                 this.conductor.Usuario = txt_NombreUsuario.Text;
-                this.conductor.Contrasenia = txt_Contrasena.Text;
 
+                contraseñaEncriptada = Encriptacion.GetSHA256(txt_Contrasena.Text);
+                this.conductor.Contrasenia = contraseñaEncriptada;
 
                 ConductorDAO.agregarConductor(this.conductor);
                 this.Close();
