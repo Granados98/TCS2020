@@ -66,5 +66,15 @@ namespace Transito_Veracruz.Delegacion
             }
             return false;
         }
+
+        private void txt_Licencia_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloNumeros(e);
+        }
+
+        private void txt_Telefono_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloNumeros(e);
+        }
     }
 }

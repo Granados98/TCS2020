@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,9 +15,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Transito_Veracruz.Model;
 using Transito_Veracruz.Model.dao;
 using Transito_Veracruz.Model.db;
 using Transito_Veracruz.Model.pocos;
+using Transito_Veracruz.Model.security;
 
 namespace Transito_Veracruz.Delegacion
 {
@@ -24,6 +28,9 @@ namespace Transito_Veracruz.Delegacion
     /// </summary>
     public partial class MenuDelegacion : Window
     {
+
+        Socket socketCliente = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        IPEndPoint direccionConexion = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
         private List<Conductor> listConductores { get; set; }
         private Personal usuarioIniciado { get; set; }
         public MenuDelegacion(Personal personal)
@@ -32,6 +39,10 @@ namespace Transito_Veracruz.Delegacion
             this.usuarioIniciado = personal;
             cargarTablaConductores();
             cargarTablaVehiculos();
+
+            socketCliente.Connect(direccionConexion);
+            Console.WriteLine("Conectado con exito al servidor...");
+
         }
 
         private void btn_AgregarConductor_Click(object sender, RoutedEventArgs e)
@@ -59,6 +70,10 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_EnviarMensaje_Click(object sender, RoutedEventArgs e)
         {
+            byte[] msjEnviar = Encoding.Default.GetBytes(txt_Mensaje.Text);
+            socketCliente.Send(msjEnviar, 0, msjEnviar.Length, 0);
+
+            block_Chat.Items.Add(txt_Mensaje.Text);
 
         }
 
@@ -93,7 +108,7 @@ namespace Transito_Veracruz.Delegacion
         }
         
         private void btn_CargarConductores_Click(object sender, RoutedEventArgs e)
-        {/*
+        {
             SqlConnection conexion = null;
 
             try
@@ -120,7 +135,7 @@ namespace Transito_Veracruz.Delegacion
             {
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("No se encontro los Conductores");
-            }*/
+            }
         }
 
         private void cargarTablaVehiculos()
@@ -156,7 +171,7 @@ namespace Transito_Veracruz.Delegacion
         }
 
         private void btn_CargarVehiculos_Click(object sender, RoutedEventArgs e)
-        { /*
+        { 
             SqlConnection conexion = null;
             try
             {
@@ -181,7 +196,18 @@ namespace Transito_Veracruz.Delegacion
 
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("No se encontro los vehiculos");
-            }*/
+            }
+        }
+
+        private void txt_Mensaje_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Validacion.oprimeEnter(e))
+            {
+                byte[] msjEnviar = Encoding.Default.GetBytes(txt_Mensaje.Text);
+                socketCliente.Send(msjEnviar, 0, msjEnviar.Length, 0);
+
+                block_Chat.Items.Add(txt_Mensaje.Text);
+            }
         }
     }
 }
