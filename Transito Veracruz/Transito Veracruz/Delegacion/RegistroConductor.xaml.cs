@@ -76,5 +76,15 @@ namespace Transito_Veracruz.Delegacion
         {
             Validacion.soloNumeros(e);
         }
+
+        private void txt_Apellidos_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloLetras(e);
+        }
+
+        private void txt_Nombre_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloLetras(e);
+        }
     }
 }

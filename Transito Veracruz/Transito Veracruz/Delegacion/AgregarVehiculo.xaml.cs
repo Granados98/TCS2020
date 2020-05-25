@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Transito_Veracruz.Model.dao;
 using Transito_Veracruz.Model.db;
 using Transito_Veracruz.Model.pocos;
+using Transito_Veracruz.Model.security;
 
 namespace Transito_Veracruz.Delegacion
 {
@@ -94,6 +95,58 @@ namespace Transito_Veracruz.Delegacion
                 return true;
             }
             return false;
+        }
+
+        private void txt_Marca_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloLetras(e);
+        }
+
+        private void txt_Modelo_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloLetras(e);
+        }
+
+        private void txt_Año_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloNumeros(e);
+        }
+
+        private void txt_Color_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloLetras(e);
+        }
+
+        private void txt_NumeroPlaca_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloNumeros(e);
+        }
+
+        private void txt_Aseguradora_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloLetras(e);
+        }
+
+        private void txt_Poliza_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloNumeros(e);
+        }
+
+        private void cb_Conductores_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cb_Conductores.SelectedItem!=null)
+            {
+                String numeroLicencia= cb_Conductores.SelectedItem.ToString();
+                Console.WriteLine(numeroLicencia);
+                Conductor conductorSeleccionado = ConductorDAO.getInformacionSeleccionada(numeroLicencia);
+                
+                MessageBox.Show("Numero de Licencia: "+ conductorSeleccionado.NumeroLicencia + " Apellidos: "+ conductorSeleccionado.Apellidos + " Nombre: " + conductorSeleccionado.Nombre + " Fecha de Nacimiento: "+conductorSeleccionado.FechaNacimiento +
+                    " Telefono: "+ conductorSeleccionado.Telefono+" Usuario: "+ conductorSeleccionado.Usuario);
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un conductor");
+            }
         }
     }
 }

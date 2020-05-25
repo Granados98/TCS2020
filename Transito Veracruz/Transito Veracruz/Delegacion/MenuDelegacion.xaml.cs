@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,6 +32,8 @@ namespace Transito_Veracruz.Delegacion
 
         Socket socketCliente = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         IPEndPoint direccionConexion = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
+        private String mensaje = "";
+
         private List<Conductor> listConductores { get; set; }
         private Personal usuarioIniciado { get; set; }
         public MenuDelegacion(Personal personal)
@@ -39,10 +42,12 @@ namespace Transito_Veracruz.Delegacion
             this.usuarioIniciado = personal;
             cargarTablaConductores();
             cargarTablaVehiculos();
-
+            /*
             socketCliente.Connect(direccionConexion);
             Console.WriteLine("Conectado con exito al servidor...");
 
+            Thread hilo = new Thread(recibeMensajes);
+            hilo.Start();*/
         }
 
         private void btn_AgregarConductor_Click(object sender, RoutedEventArgs e)
@@ -73,7 +78,7 @@ namespace Transito_Veracruz.Delegacion
             byte[] msjEnviar = Encoding.Default.GetBytes(txt_Mensaje.Text);
             socketCliente.Send(msjEnviar, 0, msjEnviar.Length, 0);
 
-            block_Chat.Items.Add(txt_Mensaje.Text);
+            block_Chat.Items.Add("Tu: "+txt_Mensaje.Text);
 
         }
 
@@ -206,8 +211,19 @@ namespace Transito_Veracruz.Delegacion
                 byte[] msjEnviar = Encoding.Default.GetBytes(txt_Mensaje.Text);
                 socketCliente.Send(msjEnviar, 0, msjEnviar.Length, 0);
 
-                block_Chat.Items.Add(txt_Mensaje.Text);
+                block_Chat.Items.Add("Tu: "+txt_Mensaje.Text);
             }
+        }
+
+        private void recibeMensajes()
+        {
+            byte[] recibeBytes = new byte[255];
+            int datos = socketCliente.Receive(recibeBytes, 0, recibeBytes.Length, 0);
+            Array.Resize(ref recibeBytes, datos);
+            mensaje = Encoding.Default.GetString(recibeBytes);
+
+            block_Chat.Items.Add(mensaje);
+
         }
     }
 }

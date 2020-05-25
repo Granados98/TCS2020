@@ -13,7 +13,64 @@ namespace Transito_Veracruz.Model.dao
 {
     class ConductorDAO
     {
-        public static void agregarConductor(Conductor conductor)
+
+        public static Conductor getInformacionSeleccionada(String numeroLicencia)
+        {
+            Conductor conductor = null;
+            SqlConnection conexion = null;
+
+            try
+            {
+                conexion = ConnectionUtils.getConnection();
+                SqlCommand command;
+                SqlDataReader rd;
+                if (conexion != null)
+                {
+                    String query = String.Format("SELECT " +
+                        "x.numeroLicencia, " +
+                        "x.apellidos, " +
+                        "x.nombre, " +
+                        "x.fechaNacimiento, " +
+                        "x.telefono, " +
+                        "x.usuario " +
+                        "FROM dbo.Conductor x " +
+                        "WHERE x.numeroLicencia='{0}';", numeroLicencia);
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conexion);
+                    rd = command.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        conductor = new Conductor();
+                        conductor.NumeroLicencia = (!rd.IsDBNull(0)) ? rd.GetString(0) : "";
+                        conductor.Apellidos = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        conductor.Nombre = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        conductor.FechaNacimiento = (!rd.IsDBNull(3)) ? rd.GetDateTime(3) : new DateTime();
+                        conductor.Telefono = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
+                        conductor.Usuario = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
+                    }
+                    rd.Close();
+                    command.Dispose();
+                    Console.WriteLine(conductor);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("No se encontro el Conductor");
+            }
+            finally
+            {
+                if (conexion != null)
+                {
+                    conexion.Close();
+                }
+            }
+            return conductor;
+        }
+
+    public static void agregarConductor(Conductor conductor)
         {
             String query = "";
             

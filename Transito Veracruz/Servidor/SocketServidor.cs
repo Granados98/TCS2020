@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 
 namespace Servidor
 {
@@ -45,9 +46,7 @@ namespace Servidor
 
             socketServer.Close();
             Console.WriteLine("Socket servidor desconectado, pulsa una tecla para terminar...");
-            Console.ReadKey();
         }
 
     }
-
 }
