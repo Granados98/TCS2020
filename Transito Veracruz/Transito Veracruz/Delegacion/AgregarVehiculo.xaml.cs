@@ -24,6 +24,7 @@ namespace Transito_Veracruz.Delegacion
     /// </summary>
     public partial class AgregarVehiculo : Window
     {
+        private int idConductorSeleccionado;
         private Vehiculo vehiculo = new Vehiculo();
         public AgregarVehiculo()
         {
@@ -68,7 +69,7 @@ namespace Transito_Veracruz.Delegacion
         {
             if (validarCampos())
             {
-                this.vehiculo.NumeroLicencia = cb_Conductores.Text;
+                this.vehiculo.IdConductor = idConductorSeleccionado;
                 this.vehiculo.NombreAseguradora = txt_Aseguradora.Text;
                 this.vehiculo.Anio = txt_Año.Text;
                 this.vehiculo.Color = txt_Color.Text;
@@ -89,7 +90,7 @@ namespace Transito_Veracruz.Delegacion
 
         public bool validarCampos()
         {
-            if (this.vehiculo.NumeroLicencia == "" || this.vehiculo.Marca == "" || this.vehiculo.Modelo == "" || this.vehiculo.Anio == ""
+            if (this.vehiculo.IdConductor != null || this.vehiculo.Marca == "" || this.vehiculo.Modelo == "" || this.vehiculo.Anio == ""
                 || this.vehiculo.Color == "" || this.vehiculo.NumeroPlacas == "" || this.vehiculo.NumeroPolizaSeguro == "" || this.vehiculo.NombreAseguradora == "")
             {
                 return true;
@@ -139,6 +140,7 @@ namespace Transito_Veracruz.Delegacion
                 String numeroLicencia= cb_Conductores.SelectedItem.ToString();
                 Console.WriteLine(numeroLicencia);
                 Conductor conductorSeleccionado = ConductorDAO.getInformacionSeleccionada(numeroLicencia);
+                idConductorSeleccionado=conductorSeleccionado.IdConductor;
                 
                 MessageBox.Show("Numero de Licencia: "+ conductorSeleccionado.NumeroLicencia + " Apellidos: "+ conductorSeleccionado.Apellidos + " Nombre: " + conductorSeleccionado.Nombre + " Fecha de Nacimiento: "+conductorSeleccionado.FechaNacimiento +
                     " Telefono: "+ conductorSeleccionado.Telefono+" Usuario: "+ conductorSeleccionado.Usuario);
@@ -148,5 +150,6 @@ namespace Transito_Veracruz.Delegacion
                 MessageBox.Show("Seleccione un conductor");
             }
         }
+
     }
 }

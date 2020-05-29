@@ -17,8 +17,8 @@ namespace Transito_Veracruz.Model.dao
 
             String query = "";
 
-            query = "INSERT INTO dbo.Vehiculo (numeroPlacas,marca,modelo,año,color,nombreAseguradora,numeroPolizaSeguro,numeroLicencia) " +
-                       "VALUES(@numeroPlacas,@marca,@modelo,@año,@color,@nombreAseguradora,@numeroPolizaSeguro,@numeroLicencia);";
+            query = "INSERT INTO dbo.Vehiculo (numeroPlacas,marca,modelo,año,color,nombreAseguradora,numeroPolizaSeguro,idConductor) " +
+                       "VALUES(@numeroPlacas,@marca,@modelo,@año,@color,@nombreAseguradora,@numeroPolizaSeguro,@idConductor);";
 
 
             
@@ -39,7 +39,7 @@ namespace Transito_Veracruz.Model.dao
                     command.Parameters.AddWithValue("@color", vehiculo.Color);
                     command.Parameters.AddWithValue("@nombreAseguradora", vehiculo.NombreAseguradora);
                     command.Parameters.AddWithValue("@numeroPolizaSeguro", vehiculo.NumeroPolizaSeguro);
-                    command.Parameters.AddWithValue("@numeroLicencia", vehiculo.NumeroLicencia);
+                    command.Parameters.AddWithValue("@idConductor", vehiculo.IdConductor);
 
                     command.Parameters.AddWithValue("@idVehiculo", vehiculo.IdVehiculo);
 

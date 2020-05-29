@@ -29,13 +29,14 @@
         <Button Content="Agregar" Background="#54903B" HorizontalAlignment="Left" Margin="289,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1"/>
         <Button x:Name="btn_Cancelar" Content="Cancelar" Background="#D92530" HorizontalAlignment="Left" Margin="47,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_Cancelar_Click"/>
         <TextBlock Text="NUEVO REPORTE" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="171,-37,166,0" Height="29" Width="175"/>
-        <ComboBox HorizontalAlignment="Left" Background="#DADADA" Margin="171,18,0,0" VerticalAlignment="Top" Width="277" Height="28"/>
+        <ComboBox x:Name="cb_Conductor" HorizontalAlignment="Left" Background="#DADADA" Margin="171,18,0,0" VerticalAlignment="Top" Width="277" Height="28" SelectionChanged="cb_Conductor_SelectionChanged"/>
         <Label Content="CONDUCTOR" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="47,18,0,0" VerticalAlignment="Top" Height="32" Width="117"/>
-        <TextBox Margin="47,110,64,394" materialDesign:HintAssist.Hint="DIRECCIÓN" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.RowSpan="2"/>
+        <TextBox x:Name="txt_Direccion" Margin="47,110,64,394" materialDesign:HintAssist.Hint="DIRECCIÓN" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.RowSpan="2"/>
         <Label Content="VEHICULO" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="47,73,0,0" VerticalAlignment="Top" Height="32" Width="117"/>
-        <ComboBox HorizontalAlignment="Left" Background="#DADADA" Margin="171,73,0,0" VerticalAlignment="Top" Width="277" Height="28"/>
-        <TextBlock Background="#DADADA" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Margin="47,64,0,0" Grid.Row="1" TextWrapping="Wrap" Text="INVOLUCRADOS" VerticalAlignment="Top" Height="91" Width="401" Foreground="#FF878787"/>
-        <Button Content="Adjuntar Imágenes" Background="#54903B" HorizontalAlignment="Left" Margin="289,289,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1"/>
+        <ComboBox x:Name="cb_VehiculosConductor" HorizontalAlignment="Left" Background="#DADADA" Margin="171,73,0,0" VerticalAlignment="Top" Width="277" Height="28" SelectionChanged="cb_VehiculosConductor_SelectionChanged"/>
+        <TextBlock x:Name="txtB_Involucrados" Background="#DADADA" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Margin="47,111,0,0" Grid.Row="1" TextWrapping="Wrap" Text="INVOLUCRADOS" VerticalAlignment="Top" Height="91" Width="401" Foreground="#FF878787"/>
+        <Button x:Name="btn_AgregarImagenes" Content="Adjuntar Imágenes" Background="#54903B" HorizontalAlignment="Left" Margin="289,289,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_AgregarImagenes_Click"/>
+        <Label x:Name="label_1" Content="Label" HorizontalAlignment="Left" Margin="69,239,0,0" Grid.Row="1" VerticalAlignment="Top" IsHitTestVisible="False"/>
 
 
 

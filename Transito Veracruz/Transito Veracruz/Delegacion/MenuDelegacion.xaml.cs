@@ -45,7 +45,7 @@ namespace Transito_Veracruz.Delegacion
             /*
             socketCliente.Connect(direccionConexion);
             Console.WriteLine("Conectado con exito al servidor...");
-
+            
             Thread hilo = new Thread(recibeMensajes);
             hilo.Start();*/
         }
@@ -152,7 +152,7 @@ namespace Transito_Veracruz.Delegacion
                 SqlCommand command;
                 if (conexion != null)
                 {
-                    String query = String.Format("SELECT numeroPlacas,marca,modelo,año,color,nombreAseguradora,numeroPolizaSeguro,numeroLicencia FROM Vehiculo");
+                    String query = String.Format("SELECT numeroPlacas,marca,modelo,año,color,nombreAseguradora,numeroPolizaSeguro FROM Vehiculo");
                     command = new SqlCommand(query, conexion);
                     command.ExecuteNonQuery();
 
@@ -184,13 +184,15 @@ namespace Transito_Veracruz.Delegacion
                 SqlCommand command;
                 if (conexion != null)
                 {
-                    String query = String.Format("SELECT numeroPlacas,marca,modelo,año,color,nombreAseguradora,numeroPolizaSeguro,numeroLicencia FROM Vehiculo");
+                    String query = String.Format("SELECT numeroPlacas,marca,modelo,año,color,nombreAseguradora,numeroPolizaSeguro FROM Vehiculo");
                     command = new SqlCommand(query, conexion);
                     command.ExecuteNonQuery();
 
                     SqlDataAdapter dataAdp = new SqlDataAdapter(command);
                     DataTable dt = new DataTable("Vehiculo");
                     dataAdp.Fill(dt);
+                    dg_Vehiculos.ItemsSource = dt.DefaultView;
+                    dataAdp.Update(dt);
 
                     command.Dispose();
                     conexion.Close();

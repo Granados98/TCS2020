@@ -27,6 +27,7 @@ namespace Transito_Veracruz.Model.dao
                 if (conexion != null)
                 {
                     String query = String.Format("SELECT " +
+                        "x.idConductor, " +
                         "x.numeroLicencia, " +
                         "x.apellidos, " +
                         "x.nombre, " +
@@ -42,12 +43,13 @@ namespace Transito_Veracruz.Model.dao
                     while (rd.Read())
                     {
                         conductor = new Conductor();
-                        conductor.NumeroLicencia = (!rd.IsDBNull(0)) ? rd.GetString(0) : "";
-                        conductor.Apellidos = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
-                        conductor.Nombre = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        conductor.FechaNacimiento = (!rd.IsDBNull(3)) ? rd.GetDateTime(3) : new DateTime();
-                        conductor.Telefono = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
-                        conductor.Usuario = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
+                        conductor.IdConductor = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
+                        conductor.NumeroLicencia = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        conductor.Apellidos = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        conductor.Nombre = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
+                        conductor.FechaNacimiento = (!rd.IsDBNull(4)) ? rd.GetDateTime(4) : new DateTime();
+                        conductor.Telefono = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
+                        conductor.Usuario = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
                     }
                     rd.Close();
                     command.Dispose();

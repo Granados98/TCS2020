@@ -16,7 +16,7 @@ namespace Transito_Veracruz.Model.pocos
         private String color="";
         private String nombreAseguradora="";
         private String numeroPolizaSeguro="";
-        private String numeroLicencia="";
+        private Int32 idConductor;
 
         public int IdVehiculo { get => idVehiculo; set => idVehiculo = value; }
         public string NumeroPlacas { get => numeroPlacas; set => numeroPlacas = value; }
@@ -26,6 +26,6 @@ namespace Transito_Veracruz.Model.pocos
         public string Color { get => color; set => color = value; }
         public string NombreAseguradora { get => nombreAseguradora; set => nombreAseguradora = value; }
         public string NumeroPolizaSeguro { get => numeroPolizaSeguro; set => numeroPolizaSeguro = value; }
-        public string NumeroLicencia { get => numeroLicencia; set => numeroLicencia = value; }
+        public int IdConductor { get => idConductor; set => idConductor = value; }
     }
 }
