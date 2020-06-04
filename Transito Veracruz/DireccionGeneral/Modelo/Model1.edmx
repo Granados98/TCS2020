@@ -1,0 +1,659 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SistemaTransitoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="numeroChat" />
+          </Key>
+          <Property Name="idChat" Type="int" Nullable="false" />
+          <Property Name="numeroChat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fechaCreacion" Type="date" Nullable="false" />
+          <Property Name="numeroLicencia" Type="varchar" MaxLength="8" />
+          <Property Name="idMensaje" Type="int" />
+        </EntityType>
+        <EntityType Name="Conductor">
+          <Key>
+            <PropertyRef Name="numeroLicencia" />
+          </Key>
+          <Property Name="idConductor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numeroLicencia" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="apellidos" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" />
+          <Property Name="usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="contrasena" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="numeroPlacas" Type="varchar" MaxLength="7" />
+        </EntityType>
+        <EntityType Name="Delegacion">
+          <Key>
+            <PropertyRef Name="numeroDelegacion" />
+          </Key>
+          <Property Name="idDelegacion" Type="int" Nullable="false" />
+          <Property Name="numeroDelegacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="colonia" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="codigoPostal" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="municipio" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" />
+          <Property Name="correoElectronico" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Dictamen">
+          <Key>
+            <PropertyRef Name="folio" />
+          </Key>
+          <Property Name="idDictamen" Type="int" Nullable="false" />
+          <Property Name="folio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="fechaDictamen" Type="date" Nullable="false" />
+          <Property Name="horaDictamen" Type="time" Precision="7" Nullable="false" />
+          <Property Name="idPersonal" Type="int" />
+        </EntityType>
+        <EntityType Name="Mensaje">
+          <Key>
+            <PropertyRef Name="idMensaje" />
+          </Key>
+          <Property Name="idMensaje" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="texto" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="fechaEnvio" Type="date" Nullable="false" />
+          <Property Name="horaEnvio" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="idPersonal" />
+          </Key>
+          <Property Name="idPersonal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numeroPersonal" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="tipoPersonal" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="apellidos" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cargo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contrasena" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="idReporte" />
+          </Key>
+          <Property Name="idReporte" Type="int" Nullable="false" />
+          <Property Name="numeroReporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estatus" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="numeroDelegacion" Type="int" />
+          <Property Name="folioDictamen" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SistemaTransito.dbo.Reporte_Vehiculo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Reporte_Vehiculo">
+          <Key>
+            <PropertyRef Name="idReporte_Vehiculo" />
+          </Key>
+          <Property Name="idReporte_Vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idVehiculo" Type="int" />
+          <Property Name="idReporte" Type="int" />
+        </EntityType>
+        <EntityType Name="Vehiculo">
+          <Key>
+            <PropertyRef Name="idVehiculo" />
+          </Key>
+          <Property Name="idVehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numeroPlacas" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="marca" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="modelo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="año" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="color" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="nombreAseguradora" Type="varchar" MaxLength="50" />
+          <Property Name="numeroPolizaSeguro" Type="varchar" MaxLength="10" />
+          <Property Name="numeroLicencia" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <Association Name="FK_Chat_Conductor">
+          <End Role="Conductor" Type="Self.Conductor" Multiplicity="0..1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conductor">
+              <PropertyRef Name="numeroLicencia" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="numeroLicencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chat_Mensaje">
+          <End Role="Mensaje" Type="Self.Mensaje" Multiplicity="0..1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mensaje">
+              <PropertyRef Name="idMensaje" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="idMensaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dictamen_Personal">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="Dictamen" Type="Self.Dictamen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="idPersonal" />
+            </Principal>
+            <Dependent Role="Dictamen">
+              <PropertyRef Name="idPersonal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reporte_Delegacion">
+          <End Role="Delegacion" Type="Self.Delegacion" Multiplicity="0..1" />
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delegacion">
+              <PropertyRef Name="numeroDelegacion" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="numeroDelegacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reporte_Dictamen">
+          <End Role="Dictamen" Type="Self.Dictamen" Multiplicity="0..1" />
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dictamen">
+              <PropertyRef Name="folio" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="folioDictamen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reporte_Vehiculo_Reporte">
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="0..1" />
+          <End Role="Reporte_Vehiculo" Type="Self.Reporte_Vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="idReporte" />
+            </Principal>
+            <Dependent Role="Reporte_Vehiculo">
+              <PropertyRef Name="idReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reporte_Vehiculo_Vehiculo">
+          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="0..1" />
+          <End Role="Reporte_Vehiculo" Type="Self.Reporte_Vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculo">
+              <PropertyRef Name="idVehiculo" />
+            </Principal>
+            <Dependent Role="Reporte_Vehiculo">
+              <PropertyRef Name="idVehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehiculo_Conductor">
+          <End Role="Conductor" Type="Self.Conductor" Multiplicity="0..1" />
+          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conductor">
+              <PropertyRef Name="numeroLicencia" />
+            </Principal>
+            <Dependent Role="Vehiculo">
+              <PropertyRef Name="numeroLicencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemaTransitoModelStoreContainer">
+          <EntitySet Name="Chat" EntityType="Self.Chat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Conductor" EntityType="Self.Conductor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Delegacion" EntityType="Self.Delegacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dictamen" EntityType="Self.Dictamen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mensaje" EntityType="Self.Mensaje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personal" EntityType="Self.Personal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehiculo" EntityType="Self.Vehiculo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte_Vehiculo" EntityType="Self.Reporte_Vehiculo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Reporte_Vehiculo].[idReporte_Vehiculo] AS [idReporte_Vehiculo], 
+    [Reporte_Vehiculo].[idVehiculo] AS [idVehiculo], 
+    [Reporte_Vehiculo].[idReporte] AS [idReporte]
+    FROM [dbo].[Reporte_Vehiculo] AS [Reporte_Vehiculo]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Chat_Conductor" Association="Self.FK_Chat_Conductor">
+            <End Role="Conductor" EntitySet="Conductor" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_Mensaje" Association="Self.FK_Chat_Mensaje">
+            <End Role="Mensaje" EntitySet="Mensaje" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dictamen_Personal" Association="Self.FK_Dictamen_Personal">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="Dictamen" EntitySet="Dictamen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reporte_Delegacion" Association="Self.FK_Reporte_Delegacion">
+            <End Role="Delegacion" EntitySet="Delegacion" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reporte_Dictamen" Association="Self.FK_Reporte_Dictamen">
+            <End Role="Dictamen" EntitySet="Dictamen" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reporte_Vehiculo_Reporte" Association="Self.FK_Reporte_Vehiculo_Reporte">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="Reporte_Vehiculo" EntitySet="Reporte_Vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reporte_Vehiculo_Vehiculo" Association="Self.FK_Reporte_Vehiculo_Vehiculo">
+            <End Role="Vehiculo" EntitySet="Vehiculo" />
+            <End Role="Reporte_Vehiculo" EntitySet="Reporte_Vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehiculo_Conductor" Association="Self.FK_Vehiculo_Conductor">
+            <End Role="Conductor" EntitySet="Conductor" />
+            <End Role="Vehiculo" EntitySet="Vehiculo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SistemaTransitoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="numeroChat" />
+          </Key>
+          <Property Name="idChat" Type="Int32" Nullable="false" />
+          <Property Name="numeroChat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="numeroLicencia" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="idMensaje" Type="Int32" />
+          <NavigationProperty Name="Conductor" Relationship="Self.FK_Chat_Conductor" FromRole="Chat" ToRole="Conductor" />
+          <NavigationProperty Name="Mensaje" Relationship="Self.FK_Chat_Mensaje" FromRole="Chat" ToRole="Mensaje" />
+        </EntityType>
+        <EntityType Name="Conductor">
+          <Key>
+            <PropertyRef Name="numeroLicencia" />
+          </Key>
+          <Property Name="idConductor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numeroLicencia" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contrasena" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numeroPlacas" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Chat" Relationship="Self.FK_Chat_Conductor" FromRole="Conductor" ToRole="Chat" />
+          <NavigationProperty Name="Vehiculo" Relationship="Self.FK_Vehiculo_Conductor" FromRole="Conductor" ToRole="Vehiculo" />
+        </EntityType>
+        <EntityType Name="Delegacion">
+          <Key>
+            <PropertyRef Name="numeroDelegacion" />
+          </Key>
+          <Property Name="idDelegacion" Type="Int32" Nullable="false" />
+          <Property Name="numeroDelegacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="colonia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="municipio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="correoElectronico" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reporte" Relationship="Self.FK_Reporte_Delegacion" FromRole="Delegacion" ToRole="Reporte" />
+        </EntityType>
+        <EntityType Name="Dictamen">
+          <Key>
+            <PropertyRef Name="folio" />
+          </Key>
+          <Property Name="idDictamen" Type="Int32" Nullable="false" />
+          <Property Name="folio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaDictamen" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="horaDictamen" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="idPersonal" Type="Int32" />
+          <NavigationProperty Name="Personal" Relationship="Self.FK_Dictamen_Personal" FromRole="Dictamen" ToRole="Personal" />
+          <NavigationProperty Name="Reporte" Relationship="Self.FK_Reporte_Dictamen" FromRole="Dictamen" ToRole="Reporte" />
+        </EntityType>
+        <EntityType Name="Mensaje">
+          <Key>
+            <PropertyRef Name="idMensaje" />
+          </Key>
+          <Property Name="idMensaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="texto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaEnvio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="horaEnvio" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Chat" Relationship="Self.FK_Chat_Mensaje" FromRole="Mensaje" ToRole="Chat" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="idPersonal" />
+          </Key>
+          <Property Name="idPersonal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numeroPersonal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipoPersonal" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cargo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contrasena" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Dictamen" Relationship="Self.FK_Dictamen_Personal" FromRole="Personal" ToRole="Dictamen" />
+        </EntityType>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="idReporte" />
+          </Key>
+          <Property Name="idReporte" Type="Int32" Nullable="false" />
+          <Property Name="numeroReporte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estatus" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numeroDelegacion" Type="Int32" />
+          <Property Name="folioDictamen" Type="Int32" />
+          <NavigationProperty Name="Delegacion" Relationship="Self.FK_Reporte_Delegacion" FromRole="Reporte" ToRole="Delegacion" />
+          <NavigationProperty Name="Dictamen" Relationship="Self.FK_Reporte_Dictamen" FromRole="Reporte" ToRole="Dictamen" />
+          <NavigationProperty Name="Reporte_Vehiculo" Relationship="Self.FK_Reporte_Vehiculo_Reporte" FromRole="Reporte" ToRole="Reporte_Vehiculo" />
+        </EntityType>
+        <EntityType Name="Vehiculo">
+          <Key>
+            <PropertyRef Name="idVehiculo" />
+          </Key>
+          <Property Name="idVehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numeroPlacas" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="marca" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="modelo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="año" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="color" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombreAseguradora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="numeroPolizaSeguro" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="numeroLicencia" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Conductor" Relationship="Self.FK_Vehiculo_Conductor" FromRole="Vehiculo" ToRole="Conductor" />
+          <NavigationProperty Name="Reporte_Vehiculo" Relationship="Self.FK_Reporte_Vehiculo_Vehiculo" FromRole="Vehiculo" ToRole="Reporte_Vehiculo" />
+        </EntityType>
+        <EntityType Name="Reporte_Vehiculo">
+          <Key>
+            <PropertyRef Name="idReporte_Vehiculo" />
+          </Key>
+          <Property Name="idReporte_Vehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idVehiculo" Type="Int32" />
+          <Property Name="idReporte" Type="Int32" />
+          <NavigationProperty Name="Reporte" Relationship="Self.FK_Reporte_Vehiculo_Reporte" FromRole="Reporte_Vehiculo" ToRole="Reporte" />
+          <NavigationProperty Name="Vehiculo" Relationship="Self.FK_Reporte_Vehiculo_Vehiculo" FromRole="Reporte_Vehiculo" ToRole="Vehiculo" />
+        </EntityType>
+        <Association Name="FK_Chat_Conductor">
+          <End Role="Conductor" Type="Self.Conductor" Multiplicity="0..1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conductor">
+              <PropertyRef Name="numeroLicencia" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="numeroLicencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chat_Mensaje">
+          <End Role="Mensaje" Type="Self.Mensaje" Multiplicity="0..1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mensaje">
+              <PropertyRef Name="idMensaje" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="idMensaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehiculo_Conductor">
+          <End Role="Conductor" Type="Self.Conductor" Multiplicity="0..1" />
+          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conductor">
+              <PropertyRef Name="numeroLicencia" />
+            </Principal>
+            <Dependent Role="Vehiculo">
+              <PropertyRef Name="numeroLicencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reporte_Delegacion">
+          <End Role="Delegacion" Type="Self.Delegacion" Multiplicity="0..1" />
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delegacion">
+              <PropertyRef Name="numeroDelegacion" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="numeroDelegacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dictamen_Personal">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="Dictamen" Type="Self.Dictamen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="idPersonal" />
+            </Principal>
+            <Dependent Role="Dictamen">
+              <PropertyRef Name="idPersonal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reporte_Dictamen">
+          <End Role="Dictamen" Type="Self.Dictamen" Multiplicity="0..1" />
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dictamen">
+              <PropertyRef Name="folio" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="folioDictamen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reporte_Vehiculo_Reporte">
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="0..1" />
+          <End Role="Reporte_Vehiculo" Type="Self.Reporte_Vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="idReporte" />
+            </Principal>
+            <Dependent Role="Reporte_Vehiculo">
+              <PropertyRef Name="idReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reporte_Vehiculo_Vehiculo">
+          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="0..1" />
+          <End Role="Reporte_Vehiculo" Type="Self.Reporte_Vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculo">
+              <PropertyRef Name="idVehiculo" />
+            </Principal>
+            <Dependent Role="Reporte_Vehiculo">
+              <PropertyRef Name="idVehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemaTransitoEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Chat" EntityType="Self.Chat" />
+          <EntitySet Name="Conductor" EntityType="Self.Conductor" />
+          <EntitySet Name="Delegacion" EntityType="Self.Delegacion" />
+          <EntitySet Name="Dictamen" EntityType="Self.Dictamen" />
+          <EntitySet Name="Mensaje" EntityType="Self.Mensaje" />
+          <EntitySet Name="Personal" EntityType="Self.Personal" />
+          <EntitySet Name="Reporte" EntityType="Self.Reporte" />
+          <EntitySet Name="Vehiculo" EntityType="Self.Vehiculo" />
+          <EntitySet Name="Reporte_Vehiculo" EntityType="Self.Reporte_Vehiculo" />
+          <AssociationSet Name="FK_Chat_Conductor" Association="Self.FK_Chat_Conductor">
+            <End Role="Conductor" EntitySet="Conductor" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_Mensaje" Association="Self.FK_Chat_Mensaje">
+            <End Role="Mensaje" EntitySet="Mensaje" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehiculo_Conductor" Association="Self.FK_Vehiculo_Conductor">
+            <End Role="Conductor" EntitySet="Conductor" />
+            <End Role="Vehiculo" EntitySet="Vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reporte_Delegacion" Association="Self.FK_Reporte_Delegacion">
+            <End Role="Delegacion" EntitySet="Delegacion" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dictamen_Personal" Association="Self.FK_Dictamen_Personal">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="Dictamen" EntitySet="Dictamen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reporte_Dictamen" Association="Self.FK_Reporte_Dictamen">
+            <End Role="Dictamen" EntitySet="Dictamen" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reporte_Vehiculo_Reporte" Association="Self.FK_Reporte_Vehiculo_Reporte">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="Reporte_Vehiculo" EntitySet="Reporte_Vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reporte_Vehiculo_Vehiculo" Association="Self.FK_Reporte_Vehiculo_Vehiculo">
+            <End Role="Vehiculo" EntitySet="Vehiculo" />
+            <End Role="Reporte_Vehiculo" EntitySet="Reporte_Vehiculo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SistemaTransitoModelStoreContainer" CdmEntityContainer="SistemaTransitoEntities1">
+          <EntitySetMapping Name="Chat">
+            <EntityTypeMapping TypeName="SistemaTransitoModel.Chat">
+              <MappingFragment StoreEntitySet="Chat">
+                <ScalarProperty Name="idChat" ColumnName="idChat" />
+                <ScalarProperty Name="numeroChat" ColumnName="numeroChat" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="numeroLicencia" ColumnName="numeroLicencia" />
+                <ScalarProperty Name="idMensaje" ColumnName="idMensaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conductor">
+            <EntityTypeMapping TypeName="SistemaTransitoModel.Conductor">
+              <MappingFragment StoreEntitySet="Conductor">
+                <ScalarProperty Name="idConductor" ColumnName="idConductor" />
+                <ScalarProperty Name="numeroLicencia" ColumnName="numeroLicencia" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="numeroPlacas" ColumnName="numeroPlacas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Delegacion">
+            <EntityTypeMapping TypeName="SistemaTransitoModel.Delegacion">
+              <MappingFragment StoreEntitySet="Delegacion">
+                <ScalarProperty Name="idDelegacion" ColumnName="idDelegacion" />
+                <ScalarProperty Name="numeroDelegacion" ColumnName="numeroDelegacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="colonia" ColumnName="colonia" />
+                <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dictamen">
+            <EntityTypeMapping TypeName="SistemaTransitoModel.Dictamen">
+              <MappingFragment StoreEntitySet="Dictamen">
+                <ScalarProperty Name="idDictamen" ColumnName="idDictamen" />
+                <ScalarProperty Name="folio" ColumnName="folio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaDictamen" ColumnName="fechaDictamen" />
+                <ScalarProperty Name="horaDictamen" ColumnName="horaDictamen" />
+                <ScalarProperty Name="idPersonal" ColumnName="idPersonal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mensaje">
+            <EntityTypeMapping TypeName="SistemaTransitoModel.Mensaje">
+              <MappingFragment StoreEntitySet="Mensaje">
+                <ScalarProperty Name="idMensaje" ColumnName="idMensaje" />
+                <ScalarProperty Name="texto" ColumnName="texto" />
+                <ScalarProperty Name="fechaEnvio" ColumnName="fechaEnvio" />
+                <ScalarProperty Name="horaEnvio" ColumnName="horaEnvio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personal">
+            <EntityTypeMapping TypeName="SistemaTransitoModel.Personal">
+              <MappingFragment StoreEntitySet="Personal">
+                <ScalarProperty Name="idPersonal" ColumnName="idPersonal" />
+                <ScalarProperty Name="numeroPersonal" ColumnName="numeroPersonal" />
+                <ScalarProperty Name="tipoPersonal" ColumnName="tipoPersonal" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="cargo" ColumnName="cargo" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reporte">
+            <EntityTypeMapping TypeName="SistemaTransitoModel.Reporte">
+              <MappingFragment StoreEntitySet="Reporte">
+                <ScalarProperty Name="idReporte" ColumnName="idReporte" />
+                <ScalarProperty Name="numeroReporte" ColumnName="numeroReporte" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="numeroDelegacion" ColumnName="numeroDelegacion" />
+                <ScalarProperty Name="folioDictamen" ColumnName="folioDictamen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehiculo">
+            <EntityTypeMapping TypeName="SistemaTransitoModel.Vehiculo">
+              <MappingFragment StoreEntitySet="Vehiculo">
+                <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
+                <ScalarProperty Name="numeroPlacas" ColumnName="numeroPlacas" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+                <ScalarProperty Name="año" ColumnName="año" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="nombreAseguradora" ColumnName="nombreAseguradora" />
+                <ScalarProperty Name="numeroPolizaSeguro" ColumnName="numeroPolizaSeguro" />
+                <ScalarProperty Name="numeroLicencia" ColumnName="numeroLicencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reporte_Vehiculo">
+            <EntityTypeMapping TypeName="SistemaTransitoModel.Reporte_Vehiculo">
+              <MappingFragment StoreEntitySet="Reporte_Vehiculo">
+                <ScalarProperty Name="idReporte_Vehiculo" ColumnName="idReporte_Vehiculo" />
+                <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
+                <ScalarProperty Name="idReporte" ColumnName="idReporte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

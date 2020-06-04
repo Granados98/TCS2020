@@ -62,3 +62,8 @@ C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\obj\D
 C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\obj\Debug\DireccionGeneral.csproj.CopyComplete
 C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\obj\Debug\DireccionGeneral.exe
 C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\obj\Debug\DireccionGeneral.pdb
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\EntityFramework.dll
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\EntityFramework.xml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\obj\Debug\DireccionGeneral_Content.g.cs

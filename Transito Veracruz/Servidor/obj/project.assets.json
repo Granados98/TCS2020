@@ -8,23 +8,19 @@
     ".NETCoreApp,Version=v3.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Cesar Diaz\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\juang\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Cesar Diaz\\Documents\\GitHub\\TCS2020\\Transito Veracruz\\Servidor\\Servidor.csproj",
+      "projectUniqueName": "C:\\Users\\juang\\Documents\\GitHub\\TCS2020\\Transito Veracruz\\Servidor\\Servidor.csproj",
       "projectName": "Servidor",
-      "projectPath": "C:\\Users\\Cesar Diaz\\Documents\\GitHub\\TCS2020\\Transito Veracruz\\Servidor\\Servidor.csproj",
-      "packagesPath": "C:\\Users\\Cesar Diaz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Cesar Diaz\\Documents\\GitHub\\TCS2020\\Transito Veracruz\\Servidor\\obj\\",
+      "projectPath": "C:\\Users\\juang\\Documents\\GitHub\\TCS2020\\Transito Veracruz\\Servidor\\Servidor.csproj",
+      "packagesPath": "C:\\Users\\juang\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\juang\\Documents\\GitHub\\TCS2020\\Transito Veracruz\\Servidor\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Cesar Diaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\juang\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -57,12 +53,30 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.0.1, 3.0.1]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[3.0.1, 3.0.1]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[3.0.0, 3.0.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[3.0.0, 3.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

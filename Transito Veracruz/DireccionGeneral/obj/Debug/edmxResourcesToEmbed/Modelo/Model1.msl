@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SistemaTransitoModelStoreContainer" CdmEntityContainer="SistemaTransitoEntities1">
+    <EntitySetMapping Name="Chat">
+      <EntityTypeMapping TypeName="SistemaTransitoModel.Chat">
+        <MappingFragment StoreEntitySet="Chat">
+          <ScalarProperty Name="idChat" ColumnName="idChat" />
+          <ScalarProperty Name="numeroChat" ColumnName="numeroChat" />
+          <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+          <ScalarProperty Name="numeroLicencia" ColumnName="numeroLicencia" />
+          <ScalarProperty Name="idMensaje" ColumnName="idMensaje" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conductor">
+      <EntityTypeMapping TypeName="SistemaTransitoModel.Conductor">
+        <MappingFragment StoreEntitySet="Conductor">
+          <ScalarProperty Name="idConductor" ColumnName="idConductor" />
+          <ScalarProperty Name="numeroLicencia" ColumnName="numeroLicencia" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="numeroPlacas" ColumnName="numeroPlacas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Delegacion">
+      <EntityTypeMapping TypeName="SistemaTransitoModel.Delegacion">
+        <MappingFragment StoreEntitySet="Delegacion">
+          <ScalarProperty Name="idDelegacion" ColumnName="idDelegacion" />
+          <ScalarProperty Name="numeroDelegacion" ColumnName="numeroDelegacion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="colonia" ColumnName="colonia" />
+          <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+          <ScalarProperty Name="municipio" ColumnName="municipio" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dictamen">
+      <EntityTypeMapping TypeName="SistemaTransitoModel.Dictamen">
+        <MappingFragment StoreEntitySet="Dictamen">
+          <ScalarProperty Name="idDictamen" ColumnName="idDictamen" />
+          <ScalarProperty Name="folio" ColumnName="folio" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fechaDictamen" ColumnName="fechaDictamen" />
+          <ScalarProperty Name="horaDictamen" ColumnName="horaDictamen" />
+          <ScalarProperty Name="idPersonal" ColumnName="idPersonal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mensaje">
+      <EntityTypeMapping TypeName="SistemaTransitoModel.Mensaje">
+        <MappingFragment StoreEntitySet="Mensaje">
+          <ScalarProperty Name="idMensaje" ColumnName="idMensaje" />
+          <ScalarProperty Name="texto" ColumnName="texto" />
+          <ScalarProperty Name="fechaEnvio" ColumnName="fechaEnvio" />
+          <ScalarProperty Name="horaEnvio" ColumnName="horaEnvio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personal">
+      <EntityTypeMapping TypeName="SistemaTransitoModel.Personal">
+        <MappingFragment StoreEntitySet="Personal">
+          <ScalarProperty Name="idPersonal" ColumnName="idPersonal" />
+          <ScalarProperty Name="numeroPersonal" ColumnName="numeroPersonal" />
+          <ScalarProperty Name="tipoPersonal" ColumnName="tipoPersonal" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="cargo" ColumnName="cargo" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reporte">
+      <EntityTypeMapping TypeName="SistemaTransitoModel.Reporte">
+        <MappingFragment StoreEntitySet="Reporte">
+          <ScalarProperty Name="idReporte" ColumnName="idReporte" />
+          <ScalarProperty Name="numeroReporte" ColumnName="numeroReporte" />
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="numeroDelegacion" ColumnName="numeroDelegacion" />
+          <ScalarProperty Name="folioDictamen" ColumnName="folioDictamen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vehiculo">
+      <EntityTypeMapping TypeName="SistemaTransitoModel.Vehiculo">
+        <MappingFragment StoreEntitySet="Vehiculo">
+          <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
+          <ScalarProperty Name="numeroPlacas" ColumnName="numeroPlacas" />
+          <ScalarProperty Name="marca" ColumnName="marca" />
+          <ScalarProperty Name="modelo" ColumnName="modelo" />
+          <ScalarProperty Name="año" ColumnName="año" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="nombreAseguradora" ColumnName="nombreAseguradora" />
+          <ScalarProperty Name="numeroPolizaSeguro" ColumnName="numeroPolizaSeguro" />
+          <ScalarProperty Name="numeroLicencia" ColumnName="numeroLicencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reporte_Vehiculo">
+      <EntityTypeMapping TypeName="SistemaTransitoModel.Reporte_Vehiculo">
+        <MappingFragment StoreEntitySet="Reporte_Vehiculo">
+          <ScalarProperty Name="idReporte_Vehiculo" ColumnName="idReporte_Vehiculo" />
+          <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
+          <ScalarProperty Name="idReporte" ColumnName="idReporte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
