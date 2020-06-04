@@ -44,12 +44,12 @@
             </TabItem>
             <TabItem Header="USUARIOS" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
                 <Grid>
-                    <DataGrid HorizontalAlignment="Left" Height="428" Margin="27,10,0,0" VerticalAlignment="Top" Width="980">
+                    <DataGrid x:Name="dgPersonal" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="428" Margin="27,10,0,0" VerticalAlignment="Top" Width="980">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Nombre" Width="200" />
-                            <DataGridTextColumn Header="Cargo" Width="200"/>
-                            <DataGridTextColumn Header="Nombre de usuario" Width="200"/>
-                            <DataGridTextColumn Header="Delegación" Width="200"/>
+                            <DataGridTextColumn Header="Nombre" IsReadOnly="True" Binding="{Binding nombre}" Width="200" />
+                            <DataGridTextColumn Header="Cargo" IsReadOnly="True" Binding="{Binding cargo}" Width="200"/>
+                            <DataGridTextColumn Header="Nombre de usuario" IsReadOnly="True" Binding="{Binding usuario}" Width="200"/>
+                            <DataGridTextColumn Header="Delegación" IsReadOnly="True" Width="200"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="btn_AgregarUsuario" Content="Agregar Usuario" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="153" Click="btn_AgregarUsuario_Click"/>

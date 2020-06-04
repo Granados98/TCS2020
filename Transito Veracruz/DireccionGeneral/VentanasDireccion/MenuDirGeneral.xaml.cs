@@ -23,6 +23,13 @@ namespace DireccionGeneral.VentanasDireccion
         {
             InitializeComponent();
             CargaDelegacionesDB(idUser);
+            CargaPersonalDB();
+        }
+
+        private void CargaPersonalDB()
+        {
+            Modelo.SistemaTransitoEntities1 db = new Modelo.SistemaTransitoEntities1();
+            dgPersonal.ItemsSource = db.Personal.ToList();
         }
 
         private void CargaDelegacionesDB(int idUser)
