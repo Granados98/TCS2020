@@ -19,7 +19,7 @@ namespace DireccionGeneral.VentanasDireccion
     /// </summary>
     public partial class MenuDirGeneral : Window
     {
-        public MenuDirGeneral()
+        public MenuDirGeneral(int idUser)
         {
             InitializeComponent();
         }
