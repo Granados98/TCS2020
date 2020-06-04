@@ -28,14 +28,14 @@
             <TabItem Header="DELEGACIONES" FontWeight="Bold" Height="90" Width="150" Background="Transparent" FontSize="15">
 
                 <Grid Background="White">
-                    <DataGrid HorizontalAlignment="Left" Height="416" Margin="27,10,0,0" VerticalAlignment="Top" Width="980">
+                    <DataGrid x:Name="dgDelegaciones" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="416" Margin="27,10,0,0" VerticalAlignment="Top" Width="980">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Nombre" Width="170" />
-                            <DataGridTextColumn Header="Dirección" Width="160"/>
-                            <DataGridTextColumn Header="Código Postal" Width="160"/>
-                            <DataGridTextColumn Header="Municipio" Width="160"/>
-                            <DataGridTextColumn Header="Teléfono" Width="160"/>
-                            <DataGridTextColumn Header="Correo" Width="160"/>
+                            <DataGridTextColumn Header="Nombre" IsReadOnly="True" Binding="{Binding nombre}" Width="170" />
+                            <DataGridTextColumn Header="Dirección" IsReadOnly="True" Binding="{Binding colonia}" Width="160"/>
+                            <DataGridTextColumn Header="Código Postal" IsReadOnly="True" Binding="{Binding codigoPostal}" Width="160"/>
+                            <DataGridTextColumn Header="Municipio" IsReadOnly="True" Binding="{Binding municipio}" Width="160"/>
+                            <DataGridTextColumn Header="Teléfono" IsReadOnly="True" Binding="{Binding telefono}" Width="160"/>
+                            <DataGridTextColumn Header="Correo" IsReadOnly="True" Binding="{Binding correoElectronico}" Width="160"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="btn_AgregarDelegacion" Content="Agregar Delegación" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_AgregarDelegacion_Click"/>
