@@ -14,7 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using Transito_Veracruz.Model.dao;
 using Transito_Veracruz.Model.db;
+using Transito_Veracruz.Model.pocos;
 
 namespace Transito_Veracruz.Delegacion
 {
@@ -23,10 +25,12 @@ namespace Transito_Veracruz.Delegacion
     /// </summary>
     public partial class LevantaReporte : Window
     {
-        private String conductorSeleccionado;
+        private int contador = 0;
+        private int conductorSeleccionado;
         private String VehiculoConductor;
         private String archivoImg = "";
-        private byte[] img = 0;
+        Conductor informacionConductor;
+        private byte[] img;
 
         public LevantaReporte()
         {
@@ -49,13 +53,13 @@ namespace Transito_Veracruz.Delegacion
                 SqlCommand command;
                 if (conexion != null)
                 {
-                    String query = String.Format("SELECT numeroLicencia FROM Conductor");
+                    String query = String.Format("SELECT idConductor,numeroLicencia FROM Conductor");
                     command = new SqlCommand(query, conexion);
                     SqlDataReader dr = command.ExecuteReader();
 
                     while (dr.Read() == true)
                     {
-                        cb_Conductor.Items.Add(dr[0]);
+                        cb_Conductor.Items.Add(dr[1]);
                     }
                 }
             }
@@ -67,7 +71,7 @@ namespace Transito_Veracruz.Delegacion
             }
         }
 
-        public void consultarVehiculosDeConductor(String numeroLicencia)
+        public void consultarVehiculosDeConductor(int idConductor)
         {
             SqlConnection conexion = null;
 
@@ -77,13 +81,13 @@ namespace Transito_Veracruz.Delegacion
                 SqlCommand command;
                 if (conexion != null)
                 {
-                    String query = String.Format("SELECT numeroPlacas FROM Vehiculo WHERE numeroLicencia='" + numeroLicencia + "'");
+                    String query = String.Format("SELECT idVehiculo,numeroPlacas FROM Vehiculo WHERE idConductor='" + idConductor + "'");
                     command = new SqlCommand(query, conexion);
                     SqlDataReader dr = command.ExecuteReader();
 
                     while (dr.Read() == true)
                     {
-                        cb_VehiculosConductor.Items.Add(dr[0]);
+                        cb_VehiculosConductor.Items.Add(dr[1]);
                     }
                 }
             }
@@ -98,24 +102,33 @@ namespace Transito_Veracruz.Delegacion
 
         private void cb_Conductor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            String numeroLicencia = cb_Conductor.SelectedItem.ToString();
             if (cb_Conductor.SelectedItem != null)
             {
-                consultarVehiculosDeConductor(numeroLicencia);
+                string numeroLicencia = cb_Conductor.SelectedItem.ToString();
+                informacionConductor = ConductorDAO.getInformacionSeleccionada(numeroLicencia);
+
+                box_Implicados.Items.Add(informacionConductor.Apellidos + " " + informacionConductor.Nombre);
+
+                int identificadorConductor = informacionConductor.IdConductor;
+
+                consultarVehiculosDeConductor(identificadorConductor);
+                   
+
             }
             else
             {
                 MessageBox.Show("Seleccione un vehiculo");
             }
-
-            conductorSeleccionado = numeroLicencia;
+            contador = 0;
         }
 
         private void cb_VehiculosConductor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+
             if (cb_VehiculosConductor.SelectedItem != null)
             {
-                txtB_Involucrados.Text = conductorSeleccionado;
+                //box_Implicados.Items.Add();
             }
             else
             {
