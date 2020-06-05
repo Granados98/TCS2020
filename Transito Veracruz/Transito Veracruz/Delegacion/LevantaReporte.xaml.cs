@@ -25,11 +25,14 @@ namespace Transito_Veracruz.Delegacion
     /// </summary>
     public partial class LevantaReporte : Window
     {
-        private int contador = 0;
-        private int conductorSeleccionado;
-        private String VehiculoConductor;
+        private int identificadorConductor;
+        private int idVehiculoSeleccionado;
         private String archivoImg = "";
-        Conductor informacionConductor;
+
+        private List<Vehiculo> listVehiculos = new List<Vehiculo>();
+        private Conductor informacionConductor;
+        private Vehiculo vehiculoConductor;
+
         private byte[] img;
 
         public LevantaReporte()
@@ -102,15 +105,14 @@ namespace Transito_Veracruz.Delegacion
 
         private void cb_Conductor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            cb_VehiculosConductor.Items.Clear();
             if (cb_Conductor.SelectedItem != null)
             {
                 string numeroLicencia = cb_Conductor.SelectedItem.ToString();
                 informacionConductor = ConductorDAO.getInformacionSeleccionada(numeroLicencia);
 
-                box_Implicados.Items.Add(informacionConductor.Apellidos + " " + informacionConductor.Nombre);
 
-                int identificadorConductor = informacionConductor.IdConductor;
-
+                identificadorConductor = informacionConductor.IdConductor;
                 consultarVehiculosDeConductor(identificadorConductor);
                    
 
@@ -119,7 +121,7 @@ namespace Transito_Veracruz.Delegacion
             {
                 MessageBox.Show("Seleccione un vehiculo");
             }
-            contador = 0;
+
         }
 
         private void cb_VehiculosConductor_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -128,11 +130,23 @@ namespace Transito_Veracruz.Delegacion
 
             if (cb_VehiculosConductor.SelectedItem != null)
             {
-                //box_Implicados.Items.Add();
-            }
-            else
-            {
-                MessageBox.Show("Seleccione un vehiculo");
+                string numeroPlacas = cb_VehiculosConductor.SelectedItem.ToString();
+                vehiculoConductor = VehiculoDAO.getVehiculoConductor(numeroPlacas);
+                idVehiculoSeleccionado = vehiculoConductor.IdVehiculo;
+
+                foreach (var a in listVehiculos)
+                {
+                    if (a.IdVehiculo!=idVehiculoSeleccionado || a.IdVehiculo==0)
+                    {
+                        box_Implicados.Items.Add(informacionConductor.Apellidos + " " + informacionConductor.Nombre + " " + vehiculoConductor.NumeroPlacas + " " + vehiculoConductor.Marca + " " + vehiculoConductor.Modelo);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vehiculo ya ingresado");
+                    }
+                }
+
+                listVehiculos.Add(vehiculoConductor);
             }
         }
 
