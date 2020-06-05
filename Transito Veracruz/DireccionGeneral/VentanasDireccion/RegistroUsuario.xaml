@@ -12,7 +12,7 @@
             <RowDefinition Height="140*"/>
             <RowDefinition Height="419*"/>
         </Grid.RowDefinitions>
-        <Rectangle Height="321" VerticalAlignment="Top" Grid.RowSpan="2" Margin="0,-81,0,0">
+        <Rectangle Height="387" VerticalAlignment="Top" Grid.RowSpan="2" Margin="0,-207,0,0">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5, 0">
                     <GradientStop Color="#EAD66F"/>
@@ -21,21 +21,24 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Height="536" Fill="White" VerticalAlignment="Bottom" Margin="27,-56,34,79" RadiusY="14.286" RadiusX="14.286" Grid.RowSpan="2">
+        <Rectangle Height="646" Fill="White" VerticalAlignment="Bottom" Margin="27,-177,34,90" RadiusY="14.286" RadiusX="14.286" Grid.RowSpan="2">
             <Rectangle.Effect>
                 <DropShadowEffect Direction="0" Color="#FFBBBBBB" BlurRadius="15" RenderingBias="Quality"  ShadowDepth="1"/>
             </Rectangle.Effect>
         </Rectangle>
-        <Button Content="Agregar" Background="#54903B" HorizontalAlignment="Left" Margin="289,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1"/>
-        <Button x:Name="btn_Cancelar" Content="Cancelar" Background="#D92530" HorizontalAlignment="Left" Margin="47,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_Cancelar_Click"/>
-        <TextBlock Text="NUEVO USUARIO" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="171,-37,166,0" Height="29" Width="175"/>
-        <ComboBox HorizontalAlignment="Left" Background="#DADADA" Margin="171,18,0,0" VerticalAlignment="Top" Width="277" Height="28"/>
-        <Label Content="DELEGACIÓN" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="47,18,0,0" VerticalAlignment="Top" Height="32" Width="117"/>
-        <TextBox Margin="49,10,74,365" materialDesign:HintAssist.Hint="NOMBRE COMPLETO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
-        <TextBox Margin="49,100,74,275" materialDesign:HintAssist.Hint="NOMBRE DE USUARIO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
-        <Label Content="CARGO" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="49,80,0,0" VerticalAlignment="Top" Height="32" Width="117"/>
-        <ComboBox HorizontalAlignment="Left" Background="#DADADA" Margin="171,80,0,0" VerticalAlignment="Top" Width="277" Height="28"/>
-        <TextBox Margin="47,197,76,178" materialDesign:HintAssist.Hint="CONTRASEÑA" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <Button Content="Agregar" Background="#54903B" HorizontalAlignment="Left" Margin="289,357,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Height="39"/>
+        <Button x:Name="btn_Cancelar" Content="Cancelar" Background="#D92530" HorizontalAlignment="Left" Margin="47,357,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_Cancelar_Click" Height="39"/>
+        <TextBlock Text="NUEVO USUARIO" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="171,-154,166,0" Height="35" Width="175"/>
+        <ComboBox HorizontalAlignment="Left" Background="#DADADA" Margin="171,-88,0,0" VerticalAlignment="Top" Width="277" Height="34"/>
+        <Label Content="DELEGACIÓN" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="47,-88,0,0" VerticalAlignment="Top" Height="39" Width="117"/>
+        <TextBox Margin="49,98,74,408" materialDesign:HintAssist.Hint="NOMBRE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.RowSpan="2"/>
+        <TextBox Margin="49,40,74,326" materialDesign:HintAssist.Hint="APELLIDOS" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <TextBox Margin="47,115,76,251" materialDesign:HintAssist.Hint="NOMBRE DE USUARIO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <Label Content="CARGO" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="49,-13,0,0" VerticalAlignment="Top" Height="39" Width="117"/>
+        <ComboBox HorizontalAlignment="Left" Background="#DADADA" Margin="171,-13,0,0" VerticalAlignment="Top" Width="277" Height="34"/>
+        <TextBox Margin="47,199,76,167" materialDesign:HintAssist.Hint="CONTRASEÑA" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <Label Content="PERSONAL" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="49,54,0,0" VerticalAlignment="Top" Height="39" Width="117"/>
+        <ComboBox HorizontalAlignment="Left" Background="#DADADA" Margin="171,59,0,0" VerticalAlignment="Top" Width="277" Height="34"/>
 
     </Grid>
 </Window>

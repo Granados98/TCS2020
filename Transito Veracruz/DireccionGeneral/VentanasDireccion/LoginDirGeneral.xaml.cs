@@ -49,7 +49,7 @@ namespace DireccionGeneral.VentanasDireccion
                         int idUser = query.First();
 
                         MessageBox.Show(this, "Bienvenido: " + txtUsuario.Text, "Información");
-                        MenuDirGeneral dirGeneral = new MenuDirGeneral(idUser);
+                        MenuDirGeneral dirGeneral = new MenuDirGeneral();
                         dirGeneral.Show();
                         this.Close();
                     }

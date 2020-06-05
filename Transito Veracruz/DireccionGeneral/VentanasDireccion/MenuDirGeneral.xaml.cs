@@ -19,10 +19,10 @@ namespace DireccionGeneral.VentanasDireccion
     /// </summary>
     public partial class MenuDirGeneral : Window
     {
-        public MenuDirGeneral(int idUser)
+        public MenuDirGeneral()
         {
             InitializeComponent();
-            CargaDelegacionesDB(idUser);
+            CargaDelegacionesDB();
             CargaPersonalDB();
         }
 
@@ -32,7 +32,7 @@ namespace DireccionGeneral.VentanasDireccion
             dgPersonal.ItemsSource = db.Personal.ToList();
         }
 
-        private void CargaDelegacionesDB(int idUser)
+        private void CargaDelegacionesDB()
         {
             Modelo.SistemaTransitoEntities1 db = new Modelo.SistemaTransitoEntities1();
             dgDelegaciones.ItemsSource = db.Delegacion.ToList();
