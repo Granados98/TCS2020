@@ -28,5 +28,7 @@ namespace DireccionGeneral.VentanasDireccion
         {
             this.Close();
         }
+
+       
     }
 }
