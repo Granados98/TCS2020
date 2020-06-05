@@ -22,6 +22,20 @@ namespace DireccionGeneral.VentanasDireccion
         public MenuDirGeneral()
         {
             InitializeComponent();
+            CargaDelegacionesDB();
+            CargaPersonalDB();
+        }
+
+        private void CargaPersonalDB()
+        {
+            Modelo.SistemaTransitoEntities1 db = new Modelo.SistemaTransitoEntities1();
+            dgPersonal.ItemsSource = db.Personal.ToList();
+        }
+
+        private void CargaDelegacionesDB()
+        {
+            Modelo.SistemaTransitoEntities1 db = new Modelo.SistemaTransitoEntities1();
+            dgDelegaciones.ItemsSource = db.Delegacion.ToList();
         }
 
         private void btn_AgregarDelegacion_Click(object sender, RoutedEventArgs e)
