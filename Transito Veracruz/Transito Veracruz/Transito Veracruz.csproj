@@ -121,6 +121,8 @@
   <ItemGroup>
     <Compile Include="Model\dao\ConductorDAO.cs" />
     <Compile Include="Model\dao\PersonalDAO.cs" />
+    <Compile Include="Model\dao\ReporteDAO.cs" />
+    <Compile Include="Model\dao\Reporte_VehiculoDAO.cs" />
     <Compile Include="Model\dao\VehiculoDAO.cs" />
     <Compile Include="Model\db\ConnectionUtils.cs" />
     <Compile Include="Model\pocos\Conductor.cs" />
@@ -128,6 +130,7 @@
     <Compile Include="Model\pocos\Dictamen.cs" />
     <Compile Include="Model\pocos\Personal.cs" />
     <Compile Include="Model\pocos\Reporte.cs" />
+    <Compile Include="Model\pocos\Reporte_Vehiculo.cs" />
     <Compile Include="Model\pocos\Vehiculo.cs" />
     <Compile Include="Model\security\Encriptacion.cs" />
     <Compile Include="Model\security\Validacion.cs" />

@@ -124,29 +124,37 @@ namespace Transito_Veracruz.Delegacion
 
         }
 
+        public bool verificaVehiculoRepetido(int idVehiculoSeleccionado)
+        {
+            foreach (var a in listVehiculos)
+            {
+                if (a.IdVehiculo==idVehiculoSeleccionado)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void cb_VehiculosConductor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
 
             if (cb_VehiculosConductor.SelectedItem != null)
             {
                 string numeroPlacas = cb_VehiculosConductor.SelectedItem.ToString();
                 vehiculoConductor = VehiculoDAO.getVehiculoConductor(numeroPlacas);
                 idVehiculoSeleccionado = vehiculoConductor.IdVehiculo;
-
-                foreach (var a in listVehiculos)
+                Console.WriteLine(idVehiculoSeleccionado);
+                
+                if (!verificaVehiculoRepetido(idVehiculoSeleccionado))
                 {
-                    if (a.IdVehiculo!=idVehiculoSeleccionado || a.IdVehiculo==0)
-                    {
-                        box_Implicados.Items.Add(informacionConductor.Apellidos + " " + informacionConductor.Nombre + " " + vehiculoConductor.NumeroPlacas + " " + vehiculoConductor.Marca + " " + vehiculoConductor.Modelo);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Vehiculo ya ingresado");
-                    }
+                    box_Implicados.Items.Add(informacionConductor.Apellidos + " " + informacionConductor.Nombre + " " + vehiculoConductor.NumeroPlacas + " " + vehiculoConductor.Marca + " " + vehiculoConductor.Modelo);
+                    listVehiculos.Add(vehiculoConductor);
                 }
-
-                listVehiculos.Add(vehiculoConductor);
+                else
+                {
+                    MessageBox.Show("Vehiculo ya está agregado");
+                }
             }
         }
 
@@ -183,5 +191,38 @@ namespace Transito_Veracruz.Delegacion
 
             return data;
         }
+
+        private void btn_AgregarReporte_Click(object sender, RoutedEventArgs e)
+        {
+            Reporte nuevoReporte = new Reporte();
+            var random = new Random();
+            int numeroReporte = random.Next(1,1000);
+            Console.WriteLine(numeroReporte);
+
+            try
+            {
+                nuevoReporte.NumeroReporte = numeroReporte;
+                nuevoReporte.Estatus = "No revisado";
+                int numeroReporteObtenido = nuevoReporte.NumeroReporte;
+                ReporteDAO.guardaReporte(nuevoReporte);
+
+                Reporte_Vehiculo reporte_Vehiculo = new Reporte_Vehiculo();
+                foreach (var a in listVehiculos)
+                {
+                    if (a.IdVehiculo > 0)
+                    {
+                        int idVehiculoObtenido = a.IdVehiculo;
+                        reporte_Vehiculo.IdVehiculo = idVehiculoObtenido;
+                        reporte_Vehiculo.NumeroReporte = numeroReporteObtenido;
+                        Reporte_VehiculoDAO.guardarReporteVehiculo(reporte_Vehiculo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
     }
 }

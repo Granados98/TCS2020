@@ -40,7 +40,7 @@ namespace Transito_Veracruz.Model.dao
                     while (rd.Read())
                     {
                         vehiculo = new Vehiculo();
-                        vehiculo.IdConductor = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
+                        vehiculo.IdVehiculo = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
                         vehiculo.NumeroPlacas = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
                         vehiculo.Marca = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
                         vehiculo.Modelo = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
