@@ -17,8 +17,8 @@ namespace Transito_Veracruz.Model.dao
 
             String query = "";
 
-            query = "INSERT INTO dbo.Vehiculo (numeroReporte,estatus,numeroDelegacion) " +
-                       "VALUES(@numeroReporte,@estatus,@numeroDelegacion);";
+            query = "INSERT INTO dbo.Reporte (numeroReporte,estatus) " +
+                       "VALUES(@numeroReporte,@estatus);";
 
 
 
@@ -34,7 +34,7 @@ namespace Transito_Veracruz.Model.dao
                     command.CommandType = CommandType.Text;
                     command.Parameters.AddWithValue("@numeroReporte", reporte.NumeroReporte);
                     command.Parameters.AddWithValue("@estatus", reporte.Estatus);
-                    command.Parameters.AddWithValue("@numeroDelegacion", reporte.NumeroDelegacion);
+                    //command.Parameters.AddWithValue("@numeroDelegacion", reporte.NumeroDelegacion);
 
                     command.Parameters.AddWithValue("@idReporte", reporte.IdReporte);
 

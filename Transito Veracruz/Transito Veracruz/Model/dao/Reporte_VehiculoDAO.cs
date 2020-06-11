@@ -17,8 +17,8 @@ namespace Transito_Veracruz.Model.dao
 
             String query = "";
 
-            query = "INSERT INTO dbo.Vehiculo (idVehiculo, idReporte) " +
-                       "VALUES(@idVehiculo,@idReporte);";
+            query = "INSERT INTO dbo.Reporte_Vehiculo (idVehiculo, numeroReporte) " +
+                       "VALUES(@idVehiculo,@numeroReporte);";
 
 
 
