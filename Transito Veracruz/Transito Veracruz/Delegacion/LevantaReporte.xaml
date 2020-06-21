@@ -35,7 +35,6 @@
         <Label Content="VEHICULO" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="47,73,0,0" VerticalAlignment="Top" Height="32" Width="117"/>
         <ComboBox x:Name="cb_VehiculosConductor" HorizontalAlignment="Left" Background="#DADADA" Margin="171,73,0,0" VerticalAlignment="Top" Width="277" Height="28" SelectionChanged="cb_VehiculosConductor_SelectionChanged"/>
         <Button x:Name="btn_AgregarImagenes" Content="Adjuntar Imágenes" Background="#54903B" HorizontalAlignment="Left" Margin="289,289,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_AgregarImagenes_Click"/>
-        <Label x:Name="label_1" Content="Label" HorizontalAlignment="Left" Margin="69,239,0,0" Grid.Row="1" VerticalAlignment="Top" IsHitTestVisible="False"/>
         <ListBox x:Name="box_Implicados" HorizontalAlignment="Left" Height="175" Margin="47,64,0,0" Grid.Row="1" VerticalAlignment="Top" Width="401"/>
 
 

@@ -27,7 +27,7 @@ namespace Transito_Veracruz.Delegacion
     {
         private int identificadorConductor;
         private int idVehiculoSeleccionado;
-        private String archivoImg = "";
+        private String[] archivosImg;
 
         private List<Vehiculo> listVehiculos = new List<Vehiculo>();
         private Conductor informacionConductor;
@@ -160,19 +160,22 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_AgregarImagenes_Click(object sender, RoutedEventArgs e)
         {
+            String archivos="";
             OpenFileDialog op = new OpenFileDialog();
+            op.Multiselect = true;
             op.Title = "Selecciona una imagen";
-            op.Filter = "PNG Files|*.png";
-
+            op.Filter = "JPG,JPEG,PNG Files|*.png;*.jpg;*.jpeg";
+            
             if (op.ShowDialog() == true)
             {
-                archivoImg = op.FileName;
-                label_1.Content = archivoImg;
-            }
+                archivosImg = op.FileNames;
 
-            if (archivoImg.Length > 0)
-            {
-                img = ConvierteImageToByteArray(archivoImg);
+                Console.WriteLine(archivosImg);
+                foreach (var archivo in archivosImg)
+                {
+                    archivos = "" + archivo;
+                    MessageBox.Show(archivos);
+                }
             }
         }
 
@@ -215,6 +218,19 @@ namespace Transito_Veracruz.Delegacion
                         reporte_Vehiculo.IdVehiculo = idVehiculoObtenido;
                         reporte_Vehiculo.NumeroReporte = numeroReporteObtenido;
                         Reporte_VehiculoDAO.guardarReporteVehiculo(reporte_Vehiculo);
+                    }
+                }
+
+
+                Imagen imagen = new Imagen();
+                if (archivosImg.Length > 0)
+                {
+                    foreach (var archivo in archivosImg)
+                    {
+                        img = ConvierteImageToByteArray(archivo);
+                        imagen.Dato = img;
+                        imagen.NumeroReporte = numeroReporteObtenido;
+                        ImagenDAO.guardarImagen(imagen);
                     }
                 }
             }

@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\dao\ConductorDAO.cs" />
+    <Compile Include="Model\dao\ImagenDAO.cs" />
     <Compile Include="Model\dao\PersonalDAO.cs" />
     <Compile Include="Model\dao\ReporteDAO.cs" />
     <Compile Include="Model\dao\Reporte_VehiculoDAO.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Model\pocos\Conductor.cs" />
     <Compile Include="Model\pocos\Delegacion.cs" />
     <Compile Include="Model\pocos\Dictamen.cs" />
+    <Compile Include="Model\pocos\Imagen.cs" />
     <Compile Include="Model\pocos\Personal.cs" />
     <Compile Include="Model\pocos\Reporte.cs" />
     <Compile Include="Model\pocos\Reporte_Vehiculo.cs" />
