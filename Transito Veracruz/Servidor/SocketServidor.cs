@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -10,26 +11,29 @@ namespace Servidor
 {
     class SocketServidor
     {
-        public void Conectar()
-        {
 
-            Socket socketServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPEndPoint direccion = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
+
+        Socket socketServer = null;
+        Socket socketClienteRemoto = null;
+        IPEndPoint direccion = null;
+        private ArrayList usuariosConectados = new ArrayList();
+        
+        public SocketServidor()
+        {
+            socketServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            direccion = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
+
             socketServer.Bind(direccion);
             socketServer.Listen(2);
-
             Console.WriteLine("Escuchando...");
+        }
 
-            Socket socketClienteRemoto = socketServer.Accept();
-
-            IPEndPoint newclient = (IPEndPoint)socketClienteRemoto.RemoteEndPoint;
-            Console.WriteLine("Cliente conectado con IP {0} en puerto {1}", newclient.Address, newclient.Port);
-
+        public void conexionCLiente(Object s)
+        {
+            Socket socketClienteRemoto = (Socket)s;
             string mensaje = "";
             string info = "";
-
-            do
-            {
+            while(true){
 
                 byte[] ByRec = new byte[255];
                 int datos = socketClienteRemoto.Receive(ByRec, 0, ByRec.Length, 0);
@@ -37,16 +41,48 @@ namespace Servidor
                 mensaje = Encoding.Default.GetString(ByRec);
                 info += mensaje + "\n";
                 Console.WriteLine("El cliente dice: " + mensaje);
+                Console.Out.Flush();
+            }
+        }
+        public void Conectar()
+        {
+            Thread hilo;
+            while (true)
+            {
+                Console.WriteLine("Esperando Conexiones...");
+                socketClienteRemoto = socketServer.Accept();
+                hilo = new Thread(conexionCLiente);
+                hilo.Start(socketClienteRemoto);
+                Console.WriteLine("Se conecto...");
+            }
+            //IPEndPoint newclient = (IPEndPoint)socketClienteRemoto.RemoteEndPoint;
+            //Console.WriteLine("Cliente conectado con IP {0} en puerto {1}", newclient.Address, newclient.Port);
+
+            /*
+            //lee el idUsuario
+            string idUsuarioCadena = "";
+
+            byte[] idUsuarioConectado = new byte[255];
+            int datosUsuario = socketClienteRemoto.Receive(idUsuarioConectado, 0, idUsuarioConectado.Length, 0);
+            Array.Resize(ref idUsuarioConectado, datosUsuario);
+            idUsuarioCadena = Encoding.Default.GetString(idUsuarioConectado);
 
 
-            } while (!mensaje.ToLower().Equals("salir"));
+            foreach (string id in usuariosConectados)
+            {
+                if (id == idUsuarioCadena)
+                {
+                    Console.WriteLine("Usuario ya agregado...");
+                }
+            }
+            usuariosConectados.Add(idUsuarioCadena); 
+            */
+            //lee el mensaje del usuario en el servidor
 
-            var timestamp = DateTime.Now.ToFileTime();
-            File.WriteAllBytes($"cliente-{timestamp}.txt", Encoding.Default.GetBytes(info));
-
-            socketServer.Close();
-            Console.WriteLine("Socket servidor desconectado, pulsa una tecla para terminar...");
+            //cketServer.Close();
+            //Console.WriteLine("Socket servidor desconectado, pulsa una tecla para terminar...");
         }
 
     }
+
 }

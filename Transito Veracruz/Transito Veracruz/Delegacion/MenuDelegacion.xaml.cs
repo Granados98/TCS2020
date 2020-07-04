@@ -6,8 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,6 +19,7 @@ using Transito_Veracruz.Model.dao;
 using Transito_Veracruz.Model.db;
 using Transito_Veracruz.Model.pocos;
 using Transito_Veracruz.Model.security;
+using System.Threading;
 
 namespace Transito_Veracruz.Delegacion
 {
@@ -32,6 +31,7 @@ namespace Transito_Veracruz.Delegacion
 
         Socket socketCliente = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         IPEndPoint direccionConexion = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
+        
         private String mensaje = "";
 
         private List<Conductor> listConductores { get; set; }
@@ -42,13 +42,33 @@ namespace Transito_Veracruz.Delegacion
             this.usuarioIniciado = personal;
             cargarTablaConductores();
             cargarTablaVehiculos();
-            /*
+            nombre_Usuario.Content = usuarioIniciado.Usuario;
+            
+            //el cliente se conecta con el servidor
             socketCliente.Connect(direccionConexion);
             Console.WriteLine("Conectado con exito al servidor...");
             
-            Thread hilo = new Thread(recibeMensajes);
-            hilo.Start();*/
+            int id = usuarioIniciado.IdPersonal;
+            string idU=Convert.ToString(id);
+            byte[] bufferIdUsuario = Encoding.Default.GetBytes(idU);
+            socketCliente.Send(bufferIdUsuario, 0, bufferIdUsuario.Length, 0);
+
         }
+
+        /*
+        private void mostrarMensaje()
+        {
+            string mensaje = "";
+            string info = "";
+
+            byte[] ByRec = new byte[255];
+            int datos = socketClienteRemoto.Receive(ByRec, 0, ByRec.Length, 0);
+            Array.Resize(ref ByRec, datos);
+            mensaje = Encoding.Default.GetString(ByRec);
+            info += mensaje + "\n";
+
+            block_Chat.Items.Add(mensaje);
+        }*/
 
         private void btn_AgregarConductor_Click(object sender, RoutedEventArgs e)
         {
@@ -79,7 +99,7 @@ namespace Transito_Veracruz.Delegacion
             socketCliente.Send(msjEnviar, 0, msjEnviar.Length, 0);
 
             block_Chat.Items.Add("Tu: "+txt_Mensaje.Text);
-
+            
         }
 
         private void cargarTablaConductores()
