@@ -53,6 +53,8 @@ namespace Transito_Veracruz.Delegacion
             byte[] bufferIdUsuario = Encoding.Default.GetBytes(idU);
             socketCliente.Send(bufferIdUsuario, 0, bufferIdUsuario.Length, 0);
 
+            recibeMensajes();
+
         }
 
         /*
@@ -86,11 +88,6 @@ namespace Transito_Veracruz.Delegacion
         {
             LevantaReporte reporte = new LevantaReporte();
             reporte.Show();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
 
         private void btn_EnviarMensaje_Click(object sender, RoutedEventArgs e)
@@ -245,7 +242,15 @@ namespace Transito_Veracruz.Delegacion
             mensaje = Encoding.Default.GetString(recibeBytes);
 
             block_Chat.Items.Add(mensaje);
+            block_Chat.UpdateLayout();
+            Console.WriteLine(mensaje);
+        }
 
+        private void btn_Salir_Click(object sender, RoutedEventArgs e)
+        {
+            this.usuarioIniciado.Estado = "Desconectado";
+            PersonalDAO.actualizarEstadoUsuario(usuarioIniciado);
+            this.Close();
         }
     }
 }

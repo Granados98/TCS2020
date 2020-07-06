@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Transito_Veracruz.Model.dao;
+using Transito_Veracruz.Model.db;
 using Transito_Veracruz.Model.pocos;
 using Transito_Veracruz.Model.security;
 
@@ -36,8 +38,10 @@ namespace Transito_Veracruz.Delegacion
             {
                 usuario = txt_Usuario.Text;
                 Personal personal = PersonalDAO.getLogin(usuario, contraseñaIngresada);
-                if (personal!=null && personal.IdPersonal>0)
+                if (personal!=null && personal.IdPersonal>0 && personal.Estado=="Desconectado")
                 {
+                    personal.Estado="Conectado";
+                    PersonalDAO.actualizarEstadoUsuario(personal);
                     MenuDelegacion menuPrincpipal = new MenuDelegacion(personal);
                     menuPrincpipal.Show();
                     this.Close();

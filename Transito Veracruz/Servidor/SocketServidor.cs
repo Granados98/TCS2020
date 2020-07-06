@@ -16,6 +16,8 @@ namespace Servidor
         Socket socketServer = null;
         Socket socketClienteRemoto = null;
         IPEndPoint direccion = null;
+        IPEndPoint newclient;
+
         private ArrayList usuariosConectados = new ArrayList();
         
         public SocketServidor()
@@ -33,6 +35,8 @@ namespace Servidor
             Socket socketClienteRemoto = (Socket)s;
             string mensaje = "";
             string info = "";
+            
+            //Recibe el mensaje que el cliente envió
             while(true){
 
                 byte[] ByRec = new byte[255];
@@ -40,9 +44,15 @@ namespace Servidor
                 Array.Resize(ref ByRec, datos);
                 mensaje = Encoding.Default.GetString(ByRec);
                 info += mensaje + "\n";
-                Console.WriteLine("El cliente dice: " + mensaje);
+                Console.WriteLine("El cliente dice: " + mensaje+" "+ newclient.Address+" "+newclient.Port);
                 Console.Out.Flush();
+
+
+                //manda el mensaje a todos los clientes que el servidor recibio.
+                byte[] msjEnviar = Encoding.Default.GetBytes(mensaje);
+                socketClienteRemoto.Send(msjEnviar, 0, msjEnviar.Length, 0);
             }
+
         }
         public void Conectar()
         {
@@ -51,9 +61,10 @@ namespace Servidor
             {
                 Console.WriteLine("Esperando Conexiones...");
                 socketClienteRemoto = socketServer.Accept();
+                newclient = (IPEndPoint)socketClienteRemoto.RemoteEndPoint;
                 hilo = new Thread(conexionCLiente);
                 hilo.Start(socketClienteRemoto);
-                Console.WriteLine("Se conecto...");
+                Console.WriteLine("Se conecto al servidor: "+socketClienteRemoto.LocalEndPoint+" El cliente: "+newclient.Address+" Con el puerto: "+newclient.Port);
             }
             //IPEndPoint newclient = (IPEndPoint)socketClienteRemoto.RemoteEndPoint;
             //Console.WriteLine("Cliente conectado con IP {0} en puerto {1}", newclient.Address, newclient.Port);

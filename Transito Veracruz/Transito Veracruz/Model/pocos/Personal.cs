@@ -16,11 +16,12 @@ namespace Transito_Veracruz.Model.pocos
         private String cargo;
         private String usuario;
         private String contrasenia;
+        private String estado;
 
         public override string ToString()
         {
             return String.Format("idPersonal: {0}, numeroPersonal: {1}, tipoPersonal: {2}, apellidos: {3}, " +
-                "nombre: {4}, cargo:{5}, usuario: {6}, contrasenia: {7}", idPersonal, numeroPersonal, tipoPersonal, apellidos, nombre, cargo, usuario, contrasenia);
+                "nombre: {4}, cargo:{5}, usuario: {6}, contrasenia: {7}, estado: {8}", idPersonal, numeroPersonal, tipoPersonal, apellidos, nombre, cargo, usuario, contrasenia, estado);
         }
         public int IdPersonal { get => idPersonal; set => idPersonal = value; }
         public string NumeroPersonal { get => numeroPersonal; set => numeroPersonal = value; }
@@ -30,5 +31,6 @@ namespace Transito_Veracruz.Model.pocos
         public string Cargo { get => cargo; set => cargo = value; }
         public string Usuario { get => usuario; set => usuario = value; }
         public string Contrasenia { get => contrasenia; set => contrasenia = value; }
+        public string Estado { get => estado; set => estado = value; }
     }
 }
