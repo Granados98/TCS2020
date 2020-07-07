@@ -28,6 +28,7 @@ namespace Transito_Veracruz.Delegacion
         private int identificadorConductor;
         private int idVehiculoSeleccionado;
         private String[] archivosImg;
+        private String delegacionSeleccionada;
 
         private List<Vehiculo> listVehiculos = new List<Vehiculo>();
         private Conductor informacionConductor;
@@ -39,6 +40,7 @@ namespace Transito_Veracruz.Delegacion
         {
             InitializeComponent();
             cargarConductores();
+            cargarDelegaciones();
         }
 
         private void btn_Cancelar_Click(object sender, RoutedEventArgs e)
@@ -46,7 +48,7 @@ namespace Transito_Veracruz.Delegacion
             this.Close();
         }
 
-        public void cargarConductores()
+        private void cargarConductores()
         {
             SqlConnection conexion = null;
 
@@ -74,7 +76,7 @@ namespace Transito_Veracruz.Delegacion
             }
         }
 
-        public void consultarVehiculosDeConductor(int idConductor)
+        private void consultarVehiculosDeConductor(int idConductor)
         {
             SqlConnection conexion = null;
 
@@ -124,7 +126,7 @@ namespace Transito_Veracruz.Delegacion
 
         }
 
-        public bool verificaVehiculoRepetido(int idVehiculoSeleccionado)
+        private bool verificaVehiculoRepetido(int idVehiculoSeleccionado)
         {
             foreach (var a in listVehiculos)
             {
@@ -195,6 +197,32 @@ namespace Transito_Veracruz.Delegacion
             return data;
         }
 
+        private void cargarDelegaciones()
+        {
+            SqlConnection conexion = null;
+
+            try
+            {
+                conexion = ConnectionUtils.getConnection();
+                SqlCommand command;
+                if (conexion != null)
+                {
+                    String query = String.Format("SELECT idDelegacion,numeroDelegacion,nombre FROM Delegacion");
+                    command = new SqlCommand(query,conexion);
+                    SqlDataReader dr = command.ExecuteReader();
+
+                    while (dr.Read() == true)
+                    {
+                        cb_Delegacion.Items.Add(dr[2]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         private void btn_AgregarReporte_Click(object sender, RoutedEventArgs e)
         {
             Reporte nuevoReporte = new Reporte();
@@ -206,6 +234,9 @@ namespace Transito_Veracruz.Delegacion
             {
                 nuevoReporte.NumeroReporte = numeroReporte;
                 nuevoReporte.Estatus = "No revisado";
+                nuevoReporte.Direccion = txt_Direccion.Text;
+                //nuevoReporte.NumeroDelegacion;
+
                 int numeroReporteObtenido = nuevoReporte.NumeroReporte;
                 ReporteDAO.guardaReporte(nuevoReporte);
 
@@ -240,5 +271,15 @@ namespace Transito_Veracruz.Delegacion
             }
         }
 
+        private void cb_Delegacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (cb_Delegacion.SelectedItem != null)
+            {
+               string delegacion = cb_Delegacion.SelectedItem.ToString();
+               Console.WriteLine(delegacion);
+            }
+
+        }
     }
 }

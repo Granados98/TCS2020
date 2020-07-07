@@ -12,6 +12,57 @@ namespace Transito_Veracruz.Model.dao
 {
     class ReporteDAO
     {
+        public static List<Reporte> getReportes(Int32 idPersonal)
+        {
+            List<Reporte> list = new List<Reporte>();
+            SqlConnection conn = null;
+            try
+            {
+                conn = ConnectionUtils.getConnection();
+                SqlCommand command;
+                SqlDataReader rd;
+                if (conn != null)
+                {
+                    String query = String.Format("SELECT " +
+                                                 "x.idReporte," +
+                                                 "x.asunto," +
+                                                 "x.mensaje," +
+                                                 "x.tiempocreacion," +
+                                                 "x.eliminado " +
+                                                 "FROM dbo.mensaje x " +
+                                                 "WHERE x.idUsuario = {0} AND eliminado = 'N';", idPersonal);
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conn);
+                    rd = command.ExecuteReader();
+                    while (rd.Read())
+                    {
+                        Reporte m = new Reporte();
+                        m.IdReporte = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
+                        m.NumeroReporte = (!rd.IsDBNull(1)) ? rd.GetInt32(1) : 0;
+                        m.Estatus = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        m.NumeroDelegacion = (!rd.IsDBNull(3)) ? rd.GetInt32(3) : 0;
+                        m.FolioDictamen = (!rd.IsDBNull(4)) ? rd.GetInt32(4) : 0;
+
+                        list.Add(m);
+                    }
+                    rd.Close();
+                    command.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return list;
+        }
+
         public static void guardaReporte(Reporte reporte)
         {
 

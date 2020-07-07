@@ -35,6 +35,8 @@ namespace Transito_Veracruz.Delegacion
         private String mensaje = "";
 
         private List<Conductor> listConductores { get; set; }
+        private List<Reporte> listReporte { get; set; }
+
         private Personal usuarioIniciado { get; set; }
         public MenuDelegacion(Personal personal)
         {
@@ -71,6 +73,13 @@ namespace Transito_Veracruz.Delegacion
 
             block_Chat.Items.Add(mensaje);
         }*/
+
+
+        private void cargarReportes()
+        {
+            listReporte = ReporteDAO.getReportes(usuarioIniciado.IdPersonal);
+            dg_Reportes.ItemsSource = listReporte;
+        }
 
         private void btn_AgregarConductor_Click(object sender, RoutedEventArgs e)
         {
