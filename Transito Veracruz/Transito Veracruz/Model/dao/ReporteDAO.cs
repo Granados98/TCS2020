@@ -40,7 +40,7 @@ namespace Transito_Veracruz.Model.dao
                         m.IdReporte = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
                         m.NumeroReporte = (!rd.IsDBNull(1)) ? rd.GetInt32(1) : 0;
                         m.Estatus = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        m.NumeroDelegacion = (!rd.IsDBNull(3)) ? rd.GetInt32(3) : 0;
+                        m.NombreDelegacion = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
                         m.FolioDictamen = (!rd.IsDBNull(4)) ? rd.GetInt32(4) : 0;
 
                         list.Add(m);
@@ -68,8 +68,8 @@ namespace Transito_Veracruz.Model.dao
 
             String query = "";
 
-            query = "INSERT INTO dbo.Reporte (numeroReporte,estatus) " +
-                       "VALUES(@numeroReporte,@estatus);";
+            query = "INSERT INTO dbo.Reporte (numeroReporte,estatus,nombreDelegacion,direccion) " +
+                       "VALUES(@numeroReporte,@estatus,@nombreDelegacion,@direccion);";
 
 
 
@@ -85,7 +85,8 @@ namespace Transito_Veracruz.Model.dao
                     command.CommandType = CommandType.Text;
                     command.Parameters.AddWithValue("@numeroReporte", reporte.NumeroReporte);
                     command.Parameters.AddWithValue("@estatus", reporte.Estatus);
-                    //command.Parameters.AddWithValue("@numeroDelegacion", reporte.NumeroDelegacion);
+                    command.Parameters.AddWithValue("@nombreDelegacion", reporte.NombreDelegacion);
+                    command.Parameters.AddWithValue("@direccion", reporte.Direccion);
 
                     command.Parameters.AddWithValue("@idReporte", reporte.IdReporte);
 

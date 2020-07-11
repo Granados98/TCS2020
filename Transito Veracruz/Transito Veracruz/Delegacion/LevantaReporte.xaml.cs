@@ -28,11 +28,12 @@ namespace Transito_Veracruz.Delegacion
         private int identificadorConductor;
         private int idVehiculoSeleccionado;
         private String[] archivosImg;
-        private String delegacionSeleccionada;
 
         private List<Vehiculo> listVehiculos = new List<Vehiculo>();
         private Conductor informacionConductor;
         private Vehiculo vehiculoConductor;
+
+        private string delegacionSeleccionada;
 
         private byte[] img;
 
@@ -208,7 +209,7 @@ namespace Transito_Veracruz.Delegacion
                 if (conexion != null)
                 {
                     String query = String.Format("SELECT idDelegacion,numeroDelegacion,nombre FROM Delegacion");
-                    command = new SqlCommand(query,conexion);
+                    command = new SqlCommand(query, conexion);
                     SqlDataReader dr = command.ExecuteReader();
 
                     while (dr.Read() == true)
@@ -235,11 +236,11 @@ namespace Transito_Veracruz.Delegacion
                 nuevoReporte.NumeroReporte = numeroReporte;
                 nuevoReporte.Estatus = "No revisado";
                 nuevoReporte.Direccion = txt_Direccion.Text;
-                //nuevoReporte.NumeroDelegacion;
+                nuevoReporte.NombreDelegacion=delegacionSeleccionada;
 
                 int numeroReporteObtenido = nuevoReporte.NumeroReporte;
                 ReporteDAO.guardaReporte(nuevoReporte);
-
+                
                 Reporte_Vehiculo reporte_Vehiculo = new Reporte_Vehiculo();
                 foreach (var a in listVehiculos)
                 {
@@ -273,11 +274,13 @@ namespace Transito_Veracruz.Delegacion
 
         private void cb_Delegacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            if (cb_Delegacion.SelectedItem != null)
+            if (cb_Conductor.SelectedItem != null)
             {
-               string delegacion = cb_Delegacion.SelectedItem.ToString();
-               Console.WriteLine(delegacion);
+                delegacionSeleccionada = cb_Conductor.SelectedItem.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un vehiculo");
             }
 
         }
