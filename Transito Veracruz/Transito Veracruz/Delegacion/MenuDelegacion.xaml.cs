@@ -56,7 +56,7 @@ namespace Transito_Veracruz.Delegacion
             socketCliente.Send(bufferIdUsuario, 0, bufferIdUsuario.Length, 0);
 
             recibeMensajes();
-
+            cargarReportes();
         }
 
         /*
@@ -77,7 +77,8 @@ namespace Transito_Veracruz.Delegacion
 
         private void cargarReportes()
         {
-            listReporte = ReporteDAO.getReportes(usuarioIniciado.IdPersonal);
+            //listReporte = ReporteDAO.getReportes(usuarioIniciado.IdPersonal);
+            listReporte = ReporteDAO.getReportes();
             dg_Reportes.ItemsSource = listReporte;
         }
 
@@ -260,6 +261,23 @@ namespace Transito_Veracruz.Delegacion
             this.usuarioIniciado.Estado = "Desconectado";
             PersonalDAO.actualizarEstadoUsuario(usuarioIniciado);
             this.Close();
+        }
+
+        private void dg_Reportes_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            int index = dg_Reportes.SelectedIndex;
+            if (index>=0)
+            {
+                Reporte reporte = listReporte[index];
+                if (reporte.FolioDictamen == 0)
+                {
+                    MessageBox.Show("Aun no hay dictamen");
+                }
+                else
+                {
+
+                }
+            }
         }
     }
 }

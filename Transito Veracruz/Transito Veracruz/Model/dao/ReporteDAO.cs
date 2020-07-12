@@ -12,7 +12,7 @@ namespace Transito_Veracruz.Model.dao
 {
     class ReporteDAO
     {
-        public static List<Reporte> getReportes(Int32 idPersonal)
+        public static List<Reporte> getReportes()
         {
             List<Reporte> list = new List<Reporte>();
             SqlConnection conn = null;
@@ -25,12 +25,13 @@ namespace Transito_Veracruz.Model.dao
                 {
                     String query = String.Format("SELECT " +
                                                  "x.idReporte," +
-                                                 "x.asunto," +
-                                                 "x.mensaje," +
-                                                 "x.tiempocreacion," +
-                                                 "x.eliminado " +
-                                                 "FROM dbo.mensaje x " +
-                                                 "WHERE x.idUsuario = {0} AND eliminado = 'N';", idPersonal);
+                                                 "x.numeroReporte," +
+                                                 "x.estatus," +
+                                                 "x.nombreDelegacion," +
+                                                 "x.folioDictamen, " +
+                                                 "x.direccion " +
+                                                 "FROM dbo.Reporte x " );
+                                                 //"WHERE x.idUsuario = {0} AND eliminado = 'N';", idPersonal);
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conn);
                     rd = command.ExecuteReader();
@@ -42,6 +43,7 @@ namespace Transito_Veracruz.Model.dao
                         m.Estatus = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
                         m.NombreDelegacion = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
                         m.FolioDictamen = (!rd.IsDBNull(4)) ? rd.GetInt32(4) : 0;
+                        m.Direccion = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
 
                         list.Add(m);
                     }
