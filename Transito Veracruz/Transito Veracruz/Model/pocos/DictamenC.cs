@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Transito_Veracruz.Model.pocos
 {
-    public class Dictamen
+    public class DictamenC
     {
         private Int32 idDictamen;
         private String folio;

@@ -4,17 +4,17 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Transito_Veracruz.Delegacion;
 using Transito_Veracruz.Model.db;
+using Transito_Veracruz.Model.pocos;
 
 namespace Transito_Veracruz.Model.dao
 {
     class DictamenDAO
     {
-        /*
-        public static Dictamen getInformacionDictamen(int folio)
+        
+        public static DictamenC getInformacionDictamen(int folio)
         {
-            Dictamen dictamen = null;
+            DictamenC dictamen = null;
             SqlConnection conexion = null;
 
             try
@@ -64,6 +64,6 @@ namespace Transito_Veracruz.Model.dao
                 }
             }
             return personal;
-        }*/
+        }
     }
 }
