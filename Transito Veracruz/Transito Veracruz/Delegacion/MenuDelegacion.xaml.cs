@@ -20,13 +20,14 @@ using Transito_Veracruz.Model.db;
 using Transito_Veracruz.Model.pocos;
 using Transito_Veracruz.Model.security;
 using System.Threading;
+using Transito_Veracruz.Model.interfaz;
 
 namespace Transito_Veracruz.Delegacion
 {
     /// <summary>
     /// Lógica de interacción para Window2.xaml
     /// </summary>
-    public partial class MenuDelegacion : Window
+    public partial class MenuDelegacion : Window, InterfaceMenu
     {
 
         Socket socketCliente = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -275,9 +276,18 @@ namespace Transito_Veracruz.Delegacion
                 }
                 else
                 {
-
+                    int folioFila = reporte.FolioDictamen;
+                    DictamenC dictamenEncontrado = DictamenDAO.getInformacionDictamen(folioFila);
+                    MessageBox.Show("El folio del dictamen es: "+ dictamenEncontrado.Folio+" Descripcion: "+ dictamenEncontrado.Descripcion+
+                        " Elaborado: "+ dictamenEncontrado.FechaDictamen);
                 }
             }
+        }
+
+        public void actualizar(int numeroReporte, string estatus, string nombreDelegacion, string direccion)
+        {
+            MessageBox.Show($", Numero Reporte: {numeroReporte}, estatus: {estatus}, Nombre Delegacion: {nombreDelegacion}, Direccion: {direccion}");
+            cargarReportes();
         }
     }
 }

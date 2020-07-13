@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using Transito_Veracruz.Model.dao;
 using Transito_Veracruz.Model.db;
+using Transito_Veracruz.Model.interfaz;
 using Transito_Veracruz.Model.pocos;
 
 namespace Transito_Veracruz.Delegacion
@@ -37,11 +38,15 @@ namespace Transito_Veracruz.Delegacion
 
         private byte[] img;
 
-        public LevantaReporte()
+        InterfaceMenu itActualizar;
+
+        public LevantaReporte(InterfaceMenu itActualizar)
         {
             InitializeComponent();
             cargarConductores();
             cargarDelegaciones();
+
+            this.itActualizar = itActualizar;
         }
 
         private void btn_Cancelar_Click(object sender, RoutedEventArgs e)
@@ -234,9 +239,9 @@ namespace Transito_Veracruz.Delegacion
             try
             {
                 nuevoReporte.NumeroReporte = numeroReporte;
-                nuevoReporte.Estatus = "No revisado";
-                nuevoReporte.Direccion = txt_Direccion.Text;
-                nuevoReporte.NombreDelegacion=delegacionSeleccionada;
+                string estatus = nuevoReporte.Estatus = "No revisado";
+                string direccion = nuevoReporte.Direccion = txt_Direccion.Text;
+                string delegacion = nuevoReporte.NombreDelegacion=delegacionSeleccionada;
 
                 int numeroReporteObtenido = nuevoReporte.NumeroReporte;
                 ReporteDAO.guardaReporte(nuevoReporte);
@@ -265,6 +270,9 @@ namespace Transito_Veracruz.Delegacion
                         ImagenDAO.guardarImagen(imagen);
                     }
                 }
+
+                this.Close();
+                this.itActualizar.actualizar(numeroReporte, estatus, delegacion, direccion);
             }
             catch (Exception ex)
             {

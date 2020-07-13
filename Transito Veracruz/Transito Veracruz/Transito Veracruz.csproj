@@ -121,15 +121,17 @@
   <ItemGroup>
     <Compile Include="Model\dao\ConductorDAO.cs" />
     <Compile Include="Model\dao\DelegacionDAO.cs" />
+    <Compile Include="Model\dao\DictamenDAO.cs" />
     <Compile Include="Model\dao\ImagenDAO.cs" />
     <Compile Include="Model\dao\PersonalDAO.cs" />
     <Compile Include="Model\dao\ReporteDAO.cs" />
     <Compile Include="Model\dao\Reporte_VehiculoDAO.cs" />
     <Compile Include="Model\dao\VehiculoDAO.cs" />
     <Compile Include="Model\db\ConnectionUtils.cs" />
+    <Compile Include="Model\interfaz\InterfaceMenu.cs" />
     <Compile Include="Model\pocos\Conductor.cs" />
     <Compile Include="Model\pocos\DelegacionMunicipal.cs" />
-    <Compile Include="Model\pocos\Dictamen.cs" />
+    <Compile Include="Model\pocos\DictamenC.cs" />
     <Compile Include="Model\pocos\Imagen.cs" />
     <Compile Include="Model\pocos\Personal.cs" />
     <Compile Include="Model\pocos\Reporte.cs" />

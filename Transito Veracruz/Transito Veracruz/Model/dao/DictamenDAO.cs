@@ -38,16 +38,15 @@ namespace Transito_Veracruz.Model.dao
 
                     while (rd.Read())           
                     {
-                        dictamen = new Dictamen();
-                        dictamen. = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        dictamen.NumeroPersonal = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
-                        dictamen.TipoPersonal = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        dictamen.Apellidos = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
-                        dictamen.Nombre = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
+                        dictamen = new DictamenC();
+                        dictamen.IdDictamen = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
+                        dictamen.Folio = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        dictamen.Descripcion = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        dictamen.FechaDictamen = (!rd.IsDBNull(3)) ? rd.GetDateTime(3) : new DateTime();
                     }
                     rd.Close();
                     command.Dispose();
-                    Console.WriteLine(personal);
+                    Console.WriteLine(dictamen);
                 }
 
             }
@@ -63,7 +62,7 @@ namespace Transito_Veracruz.Model.dao
                     conexion.Close();
                 }
             }
-            return personal;
+            return dictamen;
         }
     }
 }
