@@ -30,12 +30,16 @@
                 <Grid Background="White">
                     <DataGrid x:Name="dgDelegaciones" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="416" Margin="27,10,0,0" VerticalAlignment="Top" Width="980">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Nombre" IsReadOnly="True" Binding="{Binding nombre}" Width="170" />
-                            <DataGridTextColumn Header="Dirección" IsReadOnly="True" Binding="{Binding colonia}" Width="160"/>
-                            <DataGridTextColumn Header="Código Postal" IsReadOnly="True" Binding="{Binding codigoPostal}" Width="160"/>
-                            <DataGridTextColumn Header="Municipio" IsReadOnly="True" Binding="{Binding municipio}" Width="160"/>
-                            <DataGridTextColumn Header="Teléfono" IsReadOnly="True" Binding="{Binding telefono}" Width="160"/>
-                            <DataGridTextColumn Header="Correo" IsReadOnly="True" Binding="{Binding correoElectronico}" Width="160"/>
+                            <DataGridTextColumn Header="IdDelegacion" IsReadOnly="True" Binding="{Binding IdDelegacion}" Width="*" />
+                            <DataGridTextColumn Header="numeroDelegacion" IsReadOnly="True" Binding="{Binding numeroDelegacion}" Width="*"/>
+                            <DataGridTextColumn Header="Nombre" IsReadOnly="True" Binding="{Binding Nombre}" Width="*"/>
+                            <DataGridTextColumn Header="Colonia" IsReadOnly="True" Binding="{Binding Colonia}" Width="*"/>
+                            <DataGridTextColumn Header="Codigo Postal" IsReadOnly="True" Binding="{Binding CodigoPostal}" Width="*"/>
+                            <DataGridTextColumn Header="Municipio" IsReadOnly="True" Binding="{Binding Municipio}" Width="*"/>
+                            <DataGridTextColumn Header="Telefono" IsReadOnly="True" Binding="{Binding Telefono}" Width="*"/>
+                            <DataGridTextColumn Header="Correo" IsReadOnly="True" Binding="{Binding CorreoElectronico}" Width="*"/>
+                            <DataGridTextColumn Header="Calle" IsReadOnly="True" Binding="{Binding Calle}" Width="*"/>
+                            <DataGridTextColumn Header="Numero" IsReadOnly="True" Binding="{Binding NumeroDireccion}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="btn_AgregarDelegacion" Content="Agregar Delegación" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_AgregarDelegacion_Click"/>
@@ -46,10 +50,11 @@
                 <Grid>
                     <DataGrid x:Name="dgPersonal" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="428" Margin="27,10,0,0" VerticalAlignment="Top" Width="980">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Nombre" IsReadOnly="True" Binding="{Binding nombre}" Width="200" />
-                            <DataGridTextColumn Header="Cargo" IsReadOnly="True" Binding="{Binding cargo}" Width="200"/>
-                            <DataGridTextColumn Header="Nombre de usuario" IsReadOnly="True" Binding="{Binding usuario}" Width="200"/>
-                            <DataGridTextColumn Header="Delegación" IsReadOnly="True" Width="200"/>
+                            <DataGridTextColumn Header="IdPersonal" IsReadOnly="True" Binding="{Binding IdPersonal}" Width="*" />
+                            <DataGridTextColumn Header="Numero Personal" IsReadOnly="True" Binding="{Binding NumeroPersonal}" Width="*" />
+                            <DataGridTextColumn Header="Tipo Personal" IsReadOnly="True" Binding="{Binding TipoPersonal}" Width="*"/>
+                            <DataGridTextColumn Header="Apellidos" IsReadOnly="True" Binding="{Binding Apellidos}" Width="*"/>
+                            <DataGridTextColumn Header="Nombre" IsReadOnly="True" Binding="{Binding Nombre}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="btn_AgregarUsuario" Content="Agregar Usuario" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="153" Click="btn_AgregarUsuario_Click"/>
@@ -58,17 +63,18 @@
             <TabItem Header="REPORTES" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
 
                 <Grid>
-                    <DataGrid HorizontalAlignment="Left" Height="275" Margin="27,159,0,0" VerticalAlignment="Top" Width="980">
+                    <DataGrid x:Name="dg_Reportes" HorizontalAlignment="Left" Height="275" Margin="27,159,0,0" VerticalAlignment="Top" Width="980" SelectionChanged="dg_Reportes_SelectionChanged">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="No. de Reporte" Width="150"/>
-                            <DataGridTextColumn Header="Fecha" Width="150"/>
-                            <DataGridTextColumn Header="Conductores" Width="210" />
-                            <DataGridTextColumn Header="Vehiculos" Width="20"/>
-                            <DataGridTextColumn Header="Dirección" Width="150"/>
+                            <DataGridTextColumn Header="No. de Reporte" IsReadOnly="True" Binding="{Binding NumeroReporte}" Width="*"/>
+                            <DataGridTextColumn Header="Fecha" IsReadOnly="True" Binding="{Binding NumeroReporte}" Width="*"/>
+                            <DataGridTextColumn Header="Nombre Delegacion" Binding="{Binding NombreDelegacion}" Width="*" />
+                            <DataGridTextColumn Header="Folio Dictamen" Binding="{Binding FolioDictamen}" Width="*"/>
+                            <DataGridTextColumn Header="Dirección" Binding="{Binding Direccion}" Width="*"/>
+                            <DataGridTextColumn Header="Fecha Creacion" Binding="{Binding FechaCreacion}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="btn_AgregarDictamen" Content="Asignar Dictamen" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="151" Click="btn_AgregarDictamen_Click"/>
-                    <ComboBox Background="#DADADA" HorizontalAlignment="Left" Margin="251,32,0,0" VerticalAlignment="Top" Width="219"/>
+                    <ComboBox x:Name="cb_Delegacion" Background="#DADADA" HorizontalAlignment="Left" Margin="251,32,0,0" VerticalAlignment="Top" Width="219"/>
                     <ComboBox Background="#DADADA" HorizontalAlignment="Left" Margin="656,32,0,0" VerticalAlignment="Top" Width="225"/>
                     <Label Content="DELEGACIÓN" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontWeight="Normal" FontSize="18" Margin="108,32,791,450"/>
                     <ComboBox Background="#DADADA" HorizontalAlignment="Left" Margin="251,91,0,0" VerticalAlignment="Top" Width="219"/>
@@ -87,7 +93,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button Content="Salir" Foreground="White" Background="#D92530" BorderBrush="Black" HorizontalAlignment="Left" Margin="1029,605,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button x:Name="btn_Salir" Content="Salir" Foreground="White" Background="#D92530" BorderBrush="Black" HorizontalAlignment="Left" Margin="1029,605,0,0" VerticalAlignment="Top" Width="75" Click="btn_Salir_Click"/>
 
 
 

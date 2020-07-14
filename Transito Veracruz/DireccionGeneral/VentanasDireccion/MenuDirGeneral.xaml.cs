@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DireccionGeneral.Model.daoDireccion;
+using DireccionGeneral.Model.pocosDireccion;
 
 namespace DireccionGeneral.VentanasDireccion
 {
@@ -19,23 +21,31 @@ namespace DireccionGeneral.VentanasDireccion
     /// </summary>
     public partial class MenuDirGeneral : Window
     {
-        public MenuDirGeneral()
+        Personal personal { get; set; }
+        Delegacion delegacion { get; set; }
+        Reporte reportes { get; set; }
+
+        private List<Personal> listPersonal = new List<Personal>();
+        private List<Delegacion> listDelegacion = new List<Delegacion>();
+        private List<Reporte> listReporte = new List<Reporte>();
+        public MenuDirGeneral(Personal personal)
         {
+            this.personal = personal;
             InitializeComponent();
             CargaDelegacionesDB();
-            CargaPersonalDB();
+            CargaConductores();
         }
 
-        private void CargaPersonalDB()
+        private void CargaConductores()
         {
-            Modelo.SistemaTransitoEntities1 db = new Modelo.SistemaTransitoEntities1();
-            dgPersonal.ItemsSource = db.Personal.ToList();
+            listPersonal = PersonalDAO.getPersonal();
+            dgPersonal.ItemsSource = listPersonal;
         }
 
         private void CargaDelegacionesDB()
         {
-            Modelo.SistemaTransitoEntities1 db = new Modelo.SistemaTransitoEntities1();
-            dgDelegaciones.ItemsSource = db.Delegacion.ToList();
+            listDelegacion = DelegacionDAO.getDelegaciones();
+            dgDelegaciones.ItemsSource = listDelegacion;
         }
 
         private void btn_AgregarDelegacion_Click(object sender, RoutedEventArgs e)
@@ -62,8 +72,16 @@ namespace DireccionGeneral.VentanasDireccion
             verReporte.Show();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void dg_Reportes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            listReporte = ReporteDAO.getReportes();
+            dg_Reportes.ItemsSource = listReporte;
+        }
+
+        private void btn_Salir_Click(object sender, RoutedEventArgs e)
+        {
+            this.personal.Estado = "Desconectado";
+            PersonalDAO.actualizarEstadoUsuario(personal);
             this.Close();
         }
     }
