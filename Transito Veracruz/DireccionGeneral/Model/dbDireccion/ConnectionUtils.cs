@@ -13,7 +13,7 @@ namespace DireccionGeneral.Model.dbDireccion
         private static String PORT = "1433";
         private static String DATABASE = "SistemaTransito";
         private static String USER = "sa";
-        private static String PASSWORD = "cesardiaz";
+        private static String PASSWORD = "12345";
 
         public static SqlConnection getConnection()
         {
