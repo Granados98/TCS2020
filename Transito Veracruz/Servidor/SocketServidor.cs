@@ -53,6 +53,8 @@ namespace Servidor
                 socketClienteRemoto.Send(msjEnviar, 0, msjEnviar.Length, 0);
             }
 
+
+
         }
         public void Conectar()
         {

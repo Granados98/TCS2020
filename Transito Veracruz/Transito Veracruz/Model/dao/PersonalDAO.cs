@@ -12,6 +12,60 @@ namespace Transito_Veracruz.Model.dao
 {
     class PersonalDAO
     {
+        public static Personal getInformacionPersonal(int idPersonal)
+        {
+            Personal personal = null;
+            SqlConnection conexion = null;
+
+            try
+            {
+                conexion = ConnectionUtils.getConnection();
+                SqlCommand command;
+                SqlDataReader rd;
+                if (conexion != null)
+                {
+                    String query = String.Format("SELECT " +
+                        "x.idPersonal, " +
+                        "x.numeroPersonal, " +
+                        "x.tipoPersonal, " +
+                        "x.apellidos, " +
+                        "x.nombre " +
+                        "FROM dbo.Personal x " +
+                        "WHERE x.idPersonal = '{0}';", idPersonal);
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conexion);
+                    rd = command.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        personal = new Personal();
+                        personal.IdPersonal = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
+                        personal.NumeroPersonal = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        personal.TipoPersonal = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        personal.Apellidos = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
+                        personal.Nombre = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
+                    }
+                    rd.Close();
+                    command.Dispose();
+                    Console.WriteLine(personal);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("No se encontro el Conductor");
+            }
+            finally
+            {
+                if (conexion != null)
+                {
+                    conexion.Close();
+                }
+            }
+            return personal;
+        }
+
         public static Personal getLogin(String usuario, String contrasenia)
         {
             Personal personal = null;

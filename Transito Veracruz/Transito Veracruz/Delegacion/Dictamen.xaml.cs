@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Transito_Veracruz.Model.dao;
+using Transito_Veracruz.Model.pocos;
 
 namespace Transito_Veracruz.Delegacion
 {
@@ -19,12 +21,27 @@ namespace Transito_Veracruz.Delegacion
     /// </summary>
     public partial class Dictamen : Window
     {
-        public Dictamen()
+        DictamenC dictamenSeleccionado;
+        Personal encargadoDictamen;
+        public Dictamen(int numeroFolio)
         {
             InitializeComponent();
+            dictamenSeleccionado = DictamenDAO.getInformacionDictamen(numeroFolio);
+            int idPersonal = dictamenSeleccionado.IdPersonal;
+            encargadoDictamen = PersonalDAO.getInformacionPersonal(idPersonal);
+
+            txt_NombrePerito.Text = encargadoDictamen.Apellidos + " " + encargadoDictamen.Nombre;
+            txt_Folio.Text = dictamenSeleccionado.Folio.ToString();
+            txt_FechaRegistro.Text = dictamenSeleccionado.FechaDictamen.ToString();
+            txt_Descripcion.Text = dictamenSeleccionado.Descripcion;
         }
 
         private void btn_Cancelar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btn_Aceptar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

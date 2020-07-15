@@ -34,6 +34,7 @@ namespace Transito_Veracruz.Delegacion
         IPEndPoint direccionConexion = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
         
         private String mensaje = "";
+        private String mensajeRecibido = "";
 
         private List<Conductor> listConductores { get; set; }
         private List<Reporte> listReporte { get; set; }
@@ -97,7 +98,7 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_AgregarReporte_Click(object sender, RoutedEventArgs e)
         {
-            LevantaReporte reporte = new LevantaReporte();
+            LevantaReporte reporte = new LevantaReporte(this);
             reporte.Show();
         }
 
@@ -250,11 +251,11 @@ namespace Transito_Veracruz.Delegacion
             byte[] recibeBytes = new byte[255];
             int datos = socketCliente.Receive(recibeBytes, 0, recibeBytes.Length, 0);
             Array.Resize(ref recibeBytes, datos);
-            mensaje = Encoding.Default.GetString(recibeBytes);
+            mensajeRecibido = Encoding.Default.GetString(recibeBytes);
 
-            block_Chat.Items.Add(mensaje);
+            block_Chat.Items.Add(mensajeRecibido);
             block_Chat.UpdateLayout();
-            Console.WriteLine(mensaje);
+            Console.WriteLine(mensajeRecibido);
         }
 
         private void btn_Salir_Click(object sender, RoutedEventArgs e)
@@ -277,9 +278,13 @@ namespace Transito_Veracruz.Delegacion
                 else
                 {
                     int folioFila = reporte.FolioDictamen;
+                    Console.WriteLine(folioFila);
+                    Dictamen detalleDictamen = new Dictamen(folioFila);
+                    detalleDictamen.Show();
+                    /*
                     DictamenC dictamenEncontrado = DictamenDAO.getInformacionDictamen(folioFila);
                     MessageBox.Show("El folio del dictamen es: "+ dictamenEncontrado.Folio+" Descripcion: "+ dictamenEncontrado.Descripcion+
-                        " Elaborado: "+ dictamenEncontrado.FechaDictamen);
+                        " Elaborado: "+ dictamenEncontrado.FechaDictamen);*/
                 }
             }
         }
@@ -288,6 +293,11 @@ namespace Transito_Veracruz.Delegacion
         {
             MessageBox.Show($", Numero Reporte: {numeroReporte}, estatus: {estatus}, Nombre Delegacion: {nombreDelegacion}, Direccion: {direccion}");
             cargarReportes();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            block_Chat.Items.Add(mensajeRecibido);
         }
     }
 }

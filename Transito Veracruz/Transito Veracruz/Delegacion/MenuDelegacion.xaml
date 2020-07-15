@@ -67,6 +67,7 @@
                     <TextBox x:Name="txt_Mensaje" Margin="31,417,233,46" materialDesign:HintAssist.Hint="ESCRIBE UN MENSAJE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" KeyDown="txt_Mensaje_KeyDown"/>
                     <Button x:Name="btn_EnviarMensaje" Content="Enviar" Background="#54903B" HorizontalAlignment="Left" Margin="822,426,0,0" VerticalAlignment="Top" Width="149" Click="btn_EnviarMensaje_Click"/>
                     <ListBox x:Name="block_Chat" Background="#DADADA" HorizontalAlignment="Left" Margin="31,25,0,0"  VerticalAlignment="Top" Height="368" Width="940"/>
+                    <Button Content="Button" HorizontalAlignment="Left" Margin="805,463,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>
