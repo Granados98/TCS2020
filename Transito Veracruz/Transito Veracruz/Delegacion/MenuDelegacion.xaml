@@ -28,7 +28,17 @@
             <TabItem Header="CONDUCTORES" FontWeight="Bold" Height="90" Width="150" Background="Transparent" FontSize="15">
 
                 <Grid Background="White">
-                    <DataGrid x:Name="dg_Conductores" AutoGenerateColumns="true" HorizontalAlignment="Left" Height="416" Margin="27,10,0,0" VerticalAlignment="Top" Width="980" IsEnabled="False"/>
+                    <DataGrid x:Name="dg_Conductores" AutoGenerateColumns="false" HorizontalAlignment="Left" Height="416" Margin="27,10,0,0" VerticalAlignment="Top" Width="980" IsEnabled="False">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding IdConductor}" Width="*"/>
+                            <DataGridTextColumn Header="Numero Licencia" IsReadOnly="True" Binding="{Binding NumeroLicencia}" Width="*"/>
+                            <DataGridTextColumn Header="Apellidos" IsReadOnly="True" Binding="{Binding Apellidos}" Width="*"/>
+                            <DataGridTextColumn Header="Nombre" IsReadOnly="True" Binding="{Binding Nombre}" Width="*" />
+                            <DataGridTextColumn Header="Fecha Nacimiento" IsReadOnly="True" Binding="{Binding FechaNacimiento}" Width="*"/>
+                            <DataGridTextColumn Header="Telefono" IsReadOnly="True" Binding="{Binding Telefono}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <Button x:Name="btn_AgregarConductor" Content="Agregar Conductor" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_AgregarConductor_Click"/>
                     <Button x:Name="btn_CargarConductores" Content="Cargar Conductores" Background="#54903B" HorizontalAlignment="Left" Margin="792,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_CargarConductores_Click"/>
 
@@ -36,7 +46,19 @@
             </TabItem>
             <TabItem Header="VEHICULOS" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
                 <Grid>
-                    <DataGrid x:Name="dg_Vehiculos" HorizontalAlignment="Left" Height="428" Margin="27,10,0,0" VerticalAlignment="Top" Width="980" IsEnabled="False"/>
+                    <DataGrid x:Name="dg_Vehiculos" AutoGenerateColumns="false" HorizontalAlignment="Left" Height="428" Margin="27,10,0,0" VerticalAlignment="Top" Width="980" IsEnabled="False">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding IdVehiculo}" Width="*"/>
+                            <DataGridTextColumn Header="Numero Placas" IsReadOnly="True" Binding="{Binding NumeroPlacas}" Width="*"/>
+                            <DataGridTextColumn Header="Marca" IsReadOnly="True" Binding="{Binding Marca}" Width="*"/>
+                            <DataGridTextColumn Header="Modelo" IsReadOnly="True" Binding="{Binding Modelo}" Width="*" />
+                            <DataGridTextColumn Header="Año" IsReadOnly="True" Binding="{Binding Anio}" Width="*"/>
+                            <DataGridTextColumn Header="Color" IsReadOnly="True" Binding="{Binding Color}" Width="*"/>
+                            <DataGridTextColumn Header="Nombre Aseguradora" IsReadOnly="True" Binding="{Binding NombreAseguradora}" Width="*"/>
+                            <DataGridTextColumn Header="Numero Poliza" IsReadOnly="True" Binding="{Binding NumeroPolizaSeguro}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <Button x:Name="btn_AgregarVehiculo" Content="Agregar Vehiculo" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="153" Click="btn_AgregarVehiculo_Click"/>
                     <Button x:Name="btn_CargarVehiculos" Content="Cargar Vehiculos" Background="#54903B" HorizontalAlignment="Left" Margin="792,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_CargarVehiculos_Click"/>
                 </Grid>
@@ -67,7 +89,6 @@
                     <TextBox x:Name="txt_Mensaje" Margin="31,417,233,46" materialDesign:HintAssist.Hint="ESCRIBE UN MENSAJE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" KeyDown="txt_Mensaje_KeyDown"/>
                     <Button x:Name="btn_EnviarMensaje" Content="Enviar" Background="#54903B" HorizontalAlignment="Left" Margin="822,426,0,0" VerticalAlignment="Top" Width="149" Click="btn_EnviarMensaje_Click"/>
                     <ListBox x:Name="block_Chat" Background="#DADADA" HorizontalAlignment="Left" Margin="31,25,0,0"  VerticalAlignment="Top" Height="368" Width="940"/>
-                    <Button Content="Button" HorizontalAlignment="Left" Margin="805,463,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

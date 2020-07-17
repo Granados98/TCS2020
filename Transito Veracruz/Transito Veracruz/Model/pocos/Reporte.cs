@@ -14,6 +14,7 @@ namespace Transito_Veracruz.Model.pocos
         private String estatus;
         private Int32 folioDictamen;
         private String direccion;
+        private DateTime fechaCreacion;
 
         public int IdReporte { get => idReporte; set => idReporte = value; }
         public Int32 NumeroReporte { get => numeroReporte; set => numeroReporte = value; }
@@ -21,5 +22,6 @@ namespace Transito_Veracruz.Model.pocos
         public Int32 FolioDictamen { get => folioDictamen; set => folioDictamen = value; }
         public string Direccion { get => direccion; set => direccion = value; }
         public string NombreDelegacion { get => nombreDelegacion; set => nombreDelegacion = value; }
+        public DateTime FechaCreacion { get => fechaCreacion; set => fechaCreacion = value; }
     }
 }

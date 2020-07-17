@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Transito_Veracruz.Model.dao;
+using Transito_Veracruz.Model.interfaz;
 using Transito_Veracruz.Model.pocos;
 using Transito_Veracruz.Model.security;
 
@@ -23,9 +24,12 @@ namespace Transito_Veracruz.Delegacion
     public partial class RegistroConductor : Window
     {
         private Conductor conductor = new Conductor();
-        public RegistroConductor()
+
+        InterfaceMenu itActualizar;
+        public RegistroConductor(InterfaceMenu itActualizar)
         {
             InitializeComponent();
+            this.itActualizar = itActualizar;
         }
 
         private void btn_Cancelar_Click(object sender, RoutedEventArgs e)
@@ -36,6 +40,13 @@ namespace Transito_Veracruz.Delegacion
         private void btn_AgregarConductor_Click(object sender, RoutedEventArgs e)
         {
             String contraseñaEncriptada;
+
+            string numeroLicencia = txt_Licencia.Text;
+            string apellidos = txt_Apellidos.Text;
+            string nombre = txt_Nombre.Text;
+            DateTime fechaNacimiento = select_Date.SelectedDate.Value;
+            string telefono = txt_Telefono.Text;
+
             if (validarCampos()) { 
                 this.conductor.NumeroLicencia = txt_Licencia.Text;
                 this.conductor.Apellidos = txt_Apellidos.Text;
@@ -48,6 +59,8 @@ namespace Transito_Veracruz.Delegacion
                 this.conductor.Contrasenia = contraseñaEncriptada;
 
                 ConductorDAO.agregarConductor(this.conductor);
+                int idConductorAux = ConductorDAO.getIdConductor(numeroLicencia);
+                this.itActualizar.actualizar(idConductorAux,numeroLicencia,apellidos,nombre,fechaNacimiento,telefono);
                 this.Close();
                 }
                 else

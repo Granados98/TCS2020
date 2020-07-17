@@ -18,7 +18,6 @@ namespace Servidor
         IPEndPoint direccion = null;
         IPEndPoint newclient;
 
-        private ArrayList usuariosConectados = new ArrayList();
         
         public SocketServidor()
         {
@@ -44,13 +43,23 @@ namespace Servidor
                 Array.Resize(ref ByRec, datos);
                 mensaje = Encoding.Default.GetString(ByRec);
                 info += mensaje + "\n";
-                Console.WriteLine("El cliente dice: " + mensaje+" "+ newclient.Address+" "+newclient.Port);
+                string enviarMesaje = mensaje;
+                Console.WriteLine($"El cliente : " + mensaje+" "+ newclient.Address+" "+newclient.Port);
                 Console.Out.Flush();
 
 
+
+
                 //manda el mensaje a todos los clientes que el servidor recibio.
-                byte[] msjEnviar = Encoding.Default.GetBytes(mensaje);
+
+                byte[] msjEnviar = Encoding.Default.GetBytes(enviarMesaje);
                 socketClienteRemoto.Send(msjEnviar, 0, msjEnviar.Length, 0);
+                /*foreach (var a in usuariosConectados)
+                {
+                    if (a.Address != newclient.Address)
+                    {
+                    }
+                }*/
             }
 
 
@@ -66,7 +75,11 @@ namespace Servidor
                 newclient = (IPEndPoint)socketClienteRemoto.RemoteEndPoint;
                 hilo = new Thread(conexionCLiente);
                 hilo.Start(socketClienteRemoto);
+                //usuariosConectados.Add(newclient.Address);
                 Console.WriteLine("Se conecto al servidor: "+socketClienteRemoto.LocalEndPoint+" El cliente: "+newclient.Address+" Con el puerto: "+newclient.Port);
+                
+                    
+                
             }
             //IPEndPoint newclient = (IPEndPoint)socketClienteRemoto.RemoteEndPoint;
             //Console.WriteLine("Cliente conectado con IP {0} en puerto {1}", newclient.Address, newclient.Port);

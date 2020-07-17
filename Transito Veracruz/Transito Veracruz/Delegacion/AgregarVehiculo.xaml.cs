@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Transito_Veracruz.Model.dao;
 using Transito_Veracruz.Model.db;
+using Transito_Veracruz.Model.interfaz;
 using Transito_Veracruz.Model.pocos;
 using Transito_Veracruz.Model.security;
 
@@ -26,10 +27,13 @@ namespace Transito_Veracruz.Delegacion
     {
         private int idConductorSeleccionado;
         private Vehiculo vehiculo = new Vehiculo();
-        public AgregarVehiculo()
+
+        InterfaceMenu itActualizar;
+        public AgregarVehiculo(InterfaceMenu itActualizar)
         {
             InitializeComponent();
             cargarConductores();
+            this.itActualizar = itActualizar;
         }
 
         public void cargarConductores()
@@ -67,6 +71,13 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_AgregarVehiculo_Click(object sender, RoutedEventArgs e)
         {
+            string numeroPlacas = txt_NumeroPlaca.Text;
+            string marca = txt_Marca.Text;
+            string modelo = txt_Modelo.Text;
+            string anio = txt_Año.Text;
+            string color = txt_Color.Text;
+            string nombreAseguradora = txt_Aseguradora.Text;
+            string numeroPoliza = txt_Poliza.Text;
             if (validarCampos())
             {
                 this.vehiculo.IdConductor = idConductorSeleccionado;
@@ -78,8 +89,10 @@ namespace Transito_Veracruz.Delegacion
                 this.vehiculo.NumeroPlacas = txt_NumeroPlaca.Text;
                 this.vehiculo.NumeroPolizaSeguro = txt_Poliza.Text;
 
-
                 VehiculoDAO.guardaVehiculo(this.vehiculo);
+                int idVehiculoAux = VehiculoDAO.getIdVehiculo(numeroPlacas);
+                this.itActualizar.actualizar(idVehiculoAux,numeroPlacas,marca,modelo,anio,color,nombreAseguradora,numeroPoliza);
+
                 this.Close();
             }
             else

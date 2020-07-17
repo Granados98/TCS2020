@@ -236,16 +236,25 @@ namespace Transito_Veracruz.Delegacion
             int numeroReporte = random.Next(1,1000);
             Console.WriteLine(numeroReporte);
 
+            var dateAux = DateTime.Now;
+
+            string estatus = "No revisado";
+            string direccion = txt_Direccion.Text;
+            int numReporte = numeroReporte;
+            string delegacion = delegacionSeleccionada;
+
             try
             {
                 nuevoReporte.NumeroReporte = numeroReporte;
-                string estatus = nuevoReporte.Estatus = "No revisado";
-                string direccion = nuevoReporte.Direccion = txt_Direccion.Text;
-                string delegacion = nuevoReporte.NombreDelegacion=delegacionSeleccionada;
+                nuevoReporte.Estatus = "No revisado";
+                nuevoReporte.Direccion = txt_Direccion.Text;
+                nuevoReporte.NombreDelegacion=delegacionSeleccionada;
+                nuevoReporte.FechaCreacion = DateTime.Now;
 
                 int numeroReporteObtenido = nuevoReporte.NumeroReporte;
                 ReporteDAO.guardaReporte(nuevoReporte);
-                
+                int idReporteAux=ReporteDAO.consultaReporteNuevo(dateAux);
+
                 Reporte_Vehiculo reporte_Vehiculo = new Reporte_Vehiculo();
                 foreach (var a in listVehiculos)
                 {
@@ -272,7 +281,7 @@ namespace Transito_Veracruz.Delegacion
                 }
 
                 this.Close();
-                this.itActualizar.actualizar(numeroReporte, estatus, delegacion, direccion);
+                this.itActualizar.actualizar(idReporteAux,numReporte, estatus, delegacion, direccion);
             }
             catch (Exception ex)
             {
@@ -290,7 +299,6 @@ namespace Transito_Veracruz.Delegacion
             {
                 MessageBox.Show("Seleccione un vehiculo");
             }
-
         }
     }
 }

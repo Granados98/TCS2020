@@ -12,6 +12,61 @@ namespace Transito_Veracruz.Model.dao
 {
     class ReporteDAO
     {
+        public static int consultaReporteNuevo(DateTime fechaCreacion)
+        {
+            int idReporteAux = 0;
+            Reporte reporte = null;
+            SqlConnection conn = null;
+            try
+            {
+                conn = ConnectionUtils.getConnection();
+                SqlCommand command;
+                SqlDataReader rd;
+                if (conn != null)
+                {
+                    String query = String.Format("SELECT " +
+                                                 "x.idReporte," +
+                                                 "x.numeroReporte," +
+                                                 "x.folioDictamen, " +
+                                                 "x.direccion, " +
+                                                 "x.fechaCreacion " +
+                                                 "FROM dbo.Reporte x " +
+                                                 "WHERE x.fechaCreacion = {0};", fechaCreacion);
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conn);
+                    rd = command.ExecuteReader();
+                    
+                    while (rd.Read())
+                    {
+                        reporte = new Reporte();
+                        reporte.IdReporte = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
+                        reporte.NumeroReporte = (!rd.IsDBNull(1)) ? rd.GetInt32(1) : 0;
+                        reporte.FolioDictamen = (!rd.IsDBNull(2)) ? rd.GetInt32(2) : 0;
+                        reporte.Direccion = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
+                        reporte.FechaCreacion = (!rd.IsDBNull(4)) ? rd.GetDateTime(4) : new DateTime();
+
+                    }
+                    rd.Close();
+                    command.Dispose();
+                    Console.WriteLine(reporte);
+
+                    idReporteAux = reporte.IdReporte;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return idReporteAux;
+        }
+
         public static List<Reporte> getReportes()
         {
             List<Reporte> list = new List<Reporte>();

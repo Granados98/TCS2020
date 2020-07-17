@@ -38,6 +38,7 @@ namespace Transito_Veracruz.Delegacion
 
         private List<Conductor> listConductores { get; set; }
         private List<Reporte> listReporte { get; set; }
+        private List<Vehiculo> listVehiculo { get; set; }
 
         private Personal usuarioIniciado { get; set; }
         public MenuDelegacion(Personal personal)
@@ -51,12 +52,11 @@ namespace Transito_Veracruz.Delegacion
             //el cliente se conecta con el servidor
             socketCliente.Connect(direccionConexion);
             Console.WriteLine("Conectado con exito al servidor...");
-            
             int id = usuarioIniciado.IdPersonal;
             string idU=Convert.ToString(id);
             byte[] bufferIdUsuario = Encoding.Default.GetBytes(idU);
             socketCliente.Send(bufferIdUsuario, 0, bufferIdUsuario.Length, 0);
-
+            
             recibeMensajes();
             cargarReportes();
         }
@@ -79,20 +79,19 @@ namespace Transito_Veracruz.Delegacion
 
         private void cargarReportes()
         {
-            //listReporte = ReporteDAO.getReportes(usuarioIniciado.IdPersonal);
             listReporte = ReporteDAO.getReportes();
             dg_Reportes.ItemsSource = listReporte;
         }
 
         private void btn_AgregarConductor_Click(object sender, RoutedEventArgs e)
         {
-            RegistroConductor conductor = new RegistroConductor();
+            RegistroConductor conductor = new RegistroConductor(this);
             conductor.Show();
         }
 
         private void btn_AgregarVehiculo_Click(object sender, RoutedEventArgs e)
         {
-            AgregarVehiculo vehiculo = new AgregarVehiculo();
+            AgregarVehiculo vehiculo = new AgregarVehiculo(this);
             vehiculo.Show();
         }
 
@@ -113,32 +112,8 @@ namespace Transito_Veracruz.Delegacion
 
         private void cargarTablaConductores()
         {
-            SqlConnection conexion = null;
-
-            try
-            {
-                conexion = ConnectionUtils.getConnection();
-                SqlCommand command;
-                if (conexion != null)
-                {
-                    String query = String.Format("SELECT numeroLicencia,apellidos,nombre,fechaNacimiento,telefono FROM Conductor");
-                    command = new SqlCommand(query, conexion);
-
-                    SqlDataAdapter dataAdp = new SqlDataAdapter(command);
-                    DataTable dt = new DataTable("Condustor");
-                    dataAdp.Fill(dt);
-                    dg_Conductores.ItemsSource = dt.DefaultView;
-                    dataAdp.Update(dt);
-
-                    command.Dispose();
-                    conexion.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("No se encontro los Conductores");
-            }
+            listConductores = ConductorDAO.obtenerConductores();
+            dg_Conductores.ItemsSource = listConductores;
         }
         
         private void btn_CargarConductores_Click(object sender, RoutedEventArgs e)
@@ -174,34 +149,9 @@ namespace Transito_Veracruz.Delegacion
 
         private void cargarTablaVehiculos()
         {
-            SqlConnection conexion = null;
-            try
-            {
-                conexion = ConnectionUtils.getConnection();
-                SqlCommand command;
-                if (conexion != null)
-                {
-                    String query = String.Format("SELECT numeroPlacas,marca,modelo,año,color,nombreAseguradora,numeroPolizaSeguro FROM Vehiculo");
-                    command = new SqlCommand(query, conexion);
-                    command.ExecuteNonQuery();
-
-                    SqlDataAdapter dataAdp = new SqlDataAdapter(command);
-                    DataTable dt = new DataTable("Vehiculo");
-                    dataAdp.Fill(dt);
-                    dg_Vehiculos.ItemsSource = dt.DefaultView;
-                    dataAdp.Update(dt);
-
-                    command.Dispose();
-                    conexion.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("No se encontro los vehiculos");
-            }
-
+            listVehiculo = VehiculoDAO.obtenerVehiculos();
+            dg_Vehiculos.ItemsSource = listVehiculo;
+            
         }
 
         private void btn_CargarVehiculos_Click(object sender, RoutedEventArgs e)
@@ -255,7 +205,6 @@ namespace Transito_Veracruz.Delegacion
 
             block_Chat.Items.Add(mensajeRecibido);
             block_Chat.UpdateLayout();
-            Console.WriteLine(mensajeRecibido);
         }
 
         private void btn_Salir_Click(object sender, RoutedEventArgs e)
@@ -281,23 +230,22 @@ namespace Transito_Veracruz.Delegacion
                     Console.WriteLine(folioFila);
                     Dictamen detalleDictamen = new Dictamen(folioFila);
                     detalleDictamen.Show();
-                    /*
-                    DictamenC dictamenEncontrado = DictamenDAO.getInformacionDictamen(folioFila);
-                    MessageBox.Show("El folio del dictamen es: "+ dictamenEncontrado.Folio+" Descripcion: "+ dictamenEncontrado.Descripcion+
-                        " Elaborado: "+ dictamenEncontrado.FechaDictamen);*/
                 }
             }
         }
-
-        public void actualizar(int numeroReporte, string estatus, string nombreDelegacion, string direccion)
+        
+        public void actualizar(int idReporte, int numeroReporte, string estatus, string nombreDelegacion, string direccion)
         {
-            MessageBox.Show($", Numero Reporte: {numeroReporte}, estatus: {estatus}, Nombre Delegacion: {nombreDelegacion}, Direccion: {direccion}");
             cargarReportes();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void actualizar(int idConductor, string numeroLicencia, string apellidos, string nombre, DateTime fechaNacimiento, string telefono)
         {
-            block_Chat.Items.Add(mensajeRecibido);
+            cargarTablaConductores();
+        }
+        public void actualizar(int idVehiculo, string numeroPLacas, string marca, string modelo, string anio, string color, string nombreAseguradora, string numeroPoliza)
+        {
+            cargarTablaVehiculos();
         }
     }
 }
