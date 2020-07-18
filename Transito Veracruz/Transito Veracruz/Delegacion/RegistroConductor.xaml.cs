@@ -78,6 +78,7 @@ namespace Transito_Veracruz.Delegacion
                 this.conductor.Contrasenia = contraseñaEncriptada;
 
                 ConductorDAO.guardarConductor(this.nuevo,this.conductor);
+                this.Resultado = true;
                 if (nuevo)
                 {
                     int idConductorAux = ConductorDAO.getIdConductor(numeroLicencia);

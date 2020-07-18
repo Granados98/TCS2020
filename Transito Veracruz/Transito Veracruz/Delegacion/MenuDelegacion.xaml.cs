@@ -92,7 +92,8 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_AgregarVehiculo_Click(object sender, RoutedEventArgs e)
         {
-            AgregarVehiculo vehiculo = new AgregarVehiculo(this);
+            Vehiculo nuevoVehiculo = new Vehiculo();
+            AgregarVehiculo vehiculo = new AgregarVehiculo(this,true,nuevoVehiculo);
             vehiculo.Show();
         }
 
@@ -122,37 +123,6 @@ namespace Transito_Veracruz.Delegacion
             listVehiculo = VehiculoDAO.obtenerVehiculos();
             dg_Vehiculos.ItemsSource = listVehiculo;
             
-        }
-
-        private void btn_CargarVehiculos_Click(object sender, RoutedEventArgs e)
-        { 
-            SqlConnection conexion = null;
-            try
-            {
-                conexion = ConnectionUtils.getConnection();
-                SqlCommand command;
-                if (conexion != null)
-                {
-                    String query = String.Format("SELECT numeroPlacas,marca,modelo,año,color,nombreAseguradora,numeroPolizaSeguro FROM Vehiculo");
-                    command = new SqlCommand(query, conexion);
-                    command.ExecuteNonQuery();
-
-                    SqlDataAdapter dataAdp = new SqlDataAdapter(command);
-                    DataTable dt = new DataTable("Vehiculo");
-                    dataAdp.Fill(dt);
-                    dg_Vehiculos.ItemsSource = dt.DefaultView;
-                    dataAdp.Update(dt);
-
-                    command.Dispose();
-                    conexion.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("No se encontro los vehiculos");
-            }
         }
 
         private void txt_Mensaje_KeyDown(object sender, KeyEventArgs e)
@@ -227,11 +197,30 @@ namespace Transito_Veracruz.Delegacion
 
                 if (MessageBox.Show("¿Desea eliminar el conductor con licencia: " + conductor.NumeroLicencia + "?", "Eliminar conductor", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    if (VehiculoDAO.tieneVehiculo(conductor.IdConductor))
-                    {
-                        VehiculoDAO.eliminarVehiculo(conductor.IdConductor);
+                    int idVehiculo = VehiculoDAO.getIdVehiculo(conductor.IdConductor);
+                    Console.WriteLine(idVehiculo);
+                    if (Reporte_VehiculoDAO.idReporte(idVehiculo)==0) {
+                        if (idVehiculo > 0)
+                        {
+                            VehiculoDAO.eliminarVehiculo(conductor.IdConductor);
+                            ConductorDAO.eliminarConductor(conductor.IdConductor);
+                        }
+                        else
+                        {
+                            if (idVehiculo == 0)
+                            {
+                                ConductorDAO.eliminarConductor(conductor.IdConductor);
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se puede eliminar");
+                            }
+                        }
                     }
-                    ConductorDAO.eliminarConductor(conductor.IdConductor);
+                    else
+                    {
+                        MessageBox.Show("No se puede borrar el conductor, el conductor tiene un reporte en proceso");
+                    }
                 }
 
                 this.cargarTablaConductores();
@@ -257,6 +246,36 @@ namespace Transito_Veracruz.Delegacion
                 {
                     this.cargarTablaConductores();
                 }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un conductor");
+            }
+        }
+
+        private void btn_EliminarVehiculo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_EditarVehiculo_Click(object sender, RoutedEventArgs e)
+        {
+            int index = dg_Vehiculos.SelectedIndex;
+            if (index >= 0)
+            {
+                Vehiculo vehiculo = listVehiculo[index];
+                Boolean resultado = false;
+                AgregarVehiculo av = new AgregarVehiculo(this,false,vehiculo);
+                av.ShowDialog();
+                resultado = av.Resultado;
+                if (resultado)
+                {
+                    this.cargarTablaVehiculos();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un vehiculo");
             }
         }
     }

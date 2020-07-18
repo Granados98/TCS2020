@@ -12,6 +12,58 @@ namespace Transito_Veracruz.Model.dao
 {
     class VehiculoDAO
     {
+        public static int getIdVehiculo(int idConductor)
+        {
+            int idVehiculo = 0;
+            Vehiculo vehiculo = null;
+            SqlConnection conexion = null;
+
+            try
+            {
+                conexion = ConnectionUtils.getConnection();
+                SqlCommand command;
+                SqlDataReader rd;
+                if (conexion != null)
+                {
+                    String query = String.Format("SELECT " +
+                        "x.idVehiculo, " +
+                        "x.numeroPlacas, " +
+                        "x.idConductor " +
+                        "FROM dbo.Vehiculo x " +
+                        "WHERE x.idConductor='{0}';", idConductor);
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conexion);
+                    rd = command.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        vehiculo = new Vehiculo();
+                        vehiculo.IdVehiculo = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
+                        vehiculo.NumeroPlacas = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                    }
+                    rd.Close();
+                    command.Dispose();
+                    Console.WriteLine(vehiculo);
+
+                    idVehiculo = vehiculo.IdVehiculo;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("No se encontro el Conductor");
+            }
+            finally
+            {
+                if (conexion != null)
+                {
+                    conexion.Close();
+                }
+            }
+            return idVehiculo;
+
+        }
         public static void eliminarVehiculo(int idConductor)
         {
             String query = "";
@@ -44,56 +96,6 @@ namespace Transito_Veracruz.Model.dao
                 }
             }
         }
-        public static bool tieneVehiculo(int idConductor)
-        {
-            Vehiculo vehiculo = null;
-            SqlConnection conexion = null;
-
-            try
-            {
-                conexion = ConnectionUtils.getConnection();
-                SqlCommand command;
-                SqlDataReader rd;
-                if (conexion != null)
-                {
-                    String query = String.Format("SELECT " +
-                        "x.idVehiculo, " +
-                        "x.numeroPlacas, " +
-                        "x.idConductor " +
-                        "FROM dbo.Vehiculo x " +
-                        "WHERE x.idConductor = '{0}';", idConductor);
-                    Console.WriteLine(query);
-                    command = new SqlCommand(query, conexion);
-                    rd = command.ExecuteReader();
-
-                    while (rd.Read())
-                    {
-                        vehiculo = new Vehiculo();
-                        vehiculo.IdVehiculo = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        vehiculo.NumeroPlacas = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
-                        vehiculo.IdConductor = (!rd.IsDBNull(2)) ? rd.GetInt32(2) : 0;
-                    }
-                    rd.Close();
-                    command.Dispose();
-                    Console.WriteLine(vehiculo);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("No se encontro el Conductor");
-                return false;
-            }
-            finally
-            {
-                if (conexion != null)
-                {
-                    conexion.Close();
-                }
-            }
-            return true;
-        }
         public static List<Vehiculo> obtenerVehiculos()
         {
             List<Vehiculo> list = new List<Vehiculo>();
@@ -114,7 +116,8 @@ namespace Transito_Veracruz.Model.dao
                         "x.año, " +
                         "x.color, " +
                         "x.nombreAseguradora, " +
-                        "x.numeroPolizaSeguro " +
+                        "x.numeroPolizaSeguro, " +
+                        "x.idConductor " +
                         "FROM dbo.Vehiculo x ");
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conn);
@@ -131,6 +134,7 @@ namespace Transito_Veracruz.Model.dao
                         vehiculo.Color = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
                         vehiculo.NombreAseguradora = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
                         vehiculo.NumeroPolizaSeguro = (!rd.IsDBNull(7)) ? rd.GetString(7) : "";
+                        vehiculo.IdConductor = (!rd.IsDBNull(8)) ? rd.GetInt32(8) : 0;
 
                         list.Add(vehiculo);
                     }
@@ -183,7 +187,7 @@ namespace Transito_Veracruz.Model.dao
                     command.Dispose();
                     Console.WriteLine(vehiculo);
 
-                    idVehiculo = vehiculo.IdConductor;
+                    idVehiculo = vehiculo.IdVehiculo;
                 }
 
             }
@@ -257,16 +261,30 @@ namespace Transito_Veracruz.Model.dao
             }
             return vehiculo;
         }
-        public static void guardaVehiculo(Vehiculo vehiculo)
+        public static void guardaVehiculo(Vehiculo vehiculo, bool nuevo)
         {
 
             String query = "";
+            if (nuevo)
+            {
+                query = "INSERT INTO dbo.Vehiculo (numeroPlacas,marca,modelo,año,color,nombreAseguradora,numeroPolizaSeguro,idConductor) " +
+                          "VALUES(@numeroPlacas,@marca,@modelo,@año,@color,@nombreAseguradora,@numeroPolizaSeguro,@idConductor);";
 
-            query = "INSERT INTO dbo.Vehiculo (numeroPlacas,marca,modelo,año,color,nombreAseguradora,numeroPolizaSeguro,idConductor) " +
-                       "VALUES(@numeroPlacas,@marca,@modelo,@año,@color,@nombreAseguradora,@numeroPolizaSeguro,@idConductor);";
+            }
+            else
+            {
+                query = "UPDATE dbo.Vehiculo SET " +
+                        "numeroPlacas = @numeroPlacas," +
+                        "marca = @marca, " +
+                        "modelo = @modelo, " +
+                        "año = @año, " +
+                        "color = @color, " +
+                        "nombreAseguradora = @nombreAseguradora, " +
+                        "numeroPolizaSeguro = @numeroPolizaSeguro " +
+                        "WHERE idVehiculo = @idVehiculo;";
+            }
 
 
-            
             SqlConnection conn = null;
             try
             {
@@ -284,9 +302,16 @@ namespace Transito_Veracruz.Model.dao
                     command.Parameters.AddWithValue("@color", vehiculo.Color);
                     command.Parameters.AddWithValue("@nombreAseguradora", vehiculo.NombreAseguradora);
                     command.Parameters.AddWithValue("@numeroPolizaSeguro", vehiculo.NumeroPolizaSeguro);
-                    command.Parameters.AddWithValue("@idConductor", vehiculo.IdConductor);
 
-                    command.Parameters.AddWithValue("@idVehiculo", vehiculo.IdVehiculo);
+                    if (nuevo)
+                    {
+                        command.Parameters.AddWithValue("@idConductor", vehiculo.IdConductor);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@idVehiculo", vehiculo.IdVehiculo);
+                    }
+
 
                     int i = command.ExecuteNonQuery();
                     Console.WriteLine("Filas afectadas: " + i);

@@ -13,6 +13,57 @@ namespace Transito_Veracruz.Model.dao
 {
     class ConductorDAO
     {
+        public static string getLicenciaConductor(int idConductor)
+        {
+            string licencia = "";
+            Conductor conductor = null;
+            SqlConnection conexion = null;
+
+            try
+            {
+                conexion = ConnectionUtils.getConnection();
+                SqlCommand command;
+                SqlDataReader rd;
+                if (conexion != null)
+                {
+                    String query = String.Format("SELECT " +
+                        "x.idConductor, " +
+                        "x.numeroLicencia " +
+                        "FROM dbo.Conductor x " +
+                        "WHERE x.idConductor='{0}';", idConductor);
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conexion);
+                    rd = command.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        conductor = new Conductor();
+                        conductor.IdConductor = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
+                        conductor.NumeroLicencia = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                    }
+                    rd.Close();
+                    command.Dispose();
+                    Console.WriteLine(conductor);
+
+                    licencia = conductor.NumeroLicencia;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("No se encontro el Conductor");
+            }
+            finally
+            {
+                if (conexion != null)
+                {
+                    conexion.Close();
+                }
+            }
+            return licencia;
+
+        }
         public static void eliminarConductor(int idConductor)
         {
             String query = "";

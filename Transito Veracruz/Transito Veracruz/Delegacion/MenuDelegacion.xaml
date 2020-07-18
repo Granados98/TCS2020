@@ -47,7 +47,7 @@
             </TabItem>
             <TabItem Header="VEHICULOS" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
                 <Grid>
-                    <DataGrid x:Name="dg_Vehiculos" AutoGenerateColumns="false" HorizontalAlignment="Left" Height="428" Margin="27,10,0,0" VerticalAlignment="Top" Width="980" IsEnabled="False">
+                    <DataGrid x:Name="dg_Vehiculos" AutoGenerateColumns="false" HorizontalAlignment="Left" Height="428" Margin="27,10,0,0" VerticalAlignment="Top" Width="980" IsEnabled="true">
                         <DataGrid.Columns>
 
                             <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding IdVehiculo}" Width="*"/>
@@ -61,7 +61,8 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="btn_AgregarVehiculo" Content="Agregar Vehiculo" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="153" Click="btn_AgregarVehiculo_Click"/>
-                    <Button x:Name="btn_CargarVehiculos" Content="Cargar Vehiculos" Background="#54903B" HorizontalAlignment="Left" Margin="792,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_CargarVehiculos_Click"/>
+                    <Button x:Name="btn_EliminarVehiculo" Content="Eliminar Vehiculo" Background="#FFD4231A" HorizontalAlignment="Left" Margin="792,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_EliminarVehiculo_Click"/>
+                    <Button x:Name="btn_EditarVehiculo" Content="Editar Vehiculo" Background="#54903B" HorizontalAlignment="Left" Margin="594,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_EditarVehiculo_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="REPORTES" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">

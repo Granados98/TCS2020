@@ -25,18 +25,46 @@ namespace Transito_Veracruz.Delegacion
     /// </summary>
     public partial class AgregarVehiculo : Window
     {
+        private int idVehiculo;
         private int idConductorSeleccionado;
-        private Vehiculo vehiculo = new Vehiculo();
+        private Vehiculo vehiculo;
+        private bool nuevo;
+        private bool resultado;
 
         InterfaceMenu itActualizar;
-        public AgregarVehiculo(InterfaceMenu itActualizar)
+        public AgregarVehiculo(InterfaceMenu itActualizar, Boolean nuevo, Vehiculo vehiculo)
         {
+            this.vehiculo = vehiculo;
+            this.nuevo = nuevo;
+            this.itActualizar = itActualizar;
             InitializeComponent();
             cargarConductores();
-            this.itActualizar = itActualizar;
+
+            if (!nuevo)
+            {
+                txt_Marca.Text = vehiculo.Marca;
+                txt_Modelo.Text = vehiculo.Modelo;
+                txt_Año.Text = vehiculo.Anio;
+                txt_Color.Text = vehiculo.Color;
+                txt_NumeroPlaca.Text = vehiculo.NumeroPlacas;
+                txt_Aseguradora.Text = vehiculo.NombreAseguradora;
+                txt_Poliza.Text = vehiculo.NumeroPolizaSeguro;
+
+                idVehiculo = vehiculo.IdVehiculo;
+                int idConductorEditar = vehiculo.IdConductor;
+
+                cargarLicenciaConductor(idConductorEditar);
+                cb_Conductores.IsEnabled=false;
+            }
+        }
+        public bool Resultado { get => resultado; set => resultado = value; }
+
+        private void cargarLicenciaConductor(int idConductor)
+        {
+            cb_Conductores.Text = ConductorDAO.getLicenciaConductor(idConductor);
         }
 
-        public void cargarConductores()
+        private void cargarConductores()
         {
             SqlConnection conexion = null;
 
@@ -66,6 +94,7 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_Cancelar(object sender, RoutedEventArgs e)
         {
+            this.Resultado = false;
             this.Close();
         }
 
@@ -78,7 +107,7 @@ namespace Transito_Veracruz.Delegacion
             string color = txt_Color.Text;
             string nombreAseguradora = txt_Aseguradora.Text;
             string numeroPoliza = txt_Poliza.Text;
-            if (validarCampos())
+            if (cb_Conductores.SelectedItem == null || marca.Length>0 || modelo.Length>0 || anio.Length>0 || color.Length>0 || numeroPlacas.Length>0 || nombreAseguradora.Length>0 || numeroPoliza.Length> 0)
             {
                 this.vehiculo.IdConductor = idConductorSeleccionado;
                 this.vehiculo.NombreAseguradora = txt_Aseguradora.Text;
@@ -89,10 +118,17 @@ namespace Transito_Veracruz.Delegacion
                 this.vehiculo.NumeroPlacas = txt_NumeroPlaca.Text;
                 this.vehiculo.NumeroPolizaSeguro = txt_Poliza.Text;
 
-                VehiculoDAO.guardaVehiculo(this.vehiculo);
-                int idVehiculoAux = VehiculoDAO.getIdVehiculo(numeroPlacas);
-                this.itActualizar.actualizar(idVehiculoAux,numeroPlacas,marca,modelo,anio,color,nombreAseguradora,numeroPoliza);
-
+                VehiculoDAO.guardaVehiculo(this.vehiculo, this.nuevo);
+                this.Resultado = true;
+                if (nuevo)
+                {
+                    int idVehiculoAux = VehiculoDAO.getIdVehiculo(numeroPlacas);
+                    this.itActualizar.actualizar(idVehiculoAux, numeroPlacas, marca, modelo, anio, color, nombreAseguradora, numeroPoliza);
+                }
+                else
+                {
+                    this.itActualizar.actualizar(idVehiculo, numeroPlacas, marca, modelo, anio, color, nombreAseguradora, numeroPoliza);
+                }
                 this.Close();
             }
             else
@@ -101,9 +137,9 @@ namespace Transito_Veracruz.Delegacion
             }
         }
 
-        public bool validarCampos()
+        private bool validarCampos()
         {
-            if (this.vehiculo.IdConductor != null || this.vehiculo.Marca == "" || this.vehiculo.Modelo == "" || this.vehiculo.Anio == ""
+            if (this.vehiculo.NumeroPlacas== "" || this.vehiculo.Marca == "" || this.vehiculo.Modelo == "" || this.vehiculo.Anio == ""
                 || this.vehiculo.Color == "" || this.vehiculo.NumeroPlacas == "" || this.vehiculo.NumeroPolizaSeguro == "" || this.vehiculo.NombreAseguradora == "")
             {
                 return true;

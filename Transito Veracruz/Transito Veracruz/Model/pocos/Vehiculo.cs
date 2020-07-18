@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Transito_Veracruz.Model.pocos
 {
-    class Vehiculo
+    public class Vehiculo
     {
         private Int32 idVehiculo;
         private String numeroPlacas="";
