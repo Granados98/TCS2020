@@ -85,7 +85,8 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_AgregarConductor_Click(object sender, RoutedEventArgs e)
         {
-            RegistroConductor conductor = new RegistroConductor(this);
+            Conductor nuevoConductor = new Conductor();
+            RegistroConductor conductor = new RegistroConductor(this,true,nuevoConductor);
             conductor.Show();
         }
 
@@ -114,37 +115,6 @@ namespace Transito_Veracruz.Delegacion
         {
             listConductores = ConductorDAO.obtenerConductores();
             dg_Conductores.ItemsSource = listConductores;
-        }
-        
-        private void btn_CargarConductores_Click(object sender, RoutedEventArgs e)
-        {
-            SqlConnection conexion = null;
-
-            try
-            {
-                conexion = ConnectionUtils.getConnection();
-                SqlCommand command;
-                if (conexion != null)
-                {
-                    String query = String.Format("SELECT numeroLicencia,apellidos,nombre,fechaNacimiento,telefono FROM Conductor");
-                    command = new SqlCommand(query, conexion);
-                    command.ExecuteNonQuery();
-
-                    SqlDataAdapter dataAdp = new SqlDataAdapter(command);
-                    DataTable dt = new DataTable("Conductor");
-                    dataAdp.Fill(dt);
-                    dg_Conductores.ItemsSource = dt.DefaultView;
-                    dataAdp.Update(dt);
-
-                    command.Dispose();
-                    conexion.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("No se encontro los Conductores");
-            }
         }
 
         private void cargarTablaVehiculos()
@@ -246,6 +216,48 @@ namespace Transito_Veracruz.Delegacion
         public void actualizar(int idVehiculo, string numeroPLacas, string marca, string modelo, string anio, string color, string nombreAseguradora, string numeroPoliza)
         {
             cargarTablaVehiculos();
+        }
+
+        private void btn_EliminarConductor_Click(object sender, RoutedEventArgs e)
+        {
+            var index = dg_Conductores.SelectedIndex;
+            if (index >= 0)
+            {
+                Conductor conductor = listConductores[index];
+
+                if (MessageBox.Show("¿Desea eliminar el conductor con licencia: " + conductor.NumeroLicencia + "?", "Eliminar conductor", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    if (VehiculoDAO.tieneVehiculo(conductor.IdConductor))
+                    {
+                        VehiculoDAO.eliminarVehiculo(conductor.IdConductor);
+                    }
+                    ConductorDAO.eliminarConductor(conductor.IdConductor);
+                }
+
+                this.cargarTablaConductores();
+                this.cargarTablaVehiculos();
+            }
+            else
+            {
+                MessageBox.Show(this, "Seleccione el conductor que deseas eliminar");
+            }
+        }
+
+        private void btn_EditarConductor_Click(object sender, RoutedEventArgs e)
+        {
+            int index = dg_Conductores.SelectedIndex;
+            if (index>=0)
+            {
+                Conductor conductor = listConductores[index];
+                Boolean resultado = false;
+                RegistroConductor rc = new RegistroConductor(this,false,conductor);
+                rc.ShowDialog();
+                resultado = rc.Resultado;
+                if (resultado)
+                {
+                    this.cargarTablaConductores();
+                }
+            }
         }
     }
 }

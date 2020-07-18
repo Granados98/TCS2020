@@ -13,6 +13,38 @@ namespace Transito_Veracruz.Model.dao
 {
     class ConductorDAO
     {
+        public static void eliminarConductor(int idConductor)
+        {
+            String query = "";
+            query = "DELETE FROM dbo.Conductor WHERE idConductor = @idConductor;";
+            SqlConnection conn = null;
+            try
+            {
+                conn = ConnectionUtils.getConnection();
+                SqlCommand command;
+                if (conn != null)
+                {
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conn);
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.AddWithValue("@idConductor", idConductor);
+                    int i = command.ExecuteNonQuery();
+                    Console.WriteLine("Rows affected: " + i);
+                    command.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
         public static int getIdConductor(String numeroLicencia)
         {
             int idConductor = 0;
@@ -63,7 +95,6 @@ namespace Transito_Veracruz.Model.dao
             }
             return idConductor;
         }
-
         public static List<Conductor> obtenerConductores()
         {
             List<Conductor> list = new List<Conductor>();
@@ -81,7 +112,9 @@ namespace Transito_Veracruz.Model.dao
                                                  "x.apellidos," +
                                                  "x.nombre, " +
                                                  "x.fechaNacimiento, " +
-                                                 "x.telefono " +
+                                                 "x.telefono, " +
+                                                 "x.usuario, " +
+                                                 "x.contrasena " +
                                                  "FROM dbo.Conductor x ");
                     Console.WriteLine(query);
                     command = new SqlCommand(query,conn);
@@ -96,6 +129,8 @@ namespace Transito_Veracruz.Model.dao
                         conductor.Nombre = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
                         conductor.FechaNacimiento = (!rd.IsDBNull(4)) ? rd.GetDateTime(4) : new DateTime();
                         conductor.Telefono = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
+                        conductor.Usuario = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
+                        conductor.Contrasenia = (!rd.IsDBNull(7)) ? rd.GetString(7) : "";
 
                         list.Add(conductor);
                     }
@@ -116,7 +151,6 @@ namespace Transito_Veracruz.Model.dao
             }
             return list;
         }
-
         public static Conductor getInformacionSeleccionada(String numeroLicencia)
         {
             Conductor conductor = null;
@@ -174,15 +208,24 @@ namespace Transito_Veracruz.Model.dao
             }
             return conductor;
         }
-
-    public static void agregarConductor(Conductor conductor)
+        public static void guardarConductor(bool nuevo, Conductor conductor)
         {
             String query = "";
-            
-            query = "INSERT INTO dbo.Conductor (numeroLicencia,apellidos,nombre,fechaNacimiento,telefono,usuario,contrasena) " +
-                       "VALUES(@numeroLicencia,@apellidos,@nombre,GETDATE(),@telefono,@usuario,@contrasena);";
-                
-                Console.WriteLine("Se guardo la infomacion");
+            if (nuevo) {
+                query = "INSERT INTO dbo.Conductor (numeroLicencia,apellidos,nombre,fechaNacimiento,telefono,usuario,contrasena) " +
+                           "VALUES(@numeroLicencia,@apellidos,@nombre,GETDATE(),@telefono,@usuario,@contrasena);";
+            }
+            else
+            {
+                query = "UPDATE dbo.Conductor SET " +
+                        "apellidos = @apellidos," +
+                        "nombre = @nombre, " +
+                        "fechaNacimiento = GETDATE(), " +
+                        "telefono = @telefono, " +
+                        "usuario = @usuario, " +
+                        "contrasena = @contrasena " +
+                        "WHERE idConductor = @idConductor;";
+            }
             
             SqlConnection conn = null;
             try

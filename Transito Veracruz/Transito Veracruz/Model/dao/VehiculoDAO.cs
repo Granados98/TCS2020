@@ -12,6 +12,88 @@ namespace Transito_Veracruz.Model.dao
 {
     class VehiculoDAO
     {
+        public static void eliminarVehiculo(int idConductor)
+        {
+            String query = "";
+            query = "DELETE FROM dbo.Vehiculo WHERE idConductor = @idConductor;";
+            SqlConnection conn = null;
+            try
+            {
+                conn = ConnectionUtils.getConnection();
+                SqlCommand command;
+                if (conn != null)
+                {
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conn);
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.AddWithValue("@idConductor", idConductor);
+                    int i = command.ExecuteNonQuery();
+                    Console.WriteLine("Rows affected: " + i);
+                    command.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+        public static bool tieneVehiculo(int idConductor)
+        {
+            Vehiculo vehiculo = null;
+            SqlConnection conexion = null;
+
+            try
+            {
+                conexion = ConnectionUtils.getConnection();
+                SqlCommand command;
+                SqlDataReader rd;
+                if (conexion != null)
+                {
+                    String query = String.Format("SELECT " +
+                        "x.idVehiculo, " +
+                        "x.numeroPlacas, " +
+                        "x.idConductor " +
+                        "FROM dbo.Vehiculo x " +
+                        "WHERE x.idConductor = '{0}';", idConductor);
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conexion);
+                    rd = command.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        vehiculo = new Vehiculo();
+                        vehiculo.IdVehiculo = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
+                        vehiculo.NumeroPlacas = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        vehiculo.IdConductor = (!rd.IsDBNull(2)) ? rd.GetInt32(2) : 0;
+                    }
+                    rd.Close();
+                    command.Dispose();
+                    Console.WriteLine(vehiculo);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("No se encontro el Conductor");
+                return false;
+            }
+            finally
+            {
+                if (conexion != null)
+                {
+                    conexion.Close();
+                }
+            }
+            return true;
+        }
         public static List<Vehiculo> obtenerVehiculos()
         {
             List<Vehiculo> list = new List<Vehiculo>();
@@ -120,7 +202,6 @@ namespace Transito_Veracruz.Model.dao
             return idVehiculo;
 
         }
-
         public static Vehiculo getVehiculoConductor(String numeroPlacas)
         {
             Vehiculo vehiculo = null;

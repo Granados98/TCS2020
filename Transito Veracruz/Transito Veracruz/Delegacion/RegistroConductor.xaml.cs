@@ -23,31 +23,50 @@ namespace Transito_Veracruz.Delegacion
     /// </summary>
     public partial class RegistroConductor : Window
     {
-        private Conductor conductor = new Conductor();
-
+        private bool resultado;
+        private bool nuevo;
+        private Conductor conductor;
+        private int idConductorA;
         InterfaceMenu itActualizar;
-        public RegistroConductor(InterfaceMenu itActualizar)
+        public RegistroConductor(InterfaceMenu itActualizar, Boolean nuevo, Conductor conductor)
         {
-            InitializeComponent();
+            this.conductor = conductor;
+            this.nuevo = nuevo;
             this.itActualizar = itActualizar;
+            InitializeComponent();
+            if (!nuevo)
+            {
+                txt_Apellidos.Text = conductor.Apellidos;
+                txt_Nombre.Text = conductor.Nombre;
+                select_Date.SelectedDate = conductor.FechaNacimiento;
+                txt_Licencia.Text = conductor.NumeroLicencia;
+                txt_Telefono.Text = conductor.Telefono;
+                txt_NombreUsuario.Text = conductor.Usuario;
+                txt_Contrasena.Text = conductor.Contrasenia;
+
+                idConductorA = conductor.IdConductor;
+            }
         }
 
+        public bool Resultado { get => resultado; set => resultado = value; }
         private void btn_Cancelar_Click(object sender, RoutedEventArgs e)
         {
+            this.Resultado = false;
             this.Close();
         }
 
         private void btn_AgregarConductor_Click(object sender, RoutedEventArgs e)
         {
             String contraseñaEncriptada;
-
             string numeroLicencia = txt_Licencia.Text;
             string apellidos = txt_Apellidos.Text;
             string nombre = txt_Nombre.Text;
-            DateTime fechaNacimiento = select_Date.SelectedDate.Value;
             string telefono = txt_Telefono.Text;
+            string usuario = txt_NombreUsuario.Text;
+            string contrasena = txt_Contrasena.Text;
+            DateTime fechaNacimiento = select_Date.SelectedDate.Value;
 
-            if (validarCampos()) { 
+            if (apellidos.Length>0 && nombre.Length>0 && numeroLicencia.Length>0 && telefono.Length>0 && usuario.Length>0 && contrasena.Length>0) { 
                 this.conductor.NumeroLicencia = txt_Licencia.Text;
                 this.conductor.Apellidos = txt_Apellidos.Text;
                 this.conductor.FechaNacimiento = select_Date.SelectedDate.Value;
@@ -58,9 +77,13 @@ namespace Transito_Veracruz.Delegacion
                 contraseñaEncriptada = Encriptacion.GetSHA256(txt_Contrasena.Text);
                 this.conductor.Contrasenia = contraseñaEncriptada;
 
-                ConductorDAO.agregarConductor(this.conductor);
-                int idConductorAux = ConductorDAO.getIdConductor(numeroLicencia);
-                this.itActualizar.actualizar(idConductorAux,numeroLicencia,apellidos,nombre,fechaNacimiento,telefono);
+                ConductorDAO.guardarConductor(this.nuevo,this.conductor);
+                if (nuevo)
+                {
+                    int idConductorAux = ConductorDAO.getIdConductor(numeroLicencia);
+                    this.itActualizar.actualizar(idConductorAux, numeroLicencia, apellidos, nombre, fechaNacimiento, telefono);
+                }
+                this.itActualizar.actualizar(idConductorA,numeroLicencia,apellidos,nombre,fechaNacimiento,telefono);
                 this.Close();
                 }
                 else
@@ -69,6 +92,14 @@ namespace Transito_Veracruz.Delegacion
                 }
         }
 
+        public bool validaFecha(DateTime fecha)
+        {
+            if (fecha.Date.ToString()=="")
+            {
+                return true;
+            }
+            return false;
+        }
         
         public bool validarCampos()
         {
