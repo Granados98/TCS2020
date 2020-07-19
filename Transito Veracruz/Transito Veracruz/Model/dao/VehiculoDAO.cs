@@ -64,10 +64,18 @@ namespace Transito_Veracruz.Model.dao
             return idVehiculo;
 
         }
-        public static void eliminarVehiculo(int idConductor)
+        public static void eliminarVehiculo(int id, bool tipo)
         {
+
             String query = "";
-            query = "DELETE FROM dbo.Vehiculo WHERE idConductor = @idConductor;";
+            if (tipo)
+            {
+                query = "DELETE FROM dbo.Vehiculo WHERE idConductor = @idConductor;";
+            }
+            else
+            {
+                query = "DELETE FROM dbo.Vehiculo WHERE idVehiculo = @idVehiculo;";
+            }
             SqlConnection conn = null;
             try
             {
@@ -78,7 +86,14 @@ namespace Transito_Veracruz.Model.dao
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conn);
                     command.CommandType = CommandType.Text;
-                    command.Parameters.AddWithValue("@idConductor", idConductor);
+                    if (tipo)
+                    {
+                        command.Parameters.AddWithValue("@idConductor", id);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@idVehiculo", id);
+                    }
                     int i = command.ExecuteNonQuery();
                     Console.WriteLine("Rows affected: " + i);
                     command.Dispose();

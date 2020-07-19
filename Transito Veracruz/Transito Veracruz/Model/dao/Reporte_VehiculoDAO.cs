@@ -12,7 +12,39 @@ namespace Transito_Veracruz.Model.dao
 {
     public class Reporte_VehiculoDAO
     {
-        public static int idReporte(int idVehiculo)
+        public static void eliminarVehiculosReporte(int numeroReporte)
+        {
+            String query = "";
+            query = "DELETE FROM dbo.Reporte_Vehiculo WHERE numeroReporte = @numeroReporte;";
+            SqlConnection conn = null;
+            try
+            {
+                conn = ConnectionUtils.getConnection();
+                SqlCommand command;
+                if (conn != null)
+                {
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conn);
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.AddWithValue("@numeroReporte", numeroReporte);
+                    int i = command.ExecuteNonQuery();
+                    Console.WriteLine("Rows affected: " + i);
+                    command.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+        public static int getIdReporte(int idVehiculo)
         {
             int idReporte = 0;
             Reporte_Vehiculo reporte = null;
@@ -53,7 +85,7 @@ namespace Transito_Veracruz.Model.dao
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                Console.WriteLine("No se encontro el Conductor");
+                Console.WriteLine("No se encontro el Reporte asociado");
             }
             finally
             {

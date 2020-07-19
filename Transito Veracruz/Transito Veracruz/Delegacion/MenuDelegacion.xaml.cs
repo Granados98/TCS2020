@@ -199,10 +199,10 @@ namespace Transito_Veracruz.Delegacion
                 {
                     int idVehiculo = VehiculoDAO.getIdVehiculo(conductor.IdConductor);
                     Console.WriteLine(idVehiculo);
-                    if (Reporte_VehiculoDAO.idReporte(idVehiculo)==0) {
+                    if (Reporte_VehiculoDAO.getIdReporte(idVehiculo)==0) {
                         if (idVehiculo > 0)
                         {
-                            VehiculoDAO.eliminarVehiculo(conductor.IdConductor);
+                            VehiculoDAO.eliminarVehiculo(conductor.IdConductor,true);
                             ConductorDAO.eliminarConductor(conductor.IdConductor);
                         }
                         else
@@ -255,6 +255,29 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_EliminarVehiculo_Click(object sender, RoutedEventArgs e)
         {
+            int index = dg_Vehiculos.SelectedIndex;
+            if (index >= 0)
+            {
+                Vehiculo veh = listVehiculo[index];
+
+                if (MessageBox.Show("¿Desea eliminar el vehiculo con placas: " + veh.NumeroPlacas + "?", "Eliminar vehiculo", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    int reporteAsignado = Reporte_VehiculoDAO.getIdReporte(veh.IdVehiculo);
+                    if (reporteAsignado == 0)
+                    {
+                        VehiculoDAO.eliminarVehiculo(veh.IdVehiculo, false);
+                        cargarTablaVehiculos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se puede borrar el vehiculo porque está asignado a un reporte");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un vehiculo");
+            }
 
         }
 
@@ -276,6 +299,27 @@ namespace Transito_Veracruz.Delegacion
             else
             {
                 MessageBox.Show("Seleccione un vehiculo");
+            }
+        }
+
+        private void btn_EliminarReporte_Click(object sender, RoutedEventArgs e)
+        {
+            int index = dg_Reportes.SelectedIndex;
+            if (index>=0)
+            {
+                Reporte rep = listReporte[index];
+                if (MessageBox.Show("¿Desea eliminar el reporte con numero: " + rep.NumeroReporte + "?", "Eliminar reporte", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    ImagenDAO.eliminarImagenes(rep.NumeroReporte);
+                    Reporte_VehiculoDAO.eliminarVehiculosReporte(rep.NumeroReporte);
+                    ReporteDAO.eliminarReporte(rep.NumeroReporte);
+                    MessageBox.Show("Reporte eliminado completamente");
+                }
+                cargarReportes();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un Reporte");
             }
         }
     }

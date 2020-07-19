@@ -12,6 +12,39 @@ namespace Transito_Veracruz.Model.dao
 {
     class ImagenDAO
     {
+        public static void eliminarImagenes(int numeroReporte)
+        {
+            String query = "";
+            query = "DELETE FROM dbo.Imagen WHERE numeroReporte = @numeroReporte;";
+            SqlConnection conn = null;
+            try
+            {
+                conn = ConnectionUtils.getConnection();
+                SqlCommand command;
+                if (conn != null)
+                {
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conn);
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.AddWithValue("@numeroReporte", numeroReporte);
+                    int i = command.ExecuteNonQuery();
+                    Console.WriteLine("Rows affected: " + i);
+                    command.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
         public static void guardarImagen(Imagen imagen)
         {
             String query = "";

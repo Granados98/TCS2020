@@ -12,6 +12,38 @@ namespace Transito_Veracruz.Model.dao
 {
     class ReporteDAO
     {
+        public static void eliminarReporte(int numeroReporte)
+        {
+            String query = "";
+            query = "DELETE FROM dbo.Reporte WHERE numeroReporte = @numeroReporte;";
+            SqlConnection conn = null;
+            try
+            {
+                conn = ConnectionUtils.getConnection();
+                SqlCommand command;
+                if (conn != null)
+                {
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conn);
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.AddWithValue("@numeroReporte", numeroReporte);
+                    int i = command.ExecuteNonQuery();
+                    Console.WriteLine("Rows affected: " + i);
+                    command.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
         public static int consultaReporteNuevo(DateTime fechaCreacion)
         {
             int idReporteAux = 0;
@@ -66,7 +98,6 @@ namespace Transito_Veracruz.Model.dao
             }
             return idReporteAux;
         }
-
         public static List<Reporte> getReportes()
         {
             List<Reporte> list = new List<Reporte>();
@@ -119,7 +150,6 @@ namespace Transito_Veracruz.Model.dao
             }
             return list;
         }
-
         public static void guardaReporte(Reporte reporte)
         {
 

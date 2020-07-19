@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Transito_Veracruz.Model.pocos
 {
-    class Reporte
+    public class Reporte
     {
         private Int32 idReporte;
         private Int32 numeroReporte;

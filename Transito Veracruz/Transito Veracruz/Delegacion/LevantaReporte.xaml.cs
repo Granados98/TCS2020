@@ -42,11 +42,10 @@ namespace Transito_Veracruz.Delegacion
 
         public LevantaReporte(InterfaceMenu itActualizar)
         {
+            this.itActualizar = itActualizar;
             InitializeComponent();
             cargarConductores();
             cargarDelegaciones();
-
-            this.itActualizar = itActualizar;
         }
 
         private void btn_Cancelar_Click(object sender, RoutedEventArgs e)
