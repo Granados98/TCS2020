@@ -12,7 +12,7 @@ namespace DireccionGeneral.Model.daoDireccion
 {
     class DelegacionDAO
     {
-        public static List<Delegacion> getDelegaciones()
+        public static List<Delegacion> getDelegacion()
         {
             List<Delegacion> list = new List<Delegacion>();
             SqlConnection conn = null;
@@ -51,7 +51,7 @@ namespace DireccionGeneral.Model.daoDireccion
                         m.Telefono = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
                         m.CorreoElectronico = (!rd.IsDBNull(7)) ? rd.GetString(7) : "";
                         m.Calle = (!rd.IsDBNull(8)) ? rd.GetString(8) : "";
-                        m.NumeroDelegacion = (!rd.IsDBNull(9)) ? rd.GetInt32(9) : 0;
+                        m.NumeroDireccion = (!rd.IsDBNull(9)) ? rd.GetString(9) : "";
 
                         list.Add(m);
                     }

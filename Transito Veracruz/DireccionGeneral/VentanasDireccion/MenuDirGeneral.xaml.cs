@@ -28,23 +28,28 @@ namespace DireccionGeneral.VentanasDireccion
         private List<Personal> listPersonal = new List<Personal>();
         private List<Delegacion> listDelegacion = new List<Delegacion>();
         private List<Reporte> listReporte = new List<Reporte>();
-        public MenuDirGeneral(Personal personal)
-        {
+        public MenuDirGeneral(Personal personal)        {
             this.personal = personal;
             InitializeComponent();
-            CargaDelegacionesDB();
-            CargaConductores();
+            CargaDelegaciones();
+            CargarUsuarios();
+            CargaReportes();
         }
 
-        private void CargaConductores()
+        private void CargaReportes()
+        {
+            listReporte = ReporteDAO.getReportes();
+            dgReportes.ItemsSource = listReporte;
+        }
+        private void CargarUsuarios()
         {
             listPersonal = PersonalDAO.getPersonal();
             dgPersonal.ItemsSource = listPersonal;
         }
 
-        private void CargaDelegacionesDB()
+        private void CargaDelegaciones()
         {
-            listDelegacion = DelegacionDAO.getDelegaciones();
+            listDelegacion = DelegacionDAO.getDelegacion();
             dgDelegaciones.ItemsSource = listDelegacion;
         }
 
@@ -72,11 +77,7 @@ namespace DireccionGeneral.VentanasDireccion
             verReporte.Show();
         }
 
-        private void dg_Reportes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            listReporte = ReporteDAO.getReportes();
-            dg_Reportes.ItemsSource = listReporte;
-        }
+        
 
         private void btn_Salir_Click(object sender, RoutedEventArgs e)
         {
