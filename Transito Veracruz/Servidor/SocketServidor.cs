@@ -17,98 +17,103 @@ namespace Servidor
         Socket socketClienteRemoto = null;
         IPEndPoint direccion = null;
         IPEndPoint newclient;
+        private List<SocketServer> listClientes { get; set; }
 
-        
+        string cliente = "";
         public SocketServidor()
         {
             socketServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             direccion = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
 
+            listClientes = new List<SocketServer>();
             socketServer.Bind(direccion);
             socketServer.Listen(2);
             Console.WriteLine("Escuchando...");
         }
 
+        public void enviarInformacion(Socket socket, string mensaje)
+        {
+            try
+            {
+                byte[] msjEnviar = Encoding.Default.GetBytes(mensaje);
+                socket.Send(msjEnviar, 0, msjEnviar.Length, 0);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public void enviarMensajeAClientes(string mensaje, string cliente)
+        {
+            for (int i = 0; i < listClientes.Count; i++)
+            {
+                if (cliente != listClientes[i].nombreCliente)
+                {
+                    enviarInformacion(listClientes[i].server, mensaje);
+                }
+            }
+
+        }
         public void conexionCLiente(Object s)
         {
             Socket socketClienteRemoto = (Socket)s;
             string mensaje = "";
             string info = "";
-            
+            bool band = false;
+            string enviarMesaje = "";
+
             //Recibe el mensaje que el cliente envió
-            while(true){
-
-                byte[] ByRec = new byte[255];
-                int datos = socketClienteRemoto.Receive(ByRec, 0, ByRec.Length, 0);
-                Array.Resize(ref ByRec, datos);
-                mensaje = Encoding.Default.GetString(ByRec);
-                info += mensaje + "\n";
-                string enviarMesaje = mensaje;
-                Console.WriteLine($"El cliente : " + mensaje+" "+ newclient.Address+" "+newclient.Port);
-                Console.Out.Flush();
-
-
+            while (true)
+            {
+                if (band!=false)
+                {
+                    byte[] ByRec = new byte[255];
+                    int datos = socketClienteRemoto.Receive(ByRec, 0, ByRec.Length, 0);
+                    Array.Resize(ref ByRec, datos);
+                    mensaje = Encoding.Default.GetString(ByRec);
+                    info += mensaje + "\n";
+                    enviarMesaje = mensaje;
+                    Console.WriteLine($"El cliente : " + mensaje + " " + newclient.Address + " " + newclient.Port);
+                    Console.Out.Flush();
+                }
+                band = true;
 
 
                 //manda el mensaje a todos los clientes que el servidor recibio.
-
-                byte[] msjEnviar = Encoding.Default.GetBytes(enviarMesaje);
-                socketClienteRemoto.Send(msjEnviar, 0, msjEnviar.Length, 0);
-                /*foreach (var a in usuariosConectados)
+                for (int i = 0; i < listClientes.Count; i++)
                 {
-                    if (a.Address != newclient.Address)
+                    if (socketClienteRemoto.RemoteEndPoint.ToString().Equals(listClientes[i].server.RemoteEndPoint.ToString()))
                     {
+                        cliente = listClientes[i].server.RemoteEndPoint.ToString();
+                        Console.WriteLine("El cliente es: "+ cliente);
                     }
-                }*/
+                }
+
+                enviarMensajeAClientes(enviarMesaje, cliente);
+
             }
-
-
-
         }
-        public void Conectar()
-        {
-            Thread hilo;
-            while (true)
+
+
+            public void Conectar()
             {
-                Console.WriteLine("Esperando Conexiones...");
-                socketClienteRemoto = socketServer.Accept();
-                newclient = (IPEndPoint)socketClienteRemoto.RemoteEndPoint;
-                hilo = new Thread(conexionCLiente);
-                hilo.Start(socketClienteRemoto);
-                //usuariosConectados.Add(newclient.Address);
-                Console.WriteLine("Se conecto al servidor: "+socketClienteRemoto.LocalEndPoint+" El cliente: "+newclient.Address+" Con el puerto: "+newclient.Port);
-                
-                    
-                
-            }
-            //IPEndPoint newclient = (IPEndPoint)socketClienteRemoto.RemoteEndPoint;
-            //Console.WriteLine("Cliente conectado con IP {0} en puerto {1}", newclient.Address, newclient.Port);
-
-            /*
-            //lee el idUsuario
-            string idUsuarioCadena = "";
-
-            byte[] idUsuarioConectado = new byte[255];
-            int datosUsuario = socketClienteRemoto.Receive(idUsuarioConectado, 0, idUsuarioConectado.Length, 0);
-            Array.Resize(ref idUsuarioConectado, datosUsuario);
-            idUsuarioCadena = Encoding.Default.GetString(idUsuarioConectado);
-
-
-            foreach (string id in usuariosConectados)
-            {
-                if (id == idUsuarioCadena)
+                Thread hilo;
+                while (true)
                 {
-                    Console.WriteLine("Usuario ya agregado...");
+                    Console.WriteLine("Esperando Conexiones...");
+                    socketClienteRemoto = socketServer.Accept();
+                    newclient = (IPEndPoint)socketClienteRemoto.RemoteEndPoint;
+                    hilo = new Thread(conexionCLiente);
+                    hilo.Start(socketClienteRemoto);
+                    //usuariosConectados.Add(newclient.Address);
+                    Console.WriteLine("Se conecto al servidor: " + socketClienteRemoto.LocalEndPoint + " El cliente: " + newclient.Address + " Con el puerto: " + newclient.Port);
+                    listClientes.Add(new SocketServer(socketClienteRemoto));
+
+
                 }
             }
-            usuariosConectados.Add(idUsuarioCadena); 
-            */
-            //lee el mensaje del usuario en el servidor
 
-            //cketServer.Close();
-            //Console.WriteLine("Socket servidor desconectado, pulsa una tecla para terminar...");
-        }
+     }
 
-    }
+} 
 
-}

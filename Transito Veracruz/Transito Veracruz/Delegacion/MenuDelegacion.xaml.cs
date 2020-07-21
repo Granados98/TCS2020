@@ -52,11 +52,12 @@ namespace Transito_Veracruz.Delegacion
             //el cliente se conecta con el servidor
             socketCliente.Connect(direccionConexion);
             Console.WriteLine("Conectado con exito al servidor...");
+            /*
             int id = usuarioIniciado.IdPersonal;
             string idU=Convert.ToString(id);
             byte[] bufferIdUsuario = Encoding.Default.GetBytes(idU);
             socketCliente.Send(bufferIdUsuario, 0, bufferIdUsuario.Length, 0);
-            
+            */
             recibeMensajes();
             cargarReportes();
         }
