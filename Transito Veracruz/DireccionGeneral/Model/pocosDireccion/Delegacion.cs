@@ -19,6 +19,11 @@ namespace DireccionGeneral.Model.pocosDireccion
         private String calle;
         private String numeroDireccion;
 
+        public override string ToString()
+        {
+            return String.Format("idDelegacion: {0}, numeroDelegacion: {1}, nombre: {2}, colonia: {3}, " +
+                  "codigoPostal: {4}, municipio:{5}, telefono: {6}, correoElectronico: {7}, calle: {8}, numeroDireccion:{9}", idDelegacion, numeroDelegacion, nombre, colonia, codigoPostal, municipio, telefono, correoElectronico, calle, numeroDireccion);
+        }
         public int IdDelegacion { get => idDelegacion; set => idDelegacion = value; }
         public int NumeroDelegacion { get => numeroDelegacion; set => numeroDelegacion = value; }
         public string Nombre { get => nombre; set => nombre = value; }
