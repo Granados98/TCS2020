@@ -23,7 +23,7 @@ namespace DireccionGeneral.VentanasDireccion
     /// </summary>
     public partial class RegistroUsuario : Window
     {
-        Personal personal;
+        private Personal personal;
         public RegistroUsuario()
         {
             InitializeComponent();
@@ -56,8 +56,10 @@ namespace DireccionGeneral.VentanasDireccion
             }
         }
 
+       
         private void btn_Cancelar_Click(object sender, RoutedEventArgs e)
         {
+           
             this.Close();
         }
 
@@ -66,6 +68,13 @@ namespace DireccionGeneral.VentanasDireccion
             var random = new Random();
             int numeroPersonal = random.Next(1, 1000);
             string numero=Convert.ToString(numeroPersonal);
+
+            /* string nombre = txt_Nombre.Text;
+            string apellidos = txt_Apellidos.Text;
+            string nombreUsuario = txt_Usuario.Text;
+            string contrasenia = txt_Contraseña.Text;
+
+            if (cb_Delegacion.SelectedItem == null || cb_Cargo.SelectedItem == null || cb_Personal.SelectedItem == null || nombre.Length > 0 || apellidos.Length > 0 || nombreUsuario.Length > 0 || contrasenia.Length > 0) */
 
             personal = new Personal();
             personal.NumeroPersonal = numero;

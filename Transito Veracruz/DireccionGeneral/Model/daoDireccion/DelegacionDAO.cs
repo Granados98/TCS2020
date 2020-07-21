@@ -73,7 +73,59 @@ namespace DireccionGeneral.Model.daoDireccion
             return list;
         }
 
-        public static void guardaDelegacion(Delegacion delegacion)
+        /* public static int getIdDelegacion(String numeroDelegacion)
+        {
+            int idVehiculo = 0;
+            Vehiculo vehiculo = null;
+            SqlConnection conexion = null;
+
+            try
+            {
+                conexion = ConnectionUtils.getConnection();
+                SqlCommand command;
+                SqlDataReader rd;
+                if (conexion != null)
+                {
+                    String query = String.Format("SELECT " +
+                        "x.idVehiculo, " +
+                        "x.numeroPlacas " +
+                        "FROM dbo.Vehiculo x " +
+                        "WHERE x.numeroPlacas='{0}';", numeroPlacas);
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conexion);
+                    rd = command.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        vehiculo = new Vehiculo();
+                        vehiculo.IdVehiculo = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
+                        vehiculo.NumeroPlacas = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                    }
+                    rd.Close();
+                    command.Dispose();
+                    Console.WriteLine(vehiculo);
+
+                    idVehiculo = vehiculo.IdVehiculo;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("No se encontro el Conductor");
+            }
+            finally
+            {
+                if (conexion != null)
+                {
+                    conexion.Close();
+                }
+            }
+            return idVehiculo;
+
+        } */
+
+        public static void guardaDelegacion(Delegacion delegacion, bool nuevo)
         {
 
             String query = "";
