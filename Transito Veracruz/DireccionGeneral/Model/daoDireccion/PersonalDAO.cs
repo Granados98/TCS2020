@@ -7,11 +7,45 @@ using System.Text;
 using System.Threading.Tasks;
 using DireccionGeneral.Model.dbDireccion;
 using DireccionGeneral.Model.pocosDireccion;
+using DireccionGeneral.Model.securityDireccion;
 
 namespace DireccionGeneral.Model.daoDireccion
 {
     class PersonalDAO
     {
+        public static void eliminarPersonal(int idPersonal)
+        {
+            String query = "";
+            query = "DELETE FROM dbo.Personal WHERE idPersonal = @idPersonal;";
+            SqlConnection conn = null;
+            try
+            {
+                conn = ConnectionUtils.getConnection();
+                SqlCommand command;
+                if (conn != null)
+                {
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conn);
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.AddWithValue("@idPersonal", idPersonal);
+                    int i = command.ExecuteNonQuery();
+                    Console.WriteLine("Rows affected: " + i);
+                    command.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
         public static int getIdPersonal(string numeroPersonal)
         {
 
@@ -29,7 +63,7 @@ namespace DireccionGeneral.Model.daoDireccion
                     String query = String.Format("SELECT " +
                         "x.idPersonal, " +
                         "x.numeroPersonal " +
-                        "FROM dbo.Conductor x " +
+                        "FROM dbo.Personal x " +
                         "WHERE x.numeroPersonal='{0}';", numeroPersonal);
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conexion);
@@ -75,12 +109,15 @@ namespace DireccionGeneral.Model.daoDireccion
                 if (conn != null)
                 {
                     String query = String.Format("SELECT " +
-                                                 "x.idPersonal, " +
+                        "x.idPersonal, " +
                         "x.numeroPersonal, " +
                         "x.tipoPersonal, " +
                         "x.apellidos, " +
                         "x.nombre, " +
-                        "x.cargo " +
+                        "x.cargo, " +
+                        "x.usuario, " +
+                        "x.contrasena, " +
+                        "x.nombreDelegacion " +
                         "FROM dbo.Personal x ");
                     //"WHERE x.idUsuario = {0} AND eliminado = 'N';", idPersonal);
                     Console.WriteLine(query);
@@ -95,6 +132,11 @@ namespace DireccionGeneral.Model.daoDireccion
                         m.Apellidos = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
                         m.Nombre = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
                         m.Cargo = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
+                        m.Usuario = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
+
+                        m.Contrasenia = (!rd.IsDBNull(7)) ? rd.GetString(7) : "";
+
+                        m.NombreDelegacion = (!rd.IsDBNull(8)) ? rd.GetString(8) : "";
 
                         list.Add(m);
                     }
@@ -227,9 +269,10 @@ namespace DireccionGeneral.Model.daoDireccion
                         "apellidos = @apellidos, " +
                         "nombre = @nombre, " +
                         "cargo = @cargo, " +
-                        "usuario = @usuario " +
-                        "contrasena = @contrasena " +
-                        "nombreDelegacion = @nombreDelegacion " +
+                        "usuario = @usuario, " +
+                        "contrasena = @contrasena, " +
+                        "nombreDelegacion = @nombreDelegacion, " +
+                        "estado = @estado " +
                         "WHERE idPersonal = @idPersonal;";
 
             }
@@ -255,13 +298,9 @@ namespace DireccionGeneral.Model.daoDireccion
                     command.Parameters.AddWithValue("@usuario", personal.Usuario);
                     command.Parameters.AddWithValue("@contrasena", personal.Contrasenia);
                     command.Parameters.AddWithValue("@nombreDelegacion", personal.NombreDelegacion);
+                    command.Parameters.AddWithValue("@estado", personal.Estado);
 
-                    if (nuevo)
-                    {
-                        command.Parameters.AddWithValue("@idPersonal", personal.IdPersonal);
-                        command.Parameters.AddWithValue("@estado", personal.Estado);
-                    }
-
+                    command.Parameters.AddWithValue("@idPersonal", personal.IdPersonal);
 
                     int i = command.ExecuteNonQuery();
                     Console.WriteLine("Filas afectadas: " + i);

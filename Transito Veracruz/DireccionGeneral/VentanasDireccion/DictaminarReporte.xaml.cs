@@ -21,9 +21,13 @@ namespace DireccionGeneral.VentanasDireccion
     /// </summary>
     public partial class DictaminarReporte : Window
     {
-        public DictaminarReporte()
+        Reporte reporte;
+        private int numeroReporte;
+        public DictaminarReporte(Reporte reporte)
         {
+            this.reporte = reporte;
             InitializeComponent();
+            numeroReporte = reporte.NumeroReporte;
         }
 
         private void btn_Salir_Click(object sender, RoutedEventArgs e)
@@ -38,16 +42,19 @@ namespace DireccionGeneral.VentanasDireccion
             string nombre = txt_Nombre.Text;
             string descripcion = tb_Descripcion.Text;
 
-            if (folio==0 && nombre.Length>0 && descripcion.Length>0)
+            if (folio>0 && nombre.Length>0 && descripcion.Length>0)
             {
                 Dictamen dictamen = new Dictamen();
                 dictamen.Folio = folio;
                 dictamen.Descripcion = descripcion;
                 dictamen.FechaDictamen = DateTime.Now;
 
-                if (DictamenDAO.verificaDictamen(folio)>0)
+                reporte.FolioDictamen = folio;
+
+                if (DictamenDAO.verificaDictamen(folio)==0)
                 {
                     DictamenDAO.guardarDictamen(dictamen);
+                    ReporteDAO.asociarDictamen(reporte);
                     this.Close();
                 }
                 else

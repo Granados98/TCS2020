@@ -12,8 +12,40 @@ namespace DireccionGeneral.Model.daoDireccion
 {
     class DelegacionDAO
     {
-        public static void eliminarDelegacion() { 
+        public static void eliminarDelegacion(int id) {
 
+
+            String query = "";
+            
+                query = "DELETE FROM dbo.Delegacion WHERE idDelegacion = @idDelegacion;";
+            
+            SqlConnection conn = null;
+            try
+            {
+                conn = ConnectionUtils.getConnection();
+                SqlCommand command;
+                if (conn != null)
+                {
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conn);
+                    command.CommandType = CommandType.Text;
+                        command.Parameters.AddWithValue("@idDelegacion", id);
+                    int i = command.ExecuteNonQuery();
+                    Console.WriteLine("Rows affected: " + i);
+                    command.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
         }
         public static int getIdDelegacion(int numeroDelegacion )
         {

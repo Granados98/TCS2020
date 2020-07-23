@@ -23,8 +23,6 @@ namespace DireccionGeneral.VentanasDireccion
     public partial class MenuDirGeneral : Window, InterfaceMenu
     {
         Personal personal { get; set; }
-        Delegacion delegacion { get; set; }
-        Reporte reportes { get; set; }
 
         private List<Personal> listPersonal = new List<Personal>();
         private List<Delegacion> listDelegacion = new List<Delegacion>();
@@ -70,8 +68,14 @@ namespace DireccionGeneral.VentanasDireccion
 
         private void btn_AgregarDictamen_Click(object sender, RoutedEventArgs e)
         {
-            DictaminarReporte nuevoDictamen = new DictaminarReporte();
-            nuevoDictamen.Show();
+            int index = dgReportes.SelectedIndex;
+            if (index>=0)
+            {
+                Reporte reporte = listReporte[index];
+
+                DictaminarReporte nuevoDictamen = new DictaminarReporte(reporte);
+                nuevoDictamen.Show();
+            }
         }
 
         private void btn_VerDetalle_Click(object sender, RoutedEventArgs e)
@@ -88,17 +92,6 @@ namespace DireccionGeneral.VentanasDireccion
             PersonalDAO.actualizarEstadoUsuario(personal);
             this.Close();
         }
-
-        public void actualizar(int idPersonal, string numeroPersonal, string tipoPersonal, string apellidos, string nombre, string cargo, string usuario, string contrasena, string nombreDelegacion)
-        {
-            CargarUsuarios();
-        }
-
-        public void actualizar(int idDelegacion, int numeroDelegacion, string nombre, string colonia, string codigoPostal, string municipio, string telefono, string correo, string calle, string numeroDireccion)
-        {
-            CargaDelegaciones();
-        }
-
         private void btn_EditarDelegacion_Click(object sender, RoutedEventArgs e)
         {
             int index = dgDelegaciones.SelectedIndex;
@@ -129,11 +122,66 @@ namespace DireccionGeneral.VentanasDireccion
                 Delegacion delegacion = listDelegacion[index];
                 if (MessageBox.Show("¿Desea eliminar el reporte con numero: " + delegacion.NumeroDelegacion + "?", "Eliminar reporte", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    
+                    DelegacionDAO.eliminarDelegacion(delegacion.IdDelegacion);
+                    CargaDelegaciones();
                 }
 
 
                 }
+            else
+            {
+                MessageBox.Show("Seleccione una delegacion");
+            }
+        }
+
+
+
+        public void actualizar(int idPersonal, string numeroPersonal, string tipoPersonal, string apellidos, string nombre, string cargo, string usuario, string contrasena, string nombreDelegacion)
+        {
+            CargarUsuarios();
+        }
+
+        public void actualizar(int idDelegacion, int numeroDelegacion, string nombre, string colonia, string codigoPostal, string municipio, string telefono, string correo, string calle, string numeroDireccion)
+        {
+            CargaDelegaciones();
+        }
+
+        private void btn_EditarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            int index = dgPersonal.SelectedIndex;
+            if (index >= 0)
+            {
+                Personal personal = listPersonal[index];
+                Boolean resultado = false;
+                RegistroUsuario ru = new RegistroUsuario(this, false, personal);
+                ru.ShowDialog();
+                resultado = ru.Resultado;
+                if (resultado)
+                {
+                    this.CargaDelegaciones();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione una delegacion");
+            }
+
+        }
+
+        private void btn_EliminarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            int index = dgPersonal.SelectedIndex;
+            if (index >= 0)
+            {
+                Personal personal = listPersonal[index];
+                if (MessageBox.Show("¿Desea eliminar el usuario: " + personal.Usuario + "?", "Eliminar reporte", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    PersonalDAO.eliminarPersonal(personal.IdPersonal);
+                    CargarUsuarios();
+                }
+
+
+            }
             else
             {
                 MessageBox.Show("Seleccione una delegacion");

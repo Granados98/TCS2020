@@ -57,9 +57,12 @@
                             <DataGridTextColumn Header="Tipo Personal" IsReadOnly="True" Binding="{Binding TipoPersonal}" Width="*"/>
                             <DataGridTextColumn Header="Apellidos" IsReadOnly="True" Binding="{Binding Apellidos}" Width="*"/>
                             <DataGridTextColumn Header="Nombre" IsReadOnly="True" Binding="{Binding Nombre}" Width="*"/>
+                            <DataGridTextColumn Header="Cargo" IsReadOnly="True" Binding="{Binding Cargo}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="btn_AgregarUsuario" Content="Agregar Usuario" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="153" Click="btn_AgregarUsuario_Click"/>
+                    <Button x:Name="btn_EditarUsuario" Content="Editar Usuario" Background="#54903B" HorizontalAlignment="Left" Margin="240,453,0,0" VerticalAlignment="Top" Width="153" Click="btn_EditarUsuario_Click"/>
+                    <Button x:Name="btn_EliminarUsuario" Content="Eliminar Usuario" Foreground="White" Background="#D92530" BorderBrush="Black" HorizontalAlignment="Left" Margin="802,453,0,0" VerticalAlignment="Top" Width="140" Click="btn_EliminarUsuario_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="REPORTES" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">

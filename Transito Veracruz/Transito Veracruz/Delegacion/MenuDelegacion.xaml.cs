@@ -58,7 +58,7 @@ namespace Transito_Veracruz.Delegacion
             byte[] bufferIdUsuario = Encoding.Default.GetBytes(idU);
             socketCliente.Send(bufferIdUsuario, 0, bufferIdUsuario.Length, 0);
             */
-            recibeMensajes();
+            //recibeMensajes();
             cargarReportes();
         }
 

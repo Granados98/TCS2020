@@ -16,6 +16,7 @@ using DireccionGeneral.Model.daoDireccion;
 using DireccionGeneral.Model.dbDireccion;
 using DireccionGeneral.Model.InterfaceDireccion;
 using DireccionGeneral.Model.pocosDireccion;
+using DireccionGeneral.Model.securityDireccion;
 
 namespace DireccionGeneral.VentanasDireccion
 {
@@ -45,10 +46,9 @@ namespace DireccionGeneral.VentanasDireccion
                 txt_Apellidos.Text = personal.Apellidos;
                 txt_Nombre.Text = personal.Nombre;
                 txt_Usuario.Text = personal.Usuario;
-                //falta desencriptar
-                txt_Contraseña.Text = personal.Contrasenia;
 
                 idPersonalObtenido = personal.IdPersonal;
+                Console.WriteLine(idPersonalObtenido);
 
             }
         }
@@ -82,7 +82,7 @@ namespace DireccionGeneral.VentanasDireccion
        
         private void btn_Cancelar_Click(object sender, RoutedEventArgs e)
         {
-           
+            this.Resultado = false;
             this.Close();
         }
 
@@ -102,25 +102,27 @@ namespace DireccionGeneral.VentanasDireccion
 
             if (cb_Delegacion.SelectedItem == null || cb_Cargo.SelectedItem == null || cb_Personal.SelectedItem == null || nombre.Length > 0 || apellidos.Length > 0 || nombreUsuario.Length > 0 || contrasenia.Length > 0)
             {
-                personal = new Personal();
-                personal.NumeroPersonal = numeroPersonalAux;
-                personal.NombreDelegacion = cb_Delegacion.Text;
-                personal.Cargo = cb_Cargo.Text;
-                personal.TipoPersonal = cb_Personal.Text;
-                personal.Nombre = txt_Nombre.Text;
-                personal.Apellidos = txt_Apellidos.Text;
-                personal.Usuario = txt_Usuario.Text;
-                personal.Contrasenia = txt_Contraseña.Text;
-                personal.Estado = "Desconectado";
+                this.personal.NumeroPersonal = numeroPersonalAux;
+                this.personal.NombreDelegacion = cb_Delegacion.Text;
+                this.personal.Cargo = cb_Cargo.Text;
+                this.personal.TipoPersonal = cb_Personal.Text;
+                this.personal.Nombre = txt_Nombre.Text;
+                this.personal.Apellidos = txt_Apellidos.Text;
+                this.personal.Usuario = txt_Usuario.Text;
+                this.personal.Contrasenia = txt_Contraseña.Text;
+                this.personal.Estado = "Desconectado";
 
                 PersonalDAO.guardarUsuario(this.personal, this.nuevo);
-
+                this.Resultado = true;
                 if (nuevo)
                 {
                     int idPersonalAux = PersonalDAO.getIdPersonal(numeroPersonalAux);
-                    this.itActualizar.actualizar(idPersonalAux, numeroPersonalAux, tipoPersonal, apellidos, nombre, cargo, nombreUsuario, contrasenia, nombreDelefacion);
+                    this.itActualizar.actualizar(idPersonalAux, numeroPersonalAux, tipoPersonal, apellidos, nombre, cargo,nombreUsuario,contrasenia,nombreDelefacion);
                 }
-                this.itActualizar.actualizar(idPersonalObtenido, numeroPersonalAux, tipoPersonal, apellidos, nombre, cargo, nombreUsuario, contrasenia, nombreDelefacion);
+                else
+                {
+                    this.itActualizar.actualizar(idPersonalObtenido, numeroPersonalAux, tipoPersonal, apellidos, nombre, cargo, nombreUsuario, contrasenia, nombreDelefacion);
+                }
                 this.Close();
             }
             else

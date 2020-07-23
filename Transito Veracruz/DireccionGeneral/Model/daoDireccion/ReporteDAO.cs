@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,47 @@ namespace DireccionGeneral.Model.daoDireccion
 {
     class ReporteDAO
     {
+        public static void asociarDictamen(Reporte reporte)
+        {
+            String query = "";
+
+            query = "UPDATE dbo.Reporte SET " +
+                       "folioDictamen = @folioDictamen " +
+                       "WHERE numeroReporte = @numeroReporte;";
+
+            SqlConnection conn = null;
+            try
+            {
+                conn = ConnectionUtils.getConnection();
+                SqlCommand command;
+                if (conn != null)
+                {
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conn);
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.AddWithValue("@folioDictamen", reporte.FolioDictamen);
+
+                    command.Parameters.AddWithValue("@numeroReporte", reporte.FolioDictamen);
+
+
+                    int i = command.ExecuteNonQuery();
+                    Console.WriteLine("Filas afectadas: " + i);
+                    command.Dispose();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("No se pudo guardar la información...");
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
         public static List<Reporte> getReportes()
         {
             List<Reporte> list = new List<Reporte>();
