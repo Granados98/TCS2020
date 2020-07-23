@@ -50,7 +50,7 @@ namespace Transito_Veracruz.Delegacion
             nombre_Usuario.Content = usuarioIniciado.Usuario;
             
             //el cliente se conecta con el servidor
-            socketCliente.Connect(direccionConexion);
+            //socketCliente.Connect(direccionConexion);
             Console.WriteLine("Conectado con exito al servidor...");
             /*
             int id = usuarioIniciado.IdPersonal;

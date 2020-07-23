@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DireccionGeneral.Model.pocosDireccion
 {
-    class Delegacion
+    public class Delegacion
     {
         private Int32 idDelegacion;
         private Int32 numeroDelegacion;

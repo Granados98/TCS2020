@@ -71,3 +71,5 @@ C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\EntityFramework.xml
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\Newtonsoft.Json.xml

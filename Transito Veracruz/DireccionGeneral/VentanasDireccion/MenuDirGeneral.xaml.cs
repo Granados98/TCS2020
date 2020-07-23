@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DireccionGeneral.Model.daoDireccion;
+using DireccionGeneral.Model.InterfaceDireccion;
 using DireccionGeneral.Model.pocosDireccion;
 
 namespace DireccionGeneral.VentanasDireccion
@@ -19,7 +20,7 @@ namespace DireccionGeneral.VentanasDireccion
     /// <summary>
     /// Lógica de interacción para MenuDirGeneral.xaml
     /// </summary>
-    public partial class MenuDirGeneral : Window
+    public partial class MenuDirGeneral : Window, InterfaceMenu
     {
         Personal personal { get; set; }
         Delegacion delegacion { get; set; }
@@ -49,19 +50,21 @@ namespace DireccionGeneral.VentanasDireccion
 
         private void CargaDelegaciones()
         {
-            listDelegacion = DelegacionDAO.getDelegacion();
+            listDelegacion = DelegacionDAO.getDelegaciones();
             dgDelegaciones.ItemsSource = listDelegacion;
         }
 
         private void btn_AgregarDelegacion_Click(object sender, RoutedEventArgs e)
         {
-            AgregarDelegacion delegacion = new AgregarDelegacion();
-            delegacion.Show();
+            Delegacion delegacion = new Delegacion();
+            AgregarDelegacion ad = new AgregarDelegacion(this, true, delegacion);
+            ad.Show();
         }
 
         private void btn_AgregarUsuario_Click(object sender, RoutedEventArgs e)
         {
-            RegistroUsuario nuevoUsuario = new RegistroUsuario();
+            Personal personal = new Personal();
+            RegistroUsuario nuevoUsuario = new RegistroUsuario(this,true,personal);
             nuevoUsuario.Show();
         }
 
@@ -84,6 +87,57 @@ namespace DireccionGeneral.VentanasDireccion
             this.personal.Estado = "Desconectado";
             PersonalDAO.actualizarEstadoUsuario(personal);
             this.Close();
+        }
+
+        public void actualizar(int idPersonal, string numeroPersonal, string tipoPersonal, string apellidos, string nombre, string cargo, string usuario, string contrasena, string nombreDelegacion)
+        {
+            CargarUsuarios();
+        }
+
+        public void actualizar(int idDelegacion, int numeroDelegacion, string nombre, string colonia, string codigoPostal, string municipio, string telefono, string correo, string calle, string numeroDireccion)
+        {
+            CargaDelegaciones();
+        }
+
+        private void btn_EditarDelegacion_Click(object sender, RoutedEventArgs e)
+        {
+            int index = dgDelegaciones.SelectedIndex;
+            if (index >= 0)
+            {
+                Delegacion delegacion = listDelegacion[index];
+                Boolean resultado = false;
+                AgregarDelegacion ad = new AgregarDelegacion(this, false, delegacion);
+                ad.ShowDialog();
+                resultado = ad.Resultado;
+                if (resultado)
+                {
+                    this.CargaDelegaciones();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione una delegacion");
+            }
+
+        }
+
+        private void btn_EliminarDelegacion_Click(object sender, RoutedEventArgs e)
+        {
+            int index = dgDelegaciones.SelectedIndex;
+            if (index>=0)
+            {
+                Delegacion delegacion = listDelegacion[index];
+                if (MessageBox.Show("¿Desea eliminar el reporte con numero: " + delegacion.NumeroDelegacion + "?", "Eliminar reporte", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    
+                }
+
+
+                }
+            else
+            {
+                MessageBox.Show("Seleccione una delegacion");
+            }
         }
     }
 }

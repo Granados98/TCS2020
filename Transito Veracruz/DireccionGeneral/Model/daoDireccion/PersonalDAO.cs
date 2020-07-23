@@ -12,6 +12,57 @@ namespace DireccionGeneral.Model.daoDireccion
 {
     class PersonalDAO
     {
+        public static int getIdPersonal(string numeroPersonal)
+        {
+
+            int idPersonal = 0;
+            Personal personal = null;
+            SqlConnection conexion = null;
+
+            try
+            {
+                conexion = ConnectionUtils.getConnection();
+                SqlCommand command;
+                SqlDataReader rd;
+                if (conexion != null)
+                {
+                    String query = String.Format("SELECT " +
+                        "x.idPersonal, " +
+                        "x.numeroPersonal " +
+                        "FROM dbo.Conductor x " +
+                        "WHERE x.numeroPersonal='{0}';", numeroPersonal);
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conexion);
+                    rd = command.ExecuteReader();
+
+                    while (rd.Read())
+                    {
+                        personal = new Personal();
+                        personal.IdPersonal = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
+                        personal.NumeroPersonal = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                    }
+                    rd.Close();
+                    command.Dispose();
+                    Console.WriteLine(personal);
+
+                    idPersonal = personal.IdPersonal;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("No se encontro el Conductor");
+            }
+            finally
+            {
+                if (conexion != null)
+                {
+                    conexion.Close();
+                }
+            }
+            return idPersonal;
+        }
         public static List<Personal> getPersonal()
         {
             List<Personal> list = new List<Personal>();
@@ -79,10 +130,6 @@ namespace DireccionGeneral.Model.daoDireccion
                     String query = String.Format("SELECT " +
                         "x.idPersonal, " +
                         "x.numeroPersonal, " +
-                        "x.tipoPersonal, " +
-                        "x.apellidos, " +
-                        "x.nombre, " +
-                        "x.cargo, " +
                         "x.usuario, " +
                         "x.contrasena, " +
                         "x.estado " +
@@ -97,13 +144,9 @@ namespace DireccionGeneral.Model.daoDireccion
                         personal = new Personal();
                         personal.IdPersonal = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
                         personal.NumeroPersonal = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
-                        personal.TipoPersonal = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        personal.Apellidos = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
-                        personal.Nombre = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
-                        personal.Cargo = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
-                        personal.Usuario = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
-                        personal.Contrasenia = (!rd.IsDBNull(7)) ? rd.GetString(7) : "";
-                        personal.Estado = (!rd.IsDBNull(8)) ? rd.GetString(8) : "";
+                        personal.Usuario = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        personal.Contrasenia = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
+                        personal.Estado = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
                     }
                     rd.Close();
                     command.Dispose();
@@ -168,12 +211,29 @@ namespace DireccionGeneral.Model.daoDireccion
             }
 
         }
-        public static void guardarUsuario(Personal personal)
+        public static void guardarUsuario(Personal personal, bool nuevo)
         {
             String query = "";
+            if (nuevo)
+            {
+                query = "INSERT INTO dbo.Personal (numeroPersonal,tipoPersonal,apellidos,nombre,cargo,usuario,contrasena,nombreDelegacion,estado) " +
+                       "VALUES(@numeroPersonal,@tipoPersonal,@apellidos,@nombre,@cargo,@usuario,@contrasena,@nombreDelegacion,@estado);";
+            }
+            else
+            {
+                query = "UPDATE dbo.Personal SET " +
+                        "numeroPersonal = @numeroPersonal," +
+                        "tipoPersonal = @tipoPersonal, " +
+                        "apellidos = @apellidos, " +
+                        "nombre = @nombre, " +
+                        "cargo = @cargo, " +
+                        "usuario = @usuario " +
+                        "contrasena = @contrasena " +
+                        "nombreDelegacion = @nombreDelegacion " +
+                        "WHERE idPersonal = @idPersonal;";
 
-            query = "INSERT INTO dbo.Personal (numeroPersonal,tipoPersonal,apellidos,nombre,cargo,usuario,contrasena,nombreDelegacion,estatus) " +
-                       "VALUES(@numeroPersonal,@tipoPersonal,@apellidos,@nombre,@cargo,@usuario,@contrasena,@nombreDelegacion,@estatus);";
+            }
+
 
             Console.WriteLine("Se guardo la infomacion");
 
@@ -195,9 +255,12 @@ namespace DireccionGeneral.Model.daoDireccion
                     command.Parameters.AddWithValue("@usuario", personal.Usuario);
                     command.Parameters.AddWithValue("@contrasena", personal.Contrasenia);
                     command.Parameters.AddWithValue("@nombreDelegacion", personal.NombreDelegacion);
-                    command.Parameters.AddWithValue("@estatus", personal.Estado);
 
-                    command.Parameters.AddWithValue("@idPersonal", personal.IdPersonal);
+                    if (nuevo)
+                    {
+                        command.Parameters.AddWithValue("@idPersonal", personal.IdPersonal);
+                        command.Parameters.AddWithValue("@estado", personal.Estado);
+                    }
 
 
                     int i = command.ExecuteNonQuery();

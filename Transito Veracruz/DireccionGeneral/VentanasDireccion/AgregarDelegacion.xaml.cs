@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DireccionGeneral.Model.daoDireccion;
+using DireccionGeneral.Model.InterfaceDireccion;
 using DireccionGeneral.Model.pocosDireccion;
 
 namespace DireccionGeneral.VentanasDireccion
@@ -21,13 +22,33 @@ namespace DireccionGeneral.VentanasDireccion
     /// </summary>
     public partial class AgregarDelegacion : Window
     {
-        Delegacion delegacion;
         private bool nuevo;
         private bool resultado;
-        public AgregarDelegacion()
+        private InterfaceMenu itActualizar;
+        private Delegacion delegacion;
+        private int idDelegacionEditar;
+        public AgregarDelegacion(InterfaceMenu itActualizar,Boolean nuevo,Delegacion delegacion)
         {
+            this.delegacion = delegacion;
+            this.nuevo = nuevo;
+            this.itActualizar = itActualizar;
             InitializeComponent();
+            if (!nuevo)
+            {
+                txt_Nombre.Text = delegacion.Nombre;
+                txt_Calle.Text = delegacion.Calle;
+                txt_NumeroCalle.Text = delegacion.NumeroDireccion;
+                txt_Colonia.Text = delegacion.Colonia;
+                txt_CodigoPostal.Text = delegacion.CodigoPostal;
+                txt_Telefono.Text = delegacion.Telefono;
+                txt_Municipio.Text = delegacion.Municipio;
+                txt_Correo.Text = delegacion.CorreoElectronico;
+
+                idDelegacionEditar = delegacion.IdDelegacion;
+            }
         }
+
+        public bool Resultado { get => resultado; set => resultado = value; }
 
         private void btn_Cancelar_Click(object sender, RoutedEventArgs e)
         {
@@ -35,54 +56,53 @@ namespace DireccionGeneral.VentanasDireccion
             this.Close();
         }
 
-        public bool Resultado { get => resultado; set => resultado = value; }
-
         private void btn_AgregarDelegacion_Click(object sender, RoutedEventArgs e)
         {
-            /* string calle = txt_Calle.Text;
+            string calle = txt_Calle.Text;
             string codigoPostal = txt_CodigoPostal.Text;
             string colonia = txt_Colonia.Text;
             string correo = txt_Correo.Text;
             string nombre = txt_Nombre.Text;
             string numeroDireccion = txt_NumeroCalle.Text;
             string telefono = txt_Telefono.Text;
-            string municipio = txt_Municipio.Text; */
+            string municipio = txt_Municipio.Text;
 
             var random = new Random();
             int numeroDelegacion = random.Next(1, 1000);
 
-            /* if (calle.Length > 0 && codigoPostal.Length > 0 && colonia.Length > 0 && correo.Length > 0 && nombre.Length > 0 && numeroDireccion.Length > 0 && telefono.Length > 0 && municipio.Length > 0)
-            { */
-
-            delegacion = new Delegacion();
-            delegacion.NumeroDelegacion = numeroDelegacion;
-            delegacion.Calle = txt_Calle.Text;
-            delegacion.CodigoPostal = txt_CodigoPostal.Text;
-            delegacion.Colonia = txt_Colonia.Text;
-            delegacion.CorreoElectronico = txt_Correo.Text;
-            delegacion.Nombre = txt_Nombre.Text;
-            delegacion.NumeroDireccion = txt_NumeroCalle.Text;
-            delegacion.Telefono = txt_Telefono.Text;
-            delegacion.Municipio = txt_Municipio.Text;
-
-            DelegacionDAO.guardaDelegacion(delegacion, nuevo);
-
-            this.Close();
-            /* this.Resultado = true;
-            if (nuevo)
+            if (calle.Length > 0 && codigoPostal.Length > 0 && colonia.Length > 0 && correo.Length > 0 && nombre.Length > 0 && numeroDireccion.Length > 0 && telefono.Length > 0 && municipio.Length > 0)
             {
-                int idDelegacionAux = DelegacionDAO.getIDelegacion(numeroDelegacion);
-                this.itActualizar.actualizar(idConductorAux, numeroLicencia, apellidos, nombre, fechaNacimiento, telefono);
+
+                delegacion.NumeroDelegacion = numeroDelegacion;
+                delegacion.Calle = txt_Calle.Text;
+                delegacion.CodigoPostal = txt_CodigoPostal.Text;
+                delegacion.Colonia = txt_Colonia.Text;
+                delegacion.CorreoElectronico = txt_Correo.Text;
+                delegacion.Nombre = txt_Nombre.Text;
+                delegacion.NumeroDireccion = txt_NumeroCalle.Text;
+                delegacion.Telefono = txt_Telefono.Text;
+                delegacion.Municipio = txt_Municipio.Text;
+
+                DelegacionDAO.guardaDelegacion(this.delegacion, this.nuevo);
+
+                this.Close();
+                this.Resultado = true;
+                if (nuevo)
+                {
+                    int idDelegacionAux = DelegacionDAO.getIdDelegacion(numeroDelegacion);
+                    this.itActualizar.actualizar(idDelegacionAux, numeroDelegacion, nombre, colonia, codigoPostal, municipio, telefono, correo, calle, numeroDireccion);
+                }
+                this.itActualizar.actualizar(idDelegacionEditar, numeroDelegacion, nombre, colonia, codigoPostal, municipio, telefono, correo, calle, numeroDireccion);
+                this.Close();
             }
-            this.itActualizar.actualizar(idConductorA, numeroLicencia, apellidos, nombre, fechaNacimiento, telefono);
-            this.Close();
             else
             {
                 MessageBox.Show(this, "LLena todos los campos");
-            } */
+            }
         }
     } 
 
 }
+
 
 

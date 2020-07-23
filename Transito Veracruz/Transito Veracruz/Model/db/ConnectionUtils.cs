@@ -30,8 +30,9 @@ namespace Transito_Veracruz.Model.db
                 conn.Open();
                 return conn;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 Console.WriteLine("ERROR BASE DE DATOS");
             }
             return conn;

@@ -43,6 +43,8 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="btn_AgregarDelegacion" Content="Agregar Delegación" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_AgregarDelegacion_Click"/>
+                    <Button x:Name="btn_EditarDelegacion" Content="Editar Delegación" Background="#54903B" HorizontalAlignment="Left" Margin="562,453,0,0" VerticalAlignment="Top" Width="160" Click="btn_EditarDelegacion_Click"/>
+                    <Button x:Name="btn_EliminarDelegacion" Content="Eliminar Delegacion" Foreground="White" Background="#D92530" BorderBrush="Black" HorizontalAlignment="Left" Margin="814,453,0,0" VerticalAlignment="Top" Width="166" Click="btn_EliminarDelegacion_Click"/>
 
                 </Grid>
             </TabItem>
@@ -66,7 +68,7 @@
                     <DataGrid x:Name="dgReportes" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="275" Margin="27,159,0,0" VerticalAlignment="Top" Width="980" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="No. de Reporte" IsReadOnly="True" Binding="{Binding NumeroReporte}" Width="*"/>
-                            <DataGridTextColumn Header="Fecha" IsReadOnly="True" Binding="{Binding NumeroReporte}" Width="*"/>
+                            <DataGridTextColumn Header="Estatus" IsReadOnly="True" Binding="{Binding Estatus}" Width="*"/>
                             <DataGridTextColumn Header="Nombre Delegacion" Binding="{Binding NombreDelegacion}" Width="*" />
                             <DataGridTextColumn Header="Folio Dictamen" Binding="{Binding FolioDictamen}" Width="*"/>
                             <DataGridTextColumn Header="Dirección" Binding="{Binding Direccion}" Width="*"/>

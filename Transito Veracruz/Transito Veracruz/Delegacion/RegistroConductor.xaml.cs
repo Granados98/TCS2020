@@ -34,6 +34,8 @@ namespace Transito_Veracruz.Delegacion
             this.nuevo = nuevo;
             this.itActualizar = itActualizar;
             InitializeComponent();
+
+            String.Format("{0:MM/dd/yyyy}", select_Date);
             if (!nuevo)
             {
                 txt_Apellidos.Text = conductor.Apellidos;

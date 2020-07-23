@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DireccionGeneral.Model.daoDireccion;
 using DireccionGeneral.Model.dbDireccion;
+using DireccionGeneral.Model.InterfaceDireccion;
 using DireccionGeneral.Model.pocosDireccion;
 
 namespace DireccionGeneral.VentanasDireccion
@@ -24,12 +25,34 @@ namespace DireccionGeneral.VentanasDireccion
     public partial class RegistroUsuario : Window
     {
         private Personal personal;
-        public RegistroUsuario()
+        private InterfaceMenu itActualizar;
+        private bool nuevo;
+        private bool resultado;
+        private int idPersonalObtenido;
+        public RegistroUsuario(InterfaceMenu itActualizar, Boolean nuevo, Personal personal)
         {
+            this.itActualizar = itActualizar;
+            this.nuevo = nuevo;
+            this.personal = personal;
             InitializeComponent();
             cargarDelegaciones();
-        }
 
+            if (!nuevo)
+            {
+                cb_Delegacion.Text = personal.NombreDelegacion;
+                cb_Personal.Text= personal.TipoPersonal;
+                cb_Cargo.Text = personal.Cargo;
+                txt_Apellidos.Text = personal.Apellidos;
+                txt_Nombre.Text = personal.Nombre;
+                txt_Usuario.Text = personal.Usuario;
+                //falta desencriptar
+                txt_Contraseña.Text = personal.Contrasenia;
+
+                idPersonalObtenido = personal.IdPersonal;
+
+            }
+        }
+        public bool Resultado { get => resultado; set => resultado = value; }
         private void cargarDelegaciones()
         {
             SqlConnection conexion = null;
@@ -67,27 +90,43 @@ namespace DireccionGeneral.VentanasDireccion
         {
             var random = new Random();
             int numeroPersonal = random.Next(1, 1000);
-            string numero=Convert.ToString(numeroPersonal);
+            string numeroPersonalAux=Convert.ToString(numeroPersonal);
 
-            /* string nombre = txt_Nombre.Text;
+            string nombre = txt_Nombre.Text;
             string apellidos = txt_Apellidos.Text;
             string nombreUsuario = txt_Usuario.Text;
             string contrasenia = txt_Contraseña.Text;
+            string cargo = cb_Cargo.Text;
+            string tipoPersonal = cb_Personal.Text;
+            string nombreDelefacion = cb_Delegacion.Text;
 
-            if (cb_Delegacion.SelectedItem == null || cb_Cargo.SelectedItem == null || cb_Personal.SelectedItem == null || nombre.Length > 0 || apellidos.Length > 0 || nombreUsuario.Length > 0 || contrasenia.Length > 0) */
+            if (cb_Delegacion.SelectedItem == null || cb_Cargo.SelectedItem == null || cb_Personal.SelectedItem == null || nombre.Length > 0 || apellidos.Length > 0 || nombreUsuario.Length > 0 || contrasenia.Length > 0)
+            {
+                personal = new Personal();
+                personal.NumeroPersonal = numeroPersonalAux;
+                personal.NombreDelegacion = cb_Delegacion.Text;
+                personal.Cargo = cb_Cargo.Text;
+                personal.TipoPersonal = cb_Personal.Text;
+                personal.Nombre = txt_Nombre.Text;
+                personal.Apellidos = txt_Apellidos.Text;
+                personal.Usuario = txt_Usuario.Text;
+                personal.Contrasenia = txt_Contraseña.Text;
+                personal.Estado = "Desconectado";
 
-            personal = new Personal();
-            personal.NumeroPersonal = numero;
-            personal.NombreDelegacion = cb_Delegacion.Text;
-            personal.Cargo = cb_Cargo.Text;
-            personal.TipoPersonal = cb_Personal.Text;
-            personal.Nombre = txt_Nombre.Text;
-            personal.Apellidos = txt_Apellidos.Text;
-            personal.Usuario = txt_Usuario.Text;
-            personal.Contrasenia = txt_Contraseña.Text;
-            personal.Estado = "Desconectado";
-            
-            PersonalDAO.guardarUsuario(personal);
+                PersonalDAO.guardarUsuario(this.personal, this.nuevo);
+
+                if (nuevo)
+                {
+                    int idPersonalAux = PersonalDAO.getIdPersonal(numeroPersonalAux);
+                    this.itActualizar.actualizar(idPersonalAux, numeroPersonalAux, tipoPersonal, apellidos, nombre, cargo, nombreUsuario, contrasenia, nombreDelefacion);
+                }
+                this.itActualizar.actualizar(idPersonalObtenido, numeroPersonalAux, tipoPersonal, apellidos, nombre, cargo, nombreUsuario, contrasenia, nombreDelefacion);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Llena todos los campos");
+            }
         }
     }
 }

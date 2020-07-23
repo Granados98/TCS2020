@@ -75,11 +75,14 @@
     </ApplicationDefinition>
     <Compile Include="Model\daoDireccion\ConductorDAO.cs" />
     <Compile Include="Model\daoDireccion\DelegacionDAO.cs" />
+    <Compile Include="Model\daoDireccion\DictamenDAO.cs" />
     <Compile Include="Model\daoDireccion\PersonalDAO.cs" />
     <Compile Include="Model\daoDireccion\ReporteDAO.cs" />
     <Compile Include="Model\dbDireccion\ConnectionUtils.cs" />
+    <Compile Include="Model\InterfaceDireccion\InterfaceMenu.cs" />
     <Compile Include="Model\pocosDireccion\Conductor.cs" />
     <Compile Include="Model\pocosDireccion\Delegacion.cs" />
+    <Compile Include="Model\pocosDireccion\Dictamen.cs" />
     <Compile Include="Model\pocosDireccion\Personal.cs" />
     <Compile Include="Model\pocosDireccion\Reporte.cs" />
     <Compile Include="Model\securityDireccion\Encriptacion.cs" />

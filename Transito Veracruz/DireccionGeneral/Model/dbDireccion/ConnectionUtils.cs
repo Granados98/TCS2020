@@ -13,7 +13,7 @@ namespace DireccionGeneral.Model.dbDireccion
         private static String PORT = "1433";
         private static String DATABASE = "SistemaTransito";
         private static String USER = "sa";
-        private static String PASSWORD = "12345";
+        private static String PASSWORD = "cesardiaz";
 
         public static SqlConnection getConnection()
         {
@@ -30,8 +30,9 @@ namespace DireccionGeneral.Model.dbDireccion
                 conn.Open();
                 return conn;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 Console.WriteLine("ERROR BASE DE DATOS");
             }
             return conn;
