@@ -73,15 +73,29 @@ namespace DireccionGeneral.VentanasDireccion
             {
                 Reporte reporte = listReporte[index];
 
-                DictaminarReporte nuevoDictamen = new DictaminarReporte(reporte);
-                nuevoDictamen.Show();
+                DictaminarReporte nuevoDictamen = new DictaminarReporte(this,reporte,personal);
+                nuevoDictamen.ShowDialog();
+                bool resultado = nuevoDictamen.Resultado;
+                if (resultado)
+                {
+                    CargaReportes();
+                }
             }
         }
 
         private void btn_VerDetalle_Click(object sender, RoutedEventArgs e)
         {
-            VisualizarReporte verReporte = new VisualizarReporte();
-            verReporte.Show();
+            int index = dgReportes.SelectedIndex;
+            if (index>=0)
+            {
+                Reporte reporte = listReporte[index];
+                VisualizarReporte verReporte = new VisualizarReporte(reporte);
+                verReporte.Show();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un reporte");
+            }
         }
 
         
@@ -186,6 +200,11 @@ namespace DireccionGeneral.VentanasDireccion
             {
                 MessageBox.Show("Seleccione una delegacion");
             }
+        }
+
+        public void actualizar(int idReporte, int numeroReporte, string estatus, string nombreDelegacion, int folio, string direccion, DateTime fechaCreacion)
+        {
+            CargaReportes();
         }
     }
 }

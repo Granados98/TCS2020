@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using DireccionGeneral.Model.daoDireccion;
 using DireccionGeneral.Model.InterfaceDireccion;
 using DireccionGeneral.Model.pocosDireccion;
+using DireccionGeneral.Model.securityDireccion;
 
 namespace DireccionGeneral.VentanasDireccion
 {
@@ -99,6 +100,41 @@ namespace DireccionGeneral.VentanasDireccion
             {
                 MessageBox.Show(this, "LLena todos los campos");
             }
+        }
+
+        private void txt_Nombre_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloLetras(e);
+        }
+
+        private void txt_Calle_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloLetras(e);
+        }
+
+        private void txt_NumeroCalle_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloNumeros(e);
+        }
+
+        private void txt_Colonia_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloLetras(e);
+        }
+
+        private void txt_CodigoPostal_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloNumeros(e);
+        }
+
+        private void txt_Telefono_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloNumeros(e);
+        }
+
+        private void txt_Municipio_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloLetras(e);
         }
     } 
 

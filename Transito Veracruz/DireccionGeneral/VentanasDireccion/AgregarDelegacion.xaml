@@ -36,7 +36,7 @@
         <TextBox x:Name="txt_Municipio" Margin="47,173,83,202" materialDesign:HintAssist.Hint="MUNICIPIO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" PreviewTextInput="txt_Municipio_PreviewTextInput" MaxLength="30"/>
         <TextBox x:Name="txt_CodigoPostal" Margin="49,99,306,277" materialDesign:HintAssist.Hint="CODIGO POSTAL" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" PreviewTextInput="txt_CodigoPostal_PreviewTextInput" MaxLength="5"/>
         <TextBox x:Name="txt_Telefono" Margin="233,99,83,277" materialDesign:HintAssist.Hint="TELÉFONO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" PreviewTextInput="txt_Telefono_PreviewTextInput" IsUndoEnabled="True" MaxLength="10"/>
-        <TextBox x:Name="txt_Correo" Margin="47,251,83,124" materialDesign:HintAssist.Hint="CORREO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" PreviewTextInput="txt_Correo_PreviewTextInput" MaxLength="40"/>
+        <TextBox x:Name="txt_Correo" Margin="47,251,83,124" materialDesign:HintAssist.Hint="CORREO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" MaxLength="40"/>
 
     </Grid>
 

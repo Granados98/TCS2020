@@ -47,52 +47,14 @@ namespace DireccionGeneral.VentanasDireccion
                 }
                 else
                 {
-
-                    MessageBox.Show(this, "Usuario no registrado");
+                    MessageBox.Show(this, "Error al iniciar sesion, intente de nuevo");
                     txt_Usuario.Text = "";
                     txt_Contrasenia.Password = "";
                     txt_Usuario.Focus();
                     Console.WriteLine("this is a test");
                 }
             }
-            /*
-            if (string.IsNullOrEmpty(txtUsuario.Text) || string.IsNullOrEmpty(txtContrasenia.Password))
-            {
-                MessageBox.Show("Usuario y/o contraseña vacios, por favor introduzca sus datos.", "Error");
-                txtUsuario.Focus();
-                txtUsuario.Focus();
-                return;
-            }
-            try
-            {
-                // IQueryable query;
-                using (SistemaTransitoEntities1 db = new SistemaTransitoEntities1())
-                {
-                    var query = from U in db.Personal
-                                where U.usuario == txtUsuario.Text && U.contrasena == txtContrasenia.Password
-                                select (U.idPersonal);
-
-                    if (query.Count() > 0)
-                    {
-                        int idUser = query.First();
-
-                        MessageBox.Show(this, "Bienvenido: " + txtUsuario.Text, "Información");
-                        MenuDirGeneral dirGeneral = new MenuDirGeneral();
-                        dirGeneral.Show();
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Usuario y/o contraseña incorrectos, por favor introduzca sus datos.", "Error");
-                    }
-                }
-
-            }
-            catch
-            {
-                MessageBox.Show("Error");
-
-            }*/
+            
         }
         public bool validacion()
         {

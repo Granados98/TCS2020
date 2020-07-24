@@ -65,8 +65,8 @@ namespace DireccionGeneral.Model.daoDireccion
         public static void guardarDictamen(Dictamen dictamen)
         {
             String query = "";
-                query = "INSERT INTO dbo.Dictamen (folio,descripcion,fechaCreacion) " +
-                           "VALUES(@folio,@descripcion,GETDATE());";
+                query = "INSERT INTO dbo.Dictamen (folio,descripcion,fechaDictamen,idPersonal) " +
+                           "VALUES(@folio,@descripcion,GETDATE(),@idPersonal);";
             
 
             SqlConnection conn = null;
@@ -80,8 +80,9 @@ namespace DireccionGeneral.Model.daoDireccion
                     command = new SqlCommand(query, conn);
                     command.CommandType = CommandType.Text;
                     command.Parameters.AddWithValue("@folio", dictamen.Folio);
-                    command.Parameters.AddWithValue("GETDATE()", dictamen.Descripcion);
-                    command.Parameters.AddWithValue("@fechaCreacion", dictamen.FechaDictamen);
+                    command.Parameters.AddWithValue("@descripcion", dictamen.Descripcion);
+                    command.Parameters.AddWithValue("@fechaDictamen", dictamen.FechaDictamen);
+                    command.Parameters.AddWithValue("@idPersonal", dictamen.IdPersonal);
 
                     command.Parameters.AddWithValue("@idDictamen", dictamen.IdDictamen);
 

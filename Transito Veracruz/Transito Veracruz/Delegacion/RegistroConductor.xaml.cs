@@ -44,7 +44,9 @@ namespace Transito_Veracruz.Delegacion
                 txt_Licencia.Text = conductor.NumeroLicencia;
                 txt_Telefono.Text = conductor.Telefono;
                 txt_NombreUsuario.Text = conductor.Usuario;
-                txt_Contrasena.Text = conductor.Contrasenia;
+
+                string contrasenaDes = Encriptacion.Sha256encrypt(conductor.Contrasenia);
+                txt_Contrasena.Text = contrasenaDes;
 
                 idConductorA = conductor.IdConductor;
             }

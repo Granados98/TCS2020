@@ -78,6 +78,8 @@
     <Compile Include="Model\daoDireccion\DictamenDAO.cs" />
     <Compile Include="Model\daoDireccion\PersonalDAO.cs" />
     <Compile Include="Model\daoDireccion\ReporteDAO.cs" />
+    <Compile Include="Model\daoDireccion\Reporte_VehiculoDAO.cs" />
+    <Compile Include="Model\daoDireccion\VehiculoDAO.cs" />
     <Compile Include="Model\dbDireccion\ConnectionUtils.cs" />
     <Compile Include="Model\InterfaceDireccion\InterfaceMenu.cs" />
     <Compile Include="Model\pocosDireccion\Conductor.cs" />
@@ -85,7 +87,10 @@
     <Compile Include="Model\pocosDireccion\Dictamen.cs" />
     <Compile Include="Model\pocosDireccion\Personal.cs" />
     <Compile Include="Model\pocosDireccion\Reporte.cs" />
+    <Compile Include="Model\pocosDireccion\Reporte_Vehiculo.cs" />
+    <Compile Include="Model\pocosDireccion\Vehiculo.cs" />
     <Compile Include="Model\securityDireccion\Encriptacion.cs" />
+    <Compile Include="Model\securityDireccion\Validacion.cs" />
     <Compile Include="Model\SocketServidor.cs" />
     <Compile Include="VentanasDireccion\AgregarDelegacion.xaml.cs">
       <DependentUpon>AgregarDelegacion.xaml</DependentUpon>

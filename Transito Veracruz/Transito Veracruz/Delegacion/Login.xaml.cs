@@ -49,7 +49,7 @@ namespace Transito_Veracruz.Delegacion
                 else
                 {
 
-                    MessageBox.Show(this, "Usuario no registrado");
+                    MessageBox.Show(this, "Error al iniciar sesion, intente de nuevo");
                     txt_Usuario.Text = "";
                     txt_Contrasenia.Password = "";
                     txt_Usuario.Focus();

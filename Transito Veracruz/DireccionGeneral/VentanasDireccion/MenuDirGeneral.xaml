@@ -31,7 +31,7 @@
                     <DataGrid x:Name="dgDelegaciones" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="416" Margin="27,10,0,0" VerticalAlignment="Top" Width="980">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="IdDelegacion" IsReadOnly="True" Binding="{Binding IdDelegacion}" Width="*" />
-                            <DataGridTextColumn Header="numeroDelegacion" IsReadOnly="True" Binding="{Binding numeroDelegacion}" Width="*"/>
+                            <DataGridTextColumn Header="numeroDelegacion" IsReadOnly="True" Binding="{Binding NumeroDelegacion}" Width="*"/>
                             <DataGridTextColumn Header="Nombre" IsReadOnly="True" Binding="{Binding Nombre}" Width="*"/>
                             <DataGridTextColumn Header="Colonia" IsReadOnly="True" Binding="{Binding Colonia}" Width="*"/>
                             <DataGridTextColumn Header="Codigo Postal" IsReadOnly="True" Binding="{Binding CodigoPostal}" Width="*"/>
@@ -82,7 +82,7 @@
                     <ComboBox x:Name="cb_Delegacion" Background="#DADADA" HorizontalAlignment="Left" Margin="251,32,0,0" VerticalAlignment="Top" Width="219"/>
                     <ComboBox Background="#DADADA" HorizontalAlignment="Left" Margin="656,32,0,0" VerticalAlignment="Top" Width="225"/>
                     <Label Content="DELEGACIÓN" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontWeight="Normal" FontSize="18" Margin="108,32,791,450"/>
-                    <ComboBox Background="#DADADA" HorizontalAlignment="Left" Margin="251,91,0,0" VerticalAlignment="Top" Width="219"/>
+                    <ComboBox x:Name="cb_Estatus" Background="#DADADA" HorizontalAlignment="Left" Margin="251,91,0,0" VerticalAlignment="Top" Width="219"/>
                     <Label Content="ESTATUS" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontWeight="Normal" FontSize="18" Margin="108,91,791,391"/>
                     <Label Content="FECHA" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontWeight="Normal" FontSize="18" Margin="559,32,340,450"/>
                     <Button x:Name="btn_VerDetalle" Content="Ver Detalle" Background="#54903B" HorizontalAlignment="Left" Margin="211,453,0,0" VerticalAlignment="Top" Width="151" Click="btn_VerDetalle_Click"/>

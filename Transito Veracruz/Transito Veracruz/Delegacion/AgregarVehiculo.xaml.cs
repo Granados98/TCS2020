@@ -169,7 +169,6 @@ namespace Transito_Veracruz.Delegacion
 
         private void txt_NumeroPlaca_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Validacion.soloNumeros(e);
         }
 
         private void txt_Aseguradora_PreviewTextInput(object sender, TextCompositionEventArgs e)

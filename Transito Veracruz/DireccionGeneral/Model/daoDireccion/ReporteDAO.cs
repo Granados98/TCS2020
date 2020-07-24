@@ -17,6 +17,7 @@ namespace DireccionGeneral.Model.daoDireccion
             String query = "";
 
             query = "UPDATE dbo.Reporte SET " +
+                       "estatus = @estatus, " +
                        "folioDictamen = @folioDictamen " +
                        "WHERE numeroReporte = @numeroReporte;";
 
@@ -30,9 +31,10 @@ namespace DireccionGeneral.Model.daoDireccion
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conn);
                     command.CommandType = CommandType.Text;
+                    command.Parameters.AddWithValue("@estatus", reporte.Estatus);
                     command.Parameters.AddWithValue("@folioDictamen", reporte.FolioDictamen);
 
-                    command.Parameters.AddWithValue("@numeroReporte", reporte.FolioDictamen);
+                    command.Parameters.AddWithValue("@numeroReporte", reporte.NumeroReporte);
 
 
                     int i = command.ExecuteNonQuery();

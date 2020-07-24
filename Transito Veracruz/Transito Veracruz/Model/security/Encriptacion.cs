@@ -19,5 +19,12 @@ namespace Transito_Veracruz.Model.security
             for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
             return sb.ToString();
         }
+        public static string Sha256encrypt(string phrase)
+        {
+            UTF8Encoding encoder = new UTF8Encoding();
+            SHA256Managed sha256hasher = new SHA256Managed();
+            byte[] hashedDataBytes = sha256hasher.ComputeHash(encoder.GetBytes(phrase));
+            return Convert.ToString(hashedDataBytes);
+        }
     }
 }
