@@ -12,10 +12,11 @@ namespace Transito_Veracruz.Model.pocos
         private String numeroLicencia="";
         private String apellidos="";
         private String nombre="";
-        private DateTime fechaNacimiento;
+        private String fechaNacimiento;
         private String telefono="";
         private String usuario="";
         private String contrasenia="";
+        private DateTime fechaRegistro;
 
         public override string ToString()
         {
@@ -27,9 +28,10 @@ namespace Transito_Veracruz.Model.pocos
         public string NumeroLicencia { get => numeroLicencia; set => numeroLicencia = value; }
         public string Apellidos { get => apellidos; set => apellidos = value; }
         public string Nombre { get => nombre; set => nombre = value; }
-        public DateTime FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
+        public String FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
         public string Telefono { get => telefono; set => telefono = value; }
         public string Usuario { get => usuario; set => usuario = value; }
         public string Contrasenia { get => contrasenia; set => contrasenia = value; }
+        public DateTime FechaRegistro { get => fechaRegistro; set => fechaRegistro = value; }
     }
 }

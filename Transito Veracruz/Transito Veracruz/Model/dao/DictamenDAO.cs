@@ -12,7 +12,7 @@ namespace Transito_Veracruz.Model.dao
     class DictamenDAO
     {
         
-        public static DictamenC getInformacionDictamen(int folio)
+        public static DictamenC getInformacionDictamen(int idDictamen)
         {
             DictamenC dictamen = null;
             SqlConnection conexion = null;
@@ -26,12 +26,11 @@ namespace Transito_Veracruz.Model.dao
                 {
                     String query = String.Format("SELECT " +
                         "x.idDictamen, " +
-                        "x.folio, " +
                         "x.descripcion, " +
                         "x.fechaDictamen, " +
                         "x.idPersonal " +
                         "FROM dbo.Dictamen x " +
-                        "WHERE x.folio = '{0}';", folio);
+                        "WHERE x.folio = '{0}';", idDictamen);
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conexion);
                     rd = command.ExecuteReader();
@@ -40,10 +39,9 @@ namespace Transito_Veracruz.Model.dao
                     {
                         dictamen = new DictamenC();
                         dictamen.IdDictamen = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        dictamen.Folio = (!rd.IsDBNull(1)) ? rd.GetInt32(1) : 0;
-                        dictamen.Descripcion = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        dictamen.FechaDictamen = (!rd.IsDBNull(3)) ? rd.GetDateTime(3) : new DateTime();
-                        dictamen.IdPersonal = (!rd.IsDBNull(4)) ? rd.GetInt32(4) : 0;
+                        dictamen.Descripcion = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        dictamen.FechaDictamen = (!rd.IsDBNull(2)) ? rd.GetDateTime(2) : new DateTime();
+                        dictamen.IdPersonal = (!rd.IsDBNull(3)) ? rd.GetInt32(3) : 0;
                     }
                     rd.Close();
                     command.Dispose();

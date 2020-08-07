@@ -9,19 +9,17 @@ namespace Transito_Veracruz.Model.pocos
     public class Reporte
     {
         private Int32 idReporte;
-        private Int32 numeroReporte;
         private String nombreDelegacion;
         private String estatus;
-        private Int32 folioDictamen;
         private String direccion;
         private DateTime fechaCreacion;
+        private Int32 idDictamen;
 
         public int IdReporte { get => idReporte; set => idReporte = value; }
-        public Int32 NumeroReporte { get => numeroReporte; set => numeroReporte = value; }
         public string Estatus { get => estatus; set => estatus = value; }
-        public Int32 FolioDictamen { get => folioDictamen; set => folioDictamen = value; }
         public string Direccion { get => direccion; set => direccion = value; }
         public string NombreDelegacion { get => nombreDelegacion; set => nombreDelegacion = value; }
         public DateTime FechaCreacion { get => fechaCreacion; set => fechaCreacion = value; }
+        public int IdDictamen { get => idDictamen; set => idDictamen = value; }
     }
 }

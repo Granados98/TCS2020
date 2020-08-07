@@ -9,3 +9,5 @@ C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Servidor\obj\Debu
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Servidor\obj\Debug\netcoreapp3.0\Servidor.AssemblyInfo.cs
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Servidor\obj\Debug\netcoreapp3.0\Servidor.dll
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Servidor\obj\Debug\netcoreapp3.0\Servidor.pdb
+C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Servidor\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Servidor\obj\Debug\netcoreapp3.0\Servidor.csproj.CopyComplete

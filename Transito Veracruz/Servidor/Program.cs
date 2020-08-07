@@ -13,7 +13,7 @@ namespace Servidor
         {
             
             SocketServidor servidor = new SocketServidor();
-            servidor.Conectar();
+            servidor.correrServidor();
             
         }
     }

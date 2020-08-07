@@ -9,7 +9,6 @@ namespace Transito_Veracruz.Model.pocos
     public class DelegacionMunicipal
     {
         private Int32 idDelegacion;
-        private Int32 numeroDelegacion;
         private String nombre;
         private String calle;
         private String numero;
@@ -28,6 +27,5 @@ namespace Transito_Veracruz.Model.pocos
         public string Municipio { get => municipio; set => municipio = value; }
         public string Telefono { get => telefono; set => telefono = value; }
         public string Correo { get => correo; set => correo = value; }
-        public int NumeroDelegacion { get => numeroDelegacion; set => numeroDelegacion = value; }
     }
 }

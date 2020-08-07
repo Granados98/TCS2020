@@ -26,7 +26,6 @@ namespace Transito_Veracruz.Model.dao
                 {
                     String query = String.Format("SELECT " +
                         "x.idPersonal, " +
-                        "x.numeroPersonal, " +
                         "x.tipoPersonal, " +
                         "x.apellidos, " +
                         "x.nombre " +
@@ -40,10 +39,9 @@ namespace Transito_Veracruz.Model.dao
                     {
                         personal = new Personal();
                         personal.IdPersonal = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        personal.NumeroPersonal = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
-                        personal.TipoPersonal = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        personal.Apellidos = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
-                        personal.Nombre = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
+                        personal.TipoPersonal = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        personal.Apellidos = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        personal.Nombre = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
                     }
                     rd.Close();
                     command.Dispose();
@@ -80,7 +78,6 @@ namespace Transito_Veracruz.Model.dao
                 {
                     String query = String.Format("SELECT " +
                         "x.idPersonal, " +
-                        "x.numeroPersonal, " +
                         "x.tipoPersonal, " +
                         "x.apellidos, " +
                         "x.nombre, " +
@@ -98,14 +95,13 @@ namespace Transito_Veracruz.Model.dao
                     {
                         personal = new Personal();
                         personal.IdPersonal = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        personal.NumeroPersonal = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
-                        personal.TipoPersonal = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        personal.Apellidos = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
-                        personal.Nombre = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
-                        personal.Cargo = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
-                        personal.Usuario = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
-                        personal.Contrasenia = (!rd.IsDBNull(7)) ? rd.GetString(7) : "";
-                        personal.Estado = (!rd.IsDBNull(8)) ? rd.GetString(8) : "";
+                        personal.TipoPersonal = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        personal.Apellidos = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        personal.Nombre = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
+                        personal.Cargo = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
+                        personal.Usuario = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
+                        personal.Contrasenia = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
+                        personal.Estado = (!rd.IsDBNull(7)) ? rd.GetString(7) : "";
                     }
                     rd.Close();
                     command.Dispose();

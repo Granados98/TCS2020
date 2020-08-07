@@ -12,10 +12,10 @@ namespace Transito_Veracruz.Model.dao
 {
     class ReporteDAO
     {
-        public static void eliminarReporte(int numeroReporte)
+        public static void eliminarReporte(int idReporte)
         {
             String query = "";
-            query = "DELETE FROM dbo.Reporte WHERE numeroReporte = @numeroReporte;";
+            query = "DELETE FROM dbo.Reporte WHERE idReporte = @idReporte;";
             SqlConnection conn = null;
             try
             {
@@ -26,7 +26,7 @@ namespace Transito_Veracruz.Model.dao
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conn);
                     command.CommandType = CommandType.Text;
-                    command.Parameters.AddWithValue("@numeroReporte", numeroReporte);
+                    command.Parameters.AddWithValue("@idReporte", idReporte);
                     int i = command.ExecuteNonQuery();
                     Console.WriteLine("Rows affected: " + i);
                     command.Dispose();
@@ -58,8 +58,6 @@ namespace Transito_Veracruz.Model.dao
                 {
                     String query = String.Format("SELECT " +
                                                  "x.idReporte," +
-                                                 "x.numeroReporte," +
-                                                 "x.folioDictamen, " +
                                                  "x.direccion, " +
                                                  "x.fechaCreacion " +
                                                  "FROM dbo.Reporte x " +
@@ -72,10 +70,9 @@ namespace Transito_Veracruz.Model.dao
                     {
                         reporte = new Reporte();
                         reporte.IdReporte = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        reporte.NumeroReporte = (!rd.IsDBNull(1)) ? rd.GetInt32(1) : 0;
-                        reporte.FolioDictamen = (!rd.IsDBNull(2)) ? rd.GetInt32(2) : 0;
-                        reporte.Direccion = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
-                        reporte.FechaCreacion = (!rd.IsDBNull(4)) ? rd.GetDateTime(4) : new DateTime();
+                        reporte.IdDictamen = (!rd.IsDBNull(1)) ? rd.GetInt32(1) : 0;
+                        reporte.Direccion = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        reporte.FechaCreacion = (!rd.IsDBNull(3)) ? rd.GetDateTime(3) : new DateTime();
 
                     }
                     rd.Close();
@@ -111,11 +108,10 @@ namespace Transito_Veracruz.Model.dao
                 {
                     String query = String.Format("SELECT " +
                                                  "x.idReporte," +
-                                                 "x.numeroReporte," +
                                                  "x.estatus," +
                                                  "x.nombreDelegacion," +
-                                                 "x.folioDictamen, " +
-                                                 "x.direccion " +
+                                                 "x.direccion, " +
+                                                 "x.idDictamen " +
                                                  "FROM dbo.Reporte x " );
                                                  //"WHERE x.idUsuario = {0} AND eliminado = 'N';", idPersonal);
                     Console.WriteLine(query);
@@ -125,11 +121,10 @@ namespace Transito_Veracruz.Model.dao
                     {
                         Reporte m = new Reporte();
                         m.IdReporte = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        m.NumeroReporte = (!rd.IsDBNull(1)) ? rd.GetInt32(1) : 0;
-                        m.Estatus = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        m.NombreDelegacion = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
-                        m.FolioDictamen = (!rd.IsDBNull(4)) ? rd.GetInt32(4) : 0;
-                        m.Direccion = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
+                        m.Estatus = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        m.NombreDelegacion = (!rd.IsDBNull(2)) ? rd.GetString(3) : "";
+                        m.Direccion = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
+                        m.IdDictamen = (!rd.IsDBNull(5)) ? rd.GetInt32(5) : 0;
 
                         list.Add(m);
                     }
@@ -155,8 +150,8 @@ namespace Transito_Veracruz.Model.dao
 
             String query = "";
 
-            query = "INSERT INTO dbo.Reporte (numeroReporte,estatus,nombreDelegacion,direccion) " +
-                       "VALUES(@numeroReporte,@estatus,@nombreDelegacion,@direccion);";
+            query = "INSERT INTO dbo.Reporte (estatus,nombreDelegacion,direccion) " +
+                       "VALUES(@estatus,@nombreDelegacion,@direccion);";
 
 
 
@@ -170,7 +165,6 @@ namespace Transito_Veracruz.Model.dao
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conn);
                     command.CommandType = CommandType.Text;
-                    command.Parameters.AddWithValue("@numeroReporte", reporte.NumeroReporte);
                     command.Parameters.AddWithValue("@estatus", reporte.Estatus);
                     command.Parameters.AddWithValue("@nombreDelegacion", reporte.NombreDelegacion);
                     command.Parameters.AddWithValue("@direccion", reporte.Direccion);

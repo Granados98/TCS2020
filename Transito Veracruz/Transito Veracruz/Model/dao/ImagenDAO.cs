@@ -12,10 +12,10 @@ namespace Transito_Veracruz.Model.dao
 {
     class ImagenDAO
     {
-        public static void eliminarImagenes(int numeroReporte)
+        public static void eliminarImagenes(int idReporte)
         {
             String query = "";
-            query = "DELETE FROM dbo.Imagen WHERE numeroReporte = @numeroReporte;";
+            query = "DELETE FROM dbo.Imagen WHERE idReporte = @idReporte;";
             SqlConnection conn = null;
             try
             {
@@ -26,7 +26,7 @@ namespace Transito_Veracruz.Model.dao
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conn);
                     command.CommandType = CommandType.Text;
-                    command.Parameters.AddWithValue("@numeroReporte", numeroReporte);
+                    command.Parameters.AddWithValue("@idReporte", idReporte);
                     int i = command.ExecuteNonQuery();
                     Console.WriteLine("Rows affected: " + i);
                     command.Dispose();
@@ -49,8 +49,8 @@ namespace Transito_Veracruz.Model.dao
         {
             String query = "";
 
-            query = "INSERT INTO dbo.Imagen (dato,numeroReporte) " +
-                       "VALUES(@dato,@numeroReporte);";
+            query = "INSERT INTO dbo.Imagen (dato,idReporte) " +
+                       "VALUES(@dato,@idReporte);";
 
             Console.WriteLine("Se guardo la infomacion");
 
@@ -65,7 +65,7 @@ namespace Transito_Veracruz.Model.dao
                     command = new SqlCommand(query, conn);
                     command.CommandType = CommandType.Text;
                     command.Parameters.AddWithValue("@dato", imagen.Dato);
-                    command.Parameters.AddWithValue("@numeroReporte", imagen.NumeroReporte);
+                    command.Parameters.AddWithValue("@idReporte", imagen.IdReporte);
 
                     command.Parameters.AddWithValue("@idImagen", imagen.IdImagen);
 

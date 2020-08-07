@@ -23,15 +23,14 @@ namespace Transito_Veracruz.Delegacion
     {
         DictamenC dictamenSeleccionado;
         Personal encargadoDictamen;
-        public Dictamen(int numeroFolio)
+        public Dictamen(int idDictamen)
         {
             InitializeComponent();
-            dictamenSeleccionado = DictamenDAO.getInformacionDictamen(numeroFolio);
+            dictamenSeleccionado = DictamenDAO.getInformacionDictamen(idDictamen);
             int idPersonal = dictamenSeleccionado.IdPersonal;
             encargadoDictamen = PersonalDAO.getInformacionPersonal(idPersonal);
 
             txt_NombrePerito.Text = encargadoDictamen.Apellidos + " " + encargadoDictamen.Nombre;
-            txt_Folio.Text = dictamenSeleccionado.Folio.ToString();
             txt_FechaRegistro.Text = dictamenSeleccionado.FechaDictamen.ToString();
             txt_Descripcion.Text = dictamenSeleccionado.Descripcion;
         }

@@ -212,7 +212,7 @@ namespace Transito_Veracruz.Delegacion
                 SqlCommand command;
                 if (conexion != null)
                 {
-                    String query = String.Format("SELECT idDelegacion,numeroDelegacion,nombre FROM Delegacion");
+                    String query = String.Format("SELECT idDelegacion,nombre FROM Delegacion");
                     command = new SqlCommand(query, conexion);
                     SqlDataReader dr = command.ExecuteReader();
 
@@ -231,26 +231,20 @@ namespace Transito_Veracruz.Delegacion
         private void btn_AgregarReporte_Click(object sender, RoutedEventArgs e)
         {
             Reporte nuevoReporte = new Reporte();
-            var random = new Random();
-            int numeroReporte = random.Next(1,1000);
-            Console.WriteLine(numeroReporte);
 
             var dateAux = DateTime.Now;
 
             string estatus = "No revisado";
             string direccion = txt_Direccion.Text;
-            int numReporte = numeroReporte;
             string delegacion = delegacionSeleccionada;
 
             try
             {
-                nuevoReporte.NumeroReporte = numeroReporte;
                 nuevoReporte.Estatus = "No revisado";
                 nuevoReporte.Direccion = txt_Direccion.Text;
                 nuevoReporte.NombreDelegacion=delegacionSeleccionada;
-                nuevoReporte.FechaCreacion = DateTime.Now;
+                nuevoReporte.FechaCreacion = dateAux;
 
-                int numeroReporteObtenido = nuevoReporte.NumeroReporte;
                 ReporteDAO.guardaReporte(nuevoReporte);
                 int idReporteAux=ReporteDAO.consultaReporteNuevo(dateAux);
 
@@ -261,7 +255,7 @@ namespace Transito_Veracruz.Delegacion
                     {
                         int idVehiculoObtenido = a.IdVehiculo;
                         reporte_Vehiculo.IdVehiculo = idVehiculoObtenido;
-                        reporte_Vehiculo.NumeroReporte = numeroReporteObtenido;
+                        reporte_Vehiculo.IdReporte = idReporteAux;
                         Reporte_VehiculoDAO.guardarReporteVehiculo(reporte_Vehiculo);
                     }
                 }
@@ -274,13 +268,13 @@ namespace Transito_Veracruz.Delegacion
                     {
                         img = ConvierteImageToByteArray(archivo);
                         imagen.Dato = img;
-                        imagen.NumeroReporte = numeroReporteObtenido;
+                        imagen.IdReporte = idReporteAux;
                         ImagenDAO.guardarImagen(imagen);
                     }
                 }
 
                 this.Close();
-                this.itActualizar.actualizar(idReporteAux,numReporte, estatus, delegacion, direccion);
+                this.itActualizar.actualizar(idReporteAux, estatus, delegacion, direccion);
             }
             catch (Exception ex)
             {

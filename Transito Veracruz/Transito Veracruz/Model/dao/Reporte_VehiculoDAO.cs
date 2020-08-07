@@ -12,10 +12,10 @@ namespace Transito_Veracruz.Model.dao
 {
     public class Reporte_VehiculoDAO
     {
-        public static void eliminarVehiculosReporte(int numeroReporte)
+        public static void eliminarVehiculosReporte(int idReporte)
         {
             String query = "";
-            query = "DELETE FROM dbo.Reporte_Vehiculo WHERE numeroReporte = @numeroReporte;";
+            query = "DELETE FROM dbo.Reporte_Vehiculo WHERE idReporte = @idReporte;";
             SqlConnection conn = null;
             try
             {
@@ -26,7 +26,7 @@ namespace Transito_Veracruz.Model.dao
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conn);
                     command.CommandType = CommandType.Text;
-                    command.Parameters.AddWithValue("@numeroReporte", numeroReporte);
+                    command.Parameters.AddWithValue("@idReporte", idReporte);
                     int i = command.ExecuteNonQuery();
                     Console.WriteLine("Rows affected: " + i);
                     command.Dispose();
@@ -60,7 +60,7 @@ namespace Transito_Veracruz.Model.dao
                     String query = String.Format("SELECT " +
                         "x.idReporte_Vehiculo, " +
                         "x.idVehiculo, " +
-                        "x.numeroReporte " +
+                        "x.idReporte " +
                         "FROM dbo.Reporte_Vehiculo x " +
                         "WHERE x.idVehiculo ='{0}';", idVehiculo);
                     Console.WriteLine(query);
@@ -72,7 +72,7 @@ namespace Transito_Veracruz.Model.dao
                         reporte = new Reporte_Vehiculo();
                         reporte.IdReporte_Vehiculo = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
                         reporte.IdVehiculo = (!rd.IsDBNull(1)) ? rd.GetInt32(1) : 0;
-                        reporte.NumeroReporte = (!rd.IsDBNull(2)) ? rd.GetInt32(2) : 0;
+                        reporte.IdReporte = (!rd.IsDBNull(2)) ? rd.GetInt32(2) : 0;
                     }
                     rd.Close();
                     command.Dispose();
@@ -101,8 +101,8 @@ namespace Transito_Veracruz.Model.dao
 
             String query = "";
 
-            query = "INSERT INTO dbo.Reporte_Vehiculo (idVehiculo, numeroReporte) " +
-                       "VALUES(@idVehiculo,@numeroReporte);";
+            query = "INSERT INTO dbo.Reporte_Vehiculo (idVehiculo, idReporte) " +
+                       "VALUES(@idVehiculo,@idReporte);";
 
 
 
@@ -117,7 +117,7 @@ namespace Transito_Veracruz.Model.dao
                     command = new SqlCommand(query, conn);
                     command.CommandType = CommandType.Text;
                     command.Parameters.AddWithValue("@idVehiculo", reporteVvehiculo.IdVehiculo);
-                    command.Parameters.AddWithValue("@numeroReporte", reporteVvehiculo.NumeroReporte);
+                    command.Parameters.AddWithValue("@idReporte", reporteVvehiculo.IdReporte);
 
                     command.Parameters.AddWithValue("@idReporte_Vehiculo", reporteVvehiculo.IdReporte_Vehiculo);
 

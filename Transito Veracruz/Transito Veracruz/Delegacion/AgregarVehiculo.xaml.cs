@@ -50,7 +50,6 @@ namespace Transito_Veracruz.Delegacion
                 txt_Aseguradora.Text = vehiculo.NombreAseguradora;
                 txt_Poliza.Text = vehiculo.NumeroPolizaSeguro;
 
-                idVehiculo = vehiculo.IdVehiculo;
                 int idConductorEditar = vehiculo.IdConductor;
 
                 cargarLicenciaConductor(idConductorEditar);
@@ -123,11 +122,11 @@ namespace Transito_Veracruz.Delegacion
                 if (nuevo)
                 {
                     int idVehiculoAux = VehiculoDAO.getIdVehiculo(numeroPlacas);
-                    this.itActualizar.actualizar(idVehiculoAux, numeroPlacas, marca, modelo, anio, color, nombreAseguradora, numeroPoliza);
+                    this.itActualizar.actualizar(numeroPlacas, marca, modelo, anio, color, nombreAseguradora, numeroPoliza);
                 }
                 else
                 {
-                    this.itActualizar.actualizar(idVehiculo, numeroPlacas, marca, modelo, anio, color, nombreAseguradora, numeroPoliza);
+                    this.itActualizar.actualizar(numeroPlacas, marca, modelo, anio, color, nombreAseguradora, numeroPoliza);
                 }
                 this.Close();
             }

@@ -62,5 +62,3 @@ C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Transito_Veracruz.Properties.Resources.resources
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Transito Veracruz.csproj.GenerateResource.cache
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\obj\Debug\Transito Veracruz.csproj.CopyComplete
-C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Transito Veracruz\bin\Debug\Newtonsoft.Json.xml

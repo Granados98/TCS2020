@@ -25,7 +25,6 @@ namespace Transito_Veracruz.Model.dao
                 {
                     String query = String.Format("SELECT " +
                         "x.idDelegacion, " +
-                        "x.numeroDelegacion, " +
                         "x.nombre, " +
                         "x.colonia, " +
                         "x.codigoPostal, " +
@@ -44,15 +43,14 @@ namespace Transito_Veracruz.Model.dao
                     {
                         delegacion = new DelegacionMunicipal();
                         delegacion.IdDelegacion = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        delegacion.NumeroDelegacion = (!rd.IsDBNull(1)) ? rd.GetInt32(1) : 0;
-                        delegacion.Nombre = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        delegacion.Colonia = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
-                        delegacion.CodigoPostal = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
-                        delegacion.Municipio = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
-                        delegacion.Telefono = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
-                        delegacion.Correo = (!rd.IsDBNull(7)) ? rd.GetString(7) : "";
-                        delegacion.Calle = (!rd.IsDBNull(8)) ? rd.GetString(8) : "";
-                        delegacion.Numero = (!rd.IsDBNull(9)) ? rd.GetString(9) : "";
+                        delegacion.Nombre = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        delegacion.Colonia = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        delegacion.CodigoPostal = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
+                        delegacion.Municipio = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
+                        delegacion.Telefono = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
+                        delegacion.Correo = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
+                        delegacion.Calle = (!rd.IsDBNull(7)) ? rd.GetString(7) : "";
+                        delegacion.Numero = (!rd.IsDBNull(8)) ? rd.GetString(8) : "";
                     }
                     rd.Close();
                     command.Dispose();

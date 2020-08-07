@@ -10,10 +10,10 @@ namespace Transito_Veracruz.Model.pocos
     {
         private Int32 idImagen;
         private byte[] dato;
-        private Int32 numeroReporte;
+        private Int32 idReporte;
 
         public int IdImagen { get => idImagen; set => idImagen = value; }
         public byte[] Dato { get => dato; set => dato = value; }
-        public int NumeroReporte { get => numeroReporte; set => numeroReporte = value; }
+        public int IdReporte { get => idReporte; set => idReporte = value; }
     }
 }

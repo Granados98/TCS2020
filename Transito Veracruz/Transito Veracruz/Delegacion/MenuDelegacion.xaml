@@ -24,14 +24,13 @@
         <StackPanel x:Name="MenuVertical" HorizontalAlignment="Left" Height="650" VerticalAlignment="Top" Width="328">
             <Image HorizontalAlignment="Center" Height="79" VerticalAlignment="Top" Width="204" Source="/Transito Veracruz;component/icons/logo.png" Margin="39,0,85,0"/>
         </StackPanel>
-        <TabControl TabStripPlacement="Left" HorizontalAlignment="Left" Height="518" Margin="0,82,0,0" VerticalAlignment="Top" Width="1175">
-            <TabItem Header="CONDUCTORES" FontWeight="Bold" Height="90" Width="150" Background="Transparent" FontSize="15">
+        <TabControl x:Name="tb_Control" TabStripPlacement="Left" HorizontalAlignment="Left" Height="518" Margin="0,82,0,0" VerticalAlignment="Top" Width="1175" >
+            <TabItem x:Name="tb_Conductores" Header="CONDUCTORES" FontWeight="Bold" Height="90" Width="150" Background="Transparent" FontSize="15">
 
                 <Grid Background="White">
                     <DataGrid x:Name="dg_Conductores" AutoGenerateColumns="false" HorizontalAlignment="Left" Height="416" Margin="27,10,0,0" VerticalAlignment="Top" Width="980" IsEnabled="true">
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding IdConductor}" Width="*"/>
                             <DataGridTextColumn Header="Numero Licencia" IsReadOnly="True" Binding="{Binding NumeroLicencia}" Width="*"/>
                             <DataGridTextColumn Header="Apellidos" IsReadOnly="True" Binding="{Binding Apellidos}" Width="*"/>
                             <DataGridTextColumn Header="Nombre" IsReadOnly="True" Binding="{Binding Nombre}" Width="*" />
@@ -45,12 +44,11 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="VEHICULOS" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
+            <TabItem x:Name="tb_Vehiculos" Header="VEHICULOS" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
                 <Grid>
                     <DataGrid x:Name="dg_Vehiculos" AutoGenerateColumns="false" HorizontalAlignment="Left" Height="428" Margin="27,10,0,0" VerticalAlignment="Top" Width="980" IsEnabled="true">
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding IdVehiculo}" Width="*"/>
                             <DataGridTextColumn Header="Numero Placas" IsReadOnly="True" Binding="{Binding NumeroPlacas}" Width="*"/>
                             <DataGridTextColumn Header="Marca" IsReadOnly="True" Binding="{Binding Marca}" Width="*"/>
                             <DataGridTextColumn Header="Modelo" IsReadOnly="True" Binding="{Binding Modelo}" Width="*" />
@@ -65,7 +63,7 @@
                     <Button x:Name="btn_EditarVehiculo" Content="Editar Vehiculo" Background="#54903B" HorizontalAlignment="Left" Margin="594,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_EditarVehiculo_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="REPORTES" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
+            <TabItem x:Name="tb_Reportes" Header="REPORTES" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
 
                 <Grid>
                     <DataGrid x:Name="dg_Reportes" HorizontalAlignment="Left" Height="424" Margin="27,10,0,0" VerticalAlignment="Top" Width="980" AutoGenerateColumns="False" IsEnabled="True" Grid.Column = "0" Grid.Row = "1" SelectionMode="Single" SelectedCellsChanged="dg_Reportes_SelectedCellsChanged">

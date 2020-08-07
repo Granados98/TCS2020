@@ -178,7 +178,7 @@ namespace Transito_Veracruz.Model.dao
                         conductor.NumeroLicencia = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
                         conductor.Apellidos = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
                         conductor.Nombre = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
-                        conductor.FechaNacimiento = (!rd.IsDBNull(4)) ? rd.GetDateTime(4) : new DateTime();
+                        conductor.FechaNacimiento = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
                         conductor.Telefono = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
                         conductor.Usuario = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
                         conductor.Contrasenia = (!rd.IsDBNull(7)) ? rd.GetString(7) : "";
@@ -235,7 +235,7 @@ namespace Transito_Veracruz.Model.dao
                         conductor.NumeroLicencia = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
                         conductor.Apellidos = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
                         conductor.Nombre = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
-                        conductor.FechaNacimiento = (!rd.IsDBNull(4)) ? rd.GetDateTime(4) : new DateTime();
+                        conductor.FechaNacimiento = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
                         conductor.Telefono = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
                         conductor.Usuario = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
                     }
@@ -263,18 +263,19 @@ namespace Transito_Veracruz.Model.dao
         {
             String query = "";
             if (nuevo) {
-                query = "INSERT INTO dbo.Conductor (numeroLicencia,apellidos,nombre,fechaNacimiento,telefono,usuario,contrasena) " +
-                           "VALUES(@numeroLicencia,@apellidos,@nombre,GETDATE(),@telefono,@usuario,@contrasena);";
+                query = "INSERT INTO dbo.Conductor (numeroLicencia,apellidos,nombre,fechaNacimiento,telefono,usuario,contrasena,fechaRegistro) " +
+                           "VALUES(@numeroLicencia,@apellidos,@nombre,@fechaNacimiento,@telefono,@usuario,@contrasena,@fechaRegistro);";
             }
             else
             {
                 query = "UPDATE dbo.Conductor SET " +
                         "apellidos = @apellidos," +
                         "nombre = @nombre, " +
-                        "fechaNacimiento = GETDATE(), " +
+                        "fechaNacimiento = @fechaNacimiento, " +
                         "telefono = @telefono, " +
                         "usuario = @usuario, " +
-                        "contrasena = @contrasena " +
+                        "contrasena = @contrasena, " +
+                        "fechaRegistro = @fechaRegistro " +
                         "WHERE idConductor = @idConductor;";
             }
             
@@ -291,11 +292,12 @@ namespace Transito_Veracruz.Model.dao
                     command.Parameters.AddWithValue("@numeroLicencia", conductor.NumeroLicencia);
                     command.Parameters.AddWithValue("@apellidos", conductor.Apellidos);
                     command.Parameters.AddWithValue("@nombre", conductor.Nombre);
-                    command.Parameters.AddWithValue("@fechaNacimineto", conductor.FechaNacimiento);
+                    command.Parameters.AddWithValue("@fechaNacimiento", conductor.FechaNacimiento);
                     command.Parameters.AddWithValue("@telefono", conductor.Telefono);
                     command.Parameters.AddWithValue("@usuario", conductor.Usuario);
                     command.Parameters.AddWithValue("@contrasena", conductor.Contrasenia);
-                    
+                    command.Parameters.AddWithValue("@fechaRegistro", conductor.FechaRegistro);
+
                     command.Parameters.AddWithValue("@idConductor", conductor.IdConductor);
 
 

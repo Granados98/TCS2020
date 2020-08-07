@@ -33,11 +33,10 @@
         </Rectangle>
         <Button x:Name="btn_Aceptar" Content="Aceptar" Background="#54903B" HorizontalAlignment="Left" Margin="66,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Grid.Column="2" Click="btn_Aceptar_Click"/>
         <TextBlock Text="DICTAMEN" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="171.615,-37,235,0" Height="29" Width="90" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <TextBox x:Name="txt_Folio" Grid.Column="1" IsReadOnly="True" FontFamily="Champagne &amp; Limousines" FontSize="18" Foreground="Gray" HorizontalAlignment="Left" Height="40" Margin="42,-8,0,0" TextWrapping="Wrap" Text="FOLIO" VerticalAlignment="Top" Width="371" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="txt_NombrePerito" Grid.Column="1" IsReadOnly="True" FontFamily="Champagne &amp; Limousines" FontSize="18" Foreground="Gray" HorizontalAlignment="Left" Height="40" Margin="42,58,0,0" TextWrapping="Wrap" Text="NOMBRE DEL PERITO" VerticalAlignment="Top" Width="371" Grid.ColumnSpan="2"/>
-        <TextBlock x:Name="txt_Descripcion" Background="#DADADA" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Margin="42,51,0,0" Grid.Row="1" TextWrapping="Wrap" Text="DESCRIPCIÓN" VerticalAlignment="Top" Height="270" Width="371" Foreground="#FF878787" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <TextBox x:Name="txt_NombrePerito" Grid.Column="1" IsReadOnly="True" FontFamily="Champagne &amp; Limousines" FontSize="18" Foreground="Gray" HorizontalAlignment="Left" Height="40" Margin="42,0,0,0" TextWrapping="Wrap" Text="NOMBRE DEL PERITO" VerticalAlignment="Top" Width="371" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="txt_Descripcion" Background="#DADADA" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Margin="42,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="DESCRIPCIÓN" VerticalAlignment="Top" Height="311" Width="371" Foreground="#FF878787" Grid.ColumnSpan="2" Grid.Column="1"/>
         <Button x:Name="btn_Cancelar" Content="Cancelar" Background="#D92530" HorizontalAlignment="Left" Margin="27,364,0,0" VerticalAlignment="Top" Width="160" Grid.Row="1" Click="btn_Cancelar_Click" Grid.Column="1"/>
-        <TextBox x:Name="txt_FechaRegistro" Grid.Column="1" IsReadOnly="True" FontFamily="Champagne &amp; Limousines" FontSize="18" Foreground="Gray" HorizontalAlignment="Left" Height="40" Margin="42,115,0,0" TextWrapping="Wrap" Text="NOMBRE DEL PERITO" VerticalAlignment="Top" Width="371" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <TextBox x:Name="txt_FechaRegistro" Grid.Column="1" IsReadOnly="True" FontFamily="Champagne &amp; Limousines" FontSize="18" Foreground="Gray" HorizontalAlignment="Left" Height="40" Margin="42,67,0,0" TextWrapping="Wrap" Text="NOMBRE DEL PERITO" VerticalAlignment="Top" Width="371" Grid.ColumnSpan="2"/>
 
 
 

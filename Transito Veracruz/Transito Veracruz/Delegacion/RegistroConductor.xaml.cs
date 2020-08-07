@@ -26,7 +26,6 @@ namespace Transito_Veracruz.Delegacion
         private bool resultado;
         private bool nuevo;
         private Conductor conductor;
-        private int idConductorA;
         InterfaceMenu itActualizar;
         public RegistroConductor(InterfaceMenu itActualizar, Boolean nuevo, Conductor conductor)
         {
@@ -35,20 +34,19 @@ namespace Transito_Veracruz.Delegacion
             this.itActualizar = itActualizar;
             InitializeComponent();
 
-            String.Format("{0:MM/dd/yyyy}", select_Date);
+            //String.Format("{0:MM/dd/yyyy}", select_Date);
             if (!nuevo)
             {
                 txt_Apellidos.Text = conductor.Apellidos;
                 txt_Nombre.Text = conductor.Nombre;
-                select_Date.SelectedDate = conductor.FechaNacimiento;
+                select_Date.SelectedDate = Convert.ToDateTime(conductor.FechaNacimiento);
                 txt_Licencia.Text = conductor.NumeroLicencia;
                 txt_Telefono.Text = conductor.Telefono;
                 txt_NombreUsuario.Text = conductor.Usuario;
 
-                string contrasenaDes = Encriptacion.Sha256encrypt(conductor.Contrasenia);
-                txt_Contrasena.Text = contrasenaDes;
+                string desencriptada = Encriptacion.DesEncriptar(conductor.Contrasenia);
+                txt_Contrasena.Text = desencriptada;
 
-                idConductorA = conductor.IdConductor;
             }
         }
 
@@ -69,16 +67,18 @@ namespace Transito_Veracruz.Delegacion
             string usuario = txt_NombreUsuario.Text;
             string contrasena = txt_Contrasena.Text;
             DateTime fechaNacimiento = select_Date.SelectedDate.Value;
+            string fechaNacimientoAux = fechaNacimiento.ToString("dd/MM/yyyy");
 
             if (apellidos.Length>0 && nombre.Length>0 && numeroLicencia.Length>0 && telefono.Length>0 && usuario.Length>0 && contrasena.Length>0) { 
                 this.conductor.NumeroLicencia = txt_Licencia.Text;
                 this.conductor.Apellidos = txt_Apellidos.Text;
-                this.conductor.FechaNacimiento = select_Date.SelectedDate.Value;
+                this.conductor.FechaNacimiento = fechaNacimientoAux;
                 this.conductor.Nombre = txt_Nombre.Text;
                 this.conductor.Telefono = txt_Telefono.Text;
                 this.conductor.Usuario = txt_NombreUsuario.Text;
+                this.conductor.FechaRegistro = DateTime.Now;
 
-                contraseñaEncriptada = Encriptacion.GetSHA256(txt_Contrasena.Text);
+                contraseñaEncriptada = Encriptacion.Encriptar(txt_Contrasena.Text);
                 this.conductor.Contrasenia = contraseñaEncriptada;
 
                 ConductorDAO.guardarConductor(this.nuevo,this.conductor);
@@ -86,9 +86,9 @@ namespace Transito_Veracruz.Delegacion
                 if (nuevo)
                 {
                     int idConductorAux = ConductorDAO.getIdConductor(numeroLicencia);
-                    this.itActualizar.actualizar(idConductorAux, numeroLicencia, apellidos, nombre, fechaNacimiento, telefono);
+                    this.itActualizar.actualizar(numeroLicencia, apellidos, nombre, fechaNacimientoAux, telefono);
                 }
-                this.itActualizar.actualizar(idConductorA,numeroLicencia,apellidos,nombre,fechaNacimiento,telefono);
+                this.itActualizar.actualizar(numeroLicencia,apellidos,nombre,fechaNacimientoAux,telefono);
                 this.Close();
                 }
                 else

@@ -31,7 +31,7 @@ namespace Transito_Veracruz.Delegacion
     {
 
         Socket socketCliente = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        IPEndPoint direccionConexion = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
+        IPEndPoint direccionConexion = new IPEndPoint(IPAddress.Any, 1234);
         
         private String mensaje = "";
         private String mensajeRecibido = "";
@@ -50,8 +50,10 @@ namespace Transito_Veracruz.Delegacion
             nombre_Usuario.Content = usuarioIniciado.Usuario;
             
             //el cliente se conecta con el servidor
-            //socketCliente.Connect(direccionConexion);
+            socketCliente.Connect(direccionConexion);
             Console.WriteLine("Conectado con exito al servidor...");
+
+
             /*
             int id = usuarioIniciado.IdPersonal;
             string idU=Convert.ToString(id);
@@ -161,30 +163,30 @@ namespace Transito_Veracruz.Delegacion
             if (index>=0)
             {
                 Reporte reporte = listReporte[index];
-                if (reporte.FolioDictamen == 0)
+                if (reporte.IdDictamen == 0)
                 {
                     MessageBox.Show("Aun no hay dictamen");
                 }
                 else
                 {
-                    int folioFila = reporte.FolioDictamen;
-                    Console.WriteLine(folioFila);
-                    Dictamen detalleDictamen = new Dictamen(folioFila);
+                    int idDictamen = reporte.IdDictamen;
+                    Console.WriteLine(idDictamen);
+                    Dictamen detalleDictamen = new Dictamen(idDictamen);
                     detalleDictamen.Show();
                 }
             }
         }
         
-        public void actualizar(int idReporte, int numeroReporte, string estatus, string nombreDelegacion, string direccion)
+        public void actualizar(int idReporte, string estatus, string nombreDelegacion, string direccion)
         {
             cargarReportes();
         }
 
-        public void actualizar(int idConductor, string numeroLicencia, string apellidos, string nombre, DateTime fechaNacimiento, string telefono)
+        public void actualizar(string numeroLicencia, string apellidos, string nombre, string fechaNacimiento, string telefono)
         {
             cargarTablaConductores();
         }
-        public void actualizar(int idVehiculo, string numeroPLacas, string marca, string modelo, string anio, string color, string nombreAseguradora, string numeroPoliza)
+        public void actualizar(string numeroPLacas, string marca, string modelo, string anio, string color, string nombreAseguradora, string numeroPoliza)
         {
             cargarTablaVehiculos();
         }
@@ -309,11 +311,11 @@ namespace Transito_Veracruz.Delegacion
             if (index>=0)
             {
                 Reporte rep = listReporte[index];
-                if (MessageBox.Show("¿Desea eliminar el reporte con numero: " + rep.NumeroReporte + "?", "Eliminar reporte", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                if (MessageBox.Show("¿Desea eliminar el reporte con numero: " + rep.IdReporte + "?", "Eliminar reporte", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    ImagenDAO.eliminarImagenes(rep.NumeroReporte);
-                    Reporte_VehiculoDAO.eliminarVehiculosReporte(rep.NumeroReporte);
-                    ReporteDAO.eliminarReporte(rep.NumeroReporte);
+                    ImagenDAO.eliminarImagenes(rep.IdReporte);
+                    Reporte_VehiculoDAO.eliminarVehiculosReporte(rep.IdReporte);
+                    ReporteDAO.eliminarReporte(rep.IdReporte);
                     MessageBox.Show("Reporte eliminado completamente");
                 }
                 cargarReportes();
@@ -323,5 +325,6 @@ namespace Transito_Veracruz.Delegacion
                 MessageBox.Show("Seleccione un Reporte");
             }
         }
+
     }
 }

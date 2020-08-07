@@ -8,8 +8,8 @@ namespace Transito_Veracruz.Model.interfaz
 {
     public interface InterfaceMenu
     {
-        void actualizar(int idReporte,int numeroReporte, string estatus, string nombreDelegacion, string direccion);
-        void actualizar(int idConductor, string numeroLicencia, string apellidos, string nombre, DateTime fechaNacimiento, string telefono);
-        void actualizar(int idVehiculo, string numeroPLacas, string marca, string modelo, string anio, string color, string nombreAseguradora, string numeroPoliza);
+        void actualizar(int idReporte, string estatus, string nombreDelegacion, string direccion);
+        void actualizar(string numeroLicencia, string apellidos, string nombre, string fechaNacimiento, string telefono);
+        void actualizar(string numeroPLacas, string marca, string modelo, string anio, string color, string nombreAseguradora, string numeroPoliza);
     }
 }
