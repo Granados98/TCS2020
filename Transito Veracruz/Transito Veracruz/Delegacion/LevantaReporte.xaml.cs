@@ -175,13 +175,20 @@ namespace Transito_Veracruz.Delegacion
             
             if (op.ShowDialog() == true)
             {
-                archivosImg = op.FileNames;
-
-                Console.WriteLine(archivosImg);
-                foreach (var archivo in archivosImg)
+                if (op.FileNames.Length>=3 && op.FileNames.Length<=8)
                 {
-                    archivos = "" + archivo;
-                    MessageBox.Show(archivos);
+                    archivosImg = op.FileNames;
+
+                    Console.WriteLine(archivosImg);
+                    foreach (var archivo in archivosImg)
+                    {
+                        archivos = "" + archivo;
+                        box_Imagenes.Items.Add(archivos);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione de 3 a 8 imagenes");
                 }
             }
         }
@@ -291,6 +298,27 @@ namespace Transito_Veracruz.Delegacion
             else
             {
                 MessageBox.Show("Seleccione un vehiculo");
+            }
+        }
+
+        private void btn_EliminarImagen_Click(object sender, RoutedEventArgs e)
+        {
+            int index = box_Imagenes.SelectedIndex;
+            if(index >= 0)
+            {
+                string imagenSeleccionada = archivosImg[index];
+
+                if (box_Imagenes.SelectedItem!=null)
+                {
+                    foreach(var img in archivosImg)
+                    {
+                        if (img != imagenSeleccionada)
+                        {
+                            box_Imagenes.Items.Add(img);
+                        }
+                    }
+
+                }
             }
         }
     }

@@ -38,10 +38,12 @@
         <TextBox x:Name="txt_Direccion" Margin="47,0,64,375" materialDesign:HintAssist.Hint="DIRECCIÓN" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.ColumnSpan="2" Grid.Row="1"/>
         <Label Content="VEHICULO" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="47,16,0,0" VerticalAlignment="Top" Height="32" Width="117"/>
         <ComboBox x:Name="cb_VehiculosConductor" HorizontalAlignment="Left" Background="#DADADA" Margin="171,16,0,0" VerticalAlignment="Top" Width="277" Height="28" SelectionChanged="cb_VehiculosConductor_SelectionChanged" Grid.ColumnSpan="2"/>
-        <Button x:Name="btn_AgregarImagenes" Content="Adjuntar Imágenes" Background="#54903B" HorizontalAlignment="Left" Margin="289,287,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_AgregarImagenes_Click" Grid.ColumnSpan="2"/>
-        <ListBox x:Name="box_Implicados" HorizontalAlignment="Left" Height="174" Margin="47,87,0,0" Grid.Row="1" VerticalAlignment="Top" Width="401" Grid.ColumnSpan="2" BorderBrush="Transparent" Background="#FFDADADA"/>
+        <Button x:Name="btn_AgregarImagenes" Content="Adjuntar Imágenes" Background="#54903B" HorizontalAlignment="Left" Margin="289,245,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_AgregarImagenes_Click" Grid.ColumnSpan="2"/>
+        <ListBox x:Name="box_Implicados" HorizontalAlignment="Left" Height="138" Margin="47,87,0,0" Grid.Row="1" VerticalAlignment="Top" Width="401" Grid.ColumnSpan="2" BorderBrush="Transparent" Background="#FFDADADA"/>
         <ComboBox x:Name="cb_Delegacion" HorizontalAlignment="Left" Background="#DADADA" Margin="171,78,0,0" VerticalAlignment="Top" Width="277" Height="28" Grid.ColumnSpan="2" SelectionChanged="cb_Delegacion_SelectionChanged"/>
         <Label Content="DELEGACION" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="47,78,0,0" VerticalAlignment="Top" Height="32" Width="117"/>
+        <ListBox x:Name="box_Imagenes" HorizontalAlignment="Left" Height="87" Margin="47,232,0,0" Grid.Row="1" VerticalAlignment="Top" Width="221" BorderBrush="Transparent" Background="#FFDADADA"/>
+        <Button x:Name="btn_EliminarImagen" Content="Eliminar Imagen" Background="#D92530" HorizontalAlignment="Left" Margin="289,287,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Grid.ColumnSpan="2" Click="btn_EliminarImagen_Click"/>
 
 
 

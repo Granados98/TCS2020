@@ -45,19 +45,13 @@ namespace Servidor
         {
             socketServidor.Bind(new IPEndPoint(IPAddress.Any, 1234));
             socketServidor.Listen(1);
-
-            //Aceptar intento de conexión
             socketServidor.BeginAccept(new AsyncCallback(AceptarCallBack), null);
         }
         private void AceptarCallBack(IAsyncResult ar)
         {
-            //Aceptar intento de conexión
             Socket socket = socketServidor.EndAccept(ar);
 
-            //Añadir cliente nuevo a la lista
             listClientes.Add(new SocketServer(socket));
-
-            //Comenzar a recibir datos 
 
             socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallback), socket);
             socketServidor.BeginAccept(new AsyncCallback(AceptarCallBack), null);
@@ -115,13 +109,11 @@ namespace Servidor
                     }
 
 
-                    //Deserializar objeto
 
                     string reporteRecibido = texto;
                     MensajeEnvio mensajeChat = Newtonsoft.Json.JsonConvert.DeserializeObject<MensajeEnvio>(texto);
 
 
-                    //Añadir nuevo conectado a la lista si es que es mensaje de conexión
                     if (!mensajeChat.isMensaje && !mensajeChat.isReporte)
                     {
                         usuariosConectados.Add(mensajeChat.usuarioEmisor);
@@ -130,21 +122,11 @@ namespace Servidor
 
                         uc = new UsuarioConectado (usuariosConectados);
 
-
-                        //Enviar lista de conectados a todos los clientes
                         respuesta = Newtonsoft.Json.JsonConvert.SerializeObject(uc).ToString();
 
                         enviarListaATodos(respuesta);
                     }
 
-                    //Enviar reporte a dirección general en caso de ser un reporte
-                    /*
-                    if (mensajeChat.isReporte)
-                    {
-                        reenviarAGeneral(reporteRecibido);
-                    }*/
-
-                    //Reenviar respuesta con el contenido del mensaje si es que es mensaje de chat
 
                     if (mensajeChat.isMensaje)
                     {
@@ -196,25 +178,12 @@ namespace Servidor
 
             for (int i = 0; i < listClientes.Count; i++)
             {
-                //Verificar que el que envió el mensaje no lo reciba
                 if (cliente != listClientes[i].nombreCliente)
                     EnviarInfo(listClientes[i].server, mensaje);
 
             }
 
         }
-
-        /*
-        public void reenviarAGeneral(string reporteSerializado)
-        {
-            for (int i = 0; i < listClientes.Count; i++)
-            {
-                if (listaClienteDelegaciones[i] == "Dir General")
-                {
-                    EnviarInfo(listClientes[i].server, reporteSerializado);
-                }
-            }
-        }*/
         void EnviarInfo(Socket socket, string mensaje)
         {
             try

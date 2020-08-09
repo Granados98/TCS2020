@@ -21,6 +21,8 @@ using Transito_Veracruz.Model.pocos;
 using Transito_Veracruz.Model.security;
 using System.Threading;
 using Transito_Veracruz.Model.interfaz;
+using Transito_Veracruz.Clases;
+using Newtonsoft.Json;
 
 namespace Transito_Veracruz.Delegacion
 {
@@ -30,11 +32,18 @@ namespace Transito_Veracruz.Delegacion
     public partial class MenuDelegacion : Window, InterfaceMenu
     {
 
-        Socket socketCliente = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        IPEndPoint direccionConexion = new IPEndPoint(IPAddress.Any, 1234);
-        
-        private String mensaje = "";
-        private String mensajeRecibido = "";
+        private Socket socketCliente = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        //IPEndPoint direccionConexion = new IPEndPoint(IPAddress.Any, 1234);
+
+
+        private string mensaje = "";
+        private string usuarioEmisor = "";
+        //private String mensajeRecibido = "";
+
+        private List<string> listaConectados = new List<string>();
+
+        byte[] receivedBuf = new byte[1024];
+        Mensaje envioMensaje = new Mensaje();
 
         private List<Conductor> listConductores { get; set; }
         private List<Reporte> listReporte { get; set; }
@@ -45,12 +54,13 @@ namespace Transito_Veracruz.Delegacion
         {
             InitializeComponent();
             this.usuarioIniciado = personal;
+            personal.Usuario = usuarioEmisor;
             cargarTablaConductores();
             cargarTablaVehiculos();
             nombre_Usuario.Content = usuarioIniciado.Usuario;
             
             //el cliente se conecta con el servidor
-            socketCliente.Connect(direccionConexion);
+            //socketCliente.ConnectAsync(direccionConexion);
             Console.WriteLine("Conectado con exito al servidor...");
 
 
@@ -62,22 +72,8 @@ namespace Transito_Veracruz.Delegacion
             */
             //recibeMensajes();
             cargarReportes();
+            Conectar();
         }
-
-        /*
-        private void mostrarMensaje()
-        {
-            string mensaje = "";
-            string info = "";
-
-            byte[] ByRec = new byte[255];
-            int datos = socketClienteRemoto.Receive(ByRec, 0, ByRec.Length, 0);
-            Array.Resize(ref ByRec, datos);
-            mensaje = Encoding.Default.GetString(ByRec);
-            info += mensaje + "\n";
-
-            block_Chat.Items.Add(mensaje);
-        }*/
 
 
         private void cargarReportes()
@@ -108,11 +104,167 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_EnviarMensaje_Click(object sender, RoutedEventArgs e)
         {
-            byte[] msjEnviar = Encoding.Default.GetBytes(txt_Mensaje.Text);
-            socketCliente.Send(msjEnviar, 0, msjEnviar.Length, 0);
+            enviarMensaje();
+        }
 
-            block_Chat.Items.Add("Tu: "+txt_Mensaje.Text);
-            
+        public void recibirMensaje(string mensajeRecibido, string usuarioEmisor)
+        {
+            string mensajeFinal= Convert.ToString(usuarioEmisor+" "+mensajeRecibido);
+            block_Chat.Items.Add(mensajeFinal);
+            /*
+            //Crear user control del mensaje
+
+            GridChatRecibido.Children.Add(new MensajeChat(posicionMensaje, mensajeRecibido, usuarioEmisor));
+
+            txtMensajeRecibido.Text = mensajeRecibido;
+
+            //Actualizar valores de separación de mensaje
+
+            int separacion = 0;
+
+            separacion += txtMensajeRecibido.LineCount * 16 + 45;
+
+            int posicionBuffer = posicionMensaje;
+
+            posicionMensaje += separacion;
+
+            //Ajustar tamaño de grid
+
+            if (posicionMensaje > 554)
+            {
+
+                if (!gridAmpliado)
+                {
+                    GridBaseChatRecibido.Height += (separacion - (554 - posicionBuffer));
+                    GridChatRecibido.Height += (separacion - (554 - posicionBuffer));
+                }
+                else
+                {
+                    GridBaseChatRecibido.Height += separacion;
+                    GridChatRecibido.Height += separacion;
+                }
+
+                gridAmpliado = true;
+
+
+            }
+
+            scrollChat.ScrollToVerticalOffset(GridBaseChatRecibido.Height - 1);
+            */
+        }
+
+        private void Conectar()
+        {
+            repetirConexion();
+            socketCliente.BeginReceive(receivedBuf, 0, receivedBuf.Length, SocketFlags.None, new AsyncCallback(recibeDatos), socketCliente);
+
+            byte[] buffer = Encoding.Default.GetBytes(serializarMensaje("", false, false));
+            socketCliente.Send(buffer);
+        }
+
+
+        //Actualizar valores del mensaje y serializarlos
+        public string serializarMensaje(string contenidoMensaje, bool isMensajeConexion, bool isMensaje)
+        {
+            Mensaje mensajeChat = new Mensaje(contenidoMensaje, usuarioEmisor, isMensaje, false);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(mensajeChat).ToString();
+        }
+        private void recibeDatos(IAsyncResult ar)
+        {
+            try
+            {
+                Socket socket = (Socket)ar.AsyncState;
+                int received = socket.EndReceive(ar);
+                byte[] dataBuf = new byte[received];
+                Array.Copy(receivedBuf, dataBuf, received);
+
+                mensaje = (Encoding.Default.GetString(dataBuf));
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+            // Manejo de conectados y nuevos mensajes
+
+            string objetoSerializado = mensaje;
+
+            envioMensaje = JsonConvert.DeserializeObject<Mensaje>(mensaje);
+
+            if (envioMensaje.contenidoMensaje == null)
+            {
+                UsuarioConectado cc = Newtonsoft.Json.JsonConvert.DeserializeObject<UsuarioConectado>(objetoSerializado);
+                //Llenar lista con nombre de usuario y delegacion
+                listaConectados = new List<string>();
+                for (int i = 0; i < cc.usuarioConectado.Count; i++)
+                {
+                    listaConectados.Add(cc.usuarioConectado[i] + " (" + cc.usuarioConectado[i] + ")");
+                }
+
+                this.Dispatcher.Invoke(() =>
+                {
+                    if (cc.usuarioConectado != null)
+                    {
+                        //dataGridUsuariosConectados.ItemsSource = listaConectados;
+
+                    }
+                });
+            }
+            else if (envioMensaje.contenidoMensaje != null)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    recibirMensaje(envioMensaje.contenidoMensaje, envioMensaje.usuarioEmisor);
+                });
+            }
+
+
+
+            try
+            {
+                socketCliente.BeginReceive(receivedBuf, 0, receivedBuf.Length, SocketFlags.None, new AsyncCallback(recibeDatos), socketCliente);
+            }
+            catch (SocketException)
+            {
+                return;
+            }
+
+        }
+
+        private void repetirConexion()
+        {
+
+            while (!socketCliente.Connected)
+            {
+                try
+                {
+                    socketCliente.Connect(IPAddress.Loopback, 1234);
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+        }
+
+        public void enviarMensaje()
+        {
+            string texto = txt_Mensaje.Text.Trim();
+
+            if (texto != "")
+            {
+
+                if (socketCliente.Connected)
+                {
+                    byte[] buffer = Encoding.Default.GetBytes(serializarMensaje(texto, false, true));
+                    socketCliente.Send(buffer);
+                }
+
+                txt_Mensaje.Text = "";
+                txt_Mensaje.Focus();
+            }
         }
 
         private void cargarTablaConductores()
@@ -139,6 +291,7 @@ namespace Transito_Veracruz.Delegacion
             }
         }
 
+        /*
         private void recibeMensajes()
         {
             byte[] recibeBytes = new byte[255];
@@ -148,13 +301,15 @@ namespace Transito_Veracruz.Delegacion
 
             block_Chat.Items.Add(mensajeRecibido);
             block_Chat.UpdateLayout();
-        }
+        }*/
 
         private void btn_Salir_Click(object sender, RoutedEventArgs e)
         {
             this.usuarioIniciado.Estado = "Desconectado";
             PersonalDAO.actualizarEstadoUsuario(usuarioIniciado);
-            this.Close();
+
+            Login iniciarSesion = new Login();
+            iniciarSesion.Show();
         }
 
         private void dg_Reportes_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
