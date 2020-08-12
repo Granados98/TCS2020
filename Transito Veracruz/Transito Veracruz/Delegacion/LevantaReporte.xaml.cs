@@ -29,6 +29,7 @@ namespace Transito_Veracruz.Delegacion
         private int identificadorConductor;
         private int idVehiculoSeleccionado;
         private String[] archivosImg;
+        private List<String> imagenes = new List<String>();
 
         private List<Vehiculo> listVehiculos = new List<Vehiculo>();
         private Conductor informacionConductor;
@@ -167,7 +168,6 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_AgregarImagenes_Click(object sender, RoutedEventArgs e)
         {
-            String archivos="";
             OpenFileDialog op = new OpenFileDialog();
             op.Multiselect = true;
             op.Title = "Selecciona una imagen";
@@ -177,13 +177,17 @@ namespace Transito_Veracruz.Delegacion
             {
                 if (op.FileNames.Length>=3 && op.FileNames.Length<=8)
                 {
-                    archivosImg = op.FileNames;
-
-                    Console.WriteLine(archivosImg);
-                    foreach (var archivo in archivosImg)
+                    //archivosImg = op.FileNames;
+                    foreach (var a in op.FileNames)
                     {
-                        archivos = "" + archivo;
-                        box_Imagenes.Items.Add(archivos);
+                        imagenes.Add(a);
+                    }
+
+                    foreach (var archivo in imagenes)
+                    {
+                        Console.WriteLine(archivo +"sa");
+                        //archivos = "" + archivo;
+                        box_Imagenes.Items.Add(archivo);
                     }
                 }
                 else
@@ -269,9 +273,9 @@ namespace Transito_Veracruz.Delegacion
 
 
                 Imagen imagen = new Imagen();
-                if (archivosImg.Length > 0)
+                if (imagenes.Count > 0)
                 {
-                    foreach (var archivo in archivosImg)
+                    foreach (var archivo in imagenes)
                     {
                         img = ConvierteImageToByteArray(archivo);
                         imagen.Dato = img;
@@ -303,21 +307,56 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_EliminarImagen_Click(object sender, RoutedEventArgs e)
         {
-            int index = box_Imagenes.SelectedIndex;
-            if(index >= 0)
-            {
-                string imagenSeleccionada = archivosImg[index];
+            List<String> imagenesAux = new List<String>();
 
-                if (box_Imagenes.SelectedItem!=null)
+            string imagenSeleccionada = box_Imagenes.SelectedValue.ToString();
+            Console.WriteLine(imagenSeleccionada + "selec");
+
+            if (box_Imagenes.SelectedItem != null)
+            {
+                box_Imagenes.Items.Clear();
+                foreach (var img in imagenes)
                 {
-                    foreach(var img in archivosImg)
+                    if (img != imagenSeleccionada)
                     {
-                        if (img != imagenSeleccionada)
+                        Console.WriteLine(img);
+                        imagenesAux.Add(img);
+                        box_Imagenes.Items.Add(img);
+                    }
+                }
+
+                imagenes = imagenesAux;
+
+            }
+
+            if (imagenes.Count<3)
+            {
+                OpenFileDialog op = new OpenFileDialog();
+                op.Multiselect = true;
+                op.Title = "Selecciona una imagen";
+                op.Filter = "JPG,JPEG,PNG Files|*.png;*.jpg;*.jpeg";
+
+                if (op.ShowDialog() == true)
+                {
+                    if (op.FileNames.Length >= 3 && op.FileNames.Length <= 8)
+                    {
+                        //archivosImg = op.FileNames;
+                        foreach (var a in op.FileNames)
                         {
-                            box_Imagenes.Items.Add(img);
+                            imagenes.Add(a);
+                        }
+
+                        foreach (var archivo in imagenes)
+                        {
+                            Console.WriteLine(archivo + "sa");
+                            //archivos = "" + archivo;
+                            box_Imagenes.Items.Add(archivo);
                         }
                     }
-
+                    else
+                    {
+                        MessageBox.Show("Seleccione de 3 a 8 imagenes");
+                    }
                 }
             }
         }

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transito Veracruz", "Transi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DireccionGeneral", "DireccionGeneral\DireccionGeneral.csproj", "{D74F0B4F-CC0A-4A81-B43E-9ACF0FCEC8AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoServidor", "..\..\..\C#\ProyectoServidor\ProyectoServidor\ProyectoServidor.csproj", "{97F44F84-F298-4C3F-B7B0-FA62295279B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{A444FCC8-FC2F-4195-8777-A837CA3419C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{D74F0B4F-CC0A-4A81-B43E-9ACF0FCEC8AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D74F0B4F-CC0A-4A81-B43E-9ACF0FCEC8AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D74F0B4F-CC0A-4A81-B43E-9ACF0FCEC8AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{97F44F84-F298-4C3F-B7B0-FA62295279B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97F44F84-F298-4C3F-B7B0-FA62295279B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97F44F84-F298-4C3F-B7B0-FA62295279B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97F44F84-F298-4C3F-B7B0-FA62295279B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A444FCC8-FC2F-4195-8777-A837CA3419C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A444FCC8-FC2F-4195-8777-A837CA3419C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A444FCC8-FC2F-4195-8777-A837CA3419C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A444FCC8-FC2F-4195-8777-A837CA3419C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
