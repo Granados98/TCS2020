@@ -80,7 +80,7 @@ namespace Server
                             uc.usuarioConectado.RemoveAt(i);
 
                             string listaActualizado = JsonConvert.SerializeObject(uc).ToString();
-                            enviarListaUsuario(listaActualizado);
+                            enviarUsuariosConectados(listaActualizado);
                         }
                     }
                     return;
@@ -117,15 +117,13 @@ namespace Server
 
                         respuesta = Newtonsoft.Json.JsonConvert.SerializeObject(uc).ToString();
 
-                        enviarListaUsuario(respuesta);
+                        enviarUsuariosConectados(respuesta);
                     }
 
                     if (mensajeEnvio.isMensaje)
                     {
                         enviarATodos(texto, usuario);
                     }
-
-
 
                 }
                 else
@@ -139,7 +137,7 @@ namespace Server
                             uc.usuarioConectado.RemoveAt(i);
 
                             string ccActualizado = Newtonsoft.Json.JsonConvert.SerializeObject(uc).ToString();
-                            enviarListaUsuario(ccActualizado);
+                            enviarUsuariosConectados(ccActualizado);
                         }
                     }
                 }
@@ -154,7 +152,7 @@ namespace Server
             }
         }
 
-        public void enviarListaUsuario(string listaSerializada)
+        public void enviarUsuariosConectados(string listaSerializada)
         {
 
             for (int i = 0; i < listClientes.Count; i++)
@@ -167,15 +165,14 @@ namespace Server
 
         public void enviarATodos(string mensaje, string cliente)
         {
-
             for (int i = 0; i < listClientes.Count; i++)
             {
                 if (cliente != listClientes[i].nombreCliente)
                     enviarMensaje(listClientes[i].server, mensaje);
 
             }
-
         }
+
         void enviarMensaje(Socket socket, string mensaje)
         {
             try

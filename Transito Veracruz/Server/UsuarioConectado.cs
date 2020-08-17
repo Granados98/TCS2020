@@ -12,15 +12,14 @@ namespace Server
         public bool isReporte { get; set; }
         public bool isMensaje { get; set; }
 
-        public UsuarioConectado(List<string> usuarioConectado)
-        {
-            this.usuarioConectado = usuarioConectado;
-        }
-
-
         public UsuarioConectado()
         {
 
+        }
+
+        public UsuarioConectado(List<string> usuarioConectado)
+        {
+            this.usuarioConectado = usuarioConectado;
         }
     }
 }
