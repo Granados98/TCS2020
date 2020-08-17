@@ -29,16 +29,16 @@ namespace DireccionGeneral.VentanasDireccion
         {
             this.reporte = reporte;
             InitializeComponent();
-            int numeroReporte = reporte.NumeroReporte;
+            int idReporte = reporte.IdReporte;
 
-            consultarInvolucrados(numeroReporte);
+            consultarInvolucrados(idReporte);
 
-            string numReporte = Convert.ToString(numeroReporte);
-            txt_NumReporte.Text = numReporte;
+            string idReporteAux = Convert.ToString(idReporte);
+            txt_NumReporte.Text = idReporteAux;
             txt_Delegacion.Text = reporte.NombreDelegacion;
             txt_Direccion.Text = reporte.Direccion;
 
-            cargarImagenes(numeroReporte);
+            cargarImagenes(idReporte);
 
         }
         /*
@@ -72,7 +72,7 @@ namespace DireccionGeneral.VentanasDireccion
 
         }
         */
-        public void cargarImagenes(int numeroReporte)
+        public void cargarImagenes(int idReporte)
         {
             SqlConnection conexion = null;
 
@@ -82,7 +82,7 @@ namespace DireccionGeneral.VentanasDireccion
                 SqlCommand command;
                 if (conexion != null)
                 {
-                    String query = String.Format("SELECT idImagen FROM Imagen WHERE numeroReporte='"+numeroReporte+"'");
+                    String query = String.Format("SELECT idImagen FROM Imagen WHERE idReporte='"+idReporte+"'");
                     command = new SqlCommand(query, conexion);
                     SqlDataReader dr = command.ExecuteReader();
 
@@ -99,11 +99,11 @@ namespace DireccionGeneral.VentanasDireccion
                 Console.WriteLine("No se encontro el Conductor");
             }
         }
-        private void consultarInvolucrados(int numeroReporte)
+        private void consultarInvolucrados(int idReporte)
         {
             List<string> matriculas = new List<string>();
             string cadena = "";
-            listVehiculos = Reporte_VehiculoDAO.obtenerVehiculos(numeroReporte);
+            listVehiculos = Reporte_VehiculoDAO.obtenerVehiculos(idReporte);
 
             foreach (var id in listVehiculos)
             {

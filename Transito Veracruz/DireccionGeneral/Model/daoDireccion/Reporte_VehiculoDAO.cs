@@ -11,7 +11,7 @@ namespace DireccionGeneral.Model.daoDireccion
 {
     class Reporte_VehiculoDAO
     {
-        public static List<int> obtenerVehiculos(int numeroReporte)
+        public static List<int> obtenerVehiculos(int idReporte)
         {
             List<int> vehiculos = new List<int>();
             Reporte_Vehiculo reporte = null;
@@ -29,7 +29,7 @@ namespace DireccionGeneral.Model.daoDireccion
                         "x.idVehiculo, " +
                         "x.numeroReporte " +
                         "FROM dbo.Reporte_Vehiculo x " +
-                        "WHERE x.numeroReporte ='{0}';", numeroReporte);
+                        "WHERE x.idReporte_Vehiculo ='{0}';", idReporte);
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conexion);
                     rd = command.ExecuteReader();
@@ -39,7 +39,7 @@ namespace DireccionGeneral.Model.daoDireccion
                         reporte = new Reporte_Vehiculo();
                         reporte.IdReporte_Vehiculo = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
                         reporte.IdVehiculo = (!rd.IsDBNull(1)) ? rd.GetInt32(1) : 0;
-                        reporte.NumeroReporte = (!rd.IsDBNull(2)) ? rd.GetInt32(2) : 0;
+                        reporte.IdReporte = (!rd.IsDBNull(2)) ? rd.GetInt32(2) : 0;
                         vehiculos.Add(reporte.IdVehiculo);
                     }
                     rd.Close();

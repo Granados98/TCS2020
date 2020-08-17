@@ -47,7 +47,7 @@ namespace DireccionGeneral.Model.daoDireccion
                 }
             }
         }
-        public static int getIdDelegacion(int numeroDelegacion )
+        public static int getIdDelegacion(string nombre )
         {
                 int idDelegacion = 0;
                 Delegacion delegacion = null;
@@ -62,9 +62,9 @@ namespace DireccionGeneral.Model.daoDireccion
                     {
                         String query = String.Format("SELECT " +
                             "x.idDelegacion, " +
-                            "x.numeroDelegacion " +
+                            "x.nombre " +
                             "FROM dbo.Delegacion x " +
-                            "WHERE x.numeroDelegacion='{0}';", numeroDelegacion);
+                            "WHERE x.nombre='{0}';", nombre);
                         Console.WriteLine(query);
                         command = new SqlCommand(query, conexion);
                         rd = command.ExecuteReader();
@@ -73,7 +73,7 @@ namespace DireccionGeneral.Model.daoDireccion
                         {
                             delegacion = new Delegacion();
                             delegacion.IdDelegacion = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                            delegacion.NumeroDelegacion = (!rd.IsDBNull(1)) ? rd.GetInt32(1) : 0;
+                            delegacion.Nombre = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
                     }
                         rd.Close();
                         command.Dispose();
@@ -111,7 +111,6 @@ namespace DireccionGeneral.Model.daoDireccion
                 {
                     String query = String.Format("SELECT " +
                         "x.idDelegacion, " +
-                        "x.numeroDelegacion, " +
                         "x.nombre, " +
                         "x.colonia, " +
                         "x.codigoPostal, " +
@@ -129,15 +128,14 @@ namespace DireccionGeneral.Model.daoDireccion
                     {
                         Delegacion m = new Delegacion();
                         m.IdDelegacion = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        m.NumeroDelegacion = (!rd.IsDBNull(1)) ? rd.GetInt32(1) : 0;
-                        m.Nombre = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        m.Colonia = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
-                        m.CodigoPostal = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
-                        m.Municipio = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
-                        m.Telefono = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
-                        m.CorreoElectronico = (!rd.IsDBNull(7)) ? rd.GetString(7) : "";
-                        m.Calle = (!rd.IsDBNull(8)) ? rd.GetString(8) : "";
-                        m.NumeroDireccion = (!rd.IsDBNull(9)) ? rd.GetString(9) : "";
+                        m.Nombre = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        m.Colonia = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        m.CodigoPostal = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
+                        m.Municipio = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
+                        m.Telefono = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
+                        m.CorreoElectronico = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
+                        m.Calle = (!rd.IsDBNull(7)) ? rd.GetString(7) : "";
+                        m.NumeroDireccion = (!rd.IsDBNull(8)) ? rd.GetString(8) : "";
 
                         list.Add(m);
                     }
@@ -165,8 +163,8 @@ namespace DireccionGeneral.Model.daoDireccion
             String query = "";
             if (nuevo)
             {
-                query = "INSERT INTO dbo.Delegacion (numeroDelegacion,nombre,colonia,codigoPostal,municipio,telefono,correoElectronico,calle,numeroDireccion) " +
-                           "VALUES(@numeroDelegacion,@nombre,@colonia,@codigoPostal,@municipio,@telefono,@correoElectronico,@calle,@numeroDireccion);";
+                query = "INSERT INTO dbo.Delegacion (,nombre,colonia,codigoPostal,municipio,telefono,correoElectronico,calle,numeroDireccion) " +
+                           "VALUES(@nombre,@colonia,@codigoPostal,@municipio,@telefono,@correoElectronico,@calle,@numeroDireccion);";
             }
             else
             {
@@ -203,10 +201,6 @@ namespace DireccionGeneral.Model.daoDireccion
                     command.Parameters.AddWithValue("@numeroDireccion", delegacion.NumeroDireccion);
                     command.Parameters.AddWithValue("@idDelegacion", delegacion.IdDelegacion);
 
-                    if (nuevo)
-                    {
-                        command.Parameters.AddWithValue("@numeroDelegacion", delegacion.NumeroDelegacion);
-                    }
 
                     int i = command.ExecuteNonQuery();
                     Console.WriteLine("Filas afectadas: " + i);

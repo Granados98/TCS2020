@@ -32,7 +32,7 @@ namespace DireccionGeneral.VentanasDireccion
         private void btn_Ingresar_Click(object sender, RoutedEventArgs e)
         {
 
-            contraseñaIngresada = Encriptacion.GetSHA256(txt_Contrasenia.Password);
+            contraseñaIngresada = Encriptacion.Encriptar(txt_Contrasenia.Password);
             if (validacion())
             {
                 usuario = txt_Usuario.Text;

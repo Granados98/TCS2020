@@ -33,7 +33,7 @@
         </Rectangle>
         <Button x:Name="btn_GuardarDictamen" Content="Aceptar" Background="#54903B" HorizontalAlignment="Left" Margin="70,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Grid.Column="2" Click="btn_GuardarDictamen_Click"/>
         <TextBlock Text="DICTAMEN" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="171.615,-37,235,0" Height="29" Width="90" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <TextBox x:Name="txt_Folio" Margin="46,27,50,47" materialDesign:HintAssist.Hint="FOLIO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2" MaxLength="5" PreviewTextInput="txt_Folio_PreviewTextInput"/>
+        <TextBox x:Name="txt_NumeroReporte" Margin="46,27,50,47" materialDesign:HintAssist.Hint="NUMEROREPORTE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2" MaxLength="5" PreviewTextInput="txt_Folio_PreviewTextInput"/>
         <Button x:Name="btn_Cancelar" Content="Cancelar" Background="#D92530" HorizontalAlignment="Left" Margin="42,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_Salir_Click" Grid.Column="1"/>
         <TextBox x:Name="tb_Descripcion" Grid.Column="1" Background="#DADADA" FontSize="18" Foreground="Gray" HorizontalAlignment="Left" Margin="46,0,0,0" Grid.Row="1"  TextWrapping="Wrap" Text="DESCRIPCION" VerticalAlignment="Top" Width="377" Grid.ColumnSpan="2" Height="297" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" MaxLength="200"/>
     </Grid>

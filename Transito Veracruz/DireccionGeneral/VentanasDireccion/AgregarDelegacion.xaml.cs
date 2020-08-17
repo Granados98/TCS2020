@@ -68,13 +68,9 @@ namespace DireccionGeneral.VentanasDireccion
             string telefono = txt_Telefono.Text;
             string municipio = txt_Municipio.Text;
 
-            var random = new Random();
-            int numeroDelegacion = random.Next(1, 1000);
-
             if (calle.Length > 0 && codigoPostal.Length > 0 && colonia.Length > 0 && correo.Length > 0 && nombre.Length > 0 && numeroDireccion.Length > 0 && telefono.Length > 0 && municipio.Length > 0)
             {
 
-                delegacion.NumeroDelegacion = numeroDelegacion;
                 delegacion.Calle = txt_Calle.Text;
                 delegacion.CodigoPostal = txt_CodigoPostal.Text;
                 delegacion.Colonia = txt_Colonia.Text;
@@ -90,10 +86,10 @@ namespace DireccionGeneral.VentanasDireccion
                 this.Resultado = true;
                 if (nuevo)
                 {
-                    int idDelegacionAux = DelegacionDAO.getIdDelegacion(numeroDelegacion);
-                    this.itActualizar.actualizar(idDelegacionAux, numeroDelegacion, nombre, colonia, codigoPostal, municipio, telefono, correo, calle, numeroDireccion);
+                    int idDelegacionAux = DelegacionDAO.getIdDelegacion(nombre);
+                    this.itActualizar.actualizar(idDelegacionAux, nombre, colonia, codigoPostal, municipio, telefono, correo, calle, numeroDireccion);
                 }
-                this.itActualizar.actualizar(idDelegacionEditar, numeroDelegacion, nombre, colonia, codigoPostal, municipio, telefono, correo, calle, numeroDireccion);
+                this.itActualizar.actualizar(idDelegacionEditar, nombre, colonia, codigoPostal, municipio, telefono, correo, calle, numeroDireccion);
                 this.Close();
             }
             else

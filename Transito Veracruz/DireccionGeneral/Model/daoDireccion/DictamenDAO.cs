@@ -12,9 +12,9 @@ namespace DireccionGeneral.Model.daoDireccion
 {
     class DictamenDAO
     {
-        public static int verificaDictamen(int folio)
+        public static int verificaDictamen(DateTime fecha)
         {
-            int folioAux = 0;
+            int idDictamen = 0;
             Dictamen dictamen = null;
             SqlConnection conexion = null;
 
@@ -27,9 +27,9 @@ namespace DireccionGeneral.Model.daoDireccion
                 {
                     String query = String.Format("SELECT " +
                         "x.idDictamen, " +
-                        "x.folio " +
+                        "x.fechaDictamen " +
                         "FROM dbo.Dictamen x " +
-                        "WHERE x.folio='{0}';", folio);
+                        "WHERE x.fechaDictamen='{0}';", fecha);
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conexion);
                     rd = command.ExecuteReader();
@@ -38,13 +38,13 @@ namespace DireccionGeneral.Model.daoDireccion
                     {
                         dictamen = new Dictamen();
                         dictamen.IdDictamen = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        dictamen.Folio = (!rd.IsDBNull(1)) ? rd.GetInt32(1) : 0;
+                        dictamen.FechaDictamen = (!rd.IsDBNull(1)) ? rd.GetDateTime(1) : new DateTime();
                     }
                     rd.Close();
                     command.Dispose();
                     Console.WriteLine(dictamen);
 
-                    folioAux = dictamen.Folio;
+                    idDictamen = dictamen.IdDictamen;
                 }
 
             }
@@ -60,13 +60,13 @@ namespace DireccionGeneral.Model.daoDireccion
                     conexion.Close();
                 }
             }
-            return folioAux;
+            return idDictamen;
         }
         public static void guardarDictamen(Dictamen dictamen)
         {
             String query = "";
-                query = "INSERT INTO dbo.Dictamen (folio,descripcion,fechaDictamen,idPersonal) " +
-                           "VALUES(@folio,@descripcion,GETDATE(),@idPersonal);";
+                query = "INSERT INTO dbo.Dictamen (,descripcion,fechaDictamen,idPersonal) " +
+                           "VALUES(@descripcion,GETDATE(),@idPersonal);";
             
 
             SqlConnection conn = null;
@@ -79,7 +79,6 @@ namespace DireccionGeneral.Model.daoDireccion
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conn);
                     command.CommandType = CommandType.Text;
-                    command.Parameters.AddWithValue("@folio", dictamen.Folio);
                     command.Parameters.AddWithValue("@descripcion", dictamen.Descripcion);
                     command.Parameters.AddWithValue("@fechaDictamen", dictamen.FechaDictamen);
                     command.Parameters.AddWithValue("@idPersonal", dictamen.IdPersonal);

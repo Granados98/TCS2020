@@ -9,7 +9,6 @@ namespace DireccionGeneral.Model.pocosDireccion
     public class Reporte
     {
         private Int32 idReporte;
-        private Int32 numeroReporte;
         private String estatus;
         private String nombreDelegacion;
         private Int32 folioDictamen;
@@ -17,7 +16,6 @@ namespace DireccionGeneral.Model.pocosDireccion
         private DateTime fechaCreacion;
 
         public int IdReporte { get => idReporte; set => idReporte = value; }
-        public int NumeroReporte { get => numeroReporte; set => numeroReporte = value; }
         public string Estatus { get => estatus; set => estatus = value; }
         public string NombreDelegacion { get => nombreDelegacion; set => nombreDelegacion = value; }
         public int FolioDictamen { get => folioDictamen; set => folioDictamen = value; }

@@ -48,7 +48,9 @@ namespace DireccionGeneral.VentanasDireccion
                 txt_Usuario.Text = personal.Usuario;
 
                 idPersonalObtenido = personal.IdPersonal;
-                Console.WriteLine(idPersonalObtenido);
+
+                string desencriptada = Encriptacion.DesEncriptar(personal.Contrasenia);
+                txt_Contraseña.Text = desencriptada;
 
             }
         }
@@ -88,9 +90,6 @@ namespace DireccionGeneral.VentanasDireccion
 
         private void btn_AgregarUsuario_Click(object sender, RoutedEventArgs e)
         {
-            var random = new Random();
-            int numeroPersonal = random.Next(1, 1000);
-            string numeroPersonalAux=Convert.ToString(numeroPersonal);
 
             string nombre = txt_Nombre.Text;
             string apellidos = txt_Apellidos.Text;
@@ -102,7 +101,6 @@ namespace DireccionGeneral.VentanasDireccion
 
             if (cb_Delegacion.SelectedItem == null || cb_Cargo.SelectedItem == null || cb_Personal.SelectedItem == null || nombre.Length > 0 || apellidos.Length > 0 || nombreUsuario.Length > 0 || contrasenia.Length > 0)
             {
-                this.personal.NumeroPersonal = numeroPersonalAux;
                 this.personal.NombreDelegacion = cb_Delegacion.Text;
                 this.personal.Cargo = cb_Cargo.Text;
                 this.personal.TipoPersonal = cb_Personal.Text;
@@ -116,12 +114,12 @@ namespace DireccionGeneral.VentanasDireccion
                 this.Resultado = true;
                 if (nuevo)
                 {
-                    int idPersonalAux = PersonalDAO.getIdPersonal(numeroPersonalAux);
-                    this.itActualizar.actualizar(idPersonalAux, numeroPersonalAux, tipoPersonal, apellidos, nombre, cargo,nombreUsuario,contrasenia,nombreDelefacion);
+                    int idPersonalAux = PersonalDAO.getIdPersonal(nombreUsuario);
+                    this.itActualizar.actualizar(idPersonalAux, tipoPersonal, apellidos, nombre, cargo,nombreUsuario,contrasenia,nombreDelefacion);
                 }
                 else
                 {
-                    this.itActualizar.actualizar(idPersonalObtenido, numeroPersonalAux, tipoPersonal, apellidos, nombre, cargo, nombreUsuario, contrasenia, nombreDelefacion);
+                    this.itActualizar.actualizar(idPersonalObtenido, tipoPersonal, apellidos, nombre, cargo, nombreUsuario, contrasenia, nombreDelefacion);
                 }
                 this.Close();
             }

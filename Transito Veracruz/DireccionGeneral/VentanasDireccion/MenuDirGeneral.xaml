@@ -30,8 +30,6 @@
                 <Grid Background="White">
                     <DataGrid x:Name="dgDelegaciones" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="416" Margin="27,10,0,0" VerticalAlignment="Top" Width="980">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="IdDelegacion" IsReadOnly="True" Binding="{Binding IdDelegacion}" Width="*" />
-                            <DataGridTextColumn Header="numeroDelegacion" IsReadOnly="True" Binding="{Binding NumeroDelegacion}" Width="*"/>
                             <DataGridTextColumn Header="Nombre" IsReadOnly="True" Binding="{Binding Nombre}" Width="*"/>
                             <DataGridTextColumn Header="Colonia" IsReadOnly="True" Binding="{Binding Colonia}" Width="*"/>
                             <DataGridTextColumn Header="Codigo Postal" IsReadOnly="True" Binding="{Binding CodigoPostal}" Width="*"/>
@@ -52,8 +50,7 @@
                 <Grid>
                     <DataGrid x:Name="dgPersonal" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="428" Margin="27,10,0,0" VerticalAlignment="Top" Width="980">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="IdPersonal" IsReadOnly="True" Binding="{Binding IdPersonal}" Width="*" />
-                            <DataGridTextColumn Header="Numero Personal" IsReadOnly="True" Binding="{Binding NumeroPersonal}" Width="*" />
+                            <DataGridTextColumn Header="Usuario" IsReadOnly="True" Binding="{Binding Usuario}" Width="*" />
                             <DataGridTextColumn Header="Tipo Personal" IsReadOnly="True" Binding="{Binding TipoPersonal}" Width="*"/>
                             <DataGridTextColumn Header="Apellidos" IsReadOnly="True" Binding="{Binding Apellidos}" Width="*"/>
                             <DataGridTextColumn Header="Nombre" IsReadOnly="True" Binding="{Binding Nombre}" Width="*"/>
@@ -70,7 +67,7 @@
                 <Grid>
                     <DataGrid x:Name="dgReportes" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="275" Margin="27,159,0,0" VerticalAlignment="Top" Width="980" >
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="No. de Reporte" IsReadOnly="True" Binding="{Binding NumeroReporte}" Width="*"/>
+                            <DataGridTextColumn Header="No. de Reporte" IsReadOnly="True" Binding="{Binding IdReporte}" Width="*"/>
                             <DataGridTextColumn Header="Estatus" IsReadOnly="True" Binding="{Binding Estatus}" Width="*"/>
                             <DataGridTextColumn Header="Nombre Delegacion" Binding="{Binding NombreDelegacion}" Width="*" />
                             <DataGridTextColumn Header="Folio Dictamen" Binding="{Binding FolioDictamen}" Width="*"/>

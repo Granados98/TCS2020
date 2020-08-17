@@ -25,13 +25,13 @@ namespace DireccionGeneral.VentanasDireccion
     {
         Reporte reporte;
         private int idReporteAsig;
-        private int numeroReporte;
         private string nombreDelegacion;
         private string estatus="Asignado";
         private string direccion;
         private DateTime fechaCreacion;
-        private int folio = 0;
-        
+        private int idAux;
+
+
         InterfaceMenu itActualizar;
         Personal personal;
         private bool resultado;
@@ -42,13 +42,14 @@ namespace DireccionGeneral.VentanasDireccion
             this.itActualizar = itActualizar;
             this.reporte = reporte;
             InitializeComponent();
-
             idReporteAsig = reporte.IdReporte;
-            numeroReporte = reporte.NumeroReporte;
             nombreDelegacion = reporte.NombreDelegacion;
             direccion = reporte.Direccion;
             fechaCreacion = reporte.FechaCreacion;
             idPersonal = personal.IdPersonal;
+
+            idAux = reporte.IdReporte;
+            txt_NumeroReporte.Text = Convert.ToString(idAux);
         }
         public bool Resultado { get => resultado; set => resultado = value; }
 
@@ -60,27 +61,26 @@ namespace DireccionGeneral.VentanasDireccion
 
         private void btn_GuardarDictamen_Click(object sender, RoutedEventArgs e)
         {
-            folio = Convert.ToInt32(txt_Folio.Text);
             string descripcion = tb_Descripcion.Text;
 
-            if (folio>0 && descripcion.Length>0)
+            if (descripcion.Length>0)
             {
                 Dictamen dictamen = new Dictamen();
-                dictamen.Folio = folio;
                 dictamen.Descripcion = descripcion;
                 dictamen.FechaDictamen = DateTime.Now;
                 dictamen.IdPersonal = idPersonal;
 
-                reporte.FolioDictamen = folio;
-                int folioAux = DictamenDAO.verificaDictamen(folio);
-                if (folioAux==0)
+                DateTime fechaDictamenAux = dictamen.FechaDictamen;
+
+                int idDictamen = DictamenDAO.verificaDictamen(fechaDictamenAux);
+                if (idDictamen == 0)
                 {
                     reporte.Estatus = estatus;
                     DictamenDAO.guardarDictamen(dictamen);
                     ReporteDAO.asociarDictamen(this.reporte);
 
                     this.Resultado = true;
-                    this.itActualizar.actualizar(idReporteAsig,numeroReporte,estatus,nombreDelegacion,folio,direccion,fechaCreacion);
+                    this.itActualizar.actualizar(idReporteAsig,estatus,nombreDelegacion,idAux,direccion,fechaCreacion);
                     this.Close();
                 }
                 else

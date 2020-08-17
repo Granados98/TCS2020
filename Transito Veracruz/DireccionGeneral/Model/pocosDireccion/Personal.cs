@@ -9,7 +9,6 @@ namespace DireccionGeneral.Model.pocosDireccion
     public class Personal
     {
         private Int32 idPersonal;
-        private String numeroPersonal;
         private String tipoPersonal;
         private String apellidos;
         private String nombre;
@@ -21,11 +20,10 @@ namespace DireccionGeneral.Model.pocosDireccion
 
         public override string ToString()
         {
-            return String.Format("idPersonal: {0}, numeroPersonal: {1}, tipoPersonal: {2}, apellidos: {3}, " +
-                "nombre: {4}, cargo:{5}, usuario: {6}, contrasenia: {7}, estado: {8}", idPersonal, numeroPersonal, tipoPersonal, apellidos, nombre, cargo, usuario, contrasenia, estado);
+            return String.Format("idPersonal: {0}, tipoPersonal: {1}, apellidos: {2}, " +
+                "nombre: {3}, cargo:{4}, usuario: {5}, contrasenia: {6}, estado: {7}", idPersonal, tipoPersonal, apellidos, nombre, cargo, usuario, contrasenia, estado);
         }
         public int IdPersonal { get => idPersonal; set => idPersonal = value; }
-        public string NumeroPersonal { get => numeroPersonal; set => numeroPersonal = value; }
         public string TipoPersonal { get => tipoPersonal; set => tipoPersonal = value; }
         public string Apellidos { get => apellidos; set => apellidos = value; }
         public string Nombre { get => nombre; set => nombre = value; }

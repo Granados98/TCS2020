@@ -46,7 +46,7 @@ namespace DireccionGeneral.Model.daoDireccion
             }
 
         }
-        public static int getIdPersonal(string numeroPersonal)
+        public static int getIdPersonal(string nombreUsuario)
         {
 
             int idPersonal = 0;
@@ -62,9 +62,9 @@ namespace DireccionGeneral.Model.daoDireccion
                 {
                     String query = String.Format("SELECT " +
                         "x.idPersonal, " +
-                        "x.numeroPersonal " +
+                        "x.usuario " +
                         "FROM dbo.Personal x " +
-                        "WHERE x.numeroPersonal='{0}';", numeroPersonal);
+                        "WHERE x.usuario='{0}';", nombreUsuario);
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conexion);
                     rd = command.ExecuteReader();
@@ -73,7 +73,7 @@ namespace DireccionGeneral.Model.daoDireccion
                     {
                         personal = new Personal();
                         personal.IdPersonal = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        personal.NumeroPersonal = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        personal.Usuario = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
                     }
                     rd.Close();
                     command.Dispose();
@@ -110,7 +110,6 @@ namespace DireccionGeneral.Model.daoDireccion
                 {
                     String query = String.Format("SELECT " +
                         "x.idPersonal, " +
-                        "x.numeroPersonal, " +
                         "x.tipoPersonal, " +
                         "x.apellidos, " +
                         "x.nombre, " +
@@ -127,16 +126,15 @@ namespace DireccionGeneral.Model.daoDireccion
                     {
                         Personal m = new Personal();
                         m.IdPersonal = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        m.NumeroPersonal = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
-                        m.TipoPersonal = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        m.Apellidos = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
-                        m.Nombre = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
-                        m.Cargo = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
-                        m.Usuario = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
+                        m.TipoPersonal = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        m.Apellidos = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        m.Nombre = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
+                        m.Cargo = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
+                        m.Usuario = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
 
-                        m.Contrasenia = (!rd.IsDBNull(7)) ? rd.GetString(7) : "";
+                        m.Contrasenia = (!rd.IsDBNull(6)) ? rd.GetString(6) : "";
 
-                        m.NombreDelegacion = (!rd.IsDBNull(8)) ? rd.GetString(8) : "";
+                        m.NombreDelegacion = (!rd.IsDBNull(7)) ? rd.GetString(7) : "";
 
                         list.Add(m);
                     }
@@ -171,7 +169,6 @@ namespace DireccionGeneral.Model.daoDireccion
                 {
                     String query = String.Format("SELECT " +
                         "x.idPersonal, " +
-                        "x.numeroPersonal, " +
                         "x.usuario, " +
                         "x.contrasena, " +
                         "x.estado " +
@@ -185,10 +182,9 @@ namespace DireccionGeneral.Model.daoDireccion
                     {
                         personal = new Personal();
                         personal.IdPersonal = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        personal.NumeroPersonal = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
-                        personal.Usuario = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        personal.Contrasenia = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
-                        personal.Estado = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
+                        personal.Usuario = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        personal.Contrasenia = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        personal.Estado = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
                     }
                     rd.Close();
                     command.Dispose();
@@ -258,13 +254,12 @@ namespace DireccionGeneral.Model.daoDireccion
             String query = "";
             if (nuevo)
             {
-                query = "INSERT INTO dbo.Personal (numeroPersonal,tipoPersonal,apellidos,nombre,cargo,usuario,contrasena,nombreDelegacion,estado) " +
-                       "VALUES(@numeroPersonal,@tipoPersonal,@apellidos,@nombre,@cargo,@usuario,@contrasena,@nombreDelegacion,@estado);";
+                query = "INSERT INTO dbo.Personal (tipoPersonal,apellidos,nombre,cargo,usuario,contrasena,nombreDelegacion,estado) " +
+                       "VALUES(@tipoPersonal,@apellidos,@nombre,@cargo,@usuario,@contrasena,@nombreDelegacion,@estado);";
             }
             else
             {
                 query = "UPDATE dbo.Personal SET " +
-                        "numeroPersonal = @numeroPersonal," +
                         "tipoPersonal = @tipoPersonal, " +
                         "apellidos = @apellidos, " +
                         "nombre = @nombre, " +
@@ -290,7 +285,6 @@ namespace DireccionGeneral.Model.daoDireccion
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conn);
                     command.CommandType = CommandType.Text;
-                    command.Parameters.AddWithValue("@numeroPersonal", personal.NumeroPersonal);
                     command.Parameters.AddWithValue("@tipoPersonal", personal.TipoPersonal);
                     command.Parameters.AddWithValue("@apellidos", personal.Apellidos);
                     command.Parameters.AddWithValue("@nombre", personal.Nombre);

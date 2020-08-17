@@ -19,7 +19,7 @@ namespace DireccionGeneral.Model.daoDireccion
             query = "UPDATE dbo.Reporte SET " +
                        "estatus = @estatus, " +
                        "folioDictamen = @folioDictamen " +
-                       "WHERE numeroReporte = @numeroReporte;";
+                       "WHERE idReporte = @idReporte;";
 
             SqlConnection conn = null;
             try
@@ -34,7 +34,7 @@ namespace DireccionGeneral.Model.daoDireccion
                     command.Parameters.AddWithValue("@estatus", reporte.Estatus);
                     command.Parameters.AddWithValue("@folioDictamen", reporte.FolioDictamen);
 
-                    command.Parameters.AddWithValue("@numeroReporte", reporte.NumeroReporte);
+                    command.Parameters.AddWithValue("@idReporte", reporte.IdReporte);
 
 
                     int i = command.ExecuteNonQuery();
@@ -68,7 +68,6 @@ namespace DireccionGeneral.Model.daoDireccion
                 {
                     String query = String.Format("SELECT " +
                         "x.idReporte, " +
-                        "x.numeroReporte, " +
                         "x.estatus, " +
                         "x.nombreDelegacion, " +
                         "x.folioDictamen, " +
@@ -82,13 +81,12 @@ namespace DireccionGeneral.Model.daoDireccion
                     while (rd.Read())
                     {
                         Reporte m = new Reporte();
-                        //m.IdReporte = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        m.NumeroReporte = (!rd.IsDBNull(1)) ? rd.GetInt32(1) : 0;
-                        m.Estatus = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        m.NombreDelegacion = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
-                        m.FolioDictamen = (!rd.IsDBNull(4)) ? rd.GetInt32(4) : 0;
-                        m.Direccion = (!rd.IsDBNull(5)) ? rd.GetString(5) : "";
-                        m.FechaCreacion = (!rd.IsDBNull(6)) ? rd.GetDateTime(6) : new DateTime();
+                        m.IdReporte = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
+                        m.Estatus = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        m.NombreDelegacion = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        m.FolioDictamen = (!rd.IsDBNull(3)) ? rd.GetInt32(3) : 0;
+                        m.Direccion = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
+                        m.FechaCreacion = (!rd.IsDBNull(5)) ? rd.GetDateTime(5) : new DateTime();
 
                         list.Add(m);
                     }
