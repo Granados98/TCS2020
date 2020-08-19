@@ -130,5 +130,15 @@ namespace DireccionGeneral.VentanasDireccion
                 MessageBox.Show("Llena todos los campos");
             }
         }
+
+        private void txt_Nombre_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloLetras(e);
+        }
+
+        private void txt_Apellidos_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Validacion.soloLetras(e);
+        }
     }
 }
