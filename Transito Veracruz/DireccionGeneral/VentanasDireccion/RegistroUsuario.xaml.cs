@@ -90,7 +90,7 @@ namespace DireccionGeneral.VentanasDireccion
 
         private void btn_AgregarUsuario_Click(object sender, RoutedEventArgs e)
         {
-
+            string contraseñaEncriptada;
             string nombre = txt_Nombre.Text;
             string apellidos = txt_Apellidos.Text;
             string nombreUsuario = txt_Usuario.Text;
@@ -107,8 +107,10 @@ namespace DireccionGeneral.VentanasDireccion
                 this.personal.Nombre = txt_Nombre.Text;
                 this.personal.Apellidos = txt_Apellidos.Text;
                 this.personal.Usuario = txt_Usuario.Text;
-                this.personal.Contrasenia = txt_Contraseña.Text;
                 this.personal.Estado = "Desconectado";
+
+                contraseñaEncriptada = Encriptacion.Encriptar(txt_Contraseña.Text);
+                this.personal.Contrasenia = contraseñaEncriptada;
 
                 PersonalDAO.guardarUsuario(this.personal, this.nuevo);
                 this.Resultado = true;

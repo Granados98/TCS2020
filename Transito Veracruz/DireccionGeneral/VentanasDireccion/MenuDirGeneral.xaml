@@ -90,7 +90,7 @@
                 <Grid Background="White" Margin="0,0,0,8">
                     <TextBlock Background="#DADADA" HorizontalAlignment="Left" Margin="31,30,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="368" Width="940"/>
                     <TextBox Margin="31,417,233,46" materialDesign:HintAssist.Hint="ESCRIBE UN MENSAJE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
-                    <Button Content="Enviar" Background="#54903B" HorizontalAlignment="Left" Margin="822,426,0,0" VerticalAlignment="Top" Width="149"/>
+                    <Button Content="Enviar" Background="#54903B" HorizontalAlignment="Left" Margin="822,426,0,0" VerticalAlignment="Top" Width="149" Click="Button_Click"/>
 
                 </Grid>
             </TabItem>

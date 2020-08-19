@@ -66,10 +66,11 @@ C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\D
 C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\EntityFramework.xml
 C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\obj\Debug\DireccionGeneral_Content.g.cs
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\EntityFramework.dll
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\EntityFramework.xml
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\Newtonsoft.Json.xml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\Newtonsoft.Json.dll
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\Newtonsoft.Json.xml

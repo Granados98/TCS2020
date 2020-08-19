@@ -15,3 +15,20 @@ C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\Server.csproj.CopyComplete
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\Server.exe
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\Server.pdb
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\bin\Debug\Server.exe.config
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\bin\Debug\Server.exe
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\bin\Debug\Server.pdb
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\bin\Debug\Newtonsoft.Json.dll
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\bin\Debug\Newtonsoft.Json.xml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\Server.csprojAssemblyReference.cache
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\MainWindow.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\App.g.cs
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\Server_MarkupCompile.cache
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\Server_MarkupCompile.lref
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\MainWindow.baml
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\Server.g.resources
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\Server.Properties.Resources.resources
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\Server.csproj.GenerateResource.cache
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\Server.csproj.CopyComplete
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\Server.exe
+C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\Server\obj\Debug\Server.pdb
