@@ -32,10 +32,24 @@
         <ComboBox x:Name="cb_Delegacion" HorizontalAlignment="Left" Background="#DADADA"  Margin="171,19,0,0" VerticalAlignment="Top" Width="277" Height="29">
             <ComboBoxItem Content="Panuco"/>
             <ComboBoxItem Content="Tantoyuca"/>
+            <ComboBoxItem Content="Papantla"/>
+            <ComboBoxItem Content="Poza Rica"/>
+            <ComboBoxItem Content="Tuxpan"/>
+            <ComboBoxItem Content="Martinez de la Torre"/>
+            <ComboBoxItem Content="Boca del Rio"/>
+            <ComboBoxItem Content="Xalapa"/>
+            <ComboBoxItem Content="Orizaba"/>
+            <ComboBoxItem Content="Cordoba"/>
+            <ComboBoxItem Content="Perote"/>
+            <ComboBoxItem Content="Coscomatepec"/>
+            <ComboBoxItem Content="Cosomoalapan"/>
+            <ComboBoxItem Content="Acayucan"/>
+            <ComboBoxItem Content="Minatitlan"/>
+            <ComboBoxItem Content="Coatzacoalcos"/>
         </ComboBox>
         <Label Content="DELEGACIÓN" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="47,19,0,0" VerticalAlignment="Top" Height="33" Width="117"/>
-        <TextBox x:Name="txt_Nombre" Margin="49,33,74,342" materialDesign:HintAssist.Hint="NOMBRE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
-        <TextBox x:Name="txt_Apellidos" Margin="49,102,74,274" materialDesign:HintAssist.Hint="APELLIDOS" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
+        <TextBox x:Name="txt_Nombre" Margin="49,33,74,342" materialDesign:HintAssist.Hint="NOMBRE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" PreviewTextInput="txt_Nombre_PreviewTextInput" FontSize="18" Grid.Row="1"/>
+        <TextBox x:Name="txt_Apellidos" Margin="49,102,74,274" materialDesign:HintAssist.Hint="APELLIDOS" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" PreviewTextInput="txt_Apellidos_PreviewTextInput" FontSize="18" Grid.Row="1"/>
         <TextBox x:Name="txt_Usuario" Margin="47,164,76,212" materialDesign:HintAssist.Hint="NOMBRE DE USUARIO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1"/>
         <Label Content="CARGO" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="49,82,0,0" VerticalAlignment="Top" Height="32" Width="117"/>
         <ComboBox x:Name="cb_Cargo" HorizontalAlignment="Left" Background="#DADADA" Margin="171,82,0,0" VerticalAlignment="Top" Width="277" Height="28">
