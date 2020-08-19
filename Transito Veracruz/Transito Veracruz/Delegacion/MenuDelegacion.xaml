@@ -63,18 +63,16 @@
                     <Button x:Name="btn_EditarVehiculo" Content="Editar Vehiculo" Background="#54903B" HorizontalAlignment="Left" Margin="594,453,0,0" VerticalAlignment="Top" Width="159" Click="btn_EditarVehiculo_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tb_Reportes" Header="REPORTES" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
+            <TabItem x:Name="tb_Reportes" Header="REPORTES" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15" GotFocus="tb_Reportes_GotFocus">
 
                 <Grid>
                     <DataGrid x:Name="dg_Reportes" HorizontalAlignment="Left" Height="424" Margin="27,10,0,0" VerticalAlignment="Top" Width="980" AutoGenerateColumns="False" IsEnabled="True" Grid.Column = "0" Grid.Row = "1" SelectionMode="Single" SelectedCellsChanged="dg_Reportes_SelectedCellsChanged">
                         <DataGrid.Columns>
-
-                            <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding IdReporte}" Width="*"/>
-                            <DataGridTextColumn Header="No. de Reporte" IsReadOnly="True" Binding="{Binding NumeroReporte}" Width="*"/>
+                            <DataGridTextColumn Header="No. de Reporte" IsReadOnly="True" Binding="{Binding IdReporte}" Width="*"/>
                             <DataGridTextColumn Header="Estatus" IsReadOnly="True" Binding="{Binding Estatus}" Width="*"/>
                             <DataGridTextColumn Header="Nombre Delegaccion" IsReadOnly="True" Binding="{Binding NombreDelegacion}" Width="*" />
-                            <DataGridTextColumn Header="Folio Dictamen" IsReadOnly="True" Binding="{Binding FolioDictamen}" Width="*"/>
                             <DataGridTextColumn Header="Direccion" IsReadOnly="True" Binding="{Binding Direccion}" Width="*"/>
+                            <DataGridTextColumn Header="Folio Dictamen" IsReadOnly="True" Binding="{Binding IdDictamen}" Width="*"/>
 
 
 

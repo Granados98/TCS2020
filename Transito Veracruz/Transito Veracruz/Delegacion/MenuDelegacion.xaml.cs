@@ -59,20 +59,8 @@ namespace Transito_Veracruz.Delegacion
             cargarTablaVehiculos();
             nombre_Usuario.Content = usuarioIniciado.Usuario;
             
-            //el cliente se conecta con el servidor
-            //socketCliente.ConnectAsync(direccionConexion);
-            Console.WriteLine("Conectado con exito al servidor...");
-
-
-            /*
-            int id = usuarioIniciado.IdPersonal;
-            string idU=Convert.ToString(id);
-            byte[] bufferIdUsuario = Encoding.Default.GetBytes(idU);
-            socketCliente.Send(bufferIdUsuario, 0, bufferIdUsuario.Length, 0);
-            */
-            //recibeMensajes();
             cargarReportes();
-            conectarServidor();
+            //conectarServidor();
         }
 
 
@@ -267,7 +255,7 @@ namespace Transito_Veracruz.Delegacion
             }
         }
         
-        public void actualizar(int idReporte, string estatus, string nombreDelegacion, string direccion)
+        public void actualizar(int idReporte, string estatus, string nombreDelegacion, string direccion, int dictamen)
         {
             cargarReportes();
         }
@@ -416,5 +404,9 @@ namespace Transito_Veracruz.Delegacion
             }
         }
 
+        private void tb_Reportes_GotFocus(object sender, RoutedEventArgs e)
+        {
+            cargarReportes();
+        }
     }
 }

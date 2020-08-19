@@ -236,7 +236,7 @@ namespace Transito_Veracruz.Delegacion
 
                     while (dr.Read() == true)
                     {
-                        cb_Delegacion.Items.Add(dr[2]);
+                        cb_Delegacion.Items.Add(dr[1]);
                     }
                 }
             }
@@ -251,6 +251,7 @@ namespace Transito_Veracruz.Delegacion
             Reporte nuevoReporte = new Reporte();
 
             var dateAux = DateTime.Now;
+            string dateString = Convert.ToString(dateAux);
 
             string estatus = "No revisado";
             string direccion = txt_Direccion.Text;
@@ -259,12 +260,16 @@ namespace Transito_Veracruz.Delegacion
             try
             {
                 nuevoReporte.Estatus = "No revisado";
-                nuevoReporte.Direccion = txt_Direccion.Text;
-                nuevoReporte.NombreDelegacion=delegacionSeleccionada;
-                nuevoReporte.FechaCreacion = dateAux;
+                nuevoReporte.Direccion = direccion;
+                nuevoReporte.NombreDelegacion = delegacionSeleccionada;
+                nuevoReporte.FechaCreacion = dateString;
+
+
+                //string fechaAux = dateAux.ToString("yyyy-MM-dd hh:mm:ss[.nnn]");
+
 
                 ReporteDAO.guardaReporte(nuevoReporte);
-                int idReporteAux=ReporteDAO.consultaReporteNuevo(dateAux);
+                int idReporteAux=ReporteDAO.consultaReporteNuevo(dateString);
 
                 Reporte_Vehiculo reporte_Vehiculo = new Reporte_Vehiculo();
                 foreach (var a in listVehiculos)
@@ -290,9 +295,9 @@ namespace Transito_Veracruz.Delegacion
                         ImagenDAO.guardarImagen(imagen);
                     }
                 }
-
+                
+                this.itActualizar.actualizar(idReporteAux, estatus, delegacion, direccion,0);
                 this.Close();
-                this.itActualizar.actualizar(idReporteAux, estatus, delegacion, direccion);
             }
             catch (Exception ex)
             {
@@ -302,9 +307,9 @@ namespace Transito_Veracruz.Delegacion
 
         private void cb_Delegacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cb_Conductor.SelectedItem != null)
+            if (cb_Delegacion.SelectedItem != null)
             {
-                delegacionSeleccionada = cb_Conductor.SelectedItem.ToString();
+                delegacionSeleccionada = cb_Delegacion.SelectedItem.ToString();
             }
             else
             {
@@ -406,11 +411,13 @@ namespace Transito_Veracruz.Delegacion
 
                 foreach (var vehiculo in listVehiculos)
                 {
-                    if (veh.IdVehiculo==vehiculo.IdVehiculo)
+                    if (veh.IdVehiculo!=vehiculo.IdVehiculo)
                     {
                         listVehiculoAx.Add(vehiculo);
                     }
                 }
+
+                listVehiculos = listVehiculoAx;
             }
 
         }
