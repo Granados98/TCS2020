@@ -49,8 +49,8 @@ namespace Transito_Veracruz.Model.dao
         {
             String query = "";
 
-            query = "INSERT INTO dbo.Imagen (dato,idReporte) " +
-                       "VALUES(@dato,@idReporte);";
+            query = "INSERT INTO dbo.Imagen (ruta,dato,idReporte) " +
+                       "VALUES(@ruta,@dato,@idReporte);";
 
             Console.WriteLine("Se guardo la infomacion");
 
@@ -64,6 +64,7 @@ namespace Transito_Veracruz.Model.dao
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conn);
                     command.CommandType = CommandType.Text;
+                    command.Parameters.AddWithValue("@ruta", imagen.Ruta);
                     command.Parameters.AddWithValue("@dato", imagen.Dato);
                     command.Parameters.AddWithValue("@idReporte", imagen.IdReporte);
 

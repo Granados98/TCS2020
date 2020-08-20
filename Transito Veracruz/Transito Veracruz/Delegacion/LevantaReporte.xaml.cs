@@ -289,6 +289,8 @@ namespace Transito_Veracruz.Delegacion
                 {
                     foreach (var archivo in imagenes)
                     {
+                        Console.WriteLine(archivo);
+                        imagen.Ruta = archivo;
                         img = ConvierteImageToByteArray(archivo);
                         imagen.Dato = img;
                         imagen.IdReporte = idReporteAux;
@@ -365,9 +367,15 @@ namespace Transito_Veracruz.Delegacion
 
                             foreach (var archivo in imagenes)
                             {
-                                Console.WriteLine(archivo + "sa");
-                                //archivos = "" + archivo;
-                                box_Imagenes.Items.Add(archivo);
+                                foreach (var img in op.FileNames)
+                                {
+                                    if (archivo==img)
+                                    {
+                                        Console.WriteLine(archivo + "sa");
+                                        //archivos = "" + archivo;
+                                        box_Imagenes.Items.Add(archivo);
+                                    }
+                                }
                             }
                         }
                         else
