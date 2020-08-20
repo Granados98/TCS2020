@@ -66,7 +66,7 @@ namespace DireccionGeneral.VentanasDireccion
             string nombre = txt_Nombre.Text;
             string numeroDireccion = txt_NumeroCalle.Text;
             string telefono = txt_Telefono.Text;
-            string municipio = txt_Municipio.Text;
+            string municipio = cb_Municipio.Text;
 
             if (calle.Length > 0 && codigoPostal.Length > 0 && colonia.Length > 0 && correo.Length > 0 && nombre.Length > 0 && numeroDireccion.Length > 0 && telefono.Length > 0 && municipio.Length > 0)
             {
@@ -126,11 +126,6 @@ namespace DireccionGeneral.VentanasDireccion
         private void txt_Telefono_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Validacion.soloNumeros(e);
-        }
-
-        private void txt_Municipio_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            Validacion.soloLetras(e);
         }
     } 
 

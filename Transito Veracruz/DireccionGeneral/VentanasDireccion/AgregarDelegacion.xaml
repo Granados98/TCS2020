@@ -33,10 +33,102 @@
         <TextBox x:Name="txt_Calle" Margin="49,82,81,14" materialDesign:HintAssist.Hint="CALLE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" PreviewTextInput="txt_Calle_PreviewTextInput" MaxLength="50"/>
         <TextBox x:Name="txt_NumeroCalle" Margin="47,17,386,359" materialDesign:HintAssist.Hint="NO." Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" PreviewTextInput="txt_NumeroCalle_PreviewTextInput" MaxLength="4"/>
         <TextBox x:Name="txt_Colonia" Margin="171,17,83,359" materialDesign:HintAssist.Hint="COLONIA" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" PreviewTextInput="txt_Colonia_PreviewTextInput" MaxLength="30"/>
-        <TextBox x:Name="txt_Municipio" Margin="47,173,83,202" materialDesign:HintAssist.Hint="MUNICIPIO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" PreviewTextInput="txt_Municipio_PreviewTextInput" MaxLength="30"/>
+
+        <ComboBox x:Name="cb_Municipio" HorizontalAlignment="Left" Background="#DADADA" Margin="154,182,0,0" VerticalAlignment="Top" Width="277" Height="28" Grid.Row="1">
+            <ComboBoxItem Content="Acajete"/>
+            <ComboBoxItem Content="Acatlán"/>
+            <ComboBoxItem Content="Acayucan"/>
+            <ComboBoxItem Content="Actopan"/>
+            <ComboBoxItem Content="Acula"/>
+            <ComboBoxItem Content="Acultzingo"/>
+            <ComboBoxItem Content="Alpatláhuac"/>
+            <ComboBoxItem Content="Alto Lucero"/>
+            <ComboBoxItem Content="Altotonga"/>
+            <ComboBoxItem Content="Alvarado"/>
+            <ComboBoxItem Content="Amatitlán"/>
+            <ComboBoxItem Content="Naranjos"/>
+            <ComboBoxItem Content="Amatlán de los Reyes"/>
+            <ComboBoxItem Content="Ángel R. Cabada"/>
+            <ComboBoxItem Content="La Antigua"/>
+            <ComboBoxItem Content="Apazapan"/>
+            <ComboBoxItem Content="Aquila"/>
+            <ComboBoxItem Content="Astacinga"/>
+            <ComboBoxItem Content="Atlahuilco"/>
+            <ComboBoxItem Content="Atoyac"/>
+            <ComboBoxItem Content="Atzacan"/>
+            <ComboBoxItem Content="Atzalan"/>
+            <ComboBoxItem Content="Tlaltetela"/>
+            <ComboBoxItem Content="Ayahualulco"/>
+            <ComboBoxItem Content="Banderilla"/>
+            <ComboBoxItem Content="Benito Juárez"/>
+            <ComboBoxItem Content="Boca del Río"/>
+            <ComboBoxItem Content="Calcahualco"/>
+            <ComboBoxItem Content="Camerino Z. Mendoza"/>
+            <ComboBoxItem Content="Carrillo Puerto"/>
+            <ComboBoxItem Content="Catemaco"/>
+            <ComboBoxItem Content="Cazones de Herrera"/>
+            <ComboBoxItem Content="Cerro Azul"/>
+            <ComboBoxItem Content="Citlaltépetl"/>
+            <ComboBoxItem Content="Coacoatzintla"/>
+            <ComboBoxItem Content="Coahuitlán"/>
+            <ComboBoxItem Content="Coatepec"/>
+            <ComboBoxItem Content="Coatzacoalcos"/>
+            <ComboBoxItem Content="Coatzintla"/>
+            <ComboBoxItem Content="Cuitláhuac"/>
+            <ComboBoxItem Content="Chalma"/>
+            <ComboBoxItem Content="Chiconamel"/>
+            <ComboBoxItem Content="Chiconquiaco"/>
+            <ComboBoxItem Content="Chicontepec"/>
+            <ComboBoxItem Content="Chinameca"/>
+            <ComboBoxItem Content="Chinampa de Gorostiza"/>
+            <ComboBoxItem Content="Las Choapas"/>
+            <ComboBoxItem Content="Chontla"/>
+            <ComboBoxItem Content="Chumatlán"/>
+            <ComboBoxItem Content="Emiliano Zapata"/>
+            <ComboBoxItem Content="Espinal"/>
+            <ComboBoxItem Content="Fortín"/>
+            <ComboBoxItem Content="Gutiérrez Zamora"/>
+            <ComboBoxItem Content="Huatusco"/>
+            <ComboBoxItem Content="Huayacocotla"/>
+            <ComboBoxItem Content="Ignacio de la Llave"/>
+            <ComboBoxItem Content="Ixcatepec"/>
+            <ComboBoxItem Content="Ixhuatlán de Madero"/>
+            <ComboBoxItem Content="Jalacingo"/>
+            <ComboBoxItem Content="Xalapa"/>
+            <ComboBoxItem Content="Jalcomulco"/>
+            <ComboBoxItem Content="Xico"/>
+            <ComboBoxItem Content="Martínez de la Torre"/>
+            <ComboBoxItem Content="Minatitlán"/>
+            <ComboBoxItem Content="Naolinco"/>
+            <ComboBoxItem Content="Pánuco"/>
+            <ComboBoxItem Content="Papantla"/>
+            <ComboBoxItem Content="Paso del Macho"/>
+            <ComboBoxItem Content="Paso de Ovejas"/>
+            <ComboBoxItem Content="Perote"/>
+            <ComboBoxItem Content="Platón Sánchez"/>
+            <ComboBoxItem Content="Tamiahua"/>
+            <ComboBoxItem Content="Tampico Alto"/>
+            <ComboBoxItem Content="Tantoyuca"/>
+            <ComboBoxItem Content="Tecolutla"/>
+            <ComboBoxItem Content="Álamo Temapache"/>
+            <ComboBoxItem Content="Tepetzintla"/>
+            <ComboBoxItem Content="Tihuatlán"/>
+            <ComboBoxItem Content="Tlacotalpan"/>
+            <ComboBoxItem Content="Tuxpan"/>
+            <ComboBoxItem Content="Vega de Alatorre"/>
+            <ComboBoxItem Content="Veracruz"/>
+            <ComboBoxItem Content="Villa Aldama"/>
+            <ComboBoxItem Content="Yanga"/>
+            <ComboBoxItem Content="Zaragoza"/>
+            <ComboBoxItem Content="Zentla"/>
+            <ComboBoxItem Content="Zongolica"/>
+            <ComboBoxItem Content="Zontecomatlán"/>
+        </ComboBox>
         <TextBox x:Name="txt_CodigoPostal" Margin="49,99,306,277" materialDesign:HintAssist.Hint="CODIGO POSTAL" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" PreviewTextInput="txt_CodigoPostal_PreviewTextInput" MaxLength="5"/>
         <TextBox x:Name="txt_Telefono" Margin="233,99,83,277" materialDesign:HintAssist.Hint="TELÉFONO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" PreviewTextInput="txt_Telefono_PreviewTextInput" IsUndoEnabled="True" MaxLength="10"/>
         <TextBox x:Name="txt_Correo" Margin="47,251,83,124" materialDesign:HintAssist.Hint="CORREO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" MaxLength="40"/>
+        <Label Content="MUNICIPIO" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="47,182,0,0" VerticalAlignment="Top" Height="33" Width="117" Grid.Row="1"/>
+        <TextBox x:Name="txt_Municipio"  HorizontalAlignment="Left" Height="23" Margin="86,223,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 
