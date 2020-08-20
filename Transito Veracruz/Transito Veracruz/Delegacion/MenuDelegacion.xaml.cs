@@ -404,9 +404,5 @@ namespace Transito_Veracruz.Delegacion
             }
         }
 
-        private void tb_Reportes_GotFocus(object sender, RoutedEventArgs e)
-        {
-            cargarReportes();
-        }
     }
 }
