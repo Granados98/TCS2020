@@ -42,7 +42,7 @@ namespace DireccionGeneral.VentanasDireccion
                 txt_Colonia.Text = delegacion.Colonia;
                 txt_CodigoPostal.Text = delegacion.CodigoPostal;
                 txt_Telefono.Text = delegacion.Telefono;
-                txt_Municipio.Text = delegacion.Municipio;
+                cb_Municipio.Text = delegacion.Municipio;
                 txt_Correo.Text = delegacion.CorreoElectronico;
 
                 idDelegacionEditar = delegacion.IdDelegacion;
@@ -68,7 +68,7 @@ namespace DireccionGeneral.VentanasDireccion
             string telefono = txt_Telefono.Text;
             string municipio = cb_Municipio.Text;
 
-            if (calle.Length > 0 && codigoPostal.Length > 0 && colonia.Length > 0 && correo.Length > 0 && nombre.Length > 0 && numeroDireccion.Length > 0 && telefono.Length > 0 && municipio.Length > 0)
+            if (cb_Municipio.SelectedItem ==null && calle.Length > 0 && codigoPostal.Length > 0 && colonia.Length > 0 && correo.Length > 0 && nombre.Length > 0 && numeroDireccion.Length > 0 && telefono.Length > 0 && municipio.Length > 0)
             {
 
                 delegacion.Calle = txt_Calle.Text;
@@ -78,7 +78,7 @@ namespace DireccionGeneral.VentanasDireccion
                 delegacion.Nombre = txt_Nombre.Text;
                 delegacion.NumeroDireccion = txt_NumeroCalle.Text;
                 delegacion.Telefono = txt_Telefono.Text;
-                delegacion.Municipio = txt_Municipio.Text;
+                delegacion.Municipio = cb_Municipio.Text;
 
                 DelegacionDAO.guardaDelegacion(this.delegacion, this.nuevo);
 

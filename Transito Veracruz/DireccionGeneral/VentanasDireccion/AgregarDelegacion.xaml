@@ -128,7 +128,6 @@
         <TextBox x:Name="txt_Telefono" Margin="233,99,83,277" materialDesign:HintAssist.Hint="TELÉFONO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" PreviewTextInput="txt_Telefono_PreviewTextInput" IsUndoEnabled="True" MaxLength="10"/>
         <TextBox x:Name="txt_Correo" Margin="47,251,83,124" materialDesign:HintAssist.Hint="CORREO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18" Grid.Row="1" MaxLength="40"/>
         <Label Content="MUNICIPIO" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="47,182,0,0" VerticalAlignment="Top" Height="33" Width="117" Grid.Row="1"/>
-        <TextBox x:Name="txt_Municipio"  HorizontalAlignment="Left" Height="23" Margin="86,223,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 
