@@ -106,6 +106,7 @@ namespace Transito_Veracruz.Delegacion
             string color = txt_Color.Text;
             string nombreAseguradora = txt_Aseguradora.Text;
             string numeroPoliza = txt_Poliza.Text;
+
             if (cb_Conductores.SelectedItem == null || marca.Length>0 || modelo.Length>0 || anio.Length>0 || color.Length>0 || numeroPlacas.Length>0 || nombreAseguradora.Length>0 || numeroPoliza.Length> 0)
             {
                 this.vehiculo.IdConductor = idConductorSeleccionado;
@@ -116,6 +117,7 @@ namespace Transito_Veracruz.Delegacion
                 this.vehiculo.Modelo = txt_Modelo.Text;
                 this.vehiculo.NumeroPlacas = txt_NumeroPlaca.Text;
                 this.vehiculo.NumeroPolizaSeguro = txt_Poliza.Text;
+                this.vehiculo.FechaCreacion = DateTime.Now;
 
                 VehiculoDAO.guardaVehiculo(this.vehiculo, this.nuevo);
                 this.Resultado = true;

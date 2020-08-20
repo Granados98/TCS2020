@@ -17,6 +17,7 @@ namespace Transito_Veracruz.Model.pocos
         private String nombreAseguradora="";
         private String numeroPolizaSeguro="";
         private Int32 idConductor;
+        private DateTime fechaCreacion;
 
         public int IdVehiculo { get => idVehiculo; set => idVehiculo = value; }
         public string NumeroPlacas { get => numeroPlacas; set => numeroPlacas = value; }
@@ -27,5 +28,6 @@ namespace Transito_Veracruz.Model.pocos
         public string NombreAseguradora { get => nombreAseguradora; set => nombreAseguradora = value; }
         public string NumeroPolizaSeguro { get => numeroPolizaSeguro; set => numeroPolizaSeguro = value; }
         public int IdConductor { get => idConductor; set => idConductor = value; }
+        public DateTime FechaCreacion { get => fechaCreacion; set => fechaCreacion = value; }
     }
 }

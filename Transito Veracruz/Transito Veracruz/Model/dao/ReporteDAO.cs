@@ -44,7 +44,7 @@ namespace Transito_Veracruz.Model.dao
                 }
             }
         }
-        public static int consultaReporteNuevo(DateTime fechaCreacion)
+        public static int consultaReporteNuevo(string fechaCreacion)
         {
             int idReporteAux = 0;
             Reporte reporte = null;
@@ -57,11 +57,11 @@ namespace Transito_Veracruz.Model.dao
                 if (conn != null)
                 {
                     String query = String.Format("SELECT " +
-                                                 "x.idReporte," +
+                                                 "x.idReporte, " +
                                                  "x.direccion, " +
                                                  "x.fechaCreacion " +
                                                  "FROM dbo.Reporte x " +
-                                                 "WHERE x.fechaCreacion = {0};", fechaCreacion);
+                                                 "WHERE x.fechaCreacion='{0}';", fechaCreacion);
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conn);
                     rd = command.ExecuteReader();
@@ -70,21 +70,20 @@ namespace Transito_Veracruz.Model.dao
                     {
                         reporte = new Reporte();
                         reporte.IdReporte = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        reporte.IdDictamen = (!rd.IsDBNull(1)) ? rd.GetInt32(1) : 0;
-                        reporte.Direccion = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        reporte.FechaCreacion = (!rd.IsDBNull(3)) ? rd.GetDateTime(3) : new DateTime();
-
+                        reporte.Direccion = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        reporte.FechaCreacion = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
                     }
                     rd.Close();
                     command.Dispose();
                     Console.WriteLine(reporte);
 
                     idReporteAux = reporte.IdReporte;
+                    Console.WriteLine(idReporteAux);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message+ "fallo");
             }
             finally
             {
@@ -107,9 +106,9 @@ namespace Transito_Veracruz.Model.dao
                 if (conn != null)
                 {
                     String query = String.Format("SELECT " +
-                                                 "x.idReporte," +
-                                                 "x.estatus," +
-                                                 "x.nombreDelegacion," +
+                                                 "x.idReporte, " +
+                                                 "x.estatus, " +
+                                                 "x.nombreDelegacion, " +
                                                  "x.direccion, " +
                                                  "x.idDictamen " +
                                                  "FROM dbo.Reporte x " );
@@ -122,9 +121,9 @@ namespace Transito_Veracruz.Model.dao
                         Reporte m = new Reporte();
                         m.IdReporte = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
                         m.Estatus = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
-                        m.NombreDelegacion = (!rd.IsDBNull(2)) ? rd.GetString(3) : "";
-                        m.Direccion = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
-                        m.IdDictamen = (!rd.IsDBNull(5)) ? rd.GetInt32(5) : 0;
+                        m.NombreDelegacion = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        m.Direccion = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
+                        m.IdDictamen = (!rd.IsDBNull(4)) ? rd.GetInt32(4) : 0;
 
                         list.Add(m);
                     }
@@ -150,8 +149,8 @@ namespace Transito_Veracruz.Model.dao
 
             String query = "";
 
-            query = "INSERT INTO dbo.Reporte (estatus,nombreDelegacion,direccion) " +
-                       "VALUES(@estatus,@nombreDelegacion,@direccion);";
+            query = "INSERT INTO dbo.Reporte (estatus,nombreDelegacion,direccion,fechaCreacion) " +
+                       "VALUES(@estatus,@nombreDelegacion,@direccion,@fechaCreacion);";
 
 
 
@@ -168,6 +167,7 @@ namespace Transito_Veracruz.Model.dao
                     command.Parameters.AddWithValue("@estatus", reporte.Estatus);
                     command.Parameters.AddWithValue("@nombreDelegacion", reporte.NombreDelegacion);
                     command.Parameters.AddWithValue("@direccion", reporte.Direccion);
+                    command.Parameters.AddWithValue("@fechaCreacion", reporte.FechaCreacion);
 
                     command.Parameters.AddWithValue("@idReporte", reporte.IdReporte);
 

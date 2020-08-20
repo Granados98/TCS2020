@@ -282,8 +282,8 @@ namespace Transito_Veracruz.Model.dao
             String query = "";
             if (nuevo)
             {
-                query = "INSERT INTO dbo.Vehiculo (numeroPlacas,marca,modelo,año,color,nombreAseguradora,numeroPolizaSeguro,idConductor) " +
-                          "VALUES(@numeroPlacas,@marca,@modelo,@año,@color,@nombreAseguradora,@numeroPolizaSeguro,@idConductor);";
+                query = "INSERT INTO dbo.Vehiculo (numeroPlacas,marca,modelo,año,color,nombreAseguradora,numeroPolizaSeguro,idConductor,fechaCreacion) " +
+                          "VALUES(@numeroPlacas,@marca,@modelo,@año,@color,@nombreAseguradora,@numeroPolizaSeguro,@idConductor,@fechaCreacion);";
 
             }
             else
@@ -321,6 +321,7 @@ namespace Transito_Veracruz.Model.dao
                     if (nuevo)
                     {
                         command.Parameters.AddWithValue("@idConductor", vehiculo.IdConductor);
+                        command.Parameters.AddWithValue("@fechaCreacion", vehiculo.FechaCreacion);
                     }
                     else
                     {
