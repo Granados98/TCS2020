@@ -294,6 +294,7 @@ namespace Transito_Veracruz.Delegacion
                         img = ConvierteImageToByteArray(archivo);
                         imagen.Dato = img;
                         imagen.IdReporte = idReporteAux;
+                        imagen.FechaCreacion = dateString;
                         ImagenDAO.guardarImagen(imagen);
                     }
                 }

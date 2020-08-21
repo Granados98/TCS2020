@@ -154,7 +154,7 @@ namespace DireccionGeneral.VentanasDireccion
         public void recibirMensaje(string mensajeRecibido, string usuarioEmisor)
         {
             string mensajeFinal = Convert.ToString(mensajeRecibido);
-            block_Chat.Items.Add(usuarioEmisor + ":" + mensajeFinal);
+            block_Chat.Items.Add(usuarioEmisor + ": " + mensajeFinal);
         }
 
         public void enviarMensaje()
@@ -401,7 +401,7 @@ namespace DireccionGeneral.VentanasDireccion
 
         private void btn_Enviar_Click(object sender, RoutedEventArgs e)
         {
-            block_Chat.Items.Add("Tú" + txt_Mensaje.Text);
+            block_Chat.Items.Add("Tú: " + txt_Mensaje.Text);
             enviarMensaje();
         }
 

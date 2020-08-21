@@ -49,8 +49,8 @@ namespace Transito_Veracruz.Model.dao
         {
             String query = "";
 
-            query = "INSERT INTO dbo.Imagen (ruta,dato,idReporte) " +
-                       "VALUES(@ruta,@dato,@idReporte);";
+            query = "INSERT INTO dbo.Imagen (ruta,dato,idReporte,fechaCreacion) " +
+                       "VALUES(@ruta,@dato,@idReporte,@fechaCreacion);";
 
             Console.WriteLine("Se guardo la infomacion");
 
@@ -67,6 +67,8 @@ namespace Transito_Veracruz.Model.dao
                     command.Parameters.AddWithValue("@ruta", imagen.Ruta);
                     command.Parameters.AddWithValue("@dato", imagen.Dato);
                     command.Parameters.AddWithValue("@idReporte", imagen.IdReporte);
+                    command.Parameters.AddWithValue("@fechaCreacion", imagen.FechaCreacion);
+
 
                     command.Parameters.AddWithValue("@idImagen", imagen.IdImagen);
 

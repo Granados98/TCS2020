@@ -169,6 +169,7 @@ namespace DireccionGeneral.Model.daoDireccion
                 {
                     String query = String.Format("SELECT " +
                         "x.idPersonal, " +
+                        "x.tipoPersonal, " +
                         "x.usuario, " +
                         "x.contrasena, " +
                         "x.estado " +
@@ -182,9 +183,10 @@ namespace DireccionGeneral.Model.daoDireccion
                     {
                         personal = new Personal();
                         personal.IdPersonal = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        personal.Usuario = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
-                        personal.Contrasenia = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
-                        personal.Estado = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
+                        personal.TipoPersonal = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
+                        personal.Usuario = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
+                        personal.Contrasenia = (!rd.IsDBNull(3)) ? rd.GetString(3) : "";
+                        personal.Estado = (!rd.IsDBNull(4)) ? rd.GetString(4) : "";
                     }
                     rd.Close();
                     command.Dispose();

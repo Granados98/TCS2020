@@ -92,14 +92,14 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_EnviarMensaje_Click(object sender, RoutedEventArgs e)
         {
-            block_Chat.Items.Add("Tú" + txt_Mensaje.Text);
+            block_Chat.Items.Add("Tú: " + txt_Mensaje.Text);
             enviarMensaje();
         }
 
         public void recibirMensaje(string mensajeRecibido, string usuarioEmisor)
         {
             string mensajeFinal= Convert.ToString(mensajeRecibido);
-            block_Chat.Items.Add(usuarioEmisor+":"+ mensajeFinal);
+            block_Chat.Items.Add(usuarioEmisor+": "+ mensajeFinal);
         }
 
         private void conectarServidor()

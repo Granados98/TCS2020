@@ -12,10 +12,12 @@ namespace Transito_Veracruz.Model.pocos
         private String ruta;
         private byte[] dato;
         private Int32 idReporte;
+        private string fechaCreacion;
 
         public int IdImagen { get => idImagen; set => idImagen = value; }
         public byte[] Dato { get => dato; set => dato = value; }
         public int IdReporte { get => idReporte; set => idReporte = value; }
         public string Ruta { get => ruta; set => ruta = value; }
+        public string FechaCreacion { get => fechaCreacion; set => fechaCreacion = value; }
     }
 }
