@@ -33,12 +33,10 @@ namespace Transito_Veracruz.Delegacion
     {
 
         private Socket socketCliente = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        //IPEndPoint direccionConexion = new IPEndPoint(IPAddress.Any, 1234);
 
 
         private string mensaje = "";
         private string usuarioEmisor = "";
-        //private String mensajeRecibido = "";
 
         private List<string> listaConectados = new List<string>();
 
@@ -134,8 +132,6 @@ namespace Transito_Veracruz.Delegacion
             }
 
 
-            //Conexion y mensajes
-
             string objetoSerializado = mensaje;
 
             envioMensaje = JsonConvert.DeserializeObject<Mensaje>(mensaje);
@@ -143,18 +139,19 @@ namespace Transito_Veracruz.Delegacion
             if (envioMensaje.contenidoMensaje == null)
             {
                 UsuarioConectado cc = Newtonsoft.Json.JsonConvert.DeserializeObject<UsuarioConectado>(objetoSerializado);
-                //Llena lista con nombre de usuario
                 listaConectados = new List<string>();
                 for (int i = 0; i < cc.usuarioConectado.Count; i++)
                 {
                     listaConectados.Add(cc.usuarioConectado[i] + " (" + cc.usuarioConectado[i] + ")");
                 }
             }
-            else if (envioMensaje.contenidoMensaje != null)
+            else
             {
-                this.Dispatcher.Invoke(() =>{recibirMensaje(envioMensaje.contenidoMensaje, envioMensaje.usuarioEmisor);});
+                if (envioMensaje.contenidoMensaje != null)
+                {
+                    this.Dispatcher.Invoke(() => { recibirMensaje(envioMensaje.contenidoMensaje, envioMensaje.usuarioEmisor); });
+                }
             }
-
 
             try
             {
@@ -169,7 +166,6 @@ namespace Transito_Veracruz.Delegacion
 
         private void repetirConexion()
         {
-
             while (!socketCliente.Connected)
             {
                 try
@@ -186,7 +182,7 @@ namespace Transito_Veracruz.Delegacion
 
         public void enviarMensaje()
         {
-            string texto = txt_Mensaje.Text.Trim();
+            string texto = txt_Mensaje.Text;
 
             if (texto != "")
             {

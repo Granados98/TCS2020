@@ -16,7 +16,6 @@ namespace Server
         {
 
         }
-
         public UsuarioConectado(List<string> usuarioConectado)
         {
             this.usuarioConectado = usuarioConectado;

@@ -58,7 +58,6 @@ namespace Server
 
         private void ReceiveCallback(IAsyncResult async)
         {
-
             Socket socket = (Socket)async.AsyncState;
 
             if (socket.Connected)
@@ -103,9 +102,7 @@ namespace Server
                         }
                     }
 
-
-
-                    MensajeEnvio mensajeEnvio = Newtonsoft.Json.JsonConvert.DeserializeObject<MensajeEnvio>(texto);
+                    MensajeEnvio mensajeEnvio = JsonConvert.DeserializeObject<MensajeEnvio>(texto);
 
 
                     if (!mensajeEnvio.isMensaje && !mensajeEnvio.isReporte)
@@ -115,7 +112,7 @@ namespace Server
 
                         uc = new UsuarioConectado(usuariosConectados);
 
-                        respuesta = Newtonsoft.Json.JsonConvert.SerializeObject(uc).ToString();
+                        respuesta = JsonConvert.SerializeObject(uc).ToString();
 
                         enviarUsuariosConectados(respuesta);
                     }
@@ -136,7 +133,7 @@ namespace Server
 
                             uc.usuarioConectado.RemoveAt(i);
 
-                            string ccActualizado = Newtonsoft.Json.JsonConvert.SerializeObject(uc).ToString();
+                            string ccActualizado = JsonConvert.SerializeObject(uc).ToString();
                             enviarUsuariosConectados(ccActualizado);
                         }
                     }
@@ -154,12 +151,10 @@ namespace Server
 
         public void enviarUsuariosConectados(string listaSerializada)
         {
-
             for (int i = 0; i < listClientes.Count; i++)
             {
                 enviarMensaje(listClientes[i].server, listaSerializada);
             }
-
         }
 
 
