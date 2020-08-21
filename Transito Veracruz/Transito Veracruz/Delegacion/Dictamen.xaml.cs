@@ -28,6 +28,7 @@ namespace Transito_Veracruz.Delegacion
             InitializeComponent();
             dictamenSeleccionado = DictamenDAO.getInformacionDictamen(idDictamen);
             int idPersonal = dictamenSeleccionado.IdPersonal;
+            Console.WriteLine(idPersonal);
             encargadoDictamen = PersonalDAO.getInformacionPersonal(idPersonal);
 
             txt_NombrePerito.Text = encargadoDictamen.Apellidos + " " + encargadoDictamen.Nombre;

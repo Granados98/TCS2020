@@ -296,9 +296,15 @@ namespace Transito_Veracruz.Model.dao
                     command.Parameters.AddWithValue("@telefono", conductor.Telefono);
                     command.Parameters.AddWithValue("@usuario", conductor.Usuario);
                     command.Parameters.AddWithValue("@contrasena", conductor.Contrasenia);
-                    command.Parameters.AddWithValue("@fechaRegistro", conductor.FechaRegistro);
 
-                    command.Parameters.AddWithValue("@idConductor", conductor.IdConductor);
+                    if (nuevo)
+                    {
+                        command.Parameters.AddWithValue("@fechaRegistro", conductor.FechaRegistro);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@idConductor", conductor.IdConductor);
+                    }
 
 
                     int i = command.ExecuteNonQuery();

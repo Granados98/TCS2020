@@ -54,7 +54,7 @@
         <Label Content="CARGO" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="49,82,0,0" VerticalAlignment="Top" Height="32" Width="117"/>
         <ComboBox x:Name="cb_Cargo" HorizontalAlignment="Left" Background="#DADADA" Margin="171,82,0,0" VerticalAlignment="Top" Width="277" Height="28">
             <ComboBoxItem Content="Administrativo"/>
-            <ComboBoxItem Content="Perito"/>
+            <ComboBoxItem Content="Administrador"/>
             <ComboBoxItem Content="Soporte"/>
             <ComboBoxItem Content="Atencion"/>
         </ComboBox>

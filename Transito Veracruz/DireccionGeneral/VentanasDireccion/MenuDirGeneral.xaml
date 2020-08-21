@@ -70,32 +70,36 @@
                             <DataGridTextColumn Header="No. de Reporte" IsReadOnly="True" Binding="{Binding IdReporte}" Width="*"/>
                             <DataGridTextColumn Header="Estatus" IsReadOnly="True" Binding="{Binding Estatus}" Width="*"/>
                             <DataGridTextColumn Header="Nombre Delegacion" Binding="{Binding NombreDelegacion}" Width="*" />
-                            <DataGridTextColumn Header="Folio Dictamen" Binding="{Binding FolioDictamen}" Width="*"/>
                             <DataGridTextColumn Header="Dirección" Binding="{Binding Direccion}" Width="*"/>
                             <DataGridTextColumn Header="Fecha Creacion" Binding="{Binding FechaCreacion}" Width="*"/>
+                            <DataGridTextColumn Header="Folio Dictamen" Binding="{Binding FolioDictamen}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="btn_AgregarDictamen" Content="Asignar Dictamen" Background="#54903B" HorizontalAlignment="Left" Margin="27,453,0,0" VerticalAlignment="Top" Width="151" Click="btn_AgregarDictamen_Click"/>
                     <ComboBox x:Name="cb_Delegacion" Background="#DADADA" HorizontalAlignment="Left" Margin="251,32,0,0" VerticalAlignment="Top" Width="219"/>
-                    <ComboBox Background="#DADADA" HorizontalAlignment="Left" Margin="656,32,0,0" VerticalAlignment="Top" Width="225"/>
                     <Label Content="DELEGACIÓN" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontWeight="Normal" FontSize="18" Margin="108,32,791,450"/>
-                    <ComboBox x:Name="cb_Estatus" Background="#DADADA" HorizontalAlignment="Left" Margin="251,91,0,0" VerticalAlignment="Top" Width="219"/>
-                    <Label Content="ESTATUS" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontWeight="Normal" FontSize="18" Margin="108,91,791,391"/>
-                    <Label Content="FECHA" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontWeight="Normal" FontSize="18" Margin="559,32,340,450"/>
+                    <ComboBox x:Name="cb_Estatus" Background="#DADADA" HorizontalAlignment="Left" Margin="702,32,0,0" VerticalAlignment="Top" Width="219">
+                        <ComboBoxItem Content="Asignado"/>
+                        <ComboBoxItem Content="No revisado"/>
+                    </ComboBox>
+                    <Label Content="ESTATUS" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontWeight="Normal" FontSize="18" Margin="559,32,340,450"/>
                     <Button x:Name="btn_VerDetalle" Content="Ver Detalle" Background="#54903B" HorizontalAlignment="Left" Margin="211,453,0,0" VerticalAlignment="Top" Width="151" Click="btn_VerDetalle_Click"/>
+                    <Button x:Name="btn_Actualizar" Content="Actualizar" Background="#54903B" HorizontalAlignment="Left" Margin="730,453,0,0" VerticalAlignment="Top" Width="151" Click="btn_Actualizar_Click"/>
+                    <Button x:Name="btn_Buscar" Content="Buscar" Background="#54903B" HorizontalAlignment="Left" Margin="770,92,0,0" VerticalAlignment="Top" Width="151" Click="btn_Buscar_Click"/>
                 </Grid>
 
             </TabItem>
             <TabItem Header="CHAT GRUPAL" FontWeight="Bold" Height="90" Background="Transparent" FontSize="15">
                 <Grid Background="White" Margin="0,0,0,8">
-                    <TextBlock Background="#DADADA" HorizontalAlignment="Left" Margin="31,30,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="368" Width="940"/>
-                    <TextBox Margin="31,417,233,46" materialDesign:HintAssist.Hint="ESCRIBE UN MENSAJE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
-                    <Button Content="Enviar" Background="#54903B" HorizontalAlignment="Left" Margin="822,426,0,0" VerticalAlignment="Top" Width="149" Click="Button_Click"/>
-
+                    <TextBox x:Name="txt_Mensaje" Margin="31,417,233,46" materialDesign:HintAssist.Hint="ESCRIBE UN MENSAJE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="18"/>
+                    <Button x:Name="btn_Enviar" Content="Enviar" Background="#54903B" HorizontalAlignment="Left" Margin="822,426,0,0" VerticalAlignment="Top" Width="149" Click="btn_Enviar_Click"/>
+                    <ListBox x:Name="block_Chat" Background="#DADADA" HorizontalAlignment="Left" Margin="31,25,0,0"  VerticalAlignment="Top" Height="368" Width="940"/>
                 </Grid>
             </TabItem>
         </TabControl>
         <Button x:Name="btn_Salir" Content="Salir" Foreground="White" Background="#D92530" BorderBrush="Black" HorizontalAlignment="Left" Margin="1029,605,0,0" VerticalAlignment="Top" Width="75" Click="btn_Salir_Click"/>
+        <Label x:Name="nombre_Usuario" Content="Usuario" HorizontalAlignment="Left" Margin="253,45,0,0" VerticalAlignment="Top" Foreground="#5D3327" FontWeight="Bold" FontSize="20"/>
+        <Label Content="Dirección General" HorizontalAlignment="Left" Margin="975,45,0,0" VerticalAlignment="Top" Foreground="#5D3327" FontWeight="Bold" FontSize="20"/>
 
 
 

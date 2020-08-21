@@ -10,12 +10,12 @@ namespace Transito_Veracruz.Model.pocos
     {
         private Int32 idDictamen;
         private String descripcion;
-        private DateTime fechaDictamen;
+        private String fechaDictamen;
         private Int32 idPersonal;
 
         public int IdDictamen { get => idDictamen; set => idDictamen = value; }
         public string Descripcion { get => descripcion; set => descripcion = value; }
-        public DateTime FechaDictamen { get => fechaDictamen; set => fechaDictamen = value; }
+        public string FechaDictamen { get => fechaDictamen; set => fechaDictamen = value; }
         public int IdPersonal { get => idPersonal; set => idPersonal = value; }
     }
 }

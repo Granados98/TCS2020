@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,47 @@ namespace DireccionGeneral.Model.daoDireccion
 {
     class Reporte_VehiculoDAO
     {
+        public static void asociarReporteVehiculo(Reporte_Vehiculo reporteVehiculo)
+        {
+            String query = "";
+
+            query = "UPDATE dbo.Reporte_Vehiculo SET " +
+                       "idReporte = @idReporte " +
+                       "WHERE idReporte_Vehiculo = @idReporte_Vehiculo;";
+
+            SqlConnection conn = null;
+            try
+            {
+                conn = ConnectionUtils.getConnection();
+                SqlCommand command;
+                if (conn != null)
+                {
+                    Console.WriteLine(query);
+                    command = new SqlCommand(query, conn);
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.AddWithValue("@idReporte", reporteVehiculo.IdReporte);
+                    command.Parameters.AddWithValue("@idReporte_Vehiculo", reporteVehiculo.IdReporte_Vehiculo);
+
+
+
+                    int i = command.ExecuteNonQuery();
+                    Console.WriteLine("Filas afectadas: " + i);
+                    command.Dispose();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("No se pudo guardar la información...");
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
         public static List<int> obtenerVehiculos(int idReporte)
         {
             List<int> vehiculos = new List<int>();
@@ -27,9 +69,9 @@ namespace DireccionGeneral.Model.daoDireccion
                     String query = String.Format("SELECT " +
                         "x.idReporte_Vehiculo, " +
                         "x.idVehiculo, " +
-                        "x.numeroReporte " +
+                        "x.idReporte " +
                         "FROM dbo.Reporte_Vehiculo x " +
-                        "WHERE x.idReporte_Vehiculo ='{0}';", idReporte);
+                        "WHERE x.idReporte ='{0}';", idReporte);
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conexion);
                     rd = command.ExecuteReader();

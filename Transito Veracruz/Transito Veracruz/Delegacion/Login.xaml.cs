@@ -39,7 +39,7 @@ namespace Transito_Veracruz.Delegacion
             {
                 usuario = txt_Usuario.Text;
                 Personal personal = PersonalDAO.getLogin(usuario, contraseñaIngresada);
-                if (personal!=null && personal.IdPersonal>0 && personal.Estado=="Desconectado")
+                if (personal!=null && personal.IdPersonal>0 && personal.Estado=="Desconectado" && personal.TipoPersonal=="Delegacion")
                 {
                     personal.Estado="Conectado";
                     PersonalDAO.actualizarEstadoUsuario(personal);

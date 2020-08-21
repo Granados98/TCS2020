@@ -37,7 +37,7 @@ namespace DireccionGeneral.VentanasDireccion
             this.personal = personal;
             InitializeComponent();
             cargarDelegaciones();
-
+            Console.WriteLine(personal.TipoPersonal+ personal.Cargo);
             if (!nuevo)
             {
                 cb_Delegacion.Text = personal.NombreDelegacion;
@@ -65,7 +65,7 @@ namespace DireccionGeneral.VentanasDireccion
                 SqlCommand command;
                 if (conexion != null)
                 {
-                    String query = String.Format("SELECT idDelegacion,numeroDelegacion,nombre FROM Delegacion");
+                    String query = String.Format("SELECT idDelegacion,nombre FROM Delegacion");
                     command = new SqlCommand(query, conexion);
                     SqlDataReader dr = command.ExecuteReader();
 
@@ -90,6 +90,8 @@ namespace DireccionGeneral.VentanasDireccion
 
         private void btn_AgregarUsuario_Click(object sender, RoutedEventArgs e)
         {
+            DateTime fechaCreacion = DateTime.Now;
+
             string contraseñaEncriptada;
             string nombre = txt_Nombre.Text;
             string apellidos = txt_Apellidos.Text;
@@ -108,6 +110,7 @@ namespace DireccionGeneral.VentanasDireccion
                 this.personal.Apellidos = txt_Apellidos.Text;
                 this.personal.Usuario = txt_Usuario.Text;
                 this.personal.Estado = "Desconectado";
+                this.personal.FechaCreacion = fechaCreacion;
 
                 contraseñaEncriptada = Encriptacion.Encriptar(txt_Contraseña.Text);
                 this.personal.Contrasenia = contraseñaEncriptada;

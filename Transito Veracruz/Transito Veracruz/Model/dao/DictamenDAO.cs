@@ -30,7 +30,7 @@ namespace Transito_Veracruz.Model.dao
                         "x.fechaDictamen, " +
                         "x.idPersonal " +
                         "FROM dbo.Dictamen x " +
-                        "WHERE x.folio = '{0}';", idDictamen);
+                        "WHERE x.idDictamen = '{0}';", idDictamen);
                     Console.WriteLine(query);
                     command = new SqlCommand(query, conexion);
                     rd = command.ExecuteReader();
@@ -40,7 +40,7 @@ namespace Transito_Veracruz.Model.dao
                         dictamen = new DictamenC();
                         dictamen.IdDictamen = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
                         dictamen.Descripcion = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
-                        dictamen.FechaDictamen = (!rd.IsDBNull(2)) ? rd.GetDateTime(2) : new DateTime();
+                        dictamen.FechaDictamen = (!rd.IsDBNull(2)) ? rd.GetString(2) : "";
                         dictamen.IdPersonal = (!rd.IsDBNull(3)) ? rd.GetInt32(3) : 0;
                     }
                     rd.Close();
@@ -52,7 +52,7 @@ namespace Transito_Veracruz.Model.dao
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                Console.WriteLine("No se encontro el Conductor");
+                Console.WriteLine("No se encontro el Dictamen");
             }
             finally
             {

@@ -73,9 +73,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Clases\Mensaje.cs" />
+    <Compile Include="Clases\UsuarioConectado.cs" />
     <Compile Include="Model\daoDireccion\ConductorDAO.cs" />
     <Compile Include="Model\daoDireccion\DelegacionDAO.cs" />
     <Compile Include="Model\daoDireccion\DictamenDAO.cs" />
+    <Compile Include="Model\daoDireccion\ImagenDAO.cs" />
     <Compile Include="Model\daoDireccion\PersonalDAO.cs" />
     <Compile Include="Model\daoDireccion\ReporteDAO.cs" />
     <Compile Include="Model\daoDireccion\Reporte_VehiculoDAO.cs" />
@@ -85,6 +88,7 @@
     <Compile Include="Model\pocosDireccion\Conductor.cs" />
     <Compile Include="Model\pocosDireccion\Delegacion.cs" />
     <Compile Include="Model\pocosDireccion\Dictamen.cs" />
+    <Compile Include="Model\pocosDireccion\Imagen.cs" />
     <Compile Include="Model\pocosDireccion\Personal.cs" />
     <Compile Include="Model\pocosDireccion\Reporte.cs" />
     <Compile Include="Model\pocosDireccion\Reporte_Vehiculo.cs" />

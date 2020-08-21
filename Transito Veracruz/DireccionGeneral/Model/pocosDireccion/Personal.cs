@@ -17,6 +17,7 @@ namespace DireccionGeneral.Model.pocosDireccion
         private String contrasenia;
         private String nombreDelegacion;
         private String estado;
+        private DateTime fechaCreacion;
 
         public override string ToString()
         {
@@ -32,5 +33,6 @@ namespace DireccionGeneral.Model.pocosDireccion
         public string Contrasenia { get => contrasenia; set => contrasenia = value; }
         public string Estado { get => estado; set => estado = value; }
         public string NombreDelegacion { get => nombreDelegacion; set => nombreDelegacion = value; }
+        public DateTime FechaCreacion { get => fechaCreacion; set => fechaCreacion = value; }
     }
 }

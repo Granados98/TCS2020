@@ -163,8 +163,8 @@ namespace DireccionGeneral.Model.daoDireccion
             String query = "";
             if (nuevo)
             {
-                query = "INSERT INTO dbo.Delegacion (,nombre,colonia,codigoPostal,municipio,telefono,correoElectronico,calle,numeroDireccion) " +
-                           "VALUES(@nombre,@colonia,@codigoPostal,@municipio,@telefono,@correoElectronico,@calle,@numeroDireccion);";
+                query = "INSERT INTO dbo.Delegacion (nombre,colonia,codigoPostal,municipio,telefono,correoElectronico,calle,numeroDireccion,fechaCreacion) " +
+                           "VALUES(@nombre,@colonia,@codigoPostal,@municipio,@telefono,@correoElectronico,@calle,@numeroDireccion,@fechaCreacion);";
             }
             else
             {
@@ -199,7 +199,15 @@ namespace DireccionGeneral.Model.daoDireccion
                     command.Parameters.AddWithValue("@correoElectronico", delegacion.CorreoElectronico);
                     command.Parameters.AddWithValue("@calle", delegacion.Calle);
                     command.Parameters.AddWithValue("@numeroDireccion", delegacion.NumeroDireccion);
-                    command.Parameters.AddWithValue("@idDelegacion", delegacion.IdDelegacion);
+
+                    if (nuevo)
+                    {
+                        command.Parameters.AddWithValue("@fechaCreacion", delegacion.FechaCreacion);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@idDelegacion", delegacion.IdDelegacion);
+                    }
 
 
                     int i = command.ExecuteNonQuery();

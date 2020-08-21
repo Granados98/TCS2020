@@ -254,8 +254,8 @@ namespace DireccionGeneral.Model.daoDireccion
             String query = "";
             if (nuevo)
             {
-                query = "INSERT INTO dbo.Personal (tipoPersonal,apellidos,nombre,cargo,usuario,contrasena,nombreDelegacion,estado) " +
-                       "VALUES(@tipoPersonal,@apellidos,@nombre,@cargo,@usuario,@contrasena,@nombreDelegacion,@estado);";
+                query = "INSERT INTO dbo.Personal (tipoPersonal,apellidos,nombre,cargo,usuario,contrasena,nombreDelegacion,estado,fechaCreacion) " +
+                       "VALUES(@tipoPersonal,@apellidos,@nombre,@cargo,@usuario,@contrasena,@nombreDelegacion,@estado,@fechaCreacion);";
             }
             else
             {
@@ -294,7 +294,14 @@ namespace DireccionGeneral.Model.daoDireccion
                     command.Parameters.AddWithValue("@nombreDelegacion", personal.NombreDelegacion);
                     command.Parameters.AddWithValue("@estado", personal.Estado);
 
-                    command.Parameters.AddWithValue("@idPersonal", personal.IdPersonal);
+                    if (nuevo)
+                    {
+                        command.Parameters.AddWithValue("@fechaCreacion", personal.FechaCreacion);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@idPersonal", personal.IdPersonal);
+                    }
 
                     int i = command.ExecuteNonQuery();
                     Console.WriteLine("Filas afectadas: " + i);

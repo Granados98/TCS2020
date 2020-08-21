@@ -26,10 +26,8 @@ namespace DireccionGeneral.VentanasDireccion
         Reporte reporte;
         private int idReporteAsig;
         private string nombreDelegacion;
-        private string estatus="Asignado";
         private string direccion;
-        private DateTime fechaCreacion;
-        private int idAux;
+        private string fechaCreacion;
 
 
         InterfaceMenu itActualizar;
@@ -48,7 +46,7 @@ namespace DireccionGeneral.VentanasDireccion
             fechaCreacion = reporte.FechaCreacion;
             idPersonal = personal.IdPersonal;
 
-            idAux = reporte.IdReporte;
+            int idAux = reporte.IdReporte;
             txt_NumeroReporte.Text = Convert.ToString(idAux);
         }
         public bool Resultado { get => resultado; set => resultado = value; }
@@ -62,25 +60,31 @@ namespace DireccionGeneral.VentanasDireccion
         private void btn_GuardarDictamen_Click(object sender, RoutedEventArgs e)
         {
             string descripcion = tb_Descripcion.Text;
+            DateTime fechaDictamen = DateTime.Now;
+            string fechaString = Convert.ToString(fechaDictamen);
 
             if (descripcion.Length>0)
             {
                 Dictamen dictamen = new Dictamen();
                 dictamen.Descripcion = descripcion;
-                dictamen.FechaDictamen = DateTime.Now;
+                dictamen.FechaDictamen = fechaString;
                 dictamen.IdPersonal = idPersonal;
 
-                DateTime fechaDictamenAux = dictamen.FechaDictamen;
 
-                int idDictamen = DictamenDAO.verificaDictamen(fechaDictamenAux);
+                int idDictamen = DictamenDAO.verificaDictamen(fechaString);
                 if (idDictamen == 0)
                 {
-                    reporte.Estatus = estatus;
+                    string estatus = "Asignado";
                     DictamenDAO.guardarDictamen(dictamen);
+                    int idDictamenRegistrado = DictamenDAO.verificaDictamen(fechaString);
+
+                    Console.WriteLine(idDictamenRegistrado+reporte.IdReporte);
+                    reporte.Estatus = estatus;
+                    reporte.FolioDictamen = idDictamenRegistrado;
                     ReporteDAO.asociarDictamen(this.reporte);
 
                     this.Resultado = true;
-                    this.itActualizar.actualizar(idReporteAsig,estatus,nombreDelegacion,idAux,direccion,fechaCreacion);
+                    this.itActualizar.actualizar(idReporteAsig,estatus,nombreDelegacion,direccion,fechaCreacion,idDictamenRegistrado);
                     this.Close();
                 }
                 else

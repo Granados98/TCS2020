@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:DireccionGeneral.VentanasDireccion"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="LevantarReporte" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Height="827.805" Width="511.842" WindowStyle="None" >
+        Title="LevantarReporte" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Height="691.305" Width="511.842" WindowStyle="None" >
     <Grid Background="#DADADA" Height="559" VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
-        <Rectangle Height="474" VerticalAlignment="Top" Margin="0,-289,0,0" Grid.RowSpan="2">
+        <Rectangle Height="319" VerticalAlignment="Top" Margin="0,-134,0,0" Grid.RowSpan="2">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5, 0">
                     <GradientStop Color="#EAD66F"/>
@@ -21,22 +21,23 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Height="715" Fill="White" VerticalAlignment="Bottom" Margin="27,-260,34,104" RadiusY="14.286" RadiusX="14.286" Grid.RowSpan="2">
+        <Rectangle Height="566" Fill="White" VerticalAlignment="Bottom" Margin="33,-79,28,72" RadiusY="14.286" RadiusX="14.286" Grid.RowSpan="2">
             <Rectangle.Effect>
                 <DropShadowEffect Direction="0" Color="#FFBBBBBB" BlurRadius="15" RenderingBias="Quality"  ShadowDepth="1"/>
             </Rectangle.Effect>
         </Rectangle>
-        <Button x:Name="btn_Salir" Content="Salir" Background="#D92530" HorizontalAlignment="Left" Margin="47,364,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_Salir_Click"/>
-        <TextBlock Text="REPORTE REGIRSTRADO    " VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="169,-239,168,0" Height="29" Width="175"/>
-        <Label Content="NUMERO REPORTE" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="45,-184,0,0" VerticalAlignment="Top" Height="32" Width="174"/>
-        <Label Content="NOMBRE DELEGACION" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="45,-129,0,0" VerticalAlignment="Top" Height="32" Width="201"/>
-        <TextBlock x:Name="tb_Involucrados" Background="#DADADA" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Margin="45,-17,0,0" TextWrapping="Wrap" Text="INVOLUCRADOS" VerticalAlignment="Top" Height="91" Width="401" Foreground="#FF878787"/>
-        <TextBlock x:Name="txt_Direccion" Background="#DADADA" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Margin="45,-73,0,0" TextWrapping="Wrap" Text="DIRECCIÓN" VerticalAlignment="Top" Height="32" Width="401" Foreground="#FF878787"/>
-        <TextBlock x:Name="txt_NumReporte" Background="#DADADA" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Margin="219,-184,0,0" TextWrapping="Wrap" Text="NUMREPORTE" VerticalAlignment="Top" Height="32" Width="227" Foreground="#FF878787"/>
-        <TextBlock x:Name="txt_Delegacion" Background="#DADADA" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Margin="255,-129,0,0" TextWrapping="Wrap" Text="DELEGACION" VerticalAlignment="Top" Height="32" Width="191" Foreground="#FF878787"/>
-        <ComboBox x:Name="cb_SelecImagen" HorizontalAlignment="Left" Margin="137,91,0,0" VerticalAlignment="Top" Width="174"/>
-        <Label Content="IMAGEN" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="45,91,0,0" VerticalAlignment="Top" Height="32" Width="87"/>
-        <Image x:Name="img" HorizontalAlignment="Left" Height="286" Margin="47,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="399"/>
+        <Button x:Name="btn_Salir" Content="Salir" Background="#D92530" HorizontalAlignment="Left" Margin="47,373,0,0" VerticalAlignment="Top" Width="159" Grid.Row="1" Click="btn_Salir_Click"/>
+        <TextBlock Text="REPORTE REGISTRADO    " VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" Foreground="Gray" Margin="159,-122,156,0" Height="29" Width="197"/>
+        <Label Content="NUMERO REPORTE" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="48,-50,0,0" VerticalAlignment="Top" Height="32" Width="174"/>
+        <Label Content="NOMBRE DELEGACION" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="48,4,0,0" VerticalAlignment="Top" Height="32" Width="200"/>
+        <Label Content="INVOLUCRADOS" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="48,19,0,0" VerticalAlignment="Top" Height="32" Width="158" Grid.Row="1"/>
+        <TextBlock x:Name="tb_Involucrados" Background="#DADADA" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Margin="47,56,0,0" TextWrapping="Wrap" Text="INVOLUCRADOS" VerticalAlignment="Top" Height="92" Width="400" Foreground="#FF878787" Grid.Row="1"/>
+        <Label Content="DIRECCION" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="48,60,0,0" VerticalAlignment="Top" Height="32" Width="126"/>
+        <TextBlock x:Name="txt_Direccion" Background="#DADADA" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Margin="47,97,0,0" TextWrapping="Wrap" Text="DIRECCIÓN" VerticalAlignment="Top" Height="32" Width="400" Foreground="#FF878787"/>
+        <TextBlock x:Name="txt_NumReporte" Background="#DADADA" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Margin="222,-50,0,0" TextWrapping="Wrap" Text="NUMREPORTE" VerticalAlignment="Top" Height="32" Width="226" Foreground="#FF878787"/>
+        <TextBlock x:Name="txt_Delegacion" Background="#DADADA" FontFamily="Champagne &amp; Limousines" FontSize="18" HorizontalAlignment="Left" Margin="258,4,0,0" TextWrapping="Wrap" Text="DELEGACION" VerticalAlignment="Top" Height="32" Width="190" Foreground="#FF878787"/>
+        <Label Content="IMAGENES" FontFamily="Champagne &amp; Limousines" Foreground="Gray" FontSize="18" HorizontalAlignment="Left" Margin="48,174,0,0" VerticalAlignment="Top" Height="32" Width="104" Grid.Row="1" RenderTransformOrigin="0.519,1.281"/>
+        <ListBox x:Name="box_Imagenes" HorizontalAlignment="Left" Height="114" Margin="48,211,0,0" Grid.Row="1" VerticalAlignment="Top" Width="401" BorderBrush="Transparent" Background="#FFDADADA"/>
 
     </Grid>
 </Window>

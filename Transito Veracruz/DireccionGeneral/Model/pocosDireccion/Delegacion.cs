@@ -17,6 +17,7 @@ namespace DireccionGeneral.Model.pocosDireccion
         private String correoElectronico;
         private String calle;
         private String numeroDireccion;
+        private DateTime fechaCreacion;
 
         public override string ToString()
         {
@@ -32,5 +33,6 @@ namespace DireccionGeneral.Model.pocosDireccion
         public string CorreoElectronico { get => correoElectronico; set => correoElectronico = value; }
         public string Calle { get => calle; set => calle = value; }
         public string NumeroDireccion { get => numeroDireccion; set => numeroDireccion = value; }
+        public DateTime FechaCreacion { get => fechaCreacion; set => fechaCreacion = value; }
     }
 }

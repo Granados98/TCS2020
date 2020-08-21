@@ -92,12 +92,13 @@ namespace Transito_Veracruz.Delegacion
 
         private void btn_EnviarMensaje_Click(object sender, RoutedEventArgs e)
         {
+            block_Chat.Items.Add("Tú" + txt_Mensaje.Text);
             enviarMensaje();
         }
 
         public void recibirMensaje(string mensajeRecibido, string usuarioEmisor)
         {
-            string mensajeFinal= Convert.ToString(usuarioEmisor+" "+mensajeRecibido);
+            string mensajeFinal= Convert.ToString(mensajeRecibido);
             block_Chat.Items.Add(usuarioEmisor+":"+ mensajeFinal);
         }
 
@@ -404,5 +405,9 @@ namespace Transito_Veracruz.Delegacion
             }
         }
 
+        private void btn_Actualizar_Click(object sender, RoutedEventArgs e)
+        {
+            cargarReportes();
+        }
     }
 }

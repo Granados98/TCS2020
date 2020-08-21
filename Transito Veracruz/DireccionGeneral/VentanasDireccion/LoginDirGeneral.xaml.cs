@@ -37,7 +37,7 @@ namespace DireccionGeneral.VentanasDireccion
             {
                 usuario = txt_Usuario.Text;
                 Personal personal = PersonalDAO.getLogin(usuario, contraseñaIngresada);
-                if (personal != null && personal.IdPersonal > 0 && personal.Estado == "Desconectado")
+                if (personal != null && personal.IdPersonal > 0 && personal.Estado == "Desconectado" && personal.TipoPersonal== "Direccion General")
                 {
                     personal.Estado = "Conectado";
                     PersonalDAO.actualizarEstadoUsuario(personal);

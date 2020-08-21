@@ -12,7 +12,7 @@ namespace DireccionGeneral.Model.daoDireccion
 {
     class DictamenDAO
     {
-        public static int verificaDictamen(DateTime fecha)
+        public static int verificaDictamen(string fecha)
         {
             int idDictamen = 0;
             Dictamen dictamen = null;
@@ -38,20 +38,20 @@ namespace DireccionGeneral.Model.daoDireccion
                     {
                         dictamen = new Dictamen();
                         dictamen.IdDictamen = (!rd.IsDBNull(0)) ? rd.GetInt32(0) : 0;
-                        dictamen.FechaDictamen = (!rd.IsDBNull(1)) ? rd.GetDateTime(1) : new DateTime();
+                        dictamen.FechaDictamen = (!rd.IsDBNull(1)) ? rd.GetString(1) : "";
                     }
                     rd.Close();
                     command.Dispose();
-                    Console.WriteLine(dictamen);
 
                     idDictamen = dictamen.IdDictamen;
+                    Console.WriteLine(idDictamen);
                 }
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                Console.WriteLine("No se encontro el Conductor");
+                Console.WriteLine("No se encontro el dictamen");
             }
             finally
             {
@@ -65,8 +65,8 @@ namespace DireccionGeneral.Model.daoDireccion
         public static void guardarDictamen(Dictamen dictamen)
         {
             String query = "";
-                query = "INSERT INTO dbo.Dictamen (,descripcion,fechaDictamen,idPersonal) " +
-                           "VALUES(@descripcion,GETDATE(),@idPersonal);";
+                query = "INSERT INTO dbo.Dictamen (descripcion,fechaDictamen,idPersonal) " +
+                           "VALUES(@descripcion,@fechaDictamen,@idPersonal);";
             
 
             SqlConnection conn = null;

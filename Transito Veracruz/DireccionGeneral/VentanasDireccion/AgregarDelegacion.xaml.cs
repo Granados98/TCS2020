@@ -59,6 +59,8 @@ namespace DireccionGeneral.VentanasDireccion
 
         private void btn_AgregarDelegacion_Click(object sender, RoutedEventArgs e)
         {
+            DateTime fechaCreacion = DateTime.Now;
+
             string calle = txt_Calle.Text;
             string codigoPostal = txt_CodigoPostal.Text;
             string colonia = txt_Colonia.Text;
@@ -68,7 +70,7 @@ namespace DireccionGeneral.VentanasDireccion
             string telefono = txt_Telefono.Text;
             string municipio = cb_Municipio.Text;
 
-            if (cb_Municipio.SelectedItem ==null && calle.Length > 0 && codigoPostal.Length > 0 && colonia.Length > 0 && correo.Length > 0 && nombre.Length > 0 && numeroDireccion.Length > 0 && telefono.Length > 0 && municipio.Length > 0)
+            if (calle.Length>0 && codigoPostal.Length>0 && colonia.Length>0 && correo.Length>0 && nombre.Length>0 && numeroDireccion.Length>0 && telefono.Length>0 && municipio.Length>0)
             {
 
                 delegacion.Calle = txt_Calle.Text;
@@ -79,6 +81,7 @@ namespace DireccionGeneral.VentanasDireccion
                 delegacion.NumeroDireccion = txt_NumeroCalle.Text;
                 delegacion.Telefono = txt_Telefono.Text;
                 delegacion.Municipio = cb_Municipio.Text;
+                delegacion.FechaCreacion = fechaCreacion;
 
                 DelegacionDAO.guardaDelegacion(this.delegacion, this.nuevo);
 

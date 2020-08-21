@@ -32,71 +32,23 @@ namespace DireccionGeneral.VentanasDireccion
             int idReporte = reporte.IdReporte;
 
             consultarInvolucrados(idReporte);
-
+            consultarImagenes(idReporte);
             string idReporteAux = Convert.ToString(idReporte);
             txt_NumReporte.Text = idReporteAux;
             txt_Delegacion.Text = reporte.NombreDelegacion;
             txt_Direccion.Text = reporte.Direccion;
 
-            cargarImagenes(idReporte);
 
         }
-        /*
-        public void verImagen(int id)
+        private void consultarImagenes(int idReporte)
         {
-            SqlConnection conexion = null;
+            List<string> imagenes = new List<string>();
 
-            try
+            imagenes = ImagenDAO.getImagenes(idReporte);
+
+            foreach (var img in imagenes)
             {
-                conexion = ConnectionUtils.getConnection();
-                SqlCommand command;
-                byte[] 
-                if (conexion != null)
-                {
-                    String query = String.Format("SELECT dato FROM Imagen WHERE idImagen='" + id + "'");
-                    command = new SqlCommand(query, conexion);
-                    SqlDataReader dr = command.ExecuteReader();
-
-                    while (dr.Read() == true)
-                    {
-                        =dr[0];
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("No se encontro el Conductor");
-            }
-
-        }
-        */
-        public void cargarImagenes(int idReporte)
-        {
-            SqlConnection conexion = null;
-
-            try
-            {
-                conexion = ConnectionUtils.getConnection();
-                SqlCommand command;
-                if (conexion != null)
-                {
-                    String query = String.Format("SELECT idImagen FROM Imagen WHERE idReporte='"+idReporte+"'");
-                    command = new SqlCommand(query, conexion);
-                    SqlDataReader dr = command.ExecuteReader();
-
-                    while (dr.Read() == true)
-                    {
-                        cb_SelecImagen.Items.Add(dr[0]);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("No se encontro el Conductor");
+                box_Imagenes.Items.Add(img);
             }
         }
         private void consultarInvolucrados(int idReporte)
@@ -108,7 +60,6 @@ namespace DireccionGeneral.VentanasDireccion
             foreach (var id in listVehiculos)
             {
                 string matricula = VehiculoDAO.getMatricula(id);
-                Console.WriteLine(matricula);
                 matriculas.Add(matricula);
             }
             
@@ -124,5 +75,6 @@ namespace DireccionGeneral.VentanasDireccion
         {
             this.Close();
         }
+
     }
 }
