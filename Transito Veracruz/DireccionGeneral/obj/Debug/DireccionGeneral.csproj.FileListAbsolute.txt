@@ -74,3 +74,5 @@ C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\
 C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\Newtonsoft.Json.xml
 C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\Newtonsoft.Json.dll
 C:\Users\juang\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\StyleCop.dll
+C:\Users\Cesar Diaz\Documents\GitHub\TCS2020\Transito Veracruz\DireccionGeneral\bin\Debug\StyleCop.xml
