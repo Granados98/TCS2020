@@ -274,8 +274,7 @@ namespace Transito_Veracruz.Model.dao
                         "fechaNacimiento = @fechaNacimiento, " +
                         "telefono = @telefono, " +
                         "usuario = @usuario, " +
-                        "contrasena = @contrasena, " +
-                        "fechaRegistro = @fechaRegistro " +
+                        "contrasena = @contrasena " +
                         "WHERE idConductor = @idConductor;";
             }
             
