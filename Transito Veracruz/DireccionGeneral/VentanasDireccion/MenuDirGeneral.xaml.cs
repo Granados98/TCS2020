@@ -64,7 +64,7 @@ namespace DireccionGeneral.VentanasDireccion
             CargarUsuarios();
             CargaReportes();
             cargaComboBoxDelegaciones();
-            //conectarServidor();
+            conectarServidor();
             cargarCBDelegaciones();
         }
 

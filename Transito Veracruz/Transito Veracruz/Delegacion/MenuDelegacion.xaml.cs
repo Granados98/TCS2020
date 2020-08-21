@@ -60,7 +60,7 @@ namespace Transito_Veracruz.Delegacion
             nombre_Usuario.Content = usuarioIniciado.Usuario;
             
             cargarReportes();
-            //conectarServidor();
+            conectarServidor();
         }
 
 
